@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConorDnD5eInitiativeTracker", "ConorDnD5eInitiativeTracker\ConorDnD5eInitiativeTracker.csproj", "{295625A7-8177-480B-8718-3D76CDDBB45D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDInitiativeTrackerTest", "DnDInitiativeTrackerTest\DnDInitiativeTrackerTest.csproj", "{312A9FA5-7BC0-46E8-878A-4518F61E9E10}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{295625A7-8177-480B-8718-3D76CDDBB45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{295625A7-8177-480B-8718-3D76CDDBB45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{295625A7-8177-480B-8718-3D76CDDBB45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{295625A7-8177-480B-8718-3D76CDDBB45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{312A9FA5-7BC0-46E8-878A-4518F61E9E10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{312A9FA5-7BC0-46E8-878A-4518F61E9E10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{312A9FA5-7BC0-46E8-878A-4518F61E9E10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{312A9FA5-7BC0-46E8-878A-4518F61E9E10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F21082FD-1AE8-4A2A-B318-6365AC79B6D6}
+	EndGlobalSection
+EndGlobal
