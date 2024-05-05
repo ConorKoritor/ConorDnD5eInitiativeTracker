@@ -7,21 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker
+namespace ConorDnD5eInitiativeTracker.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class DifficultyClass
+    public partial class Speed
     {
         public int Id { get; set; }
-        public string DC_Type { get; set; }
-        public short DC_Value { get; set; }
-        public int LegendaryActionId { get; set; }
-        public int ActionId { get; set; }
-        public int LegendaryActionId1 { get; set; }
+        public string Type { get; set; }
+        public string Distance { get; set; }
+        public int MonsterId { get; set; }
     
-        public virtual Action Action { get; set; }
-        public virtual LegendaryAction LegendaryAction { get; set; }
+        public virtual Monster Monster { get; set; }
     }
 }

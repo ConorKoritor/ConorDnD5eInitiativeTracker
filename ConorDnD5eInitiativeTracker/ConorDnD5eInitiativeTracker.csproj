@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\NUnit.4.1.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.4.1.0\build\NUnit.props')" />
+  <Import Project="..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.9.0\build\net462\Microsoft.NET.Test.Sdk.props" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.9.0\build\net462\Microsoft.NET.Test.Sdk.props')" />
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.9.0\build\netstandard2.0\Microsoft.CodeCoverage.props" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.9.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -29,6 +34,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,17 +57,41 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.5.1.1\lib\net462\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeCoverage.17.9.0\lib\net462\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=4.20.70.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.20.70\lib\net462\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=4.0.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.4.1.0\lib\net462\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework.legacy, Version=4.0.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.4.1.0\lib\net462\nunit.framework.legacy.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -79,66 +110,68 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Abilities.cs">
+    <Compile Include="APIRequests\APIGetLink.cs" />
+    <Compile Include="APIRequests\MonsterAPIRequests.cs" />
+    <Compile Include="Database\Abilities.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Action.cs">
+    <Compile Include="Database\Action.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ArmorClass.cs">
+    <Compile Include="Database\ArmorClass.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="CharacterScenarioTable.cs">
+    <Compile Include="Database\CharacterScenarioTable.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ConditionImmunity.cs">
+    <Compile Include="Database\ConditionImmunity.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Damage.cs">
+    <Compile Include="Database\Damage.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="DifficultyClass.cs">
+    <Compile Include="Database\DifficultyClass.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="InitiativeTrackerDB.cs">
+    <Compile Include="Database\InitiativeTrackerDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="LegendaryAction.cs">
+    <Compile Include="Database\LegendaryAction.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Monster.cs">
+    <Compile Include="Database\Monster.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="MonsterScenarioTable.cs">
+    <Compile Include="Database\MonsterScenarioTable.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="PlayerCharacterBasic.cs">
+    <Compile Include="Database\PlayerCharacterBasic.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Proficiency.cs">
+    <Compile Include="Database\Proficiency.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Scenario.cs">
+    <Compile Include="Database\Scenario.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="SpecialAbility.cs">
+    <Compile Include="Database\SpecialAbility.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Speed.cs">
+    <Compile Include="Database\Speed.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Spell.cs">
+    <Compile Include="Database\Spell.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="SpellCastingStats.cs">
+    <Compile Include="Database\SpellCastingStats.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="SpellDamage.cs">
+    <Compile Include="Database\SpellDamage.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="SpellMonsterTable.cs">
+    <Compile Include="Database\SpellMonsterTable.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -149,12 +182,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="InitiativeTrackerDB.Context.cs">
+    <Compile Include="Database\InitiativeTrackerDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InitiativeTrackerDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="InitiativeTrackerDB.Designer.cs">
+    <Compile Include="Database\InitiativeTrackerDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InitiativeTrackerDB.edmx</DependentUpon>
@@ -182,12 +215,24 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="InitiativeTrackerDB.edmx">
+    <EntityDeploy Include="Database\InitiativeTrackerDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>InitiativeTrackerDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="InitiativeTrackerDB.edmx.diagram">
+    <None Include="Database\InitiativeTrackerDB.edmx.diagram">
       <DependentUpon>InitiativeTrackerDB.edmx</DependentUpon>
+    </None>
+    <None Include="JSONTestData\MonsterData %281%29.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="JSONTestData\MonsterDictionary.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="JSONTestData\Spells.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="JSONTestData\SpellsDictionary.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -199,21 +244,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="InitiativeTrackerDB.Context.tt">
+    <Content Include="Database\InitiativeTrackerDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InitiativeTrackerDB.Context.cs</LastGenOutput>
       <DependentUpon>InitiativeTrackerDB.edmx</DependentUpon>
     </Content>
-    <Content Include="InitiativeTrackerDB.edmx.sql" />
-    <Content Include="InitiativeTrackerDB.mdf">
+    <Content Include="Database\InitiativeTrackerDB.edmx.sql" />
+    <Content Include="Database\InitiativeTrackerDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="InitiativeTrackerDB.tt">
+    <Content Include="Database\InitiativeTrackerDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InitiativeTrackerDB.cs</LastGenOutput>
       <DependentUpon>InitiativeTrackerDB.edmx</DependentUpon>
     </Content>
-    <Content Include="InitiativeTrackerDB_log.ldf">
+    <Content Include="Database\InitiativeTrackerDB_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>InitiativeTrackerDB.mdf</DependentUpon>
     </Content>
@@ -233,5 +278,22 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.9.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.9.0\build\netstandard2.0\Microsoft.CodeCoverage.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.9.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.9.0\build\netstandard2.0\Microsoft.CodeCoverage.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.9.0\build\net462\Microsoft.NET.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.9.0\build\net462\Microsoft.NET.Test.Sdk.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.9.0\build\net462\Microsoft.NET.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.9.0\build\net462\Microsoft.NET.Test.Sdk.targets'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit.4.1.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.4.1.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.9.0\build\netstandard2.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.9.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" />
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.9.0\build\net462\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.9.0\build\net462\Microsoft.NET.Test.Sdk.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

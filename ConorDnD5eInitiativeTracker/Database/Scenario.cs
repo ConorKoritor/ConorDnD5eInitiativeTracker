@@ -7,25 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker
+namespace ConorDnD5eInitiativeTracker.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PlayerCharacterBasic
+    public partial class Scenario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PlayerCharacterBasic()
+        public Scenario()
         {
             this.CharacterScenarioTables = new HashSet<CharacterScenarioTable>();
+            this.MonsterScenarioTables = new HashSet<MonsterScenarioTable>();
         }
     
         public int Id { get; set; }
-        public int HP { get; set; }
-        public short AC { get; set; }
-        public int CR_2_Score { get; set; }
+        public string Scenario_Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CharacterScenarioTable> CharacterScenarioTables { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MonsterScenarioTable> MonsterScenarioTables { get; set; }
     }
 }

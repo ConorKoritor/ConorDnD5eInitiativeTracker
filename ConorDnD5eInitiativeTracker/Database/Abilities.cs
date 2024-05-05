@@ -7,17 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker
+namespace ConorDnD5eInitiativeTracker.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Speed
+    public partial class Abilities
     {
         public int Id { get; set; }
-        public string Type { get; set; }
-        public string Distance { get; set; }
-        public int MonsterId { get; set; }
+        public short Strength { get; set; }
+        public short Dexterity { get; set; }
+        public short Constitution { get; set; }
+        public short Intelligence { get; set; }
+        public short Wisdom { get; set; }
+        public short Charisma { get; set; }
+        public short Proficiency_Bonus { get; set; }
     
         public virtual Monster Monster { get; set; }
     }

@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker
+namespace ConorDnD5eInitiativeTracker.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Proficiency
+    public partial class CharacterScenarioTable
     {
         public int Id { get; set; }
-        public short Bonus { get; set; }
-        public string Name { get; set; }
-        public int MonsterId { get; set; }
+        public int ScenarioId { get; set; }
+        public int PlayerCharacterBasicId { get; set; }
     
-        public virtual Monster Monster { get; set; }
+        public virtual Scenario Scenario { get; set; }
+        public virtual PlayerCharacterBasic PlayerCharacterBasic { get; set; }
     }
 }

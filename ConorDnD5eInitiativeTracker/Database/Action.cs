@@ -7,34 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker
+namespace ConorDnD5eInitiativeTracker.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Spell
+    public partial class Action
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Spell()
+        public Action()
         {
-            this.SpellDamages = new HashSet<SpellDamage>();
-            this.SpellMonsterTables = new HashSet<SpellMonsterTable>();
+            this.Damages = new HashSet<Damage>();
+            this.DifficultyClasses = new HashSet<DifficultyClass>();
         }
     
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public string Range { get; set; }
-        public string Components { get; set; }
-        public string IsRitual { get; set; }
-        public string Duration { get; set; }
-        public string IsConcentration { get; set; }
-        public string Casting_Time { get; set; }
-        public short Level { get; set; }
-        public string School { get; set; }
+        public string Desc { get; set; }
+        public Nullable<short> Attack_Bonus { get; set; }
+        public string Usage_Type { get; set; }
+        public Nullable<short> Usage_Times { get; set; }
+        public int MonsterId { get; set; }
     
+        public virtual Monster Monster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpellDamage> SpellDamages { get; set; }
+        public virtual ICollection<Damage> Damages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpellMonsterTable> SpellMonsterTables { get; set; }
+        public virtual ICollection<DifficultyClass> DifficultyClasses { get; set; }
     }
 }
