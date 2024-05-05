@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ConorDnD5eInitiativeTracker.APIRequests;
 
 namespace ConorDnD5eInitiativeTracker
 {
@@ -20,9 +21,27 @@ namespace ConorDnD5eInitiativeTracker
     /// </summary>
     public partial class MainWindow : Window
     {
+        MonsterDictionaryAPIRequests monsterDictionaryAPI = new MonsterDictionaryAPIRequests();
         public MainWindow()
         {
             InitializeComponent();
+
+            InitializeAPI.InitializeClient();
+
+
+
+            LoadMonsterDictionaryAPI();
+        }
+
+        private void btn_testBench_Click(object sender, RoutedEventArgs e)
+        {
+            TestBench testBench = new TestBench(monsterDictionaryAPI);
+            testBench.Show();
+        }
+
+        private async Task LoadMonsterDictionaryAPI()
+        {
+            await monsterDictionaryAPI.PullMonsterListFromAPI();
         }
     }
 }
