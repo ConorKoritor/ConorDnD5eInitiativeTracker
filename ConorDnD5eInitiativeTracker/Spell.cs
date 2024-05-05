@@ -21,7 +21,6 @@ namespace ConorDnD5eInitiativeTracker
             this.SpellMonsterTables = new HashSet<SpellMonsterTable>();
         }
     
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Range { get; set; }

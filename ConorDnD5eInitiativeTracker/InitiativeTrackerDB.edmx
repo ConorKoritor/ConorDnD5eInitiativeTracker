@@ -77,14 +77,6 @@
       <End Role="LegendaryAction" EntitySet="LegendaryActions" />
       <End Role="DifficultyClass" EntitySet="DifficultyClasses" />
     </AssociationSet>
-    <AssociationSet Name="SpellSpellDamage" Association="InitiativeTrackerDB.Store.SpellSpellDamage">
-      <End Role="Spell" EntitySet="Spells" />
-      <End Role="SpellDamage" EntitySet="SpellDamages" />
-    </AssociationSet>
-    <AssociationSet Name="SpellSpellMonsterTable" Association="InitiativeTrackerDB.Store.SpellSpellMonsterTable">
-      <End Role="Spell" EntitySet="Spells" />
-      <End Role="SpellMonsterTable" EntitySet="SpellMonsterTables" />
-    </AssociationSet>
     <AssociationSet Name="MonsterSpellMonsterTable" Association="InitiativeTrackerDB.Store.MonsterSpellMonsterTable">
       <End Role="Monster" EntitySet="Monsters" />
       <End Role="SpellMonsterTable" EntitySet="SpellMonsterTables" />
@@ -104,6 +96,14 @@
     <AssociationSet Name="MonsterMonsterScenarioTable" Association="InitiativeTrackerDB.Store.MonsterMonsterScenarioTable">
       <End Role="Monster" EntitySet="Monsters" />
       <End Role="MonsterScenarioTable" EntitySet="MonsterScenarioTables" />
+    </AssociationSet>
+    <AssociationSet Name="SpellSpellDamage" Association="InitiativeTrackerDB.Store.SpellSpellDamage">
+      <End Role="Spell" EntitySet="Spells" />
+      <End Role="SpellDamage" EntitySet="SpellDamages" />
+    </AssociationSet>
+    <AssociationSet Name="SpellSpellMonsterTable" Association="InitiativeTrackerDB.Store.SpellSpellMonsterTable">
+      <End Role="Spell" EntitySet="Spells" />
+      <End Role="SpellMonsterTable" EntitySet="SpellMonsterTables" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Monsters">
@@ -254,9 +254,8 @@
   </EntityType>
   <EntityType Name="Spells">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Range" Type="nvarchar(max)" Nullable="false" />
@@ -284,14 +283,15 @@
     <Property Name="Damage_L8" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Damage_L9" Type="nvarchar(max)" Nullable="true" />
     <Property Name="SpellId" Type="int" Nullable="false" />
+    <Property Name="SpellName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="SpellMonsterTables">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SpellId" Type="int" Nullable="false" />
     <Property Name="MonsterId" Type="int" Nullable="false" />
+    <Property Name="SpellName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Scenarios">
     <Key>
@@ -481,30 +481,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="SpellSpellDamage">
-    <End Role="Spell" Type="InitiativeTrackerDB.Store.Spells" Multiplicity="1" />
-    <End Role="SpellDamage" Type="InitiativeTrackerDB.Store.SpellDamages" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Spell">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SpellDamage">
-        <PropertyRef Name="SpellId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="SpellSpellMonsterTable">
-    <End Role="Spell" Type="InitiativeTrackerDB.Store.Spells" Multiplicity="1" />
-    <End Role="SpellMonsterTable" Type="InitiativeTrackerDB.Store.SpellMonsterTables" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Spell">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SpellMonsterTable">
-        <PropertyRef Name="SpellId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="MonsterSpellMonsterTable">
     <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
     <End Role="SpellMonsterTable" Type="InitiativeTrackerDB.Store.SpellMonsterTables" Multiplicity="*" />
@@ -562,6 +538,30 @@
       </Principal>
       <Dependent Role="MonsterScenarioTable">
         <PropertyRef Name="MonsterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpellSpellDamage">
+    <End Role="Spell" Type="InitiativeTrackerDB.Store.Spells" Multiplicity="1" />
+    <End Role="SpellDamage" Type="InitiativeTrackerDB.Store.SpellDamages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spell">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="SpellDamage">
+        <PropertyRef Name="SpellName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpellSpellMonsterTable">
+    <End Role="Spell" Type="InitiativeTrackerDB.Store.Spells" Multiplicity="1" />
+    <End Role="SpellMonsterTable" Type="InitiativeTrackerDB.Store.SpellMonsterTables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spell">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="SpellMonsterTable">
+        <PropertyRef Name="SpellName" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -637,14 +637,6 @@
           <EntitySet Name="Spells" EntityType="InitiativeTrackerDB.Spell" />
           <EntitySet Name="SpellDamages" EntityType="InitiativeTrackerDB.SpellDamage" />
           <EntitySet Name="SpellMonsterTables" EntityType="InitiativeTrackerDB.SpellMonsterTable" />
-          <AssociationSet Name="SpellSpellDamage" Association="InitiativeTrackerDB.SpellSpellDamage">
-            <End Role="Spell" EntitySet="Spells" />
-            <End Role="SpellDamage" EntitySet="SpellDamages" />
-          </AssociationSet>
-          <AssociationSet Name="SpellSpellMonsterTable" Association="InitiativeTrackerDB.SpellSpellMonsterTable">
-            <End Role="Spell" EntitySet="Spells" />
-            <End Role="SpellMonsterTable" EntitySet="SpellMonsterTables" />
-          </AssociationSet>
           <AssociationSet Name="MonsterSpellMonsterTable" Association="InitiativeTrackerDB.MonsterSpellMonsterTable">
             <End Role="Monster" EntitySet="Monsters" />
             <End Role="SpellMonsterTable" EntitySet="SpellMonsterTables" />
@@ -668,6 +660,14 @@
           <AssociationSet Name="MonsterMonsterScenarioTable" Association="InitiativeTrackerDB.MonsterMonsterScenarioTable">
             <End Role="Monster" EntitySet="Monsters" />
             <End Role="MonsterScenarioTable" EntitySet="MonsterScenarioTables" />
+          </AssociationSet>
+          <AssociationSet Name="SpellSpellDamage" Association="InitiativeTrackerDB.SpellSpellDamage">
+            <End Role="Spell" EntitySet="Spells" />
+            <End Role="SpellDamage" EntitySet="SpellDamages" />
+          </AssociationSet>
+          <AssociationSet Name="SpellSpellMonsterTable" Association="InitiativeTrackerDB.SpellSpellMonsterTable">
+            <End Role="Spell" EntitySet="Spells" />
+            <End Role="SpellMonsterTable" EntitySet="SpellMonsterTables" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Monster">
@@ -975,10 +975,9 @@
         </Association>
         <EntityType Name="Spell">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="Description" Type="String" Nullable="false" />
           <Property Name="Range" Type="String" Nullable="false" />
           <Property Name="Components" Type="String" Nullable="false" />
@@ -1006,43 +1005,20 @@
           <Property Name="Damage_L7" Type="String" Nullable="true" />
           <Property Name="Damage_L8" Type="String" Nullable="true" />
           <Property Name="Damage_L9" Type="String" Nullable="true" />
-          <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellSpellDamage" FromRole="SpellDamage" ToRole="Spell" />
           <Property Name="SpellId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellSpellDamage" FromRole="SpellDamage" ToRole="Spell" />
+          <Property Name="SpellName" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="SpellMonsterTable">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellSpellMonsterTable" FromRole="SpellMonsterTable" ToRole="Spell" />
-          <Property Name="SpellId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterSpellMonsterTable" FromRole="SpellMonsterTable" ToRole="Monster" />
           <Property Name="MonsterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellSpellMonsterTable" FromRole="SpellMonsterTable" ToRole="Spell" />
+          <Property Name="SpellName" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="SpellSpellDamage">
-          <End Type="InitiativeTrackerDB.Spell" Role="Spell" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.SpellDamage" Role="SpellDamage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Spell">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SpellDamage">
-              <PropertyRef Name="SpellId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SpellSpellMonsterTable">
-          <End Type="InitiativeTrackerDB.Spell" Role="Spell" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.SpellMonsterTable" Role="SpellMonsterTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Spell">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SpellMonsterTable">
-              <PropertyRef Name="SpellId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="MonsterSpellMonsterTable">
           <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
           <End Type="InitiativeTrackerDB.SpellMonsterTable" Role="SpellMonsterTable" Multiplicity="*" />
@@ -1139,6 +1115,30 @@
             </Principal>
             <Dependent Role="MonsterScenarioTable">
               <PropertyRef Name="MonsterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpellSpellDamage">
+          <End Type="InitiativeTrackerDB.Spell" Role="Spell" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.SpellDamage" Role="SpellDamage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellDamage">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpellSpellMonsterTable">
+          <End Type="InitiativeTrackerDB.Spell" Role="Spell" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.SpellMonsterTable" Role="SpellMonsterTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellMonsterTable">
+              <PropertyRef Name="SpellName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1306,7 +1306,6 @@
     <EntitySetMapping Name="Spells">
       <EntityTypeMapping TypeName="IsTypeOf(InitiativeTrackerDB.Spell)">
         <MappingFragment StoreEntitySet="Spells">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Range" ColumnName="Range" />
@@ -1335,6 +1334,7 @@
           <ScalarProperty Name="Damage_L8" ColumnName="Damage_L8" />
           <ScalarProperty Name="Damage_L9" ColumnName="Damage_L9" />
           <ScalarProperty Name="SpellId" ColumnName="SpellId" />
+          <ScalarProperty Name="SpellName" ColumnName="SpellName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1342,8 +1342,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(InitiativeTrackerDB.SpellMonsterTable)">
         <MappingFragment StoreEntitySet="SpellMonsterTables">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="SpellId" ColumnName="SpellId" />
           <ScalarProperty Name="MonsterId" ColumnName="MonsterId" />
+          <ScalarProperty Name="SpellName" ColumnName="SpellName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

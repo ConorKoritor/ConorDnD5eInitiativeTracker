@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="269f6aa1529f49ec9846dbdb1a958685" Name="Diagram1" ZoomLevel="57" >
+      <Diagram DiagramId="269f6aa1529f49ec9846dbdb1a958685" Name="Diagram1" ZoomLevel="97" >
         <EntityTypeShape EntityType="InitiativeTrackerDB.Monster" Width="1.5" PointX="28.25" PointY="21.75" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.Abilities" Width="1.5" PointX="25.75" PointY="21.875" />
         <AssociationConnector Association="InitiativeTrackerDB.MonsterAbilities" />
@@ -33,8 +33,6 @@
         <EntityTypeShape EntityType="InitiativeTrackerDB.Spell" Width="1.5" PointX="31.625" PointY="31.375" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.SpellDamage" Width="1.5" PointX="35.125" PointY="31.375" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.SpellMonsterTable" Width="1.5" PointX="28.625" PointY="31.5" />
-        <AssociationConnector Association="InitiativeTrackerDB.SpellSpellDamage" />
-        <AssociationConnector Association="InitiativeTrackerDB.SpellSpellMonsterTable" />
         <AssociationConnector Association="InitiativeTrackerDB.MonsterSpellMonsterTable" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.Scenario" Width="1.5" PointX="17.875" PointY="23.75" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.CharacterScenarioTable" Width="1.5" PointX="20.5" PointY="20.875" />
@@ -44,6 +42,8 @@
         <EntityTypeShape EntityType="InitiativeTrackerDB.MonsterScenarioTable" Width="1.5" PointX="20.875" PointY="26.25" />
         <AssociationConnector Association="InitiativeTrackerDB.ScenarioMonsterScenarioTable" />
         <AssociationConnector Association="InitiativeTrackerDB.MonsterMonsterScenarioTable" />
+        <AssociationConnector Association="InitiativeTrackerDB.SpellSpellDamage" />
+        <AssociationConnector Association="InitiativeTrackerDB.SpellSpellMonsterTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

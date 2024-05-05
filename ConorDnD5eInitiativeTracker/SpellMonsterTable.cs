@@ -15,10 +15,10 @@ namespace ConorDnD5eInitiativeTracker
     public partial class SpellMonsterTable
     {
         public int Id { get; set; }
-        public int SpellId { get; set; }
         public int MonsterId { get; set; }
+        public string SpellName { get; set; }
     
-        public virtual Spell Spell { get; set; }
         public virtual Monster Monster { get; set; }
+        public virtual Spell Spell { get; set; }
     }
 }

@@ -26,6 +26,7 @@ namespace ConorDnD5eInitiativeTracker
         public string Damage_L8 { get; set; }
         public string Damage_L9 { get; set; }
         public int SpellId { get; set; }
+        public string SpellName { get; set; }
     
         public virtual Spell Spell { get; set; }
     }
