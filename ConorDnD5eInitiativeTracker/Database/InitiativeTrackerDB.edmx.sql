@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/05/2024 15:13:01
--- Generated from EDMX file: C:\Users\ckori\Documents\ConorDnD5eInitiativeTracker\ConorDnD5eInitiativeTracker\InitiativeTrackerDB.edmx
+-- Date Created: 05/06/2024 20:58:38
+-- Generated from EDMX file: C:\Users\ckori\Documents\ConorDnD5eInitiativeTracker\ConorDnD5eInitiativeTracker\Database\InitiativeTrackerDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,128 +17,11 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_MonsterAbilities]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Monsters] DROP CONSTRAINT [FK_MonsterAbilities];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterArmorClass]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ArmorClasses] DROP CONSTRAINT [FK_MonsterArmorClass];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterConditionImmunity]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ConditionImmunities] DROP CONSTRAINT [FK_MonsterConditionImmunity];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterProficiency]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Proficiencies] DROP CONSTRAINT [FK_MonsterProficiency];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterSpeed]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Speeds] DROP CONSTRAINT [FK_MonsterSpeed];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterAction]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Actions] DROP CONSTRAINT [FK_MonsterAction];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterSpellCastingStats]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Monsters] DROP CONSTRAINT [FK_MonsterSpellCastingStats];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterSpecialAbility]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SpecialAbilities] DROP CONSTRAINT [FK_MonsterSpecialAbility];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterLegendaryAction]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LegendaryActions] DROP CONSTRAINT [FK_MonsterLegendaryAction];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ActionDamage]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Damages] DROP CONSTRAINT [FK_ActionDamage];
-GO
-IF OBJECT_ID(N'[dbo].[FK_LegendaryActionDamage]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Damages] DROP CONSTRAINT [FK_LegendaryActionDamage];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ActionDifficultyClass]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DifficultyClasses] DROP CONSTRAINT [FK_ActionDifficultyClass];
-GO
-IF OBJECT_ID(N'[dbo].[FK_LegendaryActionDifficultyClass]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DifficultyClasses] DROP CONSTRAINT [FK_LegendaryActionDifficultyClass];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SpellSpellDamage]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SpellDamages] DROP CONSTRAINT [FK_SpellSpellDamage];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SpellSpellMonsterTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SpellMonsterTables] DROP CONSTRAINT [FK_SpellSpellMonsterTable];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterSpellMonsterTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SpellMonsterTables] DROP CONSTRAINT [FK_MonsterSpellMonsterTable];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ScenarioCharacterScenarioTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CharacterScenarioTables] DROP CONSTRAINT [FK_ScenarioCharacterScenarioTable];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerCharacterBasicCharacterScenarioTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CharacterScenarioTables] DROP CONSTRAINT [FK_PlayerCharacterBasicCharacterScenarioTable];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ScenarioMonsterScenarioTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MonsterScenarioTables] DROP CONSTRAINT [FK_ScenarioMonsterScenarioTable];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterMonsterScenarioTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MonsterScenarioTables] DROP CONSTRAINT [FK_MonsterMonsterScenarioTable];
-GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Monsters]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Monsters];
-GO
-IF OBJECT_ID(N'[dbo].[Abilities]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Abilities];
-GO
-IF OBJECT_ID(N'[dbo].[ArmorClasses]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ArmorClasses];
-GO
-IF OBJECT_ID(N'[dbo].[ConditionImmunities]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ConditionImmunities];
-GO
-IF OBJECT_ID(N'[dbo].[Proficiencies]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Proficiencies];
-GO
-IF OBJECT_ID(N'[dbo].[Speeds]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Speeds];
-GO
-IF OBJECT_ID(N'[dbo].[Actions]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Actions];
-GO
-IF OBJECT_ID(N'[dbo].[SpellCastingStats]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SpellCastingStats];
-GO
-IF OBJECT_ID(N'[dbo].[SpecialAbilities]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SpecialAbilities];
-GO
-IF OBJECT_ID(N'[dbo].[LegendaryActions]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[LegendaryActions];
-GO
-IF OBJECT_ID(N'[dbo].[Damages]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Damages];
-GO
-IF OBJECT_ID(N'[dbo].[DifficultyClasses]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[DifficultyClasses];
-GO
-IF OBJECT_ID(N'[dbo].[Spells]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Spells];
-GO
-IF OBJECT_ID(N'[dbo].[SpellDamages]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SpellDamages];
-GO
-IF OBJECT_ID(N'[dbo].[SpellMonsterTables]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SpellMonsterTables];
-GO
-IF OBJECT_ID(N'[dbo].[Scenarios]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Scenarios];
-GO
-IF OBJECT_ID(N'[dbo].[CharacterScenarioTables]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CharacterScenarioTables];
-GO
-IF OBJECT_ID(N'[dbo].[PlayerCharacterBasics]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PlayerCharacterBasics];
-GO
-IF OBJECT_ID(N'[dbo].[MonsterScenarioTables]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[MonsterScenarioTables];
-GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -273,8 +156,8 @@ CREATE TABLE [dbo].[Damages] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Damage_Type] nvarchar(max)  NOT NULL,
     [Damage_Dice] nvarchar(max)  NOT NULL,
-    [ActionId] int  NOT NULL,
-    [LegendaryActionId] int  NOT NULL
+    [ActionId] int  NULL,
+    [LegendaryActionId] int  NULL
 );
 GO
 
@@ -282,11 +165,10 @@ GO
 CREATE TABLE [dbo].[DifficultyClasses] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [DC_Type] nvarchar(max)  NOT NULL,
-    [DC_Value] smallint  NOT NULL,
-    [LegendaryActionId] int  NOT NULL,
-    [ActionId] int  NOT NULL,
-    [LegendaryActionId1] int  NOT NULL,
-    [Action_Id] int  NOT NULL
+    [DC_Value] smallint  NULL,
+    [LegendaryActionId] int  NULL,
+    [ActionId] int  NULL,
+    [SpellName] nvarchar(max)  NULL
 );
 GO
 
@@ -301,7 +183,10 @@ CREATE TABLE [dbo].[Spells] (
     [IsConcentration] nvarchar(max)  NOT NULL,
     [Casting_Time] nvarchar(max)  NOT NULL,
     [Level] smallint  NOT NULL,
-    [School] nvarchar(max)  NOT NULL
+    [School] nvarchar(max)  NOT NULL,
+    [Higher_Level] nvarchar(max)  NULL,
+    [Material] nvarchar(max)  NULL,
+    [Area_Of_Effect] nvarchar(max)  NULL
 );
 GO
 
@@ -650,36 +535,6 @@ ON [dbo].[Damages]
     ([LegendaryActionId]);
 GO
 
--- Creating foreign key on [Action_Id] in table 'DifficultyClasses'
-ALTER TABLE [dbo].[DifficultyClasses]
-ADD CONSTRAINT [FK_ActionDifficultyClass]
-    FOREIGN KEY ([Action_Id])
-    REFERENCES [dbo].[Actions]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ActionDifficultyClass'
-CREATE INDEX [IX_FK_ActionDifficultyClass]
-ON [dbo].[DifficultyClasses]
-    ([Action_Id]);
-GO
-
--- Creating foreign key on [LegendaryActionId1] in table 'DifficultyClasses'
-ALTER TABLE [dbo].[DifficultyClasses]
-ADD CONSTRAINT [FK_LegendaryActionDifficultyClass]
-    FOREIGN KEY ([LegendaryActionId1])
-    REFERENCES [dbo].[LegendaryActions]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_LegendaryActionDifficultyClass'
-CREATE INDEX [IX_FK_LegendaryActionDifficultyClass]
-ON [dbo].[DifficultyClasses]
-    ([LegendaryActionId1]);
-GO
-
 -- Creating foreign key on [MonsterId] in table 'SpellMonsterTables'
 ALTER TABLE [dbo].[SpellMonsterTables]
 ADD CONSTRAINT [FK_MonsterSpellMonsterTable]
@@ -782,6 +637,51 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_SpellSpellMonsterTable'
 CREATE INDEX [IX_FK_SpellSpellMonsterTable]
 ON [dbo].[SpellMonsterTables]
+    ([SpellName]);
+GO
+
+-- Creating foreign key on [LegendaryActionId] in table 'DifficultyClasses'
+ALTER TABLE [dbo].[DifficultyClasses]
+ADD CONSTRAINT [FK_LegendaryActionDifficultyClass]
+    FOREIGN KEY ([LegendaryActionId])
+    REFERENCES [dbo].[LegendaryActions]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LegendaryActionDifficultyClass'
+CREATE INDEX [IX_FK_LegendaryActionDifficultyClass]
+ON [dbo].[DifficultyClasses]
+    ([LegendaryActionId]);
+GO
+
+-- Creating foreign key on [ActionId] in table 'DifficultyClasses'
+ALTER TABLE [dbo].[DifficultyClasses]
+ADD CONSTRAINT [FK_ActionDifficultyClass]
+    FOREIGN KEY ([ActionId])
+    REFERENCES [dbo].[Actions]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ActionDifficultyClass'
+CREATE INDEX [IX_FK_ActionDifficultyClass]
+ON [dbo].[DifficultyClasses]
+    ([ActionId]);
+GO
+
+-- Creating foreign key on [SpellName] in table 'DifficultyClasses'
+ALTER TABLE [dbo].[DifficultyClasses]
+ADD CONSTRAINT [FK_SpellDifficultyClass]
+    FOREIGN KEY ([SpellName])
+    REFERENCES [dbo].[Spells]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SpellDifficultyClass'
+CREATE INDEX [IX_FK_SpellDifficultyClass]
+ON [dbo].[DifficultyClasses]
     ([SpellName]);
 GO
 

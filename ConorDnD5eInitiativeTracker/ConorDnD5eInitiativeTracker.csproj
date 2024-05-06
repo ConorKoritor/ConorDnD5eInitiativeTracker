@@ -131,7 +131,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="APIRequests\APIRequests.cs" />
-    <Compile Include="APIRequests\MonsterModels.cs" />
+    <Compile Include="APIRequests\MonsterDictionaryModels.cs" />
+    <Compile Include="APIRequests\SpellModels.cs" />
+    <Compile Include="APIRequests\SpellsDictionaryModels.cs" />
     <Compile Include="Database\Abilities.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
@@ -157,6 +159,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Database\InitiativeTrackerDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InitiativeTrackerDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\InitiativeTrackerDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InitiativeTrackerDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Database\LegendaryAction.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
@@ -193,24 +213,6 @@
     </Compile>
     <Compile Include="Database\SpellMonsterTable.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Database\InitiativeTrackerDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InitiativeTrackerDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\InitiativeTrackerDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InitiativeTrackerDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

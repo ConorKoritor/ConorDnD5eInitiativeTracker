@@ -28,8 +28,6 @@
         <AssociationConnector Association="InitiativeTrackerDB.ActionDamage" />
         <AssociationConnector Association="InitiativeTrackerDB.LegendaryActionDamage" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.DifficultyClass" Width="1.5" PointX="34.625" PointY="25.75" />
-        <AssociationConnector Association="InitiativeTrackerDB.ActionDifficultyClass" />
-        <AssociationConnector Association="InitiativeTrackerDB.LegendaryActionDifficultyClass" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.Spell" Width="1.5" PointX="31.625" PointY="31.375" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.SpellDamage" Width="1.5" PointX="35.125" PointY="31.375" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.SpellMonsterTable" Width="1.5" PointX="28.625" PointY="31.5" />
@@ -44,6 +42,9 @@
         <AssociationConnector Association="InitiativeTrackerDB.MonsterMonsterScenarioTable" />
         <AssociationConnector Association="InitiativeTrackerDB.SpellSpellDamage" />
         <AssociationConnector Association="InitiativeTrackerDB.SpellSpellMonsterTable" />
+        <AssociationConnector Association="InitiativeTrackerDB.LegendaryActionDifficultyClass" />
+        <AssociationConnector Association="InitiativeTrackerDB.ActionDifficultyClass" />
+        <AssociationConnector Association="InitiativeTrackerDB.SpellDifficultyClass" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

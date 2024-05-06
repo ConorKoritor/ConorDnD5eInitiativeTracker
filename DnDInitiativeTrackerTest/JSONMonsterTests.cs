@@ -7,7 +7,7 @@ using ConorDnD5eInitiativeTracker.APIRequests;
 
 namespace DnDInitiativeTrackerTest
 {
-    internal class JSONTests
+    internal class JSONMonsterTests
     {
         [SetUp]
         public void Setup()

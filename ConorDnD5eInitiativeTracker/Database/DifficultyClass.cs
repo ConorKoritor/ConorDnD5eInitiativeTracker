@@ -16,12 +16,13 @@ namespace ConorDnD5eInitiativeTracker.Database
     {
         public int Id { get; set; }
         public string DC_Type { get; set; }
-        public short DC_Value { get; set; }
-        public int LegendaryActionId { get; set; }
-        public int ActionId { get; set; }
-        public int LegendaryActionId1 { get; set; }
+        public Nullable<short> DC_Value { get; set; }
+        public Nullable<int> LegendaryActionId { get; set; }
+        public Nullable<int> ActionId { get; set; }
+        public string SpellName { get; set; }
     
-        public virtual Action Action { get; set; }
         public virtual LegendaryAction LegendaryAction { get; set; }
+        public virtual Action Action { get; set; }
+        public virtual Spell Spell { get; set; }
     }
 }
