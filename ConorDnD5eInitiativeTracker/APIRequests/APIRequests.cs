@@ -7,6 +7,7 @@ using Moq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 
 namespace ConorDnD5eInitiativeTracker.APIRequests
@@ -30,8 +31,7 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
     //Pulls down dictionary of Monsters from the API and saves them
     public class MonsterDictionaryAPIRequests
     {
-
-        private  List<MonsterDictionaryModel> monsterAPILinks = new List<MonsterDictionaryModel>();
+        private MonsterDictionaryResponseModel ResponseModel = new MonsterDictionaryResponseModel();
 
         public async Task PullMonsterListFromAPI()
         {
@@ -41,14 +41,22 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
                 {
                     string JSONResponse = await response.Content.ReadAsStringAsync();
 
-                    monsterAPILinks = JsonConvert.DeserializeObject<List<MonsterDictionaryModel>>(JSONResponse);
+                    ResponseModel = JsonConvert.DeserializeObject<MonsterDictionaryResponseModel>(JSONResponse);
+
                 }
             }
         }
 
+       
+
         public List<MonsterDictionaryModel> GetMonstersAPILinks()
         {
-            return monsterAPILinks;
+            return ResponseModel.results;
+        }
+
+        public MonsterDictionaryModel GetFirstMonsterForTesting()
+        {
+            return ResponseModel.results[0];
         }
     }
 

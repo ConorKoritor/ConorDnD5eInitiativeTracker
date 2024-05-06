@@ -27,21 +27,14 @@ namespace ConorDnD5eInitiativeTracker
             InitializeComponent();
 
             InitializeAPI.InitializeClient();
-
-
-
-            LoadMonsterDictionaryAPI();
         }
 
-        private void btn_testBench_Click(object sender, RoutedEventArgs e)
-        {
-            TestBench testBench = new TestBench(monsterDictionaryAPI);
-            testBench.Show();
-        }
+        private void btn_test_Click(object sender, RoutedEventArgs e) 
+        { 
 
-        private async Task LoadMonsterDictionaryAPI()
-        {
-            await monsterDictionaryAPI.PullMonsterListFromAPI();
+            monsterDictionaryAPI.PullMonsterListFromAPI();
+
+            Console.WriteLine("Test");
         }
     }
 }
