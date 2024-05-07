@@ -27,6 +27,15 @@ namespace ConorDnD5eInitiativeTracker.Databases
         public string Damage_L9 { get; set; }
         public string Damage_L10 { get; set; }
         public string Damage_L11 { get; set; }
+        public string Damage_L12 { get; set; }
+        public string Damage_L13 { get; set; }
+        public string Damage_L14 { get; set; }
+        public string Damage_L15 { get; set; }
+        public string Damage_L16 { get; set; }
+        public string Damage_L17 { get; set; }
+        public string Damage_L18 { get; set; }
+        public string Damage_L19 { get; set; }
+        public string Damage_L20 { get; set; }
         public string SpellName { get; set; }
     
         public virtual Spell Spell { get; set; }

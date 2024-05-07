@@ -2,13 +2,11 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/07/2024 12:29:15
+-- Date Created: 05/07/2024 15:16:42
 -- Generated from EDMX file: C:\Users\ckori\Documents\ConorDnD5eInitiativeTracker\ConorDnD5eInitiativeTracker\Databases\InitiativeTrackerDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
-GO
-USE [InitiativeTrackerDB];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -83,6 +81,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_LegendaryActionDifficultyClass]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DifficultyClasses] DROP CONSTRAINT [FK_LegendaryActionDifficultyClass];
 GO
+IF OBJECT_ID(N'[dbo].[FK_SpellSpellDamageAtCharacterLevel]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SpellDamageAtCharacterLevels] DROP CONSTRAINT [FK_SpellSpellDamageAtCharacterLevel];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -148,6 +149,9 @@ GO
 IF OBJECT_ID(N'[dbo].[SpellHealings]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SpellHealings];
 GO
+IF OBJECT_ID(N'[dbo].[SpellDamageAtCharacterLevels]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SpellDamageAtCharacterLevels];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -155,7 +159,7 @@ GO
 
 -- Creating table 'Monsters'
 CREATE TABLE [dbo].[Monsters] (
-    [Name] nvarchar(max)  NOT NULL,
+    [Name] nvarchar(200)  NOT NULL,
     [HP] int  NOT NULL,
     [Initiative_Modifier] smallint  NOT NULL,
     [Desc] nvarchar(max)  NOT NULL,
@@ -184,7 +188,7 @@ CREATE TABLE [dbo].[Abilities] (
     [Wisdom] smallint  NOT NULL,
     [Charisma] smallint  NOT NULL,
     [Proficiency_Bonus] smallint  NOT NULL,
-    [MonsterName] nvarchar(max)  NOT NULL
+    [MonsterName] nvarchar(200)  NOT NULL
 );
 GO
 
@@ -193,7 +197,7 @@ CREATE TABLE [dbo].[ArmorClasses] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Ac_Type] nvarchar(max)  NOT NULL,
     [AC] smallint  NOT NULL,
-    [MonsterName] nvarchar(max)  NOT NULL
+    [MonsterName] nvarchar(200)  NOT NULL
 );
 GO
 
@@ -202,7 +206,7 @@ CREATE TABLE [dbo].[ConditionImmunities] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [URL] nvarchar(max)  NOT NULL,
-    [MonsterName] nvarchar(max)  NOT NULL
+    [MonsterName] nvarchar(200)  NOT NULL
 );
 GO
 
@@ -211,7 +215,7 @@ CREATE TABLE [dbo].[Proficiencies] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Bonus] smallint  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [MonsterName] nvarchar(max)  NOT NULL
+    [MonsterName] nvarchar(200)  NOT NULL
 );
 GO
 
@@ -220,18 +224,18 @@ CREATE TABLE [dbo].[Speeds] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Type] nvarchar(max)  NOT NULL,
     [Distance] nvarchar(max)  NOT NULL,
-    [MonsterName] nvarchar(max)  NOT NULL
+    [MonsterName] nvarchar(200)  NOT NULL
 );
 GO
 
 -- Creating table 'Actions'
 CREATE TABLE [dbo].[Actions] (
-    [Name] nvarchar(max)  NOT NULL,
+    [Name] nvarchar(200)  NOT NULL,
     [Desc] nvarchar(max)  NOT NULL,
     [Attack_Bonus] smallint  NULL,
     [Usage_Type] nvarchar(max)  NULL,
     [Usage_Times] smallint  NULL,
-    [MonsterName] nvarchar(max)  NOT NULL
+    [MonsterName] nvarchar(200)  NOT NULL
 );
 GO
 
@@ -252,7 +256,7 @@ CREATE TABLE [dbo].[SpellCastingStats] (
     [L7_Slots] smallint  NULL,
     [L8_Slots] smallint  NULL,
     [L9_Slots] smallint  NULL,
-    [MonsterName] nvarchar(max)  NOT NULL
+    [MonsterName] nvarchar(200)  NOT NULL
 );
 GO
 
@@ -261,16 +265,16 @@ CREATE TABLE [dbo].[SpecialAbilities] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Desc] nvarchar(max)  NOT NULL,
-    [MonsterName] nvarchar(max)  NOT NULL
+    [MonsterName] nvarchar(200)  NOT NULL
 );
 GO
 
 -- Creating table 'LegendaryActions'
 CREATE TABLE [dbo].[LegendaryActions] (
-    [Name] nvarchar(max)  NOT NULL,
+    [Name] nvarchar(200)  NOT NULL,
     [Desc] nvarchar(max)  NOT NULL,
     [Attack_Bonus] smallint  NULL,
-    [MonsterName] nvarchar(max)  NOT NULL
+    [MonsterName] nvarchar(200)  NOT NULL
 );
 GO
 
@@ -279,10 +283,10 @@ CREATE TABLE [dbo].[Damages] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Damage_Type] nvarchar(max)  NOT NULL,
     [Damage_Dice] nvarchar(max)  NOT NULL,
-    [ActionMonsterName] nvarchar(max)  NULL,
-    [ActionName] nvarchar(max)  NULL,
-    [LegendaryActionMonsterName] nvarchar(max)  NULL,
-    [LegendaryActionName] nvarchar(max)  NULL
+    [ActionMonsterName] nvarchar(200)  NULL,
+    [ActionName] nvarchar(200)  NULL,
+    [LegendaryActionMonsterName] nvarchar(200)  NULL,
+    [LegendaryActionName] nvarchar(200)  NULL
 );
 GO
 
@@ -291,17 +295,17 @@ CREATE TABLE [dbo].[DifficultyClasses] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [DC_Type] nvarchar(max)  NOT NULL,
     [DC_Value] smallint  NULL,
-    [SpellName] nvarchar(max)  NULL,
-    [ActionMonsterName] nvarchar(max)  NULL,
-    [ActionName] nvarchar(max)  NULL,
-    [LegendaryActionMonsterName] nvarchar(max)  NULL,
-    [LegendaryActionName] nvarchar(max)  NULL
+    [SpellName] nvarchar(200)  NULL,
+    [ActionMonsterName] nvarchar(200)  NULL,
+    [ActionName] nvarchar(200)  NULL,
+    [LegendaryActionMonsterName] nvarchar(200)  NULL,
+    [LegendaryActionName] nvarchar(200)  NULL
 );
 GO
 
 -- Creating table 'Spells'
 CREATE TABLE [dbo].[Spells] (
-    [Name] nvarchar(max)  NOT NULL,
+    [Name] nvarchar(200)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
     [Range] nvarchar(max)  NOT NULL,
     [Components] nvarchar(max)  NOT NULL,
@@ -309,11 +313,14 @@ CREATE TABLE [dbo].[Spells] (
     [Duration] nvarchar(max)  NOT NULL,
     [IsConcentration] bit  NOT NULL,
     [Casting_Time] nvarchar(max)  NOT NULL,
-    [Level] smallint  NOT NULL,
+    [Level] int  NOT NULL,
     [School] nvarchar(max)  NOT NULL,
     [Higher_Level] nvarchar(max)  NULL,
     [Material] nvarchar(max)  NULL,
-    [Area_Of_Effect] nvarchar(max)  NULL
+    [Area_Of_Effect_Type] nvarchar(max)  NULL,
+    [Area_Of_Effect_Size] int  NULL,
+    [DC_Type] nvarchar(max)  NULL,
+    [DC_Success] nvarchar(max)  NULL
 );
 GO
 
@@ -330,15 +337,14 @@ CREATE TABLE [dbo].[SpellDamages] (
     [Damage_L7] nvarchar(max)  NULL,
     [Damage_L8] nvarchar(max)  NULL,
     [Damage_L9] nvarchar(max)  NULL,
-    [Damage_L0] nvarchar(max)  NULL,
-    [SpellName] nvarchar(max)  NOT NULL
+    [SpellName] nvarchar(200)  NOT NULL
 );
 GO
 
 -- Creating table 'SpellMonsterTables'
 CREATE TABLE [dbo].[SpellMonsterTables] (
-    [SpellName] nvarchar(max)  NOT NULL,
-    [MonsterName] nvarchar(max)  NOT NULL
+    [SpellName] nvarchar(200)  NOT NULL,
+    [MonsterName] nvarchar(200)  NOT NULL
 );
 GO
 
@@ -369,7 +375,7 @@ GO
 -- Creating table 'MonsterScenarioTables'
 CREATE TABLE [dbo].[MonsterScenarioTables] (
     [ScenarioId] int  NOT NULL,
-    [MonsterName] nvarchar(max)  NOT NULL
+    [MonsterName] nvarchar(200)  NOT NULL
 );
 GO
 
@@ -385,7 +391,35 @@ CREATE TABLE [dbo].[SpellHealings] (
     [Healing_L7] nvarchar(max)  NULL,
     [Healing_L8] nvarchar(max)  NULL,
     [Healing_L9] nvarchar(max)  NULL,
-    [SpellName] nvarchar(max)  NOT NULL
+    [SpellName] nvarchar(200)  NOT NULL
+);
+GO
+
+-- Creating table 'SpellDamageAtCharacterLevels'
+CREATE TABLE [dbo].[SpellDamageAtCharacterLevels] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Damage_Type] nvarchar(max)  NOT NULL,
+    [Damage_L1] nvarchar(max)  NULL,
+    [Damage_L2] nvarchar(max)  NULL,
+    [Damage_L3] nvarchar(max)  NULL,
+    [Damage_L4] nvarchar(max)  NULL,
+    [Damage_L5] nvarchar(max)  NULL,
+    [Damage_L6] nvarchar(max)  NULL,
+    [Damage_L7] nvarchar(max)  NULL,
+    [Damage_L8] nvarchar(max)  NULL,
+    [Damage_L9] nvarchar(max)  NULL,
+    [Damage_L10] nvarchar(max)  NULL,
+    [Damage_L11] nvarchar(max)  NULL,
+    [Damage_L12] nvarchar(max)  NULL,
+    [Damage_L13] nvarchar(max)  NULL,
+    [Damage_L14] nvarchar(max)  NULL,
+    [Damage_L15] nvarchar(max)  NULL,
+    [Damage_L16] nvarchar(max)  NULL,
+    [Damage_L17] nvarchar(max)  NULL,
+    [Damage_L18] nvarchar(max)  NULL,
+    [Damage_L19] nvarchar(max)  NULL,
+    [Damage_L20] nvarchar(max)  NULL,
+    [SpellName] nvarchar(200)  NOT NULL
 );
 GO
 
@@ -510,6 +544,12 @@ GO
 -- Creating primary key on [Id] in table 'SpellHealings'
 ALTER TABLE [dbo].[SpellHealings]
 ADD CONSTRAINT [PK_SpellHealings]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'SpellDamageAtCharacterLevels'
+ALTER TABLE [dbo].[SpellDamageAtCharacterLevels]
+ADD CONSTRAINT [PK_SpellDamageAtCharacterLevels]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -815,6 +855,21 @@ GO
 CREATE INDEX [IX_FK_LegendaryActionDifficultyClass]
 ON [dbo].[DifficultyClasses]
     ([LegendaryActionMonsterName], [LegendaryActionName]);
+GO
+
+-- Creating foreign key on [SpellName] in table 'SpellDamageAtCharacterLevels'
+ALTER TABLE [dbo].[SpellDamageAtCharacterLevels]
+ADD CONSTRAINT [FK_SpellSpellDamageAtCharacterLevel]
+    FOREIGN KEY ([SpellName])
+    REFERENCES [dbo].[Spells]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SpellSpellDamageAtCharacterLevel'
+CREATE INDEX [IX_FK_SpellSpellDamageAtCharacterLevel]
+ON [dbo].[SpellDamageAtCharacterLevels]
+    ([SpellName]);
 GO
 
 -- --------------------------------------------------

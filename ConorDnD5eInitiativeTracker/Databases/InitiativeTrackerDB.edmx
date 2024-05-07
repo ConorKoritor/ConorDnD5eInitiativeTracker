@@ -26,6 +26,7 @@
     <EntitySet Name="PlayerCharacterBasics" EntityType="InitiativeTrackerDB.Store.PlayerCharacterBasics" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MonsterScenarioTables" EntityType="InitiativeTrackerDB.Store.MonsterScenarioTables" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SpellHealings" EntityType="InitiativeTrackerDB.Store.SpellHealings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SpellDamageAtCharacterLevels" EntityType="InitiativeTrackerDB.Store.SpellDamageAtCharacterLevels" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="ScenarioCharacterScenarioTable" Association="InitiativeTrackerDB.Store.ScenarioCharacterScenarioTable">
       <End Role="Scenario" EntitySet="Scenarios" />
       <End Role="CharacterScenarioTable" EntitySet="CharacterScenarioTables" />
@@ -113,6 +114,10 @@
     <AssociationSet Name="LegendaryActionDifficultyClass" Association="InitiativeTrackerDB.Store.LegendaryActionDifficultyClass">
       <End Role="LegendaryAction" EntitySet="LegendaryActions" />
       <End Role="DifficultyClass" EntitySet="DifficultyClasses" />
+    </AssociationSet>
+    <AssociationSet Name="SpellSpellDamageAtCharacterLevel" Association="InitiativeTrackerDB.Store.SpellSpellDamageAtCharacterLevel">
+      <End Role="Spell" EntitySet="Spells" />
+      <End Role="SpellDamageAtCharacterLevel" EntitySet="SpellDamageAtCharacterLevels" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Monsters">
@@ -275,11 +280,14 @@
     <Property Name="Duration" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsConcentration" Type="bit" Nullable="false" />
     <Property Name="Casting_Time" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Level" Type="smallint" Nullable="false" />
+    <Property Name="Level" Type="int" Nullable="false" />
     <Property Name="School" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Higher_Level" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Material" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Area_Of_Effect" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Area_Of_Effect_Type" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Area_Of_Effect_Size" Type="int" Nullable="true" />
+    <Property Name="DC_Type" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DC_Success" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="SpellDamages">
     <Key>
@@ -296,7 +304,6 @@
     <Property Name="Damage_L7" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Damage_L8" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Damage_L9" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Damage_L0" Type="nvarchar(max)" Nullable="true" />
     <Property Name="SpellName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="SpellMonsterTables">
@@ -354,6 +361,34 @@
     <Property Name="Healing_L7" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Healing_L8" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Healing_L9" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SpellName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SpellDamageAtCharacterLevels">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Damage_Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Damage_L1" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L2" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L3" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L4" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L5" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L6" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L7" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L8" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L9" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L10" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L11" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L12" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L13" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L14" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L15" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L16" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L17" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L18" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L19" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Damage_L20" Type="nvarchar(max)" Nullable="true" />
     <Property Name="SpellName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="ScenarioCharacterScenarioTable">
@@ -625,6 +660,18 @@
       <Dependent Role="DifficultyClass">
         <PropertyRef Name="LegendaryActionMonsterName" />
         <PropertyRef Name="LegendaryActionName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpellSpellDamageAtCharacterLevel">
+    <End Role="Spell" Type="InitiativeTrackerDB.Store.Spells" Multiplicity="1" />
+    <End Role="SpellDamageAtCharacterLevel" Type="InitiativeTrackerDB.Store.SpellDamageAtCharacterLevels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spell">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="SpellDamageAtCharacterLevel">
+        <PropertyRef Name="SpellName" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1324,6 +1371,15 @@
           <Property Name="Damage_L9" Type="String" Nullable="true" />
           <Property Name="Damage_L10" Type="String" Nullable="true" />
           <Property Name="Damage_L11" Type="String" Nullable="true" />
+          <Property Name="Damage_L12" Type="String" Nullable="true" />
+          <Property Name="Damage_L13" Type="String" Nullable="true" />
+          <Property Name="Damage_L14" Type="String" Nullable="true" />
+          <Property Name="Damage_L15" Type="String" Nullable="true" />
+          <Property Name="Damage_L16" Type="String" Nullable="true" />
+          <Property Name="Damage_L17" Type="String" Nullable="true" />
+          <Property Name="Damage_L18" Type="String" Nullable="true" />
+          <Property Name="Damage_L19" Type="String" Nullable="true" />
+          <Property Name="Damage_L20" Type="String" Nullable="true" />
           <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellSpellDamageAtCharacterLevel" FromRole="SpellDamageAtCharacterLevel" ToRole="Spell" />
           <Property Name="SpellName" Type="String" Nullable="false" />
         </EntityType>
@@ -1518,7 +1574,10 @@
           <ScalarProperty Name="School" ColumnName="School" />
           <ScalarProperty Name="Higher_Level" ColumnName="Higher_Level" />
           <ScalarProperty Name="Material" ColumnName="Material" />
-          <ScalarProperty Name="Area_Of_Effect_Type" ColumnName="Area_Of_Effect" />
+          <ScalarProperty Name="Area_Of_Effect_Type" ColumnName="Area_Of_Effect_Type" />
+          <ScalarProperty Name="Area_Of_Effect_Size" ColumnName="Area_Of_Effect_Size" />
+          <ScalarProperty Name="DC_Type" ColumnName="DC_Type" />
+          <ScalarProperty Name="DC_Success" ColumnName="DC_Success" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1596,6 +1655,35 @@
           <ScalarProperty Name="Healing_L7" ColumnName="Healing_L7" />
           <ScalarProperty Name="Healing_L8" ColumnName="Healing_L8" />
           <ScalarProperty Name="Healing_L9" ColumnName="Healing_L9" />
+          <ScalarProperty Name="SpellName" ColumnName="SpellName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpellDamageAtCharacterLevels">
+      <EntityTypeMapping TypeName="IsTypeOf(InitiativeTrackerDB.SpellDamageAtCharacterLevel)">
+        <MappingFragment StoreEntitySet="SpellDamageAtCharacterLevels">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Damage_Type" ColumnName="Damage_Type" />
+          <ScalarProperty Name="Damage_L1" ColumnName="Damage_L1" />
+          <ScalarProperty Name="Damage_L2" ColumnName="Damage_L2" />
+          <ScalarProperty Name="Damage_L3" ColumnName="Damage_L3" />
+          <ScalarProperty Name="Damage_L4" ColumnName="Damage_L4" />
+          <ScalarProperty Name="Damage_L5" ColumnName="Damage_L5" />
+          <ScalarProperty Name="Damage_L6" ColumnName="Damage_L6" />
+          <ScalarProperty Name="Damage_L7" ColumnName="Damage_L7" />
+          <ScalarProperty Name="Damage_L8" ColumnName="Damage_L8" />
+          <ScalarProperty Name="Damage_L9" ColumnName="Damage_L9" />
+          <ScalarProperty Name="Damage_L10" ColumnName="Damage_L10" />
+          <ScalarProperty Name="Damage_L11" ColumnName="Damage_L11" />
+          <ScalarProperty Name="Damage_L12" ColumnName="Damage_L12" />
+          <ScalarProperty Name="Damage_L13" ColumnName="Damage_L13" />
+          <ScalarProperty Name="Damage_L14" ColumnName="Damage_L14" />
+          <ScalarProperty Name="Damage_L15" ColumnName="Damage_L15" />
+          <ScalarProperty Name="Damage_L16" ColumnName="Damage_L16" />
+          <ScalarProperty Name="Damage_L17" ColumnName="Damage_L17" />
+          <ScalarProperty Name="Damage_L18" ColumnName="Damage_L18" />
+          <ScalarProperty Name="Damage_L19" ColumnName="Damage_L19" />
+          <ScalarProperty Name="Damage_L20" ColumnName="Damage_L20" />
           <ScalarProperty Name="SpellName" ColumnName="SpellName" />
         </MappingFragment>
       </EntityTypeMapping>

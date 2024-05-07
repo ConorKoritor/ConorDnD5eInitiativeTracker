@@ -267,7 +267,9 @@
       <LastGenOutput>InitiativeTrackerDB.Context.cs</LastGenOutput>
       <DependentUpon>InitiativeTrackerDB.edmx</DependentUpon>
     </Content>
-    <Content Include="Databases\InitiativeTrackerDB.edmx.sql" />
+    <Content Include="Databases\InitiativeTrackerDB.edmx.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Databases\InitiativeTrackerDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

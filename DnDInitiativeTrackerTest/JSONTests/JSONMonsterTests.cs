@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ConorDnD5eInitiativeTracker.APIRequests;
 using NUnit.Framework;
 
-namespace DnDInitiativeTrackerTest
+namespace DnDInitiativeTrackerTest.JSONTests
 {
 
     internal class JSONMonsterTests

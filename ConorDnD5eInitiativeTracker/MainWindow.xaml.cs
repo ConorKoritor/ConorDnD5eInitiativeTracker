@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ConorDnD5eInitiativeTracker.APIRequests;
+using ConorDnD5eInitiativeTracker.DatabaseLinq.SpellsLinq;
 
 namespace ConorDnD5eInitiativeTracker
 {
@@ -27,14 +29,13 @@ namespace ConorDnD5eInitiativeTracker
             InitializeComponent();
 
             InitializeAPI.InitializeClient();
+
+
         }
 
         private void btn_test_Click(object sender, RoutedEventArgs e) 
-        { 
+        {
 
-            monsterDictionaryAPI.PullMonsterListFromAPI();
-
-            Console.WriteLine("Test");
         }
     }
 }
