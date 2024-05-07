@@ -26,14 +26,6 @@
     <EntitySet Name="PlayerCharacterBasics" EntityType="InitiativeTrackerDB.Store.PlayerCharacterBasics" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MonsterScenarioTables" EntityType="InitiativeTrackerDB.Store.MonsterScenarioTables" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SpellHealings" EntityType="InitiativeTrackerDB.Store.SpellHealings" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="ActionDamage" Association="InitiativeTrackerDB.Store.ActionDamage">
-      <End Role="Action" EntitySet="Actions" />
-      <End Role="Damage" EntitySet="Damages" />
-    </AssociationSet>
-    <AssociationSet Name="LegendaryActionDamage" Association="InitiativeTrackerDB.Store.LegendaryActionDamage">
-      <End Role="LegendaryAction" EntitySet="LegendaryActions" />
-      <End Role="Damage" EntitySet="Damages" />
-    </AssociationSet>
     <AssociationSet Name="ScenarioCharacterScenarioTable" Association="InitiativeTrackerDB.Store.ScenarioCharacterScenarioTable">
       <End Role="Scenario" EntitySet="Scenarios" />
       <End Role="CharacterScenarioTable" EntitySet="CharacterScenarioTables" />
@@ -49,14 +41,6 @@
     <AssociationSet Name="SpellSpellMonsterTable" Association="InitiativeTrackerDB.Store.SpellSpellMonsterTable">
       <End Role="Spell" EntitySet="Spells" />
       <End Role="SpellMonsterTable" EntitySet="SpellMonsterTables" />
-    </AssociationSet>
-    <AssociationSet Name="LegendaryActionDifficultyClass" Association="InitiativeTrackerDB.Store.LegendaryActionDifficultyClass">
-      <End Role="LegendaryAction" EntitySet="LegendaryActions" />
-      <End Role="DifficultyClass" EntitySet="DifficultyClasses" />
-    </AssociationSet>
-    <AssociationSet Name="ActionDifficultyClass" Association="InitiativeTrackerDB.Store.ActionDifficultyClass">
-      <End Role="Action" EntitySet="Actions" />
-      <End Role="DifficultyClass" EntitySet="DifficultyClasses" />
     </AssociationSet>
     <AssociationSet Name="SpellDifficultyClass" Association="InitiativeTrackerDB.Store.SpellDifficultyClass">
       <End Role="Spell" EntitySet="Spells" />
@@ -113,6 +97,22 @@
     <AssociationSet Name="SpellSpellHealing" Association="InitiativeTrackerDB.Store.SpellSpellHealing">
       <End Role="Spell" EntitySet="Spells" />
       <End Role="SpellHealing" EntitySet="SpellHealings" />
+    </AssociationSet>
+    <AssociationSet Name="ActionDamage" Association="InitiativeTrackerDB.Store.ActionDamage">
+      <End Role="Action" EntitySet="Actions" />
+      <End Role="Damage" EntitySet="Damages" />
+    </AssociationSet>
+    <AssociationSet Name="ActionDifficultyClass" Association="InitiativeTrackerDB.Store.ActionDifficultyClass">
+      <End Role="Action" EntitySet="Actions" />
+      <End Role="DifficultyClass" EntitySet="DifficultyClasses" />
+    </AssociationSet>
+    <AssociationSet Name="LegendaryActionDamage" Association="InitiativeTrackerDB.Store.LegendaryActionDamage">
+      <End Role="LegendaryAction" EntitySet="LegendaryActions" />
+      <End Role="Damage" EntitySet="Damages" />
+    </AssociationSet>
+    <AssociationSet Name="LegendaryActionDifficultyClass" Association="InitiativeTrackerDB.Store.LegendaryActionDifficultyClass">
+      <End Role="LegendaryAction" EntitySet="LegendaryActions" />
+      <End Role="DifficultyClass" EntitySet="DifficultyClasses" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Monsters">
@@ -188,9 +188,9 @@
   </EntityType>
   <EntityType Name="Actions">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="MonsterName" />
+      <PropertyRef Name="Name" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Attack_Bonus" Type="smallint" Nullable="true" />
@@ -230,9 +230,9 @@
   </EntityType>
   <EntityType Name="LegendaryActions">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="MonsterName" />
+      <PropertyRef Name="Name" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Attack_Bonus" Type="smallint" Nullable="true" />
@@ -245,8 +245,10 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Damage_Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Damage_Dice" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ActionId" Type="int" Nullable="true" />
-    <Property Name="LegendaryActionId" Type="int" Nullable="true" />
+    <Property Name="ActionMonsterName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ActionName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LegendaryActionMonsterName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LegendaryActionName" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="DifficultyClasses">
     <Key>
@@ -255,9 +257,11 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DC_Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DC_Value" Type="smallint" Nullable="true" />
-    <Property Name="LegendaryActionId" Type="int" Nullable="true" />
-    <Property Name="ActionId" Type="int" Nullable="true" />
     <Property Name="SpellName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ActionMonsterName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ActionName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LegendaryActionMonsterName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LegendaryActionName" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="Spells">
     <Key>
@@ -352,30 +356,6 @@
     <Property Name="Healing_L9" Type="nvarchar(max)" Nullable="true" />
     <Property Name="SpellName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <Association Name="ActionDamage">
-    <End Role="Action" Type="InitiativeTrackerDB.Store.Actions" Multiplicity="0..1" />
-    <End Role="Damage" Type="InitiativeTrackerDB.Store.Damages" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Action">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Damage">
-        <PropertyRef Name="ActionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="LegendaryActionDamage">
-    <End Role="LegendaryAction" Type="InitiativeTrackerDB.Store.LegendaryActions" Multiplicity="0..1" />
-    <End Role="Damage" Type="InitiativeTrackerDB.Store.Damages" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegendaryAction">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Damage">
-        <PropertyRef Name="LegendaryActionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="ScenarioCharacterScenarioTable">
     <End Role="Scenario" Type="InitiativeTrackerDB.Store.Scenarios" Multiplicity="1" />
     <End Role="CharacterScenarioTable" Type="InitiativeTrackerDB.Store.CharacterScenarioTables" Multiplicity="*" />
@@ -421,30 +401,6 @@
       </Principal>
       <Dependent Role="SpellMonsterTable">
         <PropertyRef Name="SpellName" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="LegendaryActionDifficultyClass">
-    <End Role="LegendaryAction" Type="InitiativeTrackerDB.Store.LegendaryActions" Multiplicity="0..1" />
-    <End Role="DifficultyClass" Type="InitiativeTrackerDB.Store.DifficultyClasses" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LegendaryAction">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DifficultyClass">
-        <PropertyRef Name="LegendaryActionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ActionDifficultyClass">
-    <End Role="Action" Type="InitiativeTrackerDB.Store.Actions" Multiplicity="0..1" />
-    <End Role="DifficultyClass" Type="InitiativeTrackerDB.Store.DifficultyClasses" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Action">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DifficultyClass">
-        <PropertyRef Name="ActionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -616,6 +572,62 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="ActionDamage">
+    <End Role="Action" Type="InitiativeTrackerDB.Store.Actions" Multiplicity="0..1" />
+    <End Role="Damage" Type="InitiativeTrackerDB.Store.Damages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Action">
+        <PropertyRef Name="MonsterName" />
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="Damage">
+        <PropertyRef Name="ActionMonsterName" />
+        <PropertyRef Name="ActionName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ActionDifficultyClass">
+    <End Role="Action" Type="InitiativeTrackerDB.Store.Actions" Multiplicity="0..1" />
+    <End Role="DifficultyClass" Type="InitiativeTrackerDB.Store.DifficultyClasses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Action">
+        <PropertyRef Name="MonsterName" />
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="DifficultyClass">
+        <PropertyRef Name="ActionMonsterName" />
+        <PropertyRef Name="ActionName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LegendaryActionDamage">
+    <End Role="LegendaryAction" Type="InitiativeTrackerDB.Store.LegendaryActions" Multiplicity="0..1" />
+    <End Role="Damage" Type="InitiativeTrackerDB.Store.Damages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LegendaryAction">
+        <PropertyRef Name="MonsterName" />
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="Damage">
+        <PropertyRef Name="LegendaryActionMonsterName" />
+        <PropertyRef Name="LegendaryActionName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LegendaryActionDifficultyClass">
+    <End Role="LegendaryAction" Type="InitiativeTrackerDB.Store.LegendaryActions" Multiplicity="0..1" />
+    <End Role="DifficultyClass" Type="InitiativeTrackerDB.Store.DifficultyClasses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LegendaryAction">
+        <PropertyRef Name="MonsterName" />
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="DifficultyClass">
+        <PropertyRef Name="LegendaryActionMonsterName" />
+        <PropertyRef Name="LegendaryActionName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -717,13 +729,13 @@
             <End Role="Action" EntitySet="Actions" />
             <End Role="Damage" EntitySet="Damages" />
           </AssociationSet>
-          <AssociationSet Name="LegendaryActionDamage" Association="InitiativeTrackerDB.LegendaryActionDamage">
-            <End Role="LegendaryAction" EntitySet="LegendaryActions" />
-            <End Role="Damage" EntitySet="Damages" />
-          </AssociationSet>
           <AssociationSet Name="ActionDifficultyClass" Association="InitiativeTrackerDB.ActionDifficultyClass">
             <End Role="Action" EntitySet="Actions" />
             <End Role="DifficultyClass" EntitySet="DifficultyClasses" />
+          </AssociationSet>
+          <AssociationSet Name="LegendaryActionDamage" Association="InitiativeTrackerDB.LegendaryActionDamage">
+            <End Role="LegendaryAction" EntitySet="LegendaryActions" />
+            <End Role="Damage" EntitySet="Damages" />
           </AssociationSet>
           <AssociationSet Name="LegendaryActionDifficultyClass" Association="InitiativeTrackerDB.LegendaryActionDifficultyClass">
             <End Role="LegendaryAction" EntitySet="LegendaryActions" />
@@ -819,10 +831,9 @@
         </EntityType>
         <EntityType Name="Action">
           <Key>
-            <PropertyRef Name="Id" />
             <PropertyRef Name="MonsterName" />
+            <PropertyRef Name="Name" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Desc" Type="String" Nullable="false" />
           <Property Name="Attack_Bonus" Type="Int16" Nullable="true" />
@@ -867,10 +878,9 @@
         </EntityType>
         <EntityType Name="LegendaryAction">
           <Key>
-            <PropertyRef Name="Id" />
             <PropertyRef Name="MonsterName" />
+            <PropertyRef Name="Name" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Desc" Type="String" Nullable="false" />
           <Property Name="Attack_Bonus" Type="Int16" Nullable="true" />
@@ -887,11 +897,11 @@
           <Property Name="Damage_Type" Type="String" Nullable="false" />
           <Property Name="Damage_Dice" Type="String" Nullable="false" />
           <NavigationProperty Name="Action" Relationship="InitiativeTrackerDB.ActionDamage" FromRole="Damage" ToRole="Action" />
-          <Property Name="ActionId" Type="Int32" Nullable="true" />
           <Property Name="ActionMonsterName" Type="String" Nullable="true" />
+          <Property Name="ActionName" Type="String" Nullable="true" />
           <NavigationProperty Name="LegendaryAction" Relationship="InitiativeTrackerDB.LegendaryActionDamage" FromRole="Damage" ToRole="LegendaryAction" />
-          <Property Name="LegendaryActionId" Type="Int32" Nullable="true" />
           <Property Name="LegendaryActionMonsterName" Type="String" Nullable="true" />
+          <Property Name="LegendaryActionName" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="DifficultyClass">
           <Key>
@@ -903,11 +913,11 @@
           <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellDifficultyClass" FromRole="DifficultyClass" ToRole="Spell" />
           <Property Name="SpellName" Type="String" Nullable="true" />
           <NavigationProperty Name="Action" Relationship="InitiativeTrackerDB.ActionDifficultyClass" FromRole="DifficultyClass" ToRole="Action" />
-          <Property Name="ActionId" Type="Int32" Nullable="true" />
           <Property Name="ActionMonsterName" Type="String" Nullable="true" />
+          <Property Name="ActionName" Type="String" Nullable="true" />
           <NavigationProperty Name="LegendaryAction" Relationship="InitiativeTrackerDB.LegendaryActionDifficultyClass" FromRole="DifficultyClass" ToRole="LegendaryAction" />
-          <Property Name="LegendaryActionId" Type="Int32" Nullable="true" />
           <Property Name="LegendaryActionMonsterName" Type="String" Nullable="true" />
+          <Property Name="LegendaryActionName" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="Spell">
           <Key>
@@ -1238,26 +1248,12 @@
           <End Type="InitiativeTrackerDB.Damage" Role="Damage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Action">
-              <PropertyRef Name="Id" />
               <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
             </Principal>
             <Dependent Role="Damage">
-              <PropertyRef Name="ActionId" />
               <PropertyRef Name="ActionMonsterName" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="LegendaryActionDamage">
-          <End Type="InitiativeTrackerDB.LegendaryAction" Role="LegendaryAction" Multiplicity="0..1" />
-          <End Type="InitiativeTrackerDB.Damage" Role="Damage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LegendaryAction">
-              <PropertyRef Name="Id" />
-              <PropertyRef Name="MonsterName" />
-            </Principal>
-            <Dependent Role="Damage">
-              <PropertyRef Name="LegendaryActionId" />
-              <PropertyRef Name="LegendaryActionMonsterName" />
+              <PropertyRef Name="ActionName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1266,12 +1262,26 @@
           <End Type="InitiativeTrackerDB.DifficultyClass" Role="DifficultyClass" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Action">
-              <PropertyRef Name="Id" />
               <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
             </Principal>
             <Dependent Role="DifficultyClass">
-              <PropertyRef Name="ActionId" />
               <PropertyRef Name="ActionMonsterName" />
+              <PropertyRef Name="ActionName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LegendaryActionDamage">
+          <End Type="InitiativeTrackerDB.LegendaryAction" Role="LegendaryAction" Multiplicity="0..1" />
+          <End Type="InitiativeTrackerDB.Damage" Role="Damage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LegendaryAction">
+              <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Damage">
+              <PropertyRef Name="LegendaryActionMonsterName" />
+              <PropertyRef Name="LegendaryActionName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1280,12 +1290,12 @@
           <End Type="InitiativeTrackerDB.DifficultyClass" Role="DifficultyClass" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LegendaryAction">
-              <PropertyRef Name="Id" />
               <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
             </Principal>
             <Dependent Role="DifficultyClass">
-              <PropertyRef Name="LegendaryActionId" />
               <PropertyRef Name="LegendaryActionMonsterName" />
+              <PropertyRef Name="LegendaryActionName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1375,13 +1385,12 @@
     <EntitySetMapping Name="Actions">
       <EntityTypeMapping TypeName="IsTypeOf(InitiativeTrackerDB.Action)">
         <MappingFragment StoreEntitySet="Actions">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />
           <ScalarProperty Name="Attack_Bonus" ColumnName="Attack_Bonus" />
           <ScalarProperty Name="Usage_Type" ColumnName="Usage_Type" />
           <ScalarProperty Name="Usage_Times" ColumnName="Usage_Times" />
-          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1420,11 +1429,10 @@
     <EntitySetMapping Name="LegendaryActions">
       <EntityTypeMapping TypeName="IsTypeOf(InitiativeTrackerDB.LegendaryAction)">
         <MappingFragment StoreEntitySet="LegendaryActions">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />
           <ScalarProperty Name="Attack_Bonus" ColumnName="Attack_Bonus" />
-          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1434,6 +1442,10 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Damage_Type" ColumnName="Damage_Type" />
           <ScalarProperty Name="Damage_Dice" ColumnName="Damage_Dice" />
+          <ScalarProperty Name="ActionMonsterName" ColumnName="ActionMonsterName" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="LegendaryActionMonsterName" ColumnName="LegendaryActionMonsterName" />
+          <ScalarProperty Name="LegendaryActionName" ColumnName="LegendaryActionName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1444,6 +1456,10 @@
           <ScalarProperty Name="DC_Type" ColumnName="DC_Type" />
           <ScalarProperty Name="DC_Value" ColumnName="DC_Value" />
           <ScalarProperty Name="SpellName" ColumnName="SpellName" />
+          <ScalarProperty Name="ActionMonsterName" ColumnName="ActionMonsterName" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="LegendaryActionMonsterName" ColumnName="LegendaryActionMonsterName" />
+          <ScalarProperty Name="LegendaryActionName" ColumnName="LegendaryActionName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

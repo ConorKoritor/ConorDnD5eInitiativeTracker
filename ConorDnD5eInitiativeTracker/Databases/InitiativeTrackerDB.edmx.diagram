@@ -44,8 +44,8 @@
         <AssociationConnector Association="InitiativeTrackerDB.SpellSpellDamage" />
         <AssociationConnector Association="InitiativeTrackerDB.SpellSpellHealing" />
         <AssociationConnector Association="InitiativeTrackerDB.ActionDamage" />
-        <AssociationConnector Association="InitiativeTrackerDB.LegendaryActionDamage" />
         <AssociationConnector Association="InitiativeTrackerDB.ActionDifficultyClass" />
+        <AssociationConnector Association="InitiativeTrackerDB.LegendaryActionDamage" />
         <AssociationConnector Association="InitiativeTrackerDB.LegendaryActionDifficultyClass" />
       </Diagram>
     </edmx:Diagrams>

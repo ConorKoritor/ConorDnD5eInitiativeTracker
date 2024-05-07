@@ -17,8 +17,10 @@ namespace ConorDnD5eInitiativeTracker.Databases
         public int Id { get; set; }
         public string Damage_Type { get; set; }
         public string Damage_Dice { get; set; }
-        public Nullable<int> ActionId { get; set; }
-        public Nullable<int> LegendaryActionId { get; set; }
+        public string ActionMonsterName { get; set; }
+        public string ActionName { get; set; }
+        public string LegendaryActionMonsterName { get; set; }
+        public string LegendaryActionName { get; set; }
     
         public virtual Action Action { get; set; }
         public virtual LegendaryAction LegendaryAction { get; set; }
