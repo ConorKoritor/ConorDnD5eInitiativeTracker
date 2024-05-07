@@ -14,7 +14,6 @@ namespace ConorDnD5eInitiativeTracker.Databases
     
     public partial class CharacterScenarioTable
     {
-        public int Id { get; set; }
         public int ScenarioId { get; set; }
         public int PlayerCharacterBasicId { get; set; }
     

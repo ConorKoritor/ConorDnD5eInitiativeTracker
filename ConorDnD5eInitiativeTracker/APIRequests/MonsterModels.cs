@@ -152,7 +152,7 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public string url { get; set; }
         }
 
-        public class Spell
+        public class Monster_Spell
         {
             public string name { get; set; }
             public int level { get; set; }
@@ -165,7 +165,7 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public Spellcasting_Ability ability { get; set; }
             public int dc { get; set; }
             public List<string> components_required { get; set; }
-            public List<Spell> spells { get; set; }
+            public List<Monster_Spell> spells { get; set; }
         }
 
 

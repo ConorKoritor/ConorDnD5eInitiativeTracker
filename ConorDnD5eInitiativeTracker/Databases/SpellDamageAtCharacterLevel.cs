@@ -12,7 +12,7 @@ namespace ConorDnD5eInitiativeTracker.Databases
     using System;
     using System.Collections.Generic;
     
-    public partial class SpellDamage
+    public partial class SpellDamageAtCharacterLevel
     {
         public int Id { get; set; }
         public string Damage_Type { get; set; }
@@ -25,6 +25,8 @@ namespace ConorDnD5eInitiativeTracker.Databases
         public string Damage_L7 { get; set; }
         public string Damage_L8 { get; set; }
         public string Damage_L9 { get; set; }
+        public string Damage_L10 { get; set; }
+        public string Damage_L11 { get; set; }
         public string SpellName { get; set; }
     
         public virtual Spell Spell { get; set; }

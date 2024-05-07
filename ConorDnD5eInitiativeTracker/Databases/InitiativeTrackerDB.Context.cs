@@ -45,5 +45,6 @@ namespace ConorDnD5eInitiativeTracker.Databases
         public virtual DbSet<PlayerCharacterBasic> PlayerCharacterBasics { get; set; }
         public virtual DbSet<MonsterScenarioTable> MonsterScenarioTables { get; set; }
         public virtual DbSet<SpellHealing> SpellHealings { get; set; }
+        public virtual DbSet<SpellDamageAtCharacterLevel> SpellDamageAtCharacterLevels { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/07/2024 11:27:46
+-- Date Created: 05/07/2024 12:29:15
 -- Generated from EDMX file: C:\Users\ckori\Documents\ConorDnD5eInitiativeTracker\ConorDnD5eInitiativeTracker\Databases\InitiativeTrackerDB.edmx
 -- --------------------------------------------------
 
@@ -74,11 +74,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ActionDamage]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Damages] DROP CONSTRAINT [FK_ActionDamage];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LegendaryActionDamage]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Damages] DROP CONSTRAINT [FK_LegendaryActionDamage];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ActionDifficultyClass]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DifficultyClasses] DROP CONSTRAINT [FK_ActionDifficultyClass];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LegendaryActionDamage]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Damages] DROP CONSTRAINT [FK_LegendaryActionDamage];
 GO
 IF OBJECT_ID(N'[dbo].[FK_LegendaryActionDifficultyClass]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DifficultyClasses] DROP CONSTRAINT [FK_LegendaryActionDifficultyClass];
@@ -305,9 +305,9 @@ CREATE TABLE [dbo].[Spells] (
     [Description] nvarchar(max)  NOT NULL,
     [Range] nvarchar(max)  NOT NULL,
     [Components] nvarchar(max)  NOT NULL,
-    [IsRitual] nvarchar(max)  NOT NULL,
+    [IsRitual] bit  NOT NULL,
     [Duration] nvarchar(max)  NOT NULL,
-    [IsConcentration] nvarchar(max)  NOT NULL,
+    [IsConcentration] bit  NOT NULL,
     [Casting_Time] nvarchar(max)  NOT NULL,
     [Level] smallint  NOT NULL,
     [School] nvarchar(max)  NOT NULL,
@@ -337,7 +337,6 @@ GO
 
 -- Creating table 'SpellMonsterTables'
 CREATE TABLE [dbo].[SpellMonsterTables] (
-    [Id] int IDENTITY(1,1) NOT NULL,
     [SpellName] nvarchar(max)  NOT NULL,
     [MonsterName] nvarchar(max)  NOT NULL
 );
@@ -352,7 +351,6 @@ GO
 
 -- Creating table 'CharacterScenarioTables'
 CREATE TABLE [dbo].[CharacterScenarioTables] (
-    [Id] int IDENTITY(1,1) NOT NULL,
     [ScenarioId] int  NOT NULL,
     [PlayerCharacterBasicId] int  NOT NULL
 );
@@ -370,7 +368,6 @@ GO
 
 -- Creating table 'MonsterScenarioTables'
 CREATE TABLE [dbo].[MonsterScenarioTables] (
-    [Id] int IDENTITY(1,1) NOT NULL,
     [ScenarioId] int  NOT NULL,
     [MonsterName] nvarchar(max)  NOT NULL
 );
@@ -480,10 +477,10 @@ ADD CONSTRAINT [PK_SpellDamages]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'SpellMonsterTables'
+-- Creating primary key on [SpellName], [MonsterName] in table 'SpellMonsterTables'
 ALTER TABLE [dbo].[SpellMonsterTables]
 ADD CONSTRAINT [PK_SpellMonsterTables]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
+    PRIMARY KEY CLUSTERED ([SpellName], [MonsterName] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'Scenarios'
@@ -492,10 +489,10 @@ ADD CONSTRAINT [PK_Scenarios]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'CharacterScenarioTables'
+-- Creating primary key on [ScenarioId], [PlayerCharacterBasicId] in table 'CharacterScenarioTables'
 ALTER TABLE [dbo].[CharacterScenarioTables]
 ADD CONSTRAINT [PK_CharacterScenarioTables]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
+    PRIMARY KEY CLUSTERED ([ScenarioId], [PlayerCharacterBasicId] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'PlayerCharacterBasics'
@@ -504,10 +501,10 @@ ADD CONSTRAINT [PK_PlayerCharacterBasics]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'MonsterScenarioTables'
+-- Creating primary key on [ScenarioId], [MonsterName] in table 'MonsterScenarioTables'
 ALTER TABLE [dbo].[MonsterScenarioTables]
 ADD CONSTRAINT [PK_MonsterScenarioTables]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
+    PRIMARY KEY CLUSTERED ([ScenarioId], [MonsterName] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'SpellHealings'
@@ -527,12 +524,6 @@ ADD CONSTRAINT [FK_ScenarioCharacterScenarioTable]
     REFERENCES [dbo].[Scenarios]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ScenarioCharacterScenarioTable'
-CREATE INDEX [IX_FK_ScenarioCharacterScenarioTable]
-ON [dbo].[CharacterScenarioTables]
-    ([ScenarioId]);
 GO
 
 -- Creating foreign key on [PlayerCharacterBasicId] in table 'CharacterScenarioTables'
@@ -559,12 +550,6 @@ ADD CONSTRAINT [FK_ScenarioMonsterScenarioTable]
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_ScenarioMonsterScenarioTable'
-CREATE INDEX [IX_FK_ScenarioMonsterScenarioTable]
-ON [dbo].[MonsterScenarioTables]
-    ([ScenarioId]);
-GO
-
 -- Creating foreign key on [SpellName] in table 'SpellMonsterTables'
 ALTER TABLE [dbo].[SpellMonsterTables]
 ADD CONSTRAINT [FK_SpellSpellMonsterTable]
@@ -572,12 +557,6 @@ ADD CONSTRAINT [FK_SpellSpellMonsterTable]
     REFERENCES [dbo].[Spells]
         ([Name])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_SpellSpellMonsterTable'
-CREATE INDEX [IX_FK_SpellSpellMonsterTable]
-ON [dbo].[SpellMonsterTables]
-    ([SpellName]);
 GO
 
 -- Creating foreign key on [SpellName] in table 'DifficultyClasses'

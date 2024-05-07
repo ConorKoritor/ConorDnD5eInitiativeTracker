@@ -14,7 +14,6 @@ namespace ConorDnD5eInitiativeTracker.Databases
     
     public partial class SpellMonsterTable
     {
-        public int Id { get; set; }
         public string SpellName { get; set; }
         public string MonsterName { get; set; }
     

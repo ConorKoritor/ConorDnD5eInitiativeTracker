@@ -21,21 +21,25 @@ namespace ConorDnD5eInitiativeTracker.Databases
             this.DifficultyClasses = new HashSet<DifficultyClass>();
             this.SpellDamages = new HashSet<SpellDamage>();
             this.SpellHealings = new HashSet<SpellHealing>();
+            this.SpellDamageAtCharacterLevels = new HashSet<SpellDamageAtCharacterLevel>();
         }
     
         public string Name { get; set; }
         public string Description { get; set; }
         public string Range { get; set; }
         public string Components { get; set; }
-        public string IsRitual { get; set; }
+        public bool IsRitual { get; set; }
         public string Duration { get; set; }
-        public string IsConcentration { get; set; }
+        public bool IsConcentration { get; set; }
         public string Casting_Time { get; set; }
-        public short Level { get; set; }
+        public int Level { get; set; }
         public string School { get; set; }
         public string Higher_Level { get; set; }
         public string Material { get; set; }
-        public string Area_Of_Effect { get; set; }
+        public string Area_Of_Effect_Type { get; set; }
+        public Nullable<int> Area_Of_Effect_Size { get; set; }
+        public string DC_Type { get; set; }
+        public string DC_Success { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SpellMonsterTable> SpellMonsterTables { get; set; }
@@ -45,5 +49,7 @@ namespace ConorDnD5eInitiativeTracker.Databases
         public virtual ICollection<SpellDamage> SpellDamages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SpellHealing> SpellHealings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SpellDamageAtCharacterLevel> SpellDamageAtCharacterLevels { get; set; }
     }
 }

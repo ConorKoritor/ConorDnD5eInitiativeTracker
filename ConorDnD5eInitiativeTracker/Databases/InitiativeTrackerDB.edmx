@@ -271,9 +271,9 @@
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Range" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Components" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IsRitual" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsRitual" Type="bit" Nullable="false" />
     <Property Name="Duration" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IsConcentration" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsConcentration" Type="bit" Nullable="false" />
     <Property Name="Casting_Time" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Level" Type="smallint" Nullable="false" />
     <Property Name="School" Type="nvarchar(max)" Nullable="false" />
@@ -301,9 +301,9 @@
   </EntityType>
   <EntityType Name="SpellMonsterTables">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="SpellName" />
+      <PropertyRef Name="MonsterName" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SpellName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
@@ -316,9 +316,9 @@
   </EntityType>
   <EntityType Name="CharacterScenarioTables">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ScenarioId" />
+      <PropertyRef Name="PlayerCharacterBasicId" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ScenarioId" Type="int" Nullable="false" />
     <Property Name="PlayerCharacterBasicId" Type="int" Nullable="false" />
   </EntityType>
@@ -334,9 +334,9 @@
   </EntityType>
   <EntityType Name="MonsterScenarioTables">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ScenarioId" />
+      <PropertyRef Name="MonsterName" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ScenarioId" Type="int" Nullable="false" />
     <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
@@ -741,6 +741,11 @@
             <End Role="LegendaryAction" EntitySet="LegendaryActions" />
             <End Role="DifficultyClass" EntitySet="DifficultyClasses" />
           </AssociationSet>
+          <EntitySet Name="SpellDamageAtCharacterLevels" EntityType="InitiativeTrackerDB.SpellDamageAtCharacterLevel" />
+          <AssociationSet Name="SpellSpellDamageAtCharacterLevel" Association="InitiativeTrackerDB.SpellSpellDamageAtCharacterLevel">
+            <End Role="Spell" EntitySet="Spells" />
+            <End Role="SpellDamageAtCharacterLevel" EntitySet="SpellDamageAtCharacterLevels" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Monster">
           <Key>
@@ -927,19 +932,23 @@
           <Property Name="Description" Type="String" Nullable="false" />
           <Property Name="Range" Type="String" Nullable="false" />
           <Property Name="Components" Type="String" Nullable="false" />
-          <Property Name="IsRitual" Type="String" Nullable="false" />
+          <Property Name="IsRitual" Type="Boolean" Nullable="false" />
           <Property Name="Duration" Type="String" Nullable="false" />
-          <Property Name="IsConcentration" Type="String" Nullable="false" />
+          <Property Name="IsConcentration" Type="Boolean" Nullable="false" />
           <Property Name="Casting_Time" Type="String" Nullable="false" />
-          <Property Name="Level" Type="Int16" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
           <Property Name="School" Type="String" Nullable="false" />
           <NavigationProperty Name="SpellMonsterTables" Relationship="InitiativeTrackerDB.SpellSpellMonsterTable" FromRole="Spell" ToRole="SpellMonsterTable" />
           <Property Name="Higher_Level" Type="String" Nullable="true" />
           <Property Name="Material" Type="String" Nullable="true" />
-          <Property Name="Area_Of_Effect" Type="String" Nullable="true" />
+          <Property Name="Area_Of_Effect_Type" Type="String" Nullable="true" />
           <NavigationProperty Name="DifficultyClasses" Relationship="InitiativeTrackerDB.SpellDifficultyClass" FromRole="Spell" ToRole="DifficultyClass" />
           <NavigationProperty Name="SpellDamages" Relationship="InitiativeTrackerDB.SpellSpellDamage" FromRole="Spell" ToRole="SpellDamage" />
           <NavigationProperty Name="SpellHealings" Relationship="InitiativeTrackerDB.SpellSpellHealing" FromRole="Spell" ToRole="SpellHealing" />
+          <Property Name="Area_Of_Effect_Size" Type="Int32" Nullable="true" />
+          <Property Name="DC_Type" Type="String" Nullable="true" />
+          <Property Name="DC_Success" Type="String" Nullable="true" />
+          <NavigationProperty Name="SpellDamageAtCharacterLevels" Relationship="InitiativeTrackerDB.SpellSpellDamageAtCharacterLevel" FromRole="Spell" ToRole="SpellDamageAtCharacterLevel" />
         </EntityType>
         <EntityType Name="SpellDamage">
           <Key>
@@ -956,15 +965,14 @@
           <Property Name="Damage_L7" Type="String" Nullable="true" />
           <Property Name="Damage_L8" Type="String" Nullable="true" />
           <Property Name="Damage_L9" Type="String" Nullable="true" />
-          <Property Name="Damage_L0" Type="String" Nullable="true" />
           <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellSpellDamage" FromRole="SpellDamage" ToRole="Spell" />
           <Property Name="SpellName" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="SpellMonsterTable">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="SpellName" />
+            <PropertyRef Name="MonsterName" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellSpellMonsterTable" FromRole="SpellMonsterTable" ToRole="Spell" />
           <Property Name="SpellName" Type="String" Nullable="false" />
           <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterSpellMonsterTable" FromRole="SpellMonsterTable" ToRole="Monster" />
@@ -981,9 +989,9 @@
         </EntityType>
         <EntityType Name="CharacterScenarioTable">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ScenarioId" />
+            <PropertyRef Name="PlayerCharacterBasicId" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Scenario" Relationship="InitiativeTrackerDB.ScenarioCharacterScenarioTable" FromRole="CharacterScenarioTable" ToRole="Scenario" />
           <Property Name="ScenarioId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PlayerCharacterBasic" Relationship="InitiativeTrackerDB.PlayerCharacterBasicCharacterScenarioTable" FromRole="CharacterScenarioTable" ToRole="PlayerCharacterBasic" />
@@ -1026,9 +1034,9 @@
         </Association>
         <EntityType Name="MonsterScenarioTable">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ScenarioId" />
+            <PropertyRef Name="MonsterName" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Scenario" Relationship="InitiativeTrackerDB.ScenarioMonsterScenarioTable" FromRole="MonsterScenarioTable" ToRole="Scenario" />
           <Property Name="ScenarioId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterMonsterScenarioTable" FromRole="MonsterScenarioTable" ToRole="Monster" />
@@ -1299,6 +1307,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SpellDamageAtCharacterLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Damage_Type" Type="String" Nullable="false" />
+          <Property Name="Damage_L1" Type="String" Nullable="true" />
+          <Property Name="Damage_L2" Type="String" Nullable="true" />
+          <Property Name="Damage_L3" Type="String" Nullable="true" />
+          <Property Name="Damage_L4" Type="String" Nullable="true" />
+          <Property Name="Damage_L5" Type="String" Nullable="true" />
+          <Property Name="Damage_L6" Type="String" Nullable="true" />
+          <Property Name="Damage_L7" Type="String" Nullable="true" />
+          <Property Name="Damage_L8" Type="String" Nullable="true" />
+          <Property Name="Damage_L9" Type="String" Nullable="true" />
+          <Property Name="Damage_L10" Type="String" Nullable="true" />
+          <Property Name="Damage_L11" Type="String" Nullable="true" />
+          <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellSpellDamageAtCharacterLevel" FromRole="SpellDamageAtCharacterLevel" ToRole="Spell" />
+          <Property Name="SpellName" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="SpellSpellDamageAtCharacterLevel">
+          <End Type="InitiativeTrackerDB.Spell" Role="Spell" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.SpellDamageAtCharacterLevel" Role="SpellDamageAtCharacterLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellDamageAtCharacterLevel">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1478,7 +1518,7 @@
           <ScalarProperty Name="School" ColumnName="School" />
           <ScalarProperty Name="Higher_Level" ColumnName="Higher_Level" />
           <ScalarProperty Name="Material" ColumnName="Material" />
-          <ScalarProperty Name="Area_Of_Effect" ColumnName="Area_Of_Effect" />
+          <ScalarProperty Name="Area_Of_Effect_Type" ColumnName="Area_Of_Effect" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1496,7 +1536,6 @@
           <ScalarProperty Name="Damage_L7" ColumnName="Damage_L7" />
           <ScalarProperty Name="Damage_L8" ColumnName="Damage_L8" />
           <ScalarProperty Name="Damage_L9" ColumnName="Damage_L9" />
-          <ScalarProperty Name="Damage_L0" ColumnName="Damage_L0" />
           <ScalarProperty Name="SpellName" ColumnName="SpellName" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -1504,7 +1543,6 @@
     <EntitySetMapping Name="SpellMonsterTables">
       <EntityTypeMapping TypeName="IsTypeOf(InitiativeTrackerDB.SpellMonsterTable)">
         <MappingFragment StoreEntitySet="SpellMonsterTables">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="SpellName" ColumnName="SpellName" />
           <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
@@ -1521,7 +1559,6 @@
     <EntitySetMapping Name="CharacterScenarioTables">
       <EntityTypeMapping TypeName="IsTypeOf(InitiativeTrackerDB.CharacterScenarioTable)">
         <MappingFragment StoreEntitySet="CharacterScenarioTables">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ScenarioId" ColumnName="ScenarioId" />
           <ScalarProperty Name="PlayerCharacterBasicId" ColumnName="PlayerCharacterBasicId" />
         </MappingFragment>
@@ -1541,7 +1578,6 @@
     <EntitySetMapping Name="MonsterScenarioTables">
       <EntityTypeMapping TypeName="IsTypeOf(InitiativeTrackerDB.MonsterScenarioTable)">
         <MappingFragment StoreEntitySet="MonsterScenarioTables">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ScenarioId" ColumnName="ScenarioId" />
           <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>

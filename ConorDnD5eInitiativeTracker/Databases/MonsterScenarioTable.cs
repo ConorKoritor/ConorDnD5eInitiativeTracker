@@ -14,7 +14,6 @@ namespace ConorDnD5eInitiativeTracker.Databases
     
     public partial class MonsterScenarioTable
     {
-        public int Id { get; set; }
         public int ScenarioId { get; set; }
         public string MonsterName { get; set; }
     

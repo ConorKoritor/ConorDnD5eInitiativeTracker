@@ -142,7 +142,7 @@ namespace DnDInitiativeTrackerTest
             spells = await GetSpells();
 
             //Assert
-            //Using Aid which should be the second result pulled
+            //Using Aid which should be the third result pulled
             Assert.That(spells[2].heal_at_slot_level._2, Is.EqualTo("5"));
         }
 
@@ -155,6 +155,37 @@ namespace DnDInitiativeTrackerTest
             await spellsDictionaryAPI.PullSpellsFromAPI();
 
             return spellsDictionaryAPI.GetSpellsAPI();
+        }
+        /*
+                [Test]
+                public async Task Pulling_Spell_Checking_Nested_Nulls_From_Api_Test()
+                {
+                    //Arrange
+                    List<SpellModel> spells = new List<SpellModel>();
+
+                    //Act
+                    spells = await GetSpells();
+
+                    //Assert
+                    //Using Acid Arrow which should be the first result pulled
+                    Assert.That(spells[0].dc.dc_type.name, Is.EqualTo(null));
+                    Assert.That(spells[0].area_of_effect.size, Is.EqualTo(null));
+                }
+
+
+          */
+        [Test]
+        public async Task Pulling_Spell_Damage_At_Character_Level_From_Api_Test()
+        {
+            //Arrange
+            List<SpellModel> spells = new List<SpellModel>();
+
+            //Act
+            spells = await GetSpells();
+
+            //Assert
+            //Using acid splash which should be the second result pulled
+            Assert.That(spells[1].damage.damage_at_character_level._5, Is.EqualTo("2d6"));
         }
     }
 }

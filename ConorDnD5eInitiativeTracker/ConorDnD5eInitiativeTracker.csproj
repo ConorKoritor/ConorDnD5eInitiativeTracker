@@ -135,6 +135,7 @@
     <Compile Include="APIRequests\MonsterModels.cs" />
     <Compile Include="APIRequests\SpellModels.cs" />
     <Compile Include="APIRequests\SpellsDictionaryModels.cs" />
+    <Compile Include="DatabaseLinq\SpellsLinq\AddSpellsToDatabase.cs" />
     <Compile Include="Databases\Abilities.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
@@ -210,6 +211,9 @@
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\SpellDamage.cs">
+      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\SpellDamageAtCharacterLevel.cs">
       <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\SpellHealing.cs">
@@ -292,7 +296,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DatabaseLinq\MonstersLinq\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
