@@ -132,6 +132,7 @@
     </ApplicationDefinition>
     <Compile Include="APIRequests\APIRequests.cs" />
     <Compile Include="APIRequests\MonsterDictionaryModels.cs" />
+    <Compile Include="APIRequests\MonsterModels.cs" />
     <Compile Include="APIRequests\SpellModels.cs" />
     <Compile Include="APIRequests\SpellsDictionaryModels.cs" />
     <Compile Include="Database\Abilities.cs">

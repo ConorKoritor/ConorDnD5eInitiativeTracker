@@ -21,7 +21,7 @@ namespace ConorDnD5eInitiativeTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        MonsterDictionaryAPIRequests monsterDictionaryAPI = new MonsterDictionaryAPIRequests();
+        MonsterAPIRequests monsterDictionaryAPI = new MonsterAPIRequests();
         public MainWindow()
         {
             InitializeComponent();
