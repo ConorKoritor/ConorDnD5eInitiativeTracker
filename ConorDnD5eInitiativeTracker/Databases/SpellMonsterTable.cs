@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker.Database
+namespace ConorDnD5eInitiativeTracker.Databases
 {
     using System;
     using System.Collections.Generic;
@@ -15,10 +15,10 @@ namespace ConorDnD5eInitiativeTracker.Database
     public partial class SpellMonsterTable
     {
         public int Id { get; set; }
-        public int MonsterId { get; set; }
         public string SpellName { get; set; }
+        public string MonsterName { get; set; }
     
-        public virtual Monster Monster { get; set; }
         public virtual Spell Spell { get; set; }
+        public virtual Monster Monster { get; set; }
     }
 }

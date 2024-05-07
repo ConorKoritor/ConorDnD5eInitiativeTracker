@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker.Database
+namespace ConorDnD5eInitiativeTracker.Databases
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class MonsterScenarioTable
+    public partial class ConditionImmunity
     {
         public int Id { get; set; }
-        public int ScenarioId { get; set; }
-        public int MonsterId { get; set; }
+        public string Name { get; set; }
+        public string URL { get; set; }
+        public string MonsterName { get; set; }
     
-        public virtual Scenario Scenario { get; set; }
         public virtual Monster Monster { get; set; }
     }
 }

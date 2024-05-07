@@ -7,20 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker.Database
+namespace ConorDnD5eInitiativeTracker.Databases
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Damage
+    public partial class CharacterScenarioTable
     {
         public int Id { get; set; }
-        public string Damage_Type { get; set; }
-        public string Damage_Dice { get; set; }
-        public Nullable<int> ActionId { get; set; }
-        public Nullable<int> LegendaryActionId { get; set; }
+        public int ScenarioId { get; set; }
+        public int PlayerCharacterBasicId { get; set; }
     
-        public virtual Action Action { get; set; }
-        public virtual LegendaryAction LegendaryAction { get; set; }
+        public virtual Scenario Scenario { get; set; }
+        public virtual PlayerCharacterBasic PlayerCharacterBasic { get; set; }
     }
 }

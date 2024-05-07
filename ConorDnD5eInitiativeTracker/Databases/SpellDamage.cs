@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker.Database
+namespace ConorDnD5eInitiativeTracker.Databases
 {
     using System;
     using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace ConorDnD5eInitiativeTracker.Database
         public string Damage_L7 { get; set; }
         public string Damage_L8 { get; set; }
         public string Damage_L9 { get; set; }
-        public int SpellId { get; set; }
+        public string Damage_L0 { get; set; }
         public string SpellName { get; set; }
     
         public virtual Spell Spell { get; set; }

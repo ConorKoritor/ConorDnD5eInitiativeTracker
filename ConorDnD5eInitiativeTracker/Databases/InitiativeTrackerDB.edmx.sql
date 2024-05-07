@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/06/2024 20:58:38
--- Generated from EDMX file: C:\Users\ckori\Documents\ConorDnD5eInitiativeTracker\ConorDnD5eInitiativeTracker\Database\InitiativeTrackerDB.edmx
+-- Date Created: 05/07/2024 04:00:32
+-- Generated from EDMX file: C:\Users\ckori\Documents\ConorDnD5eInitiativeTracker\ConorDnD5eInitiativeTracker\Databases\InitiativeTrackerDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -29,7 +29,6 @@ GO
 
 -- Creating table 'Monsters'
 CREATE TABLE [dbo].[Monsters] (
-    [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [HP] int  NOT NULL,
     [Initiative_Modifier] smallint  NOT NULL,
@@ -40,14 +39,12 @@ CREATE TABLE [dbo].[Monsters] (
     [Hit_Points_Roll] nvarchar(max)  NOT NULL,
     [Alignment] nvarchar(max)  NOT NULL,
     [Languages] nvarchar(max)  NOT NULL,
-    [Challenge_Rating] smallint  NOT NULL,
+    [Challenge_Rating] float  NOT NULL,
     [XP] int  NOT NULL,
     [Damage_Vulnerabilities] nvarchar(max)  NULL,
     [Damage_Resistances] nvarchar(max)  NULL,
     [Damage_Immunities] nvarchar(max)  NULL,
-    [IsSpellcaster] bit  NOT NULL,
-    [Ability_Id] int  NOT NULL,
-    [SpellCastingStat_Id] int  NOT NULL
+    [IsSpellcaster] bit  NOT NULL
 );
 GO
 
@@ -60,7 +57,8 @@ CREATE TABLE [dbo].[Abilities] (
     [Intelligence] smallint  NOT NULL,
     [Wisdom] smallint  NOT NULL,
     [Charisma] smallint  NOT NULL,
-    [Proficiency_Bonus] smallint  NOT NULL
+    [Proficiency_Bonus] smallint  NOT NULL,
+    [MonsterName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -69,7 +67,7 @@ CREATE TABLE [dbo].[ArmorClasses] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Ac_Type] nvarchar(max)  NOT NULL,
     [AC] smallint  NOT NULL,
-    [MonsterId] int  NOT NULL
+    [MonsterName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -78,7 +76,7 @@ CREATE TABLE [dbo].[ConditionImmunities] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [URL] nvarchar(max)  NOT NULL,
-    [MonsterId] int  NOT NULL
+    [MonsterName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -87,7 +85,7 @@ CREATE TABLE [dbo].[Proficiencies] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Bonus] smallint  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [MonsterId] int  NOT NULL
+    [MonsterName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -96,7 +94,7 @@ CREATE TABLE [dbo].[Speeds] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Type] nvarchar(max)  NOT NULL,
     [Distance] nvarchar(max)  NOT NULL,
-    [MonsterId] int  NOT NULL
+    [MonsterName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -108,7 +106,7 @@ CREATE TABLE [dbo].[Actions] (
     [Attack_Bonus] smallint  NULL,
     [Usage_Type] nvarchar(max)  NULL,
     [Usage_Times] smallint  NULL,
-    [MonsterId] int  NOT NULL
+    [MonsterName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -128,7 +126,8 @@ CREATE TABLE [dbo].[SpellCastingStats] (
     [L6_Slots] smallint  NULL,
     [L7_Slots] smallint  NULL,
     [L8_Slots] smallint  NULL,
-    [L9_Slots] smallint  NULL
+    [L9_Slots] smallint  NULL,
+    [MonsterName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -137,7 +136,7 @@ CREATE TABLE [dbo].[SpecialAbilities] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Desc] nvarchar(max)  NOT NULL,
-    [MonsterId] int  NOT NULL
+    [MonsterName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -147,7 +146,7 @@ CREATE TABLE [dbo].[LegendaryActions] (
     [Name] nvarchar(max)  NOT NULL,
     [Desc] nvarchar(max)  NOT NULL,
     [Attack_Bonus] smallint  NULL,
-    [MonsterId] int  NOT NULL
+    [MonsterName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -203,7 +202,7 @@ CREATE TABLE [dbo].[SpellDamages] (
     [Damage_L7] nvarchar(max)  NULL,
     [Damage_L8] nvarchar(max)  NULL,
     [Damage_L9] nvarchar(max)  NULL,
-    [SpellId] int  NOT NULL,
+    [Damage_L0] nvarchar(max)  NULL,
     [SpellName] nvarchar(max)  NOT NULL
 );
 GO
@@ -211,8 +210,8 @@ GO
 -- Creating table 'SpellMonsterTables'
 CREATE TABLE [dbo].[SpellMonsterTables] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [MonsterId] int  NOT NULL,
-    [SpellName] nvarchar(max)  NOT NULL
+    [SpellName] nvarchar(max)  NOT NULL,
+    [MonsterName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -236,7 +235,8 @@ CREATE TABLE [dbo].[PlayerCharacterBasics] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [HP] int  NOT NULL,
     [AC] smallint  NOT NULL,
-    [CR_2_Score] int  NOT NULL
+    [CR_2_Score] int  NOT NULL,
+    [Name] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -244,7 +244,23 @@ GO
 CREATE TABLE [dbo].[MonsterScenarioTables] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [ScenarioId] int  NOT NULL,
-    [MonsterId] int  NOT NULL
+    [MonsterName] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'SpellHealings'
+CREATE TABLE [dbo].[SpellHealings] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Healing_L1] nvarchar(max)  NULL,
+    [Healing_L2] nvarchar(max)  NULL,
+    [Healing_L3] nvarchar(max)  NULL,
+    [Healing_L4] nvarchar(max)  NULL,
+    [Healing_L5] nvarchar(max)  NULL,
+    [Healing_L6] nvarchar(max)  NULL,
+    [Healing_L7] nvarchar(max)  NULL,
+    [Healing_L8] nvarchar(max)  NULL,
+    [Healing_L9] nvarchar(max)  NULL,
+    [SpellName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -252,10 +268,10 @@ GO
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
 
--- Creating primary key on [Id] in table 'Monsters'
+-- Creating primary key on [Name] in table 'Monsters'
 ALTER TABLE [dbo].[Monsters]
 ADD CONSTRAINT [PK_Monsters]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
+    PRIMARY KEY CLUSTERED ([Name] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'Abilities'
@@ -366,144 +382,15 @@ ADD CONSTRAINT [PK_MonsterScenarioTables]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'SpellHealings'
+ALTER TABLE [dbo].[SpellHealings]
+ADD CONSTRAINT [PK_SpellHealings]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [Ability_Id] in table 'Monsters'
-ALTER TABLE [dbo].[Monsters]
-ADD CONSTRAINT [FK_MonsterAbilities]
-    FOREIGN KEY ([Ability_Id])
-    REFERENCES [dbo].[Abilities]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MonsterAbilities'
-CREATE INDEX [IX_FK_MonsterAbilities]
-ON [dbo].[Monsters]
-    ([Ability_Id]);
-GO
-
--- Creating foreign key on [MonsterId] in table 'ArmorClasses'
-ALTER TABLE [dbo].[ArmorClasses]
-ADD CONSTRAINT [FK_MonsterArmorClass]
-    FOREIGN KEY ([MonsterId])
-    REFERENCES [dbo].[Monsters]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MonsterArmorClass'
-CREATE INDEX [IX_FK_MonsterArmorClass]
-ON [dbo].[ArmorClasses]
-    ([MonsterId]);
-GO
-
--- Creating foreign key on [MonsterId] in table 'ConditionImmunities'
-ALTER TABLE [dbo].[ConditionImmunities]
-ADD CONSTRAINT [FK_MonsterConditionImmunity]
-    FOREIGN KEY ([MonsterId])
-    REFERENCES [dbo].[Monsters]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MonsterConditionImmunity'
-CREATE INDEX [IX_FK_MonsterConditionImmunity]
-ON [dbo].[ConditionImmunities]
-    ([MonsterId]);
-GO
-
--- Creating foreign key on [MonsterId] in table 'Proficiencies'
-ALTER TABLE [dbo].[Proficiencies]
-ADD CONSTRAINT [FK_MonsterProficiency]
-    FOREIGN KEY ([MonsterId])
-    REFERENCES [dbo].[Monsters]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MonsterProficiency'
-CREATE INDEX [IX_FK_MonsterProficiency]
-ON [dbo].[Proficiencies]
-    ([MonsterId]);
-GO
-
--- Creating foreign key on [MonsterId] in table 'Speeds'
-ALTER TABLE [dbo].[Speeds]
-ADD CONSTRAINT [FK_MonsterSpeed]
-    FOREIGN KEY ([MonsterId])
-    REFERENCES [dbo].[Monsters]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MonsterSpeed'
-CREATE INDEX [IX_FK_MonsterSpeed]
-ON [dbo].[Speeds]
-    ([MonsterId]);
-GO
-
--- Creating foreign key on [MonsterId] in table 'Actions'
-ALTER TABLE [dbo].[Actions]
-ADD CONSTRAINT [FK_MonsterAction]
-    FOREIGN KEY ([MonsterId])
-    REFERENCES [dbo].[Monsters]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MonsterAction'
-CREATE INDEX [IX_FK_MonsterAction]
-ON [dbo].[Actions]
-    ([MonsterId]);
-GO
-
--- Creating foreign key on [SpellCastingStat_Id] in table 'Monsters'
-ALTER TABLE [dbo].[Monsters]
-ADD CONSTRAINT [FK_MonsterSpellCastingStats]
-    FOREIGN KEY ([SpellCastingStat_Id])
-    REFERENCES [dbo].[SpellCastingStats]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MonsterSpellCastingStats'
-CREATE INDEX [IX_FK_MonsterSpellCastingStats]
-ON [dbo].[Monsters]
-    ([SpellCastingStat_Id]);
-GO
-
--- Creating foreign key on [MonsterId] in table 'SpecialAbilities'
-ALTER TABLE [dbo].[SpecialAbilities]
-ADD CONSTRAINT [FK_MonsterSpecialAbility]
-    FOREIGN KEY ([MonsterId])
-    REFERENCES [dbo].[Monsters]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MonsterSpecialAbility'
-CREATE INDEX [IX_FK_MonsterSpecialAbility]
-ON [dbo].[SpecialAbilities]
-    ([MonsterId]);
-GO
-
--- Creating foreign key on [MonsterId] in table 'LegendaryActions'
-ALTER TABLE [dbo].[LegendaryActions]
-ADD CONSTRAINT [FK_MonsterLegendaryAction]
-    FOREIGN KEY ([MonsterId])
-    REFERENCES [dbo].[Monsters]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MonsterLegendaryAction'
-CREATE INDEX [IX_FK_MonsterLegendaryAction]
-ON [dbo].[LegendaryActions]
-    ([MonsterId]);
-GO
 
 -- Creating foreign key on [ActionId] in table 'Damages'
 ALTER TABLE [dbo].[Damages]
@@ -533,21 +420,6 @@ GO
 CREATE INDEX [IX_FK_LegendaryActionDamage]
 ON [dbo].[Damages]
     ([LegendaryActionId]);
-GO
-
--- Creating foreign key on [MonsterId] in table 'SpellMonsterTables'
-ALTER TABLE [dbo].[SpellMonsterTables]
-ADD CONSTRAINT [FK_MonsterSpellMonsterTable]
-    FOREIGN KEY ([MonsterId])
-    REFERENCES [dbo].[Monsters]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MonsterSpellMonsterTable'
-CREATE INDEX [IX_FK_MonsterSpellMonsterTable]
-ON [dbo].[SpellMonsterTables]
-    ([MonsterId]);
 GO
 
 -- Creating foreign key on [ScenarioId] in table 'CharacterScenarioTables'
@@ -593,36 +465,6 @@ GO
 CREATE INDEX [IX_FK_ScenarioMonsterScenarioTable]
 ON [dbo].[MonsterScenarioTables]
     ([ScenarioId]);
-GO
-
--- Creating foreign key on [MonsterId] in table 'MonsterScenarioTables'
-ALTER TABLE [dbo].[MonsterScenarioTables]
-ADD CONSTRAINT [FK_MonsterMonsterScenarioTable]
-    FOREIGN KEY ([MonsterId])
-    REFERENCES [dbo].[Monsters]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MonsterMonsterScenarioTable'
-CREATE INDEX [IX_FK_MonsterMonsterScenarioTable]
-ON [dbo].[MonsterScenarioTables]
-    ([MonsterId]);
-GO
-
--- Creating foreign key on [SpellName] in table 'SpellDamages'
-ALTER TABLE [dbo].[SpellDamages]
-ADD CONSTRAINT [FK_SpellSpellDamage]
-    FOREIGN KEY ([SpellName])
-    REFERENCES [dbo].[Spells]
-        ([Name])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_SpellSpellDamage'
-CREATE INDEX [IX_FK_SpellSpellDamage]
-ON [dbo].[SpellDamages]
-    ([SpellName]);
 GO
 
 -- Creating foreign key on [SpellName] in table 'SpellMonsterTables'
@@ -682,6 +524,201 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_SpellDifficultyClass'
 CREATE INDEX [IX_FK_SpellDifficultyClass]
 ON [dbo].[DifficultyClasses]
+    ([SpellName]);
+GO
+
+-- Creating foreign key on [MonsterName] in table 'Actions'
+ALTER TABLE [dbo].[Actions]
+ADD CONSTRAINT [FK_MonsterAction]
+    FOREIGN KEY ([MonsterName])
+    REFERENCES [dbo].[Monsters]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonsterAction'
+CREATE INDEX [IX_FK_MonsterAction]
+ON [dbo].[Actions]
+    ([MonsterName]);
+GO
+
+-- Creating foreign key on [MonsterName] in table 'LegendaryActions'
+ALTER TABLE [dbo].[LegendaryActions]
+ADD CONSTRAINT [FK_MonsterLegendaryAction]
+    FOREIGN KEY ([MonsterName])
+    REFERENCES [dbo].[Monsters]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonsterLegendaryAction'
+CREATE INDEX [IX_FK_MonsterLegendaryAction]
+ON [dbo].[LegendaryActions]
+    ([MonsterName]);
+GO
+
+-- Creating foreign key on [MonsterName] in table 'SpecialAbilities'
+ALTER TABLE [dbo].[SpecialAbilities]
+ADD CONSTRAINT [FK_MonsterSpecialAbility]
+    FOREIGN KEY ([MonsterName])
+    REFERENCES [dbo].[Monsters]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonsterSpecialAbility'
+CREATE INDEX [IX_FK_MonsterSpecialAbility]
+ON [dbo].[SpecialAbilities]
+    ([MonsterName]);
+GO
+
+-- Creating foreign key on [MonsterName] in table 'ConditionImmunities'
+ALTER TABLE [dbo].[ConditionImmunities]
+ADD CONSTRAINT [FK_MonsterConditionImmunity]
+    FOREIGN KEY ([MonsterName])
+    REFERENCES [dbo].[Monsters]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonsterConditionImmunity'
+CREATE INDEX [IX_FK_MonsterConditionImmunity]
+ON [dbo].[ConditionImmunities]
+    ([MonsterName]);
+GO
+
+-- Creating foreign key on [MonsterName] in table 'SpellMonsterTables'
+ALTER TABLE [dbo].[SpellMonsterTables]
+ADD CONSTRAINT [FK_MonsterSpellMonsterTable]
+    FOREIGN KEY ([MonsterName])
+    REFERENCES [dbo].[Monsters]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonsterSpellMonsterTable'
+CREATE INDEX [IX_FK_MonsterSpellMonsterTable]
+ON [dbo].[SpellMonsterTables]
+    ([MonsterName]);
+GO
+
+-- Creating foreign key on [MonsterName] in table 'Proficiencies'
+ALTER TABLE [dbo].[Proficiencies]
+ADD CONSTRAINT [FK_MonsterProficiency]
+    FOREIGN KEY ([MonsterName])
+    REFERENCES [dbo].[Monsters]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonsterProficiency'
+CREATE INDEX [IX_FK_MonsterProficiency]
+ON [dbo].[Proficiencies]
+    ([MonsterName]);
+GO
+
+-- Creating foreign key on [MonsterName] in table 'SpellCastingStats'
+ALTER TABLE [dbo].[SpellCastingStats]
+ADD CONSTRAINT [FK_MonsterSpellCastingStats]
+    FOREIGN KEY ([MonsterName])
+    REFERENCES [dbo].[Monsters]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonsterSpellCastingStats'
+CREATE INDEX [IX_FK_MonsterSpellCastingStats]
+ON [dbo].[SpellCastingStats]
+    ([MonsterName]);
+GO
+
+-- Creating foreign key on [MonsterName] in table 'Abilities'
+ALTER TABLE [dbo].[Abilities]
+ADD CONSTRAINT [FK_MonsterAbilities]
+    FOREIGN KEY ([MonsterName])
+    REFERENCES [dbo].[Monsters]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonsterAbilities'
+CREATE INDEX [IX_FK_MonsterAbilities]
+ON [dbo].[Abilities]
+    ([MonsterName]);
+GO
+
+-- Creating foreign key on [MonsterName] in table 'ArmorClasses'
+ALTER TABLE [dbo].[ArmorClasses]
+ADD CONSTRAINT [FK_MonsterArmorClass]
+    FOREIGN KEY ([MonsterName])
+    REFERENCES [dbo].[Monsters]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonsterArmorClass'
+CREATE INDEX [IX_FK_MonsterArmorClass]
+ON [dbo].[ArmorClasses]
+    ([MonsterName]);
+GO
+
+-- Creating foreign key on [MonsterName] in table 'Speeds'
+ALTER TABLE [dbo].[Speeds]
+ADD CONSTRAINT [FK_MonsterSpeed]
+    FOREIGN KEY ([MonsterName])
+    REFERENCES [dbo].[Monsters]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonsterSpeed'
+CREATE INDEX [IX_FK_MonsterSpeed]
+ON [dbo].[Speeds]
+    ([MonsterName]);
+GO
+
+-- Creating foreign key on [MonsterName] in table 'MonsterScenarioTables'
+ALTER TABLE [dbo].[MonsterScenarioTables]
+ADD CONSTRAINT [FK_MonsterMonsterScenarioTable]
+    FOREIGN KEY ([MonsterName])
+    REFERENCES [dbo].[Monsters]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MonsterMonsterScenarioTable'
+CREATE INDEX [IX_FK_MonsterMonsterScenarioTable]
+ON [dbo].[MonsterScenarioTables]
+    ([MonsterName]);
+GO
+
+-- Creating foreign key on [SpellName] in table 'SpellDamages'
+ALTER TABLE [dbo].[SpellDamages]
+ADD CONSTRAINT [FK_SpellSpellDamage]
+    FOREIGN KEY ([SpellName])
+    REFERENCES [dbo].[Spells]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SpellSpellDamage'
+CREATE INDEX [IX_FK_SpellSpellDamage]
+ON [dbo].[SpellDamages]
+    ([SpellName]);
+GO
+
+-- Creating foreign key on [SpellName] in table 'SpellHealings'
+ALTER TABLE [dbo].[SpellHealings]
+ADD CONSTRAINT [FK_SpellSpellHealing]
+    FOREIGN KEY ([SpellName])
+    REFERENCES [dbo].[Spells]
+        ([Name])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SpellSpellHealing'
+CREATE INDEX [IX_FK_SpellSpellHealing]
+ON [dbo].[SpellHealings]
     ([SpellName]);
 GO
 

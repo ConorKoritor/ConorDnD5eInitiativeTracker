@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConorDnD5eInitiativeTracker.APIRequests;
-using ConorDnD5eInitiativeTracker.Database;
 using NUnit.Framework;
 
 namespace DnDInitiativeTrackerTest

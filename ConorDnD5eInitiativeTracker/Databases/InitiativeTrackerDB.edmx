@@ -25,42 +25,7 @@
     <EntitySet Name="CharacterScenarioTables" EntityType="InitiativeTrackerDB.Store.CharacterScenarioTables" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PlayerCharacterBasics" EntityType="InitiativeTrackerDB.Store.PlayerCharacterBasics" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MonsterScenarioTables" EntityType="InitiativeTrackerDB.Store.MonsterScenarioTables" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="MonsterAbilities" Association="InitiativeTrackerDB.Store.MonsterAbilities">
-      <End Role="Monster" EntitySet="Monsters" />
-      <End Role="Abilities" EntitySet="Abilities" />
-    </AssociationSet>
-    <AssociationSet Name="MonsterArmorClass" Association="InitiativeTrackerDB.Store.MonsterArmorClass">
-      <End Role="Monster" EntitySet="Monsters" />
-      <End Role="ArmorClass" EntitySet="ArmorClasses" />
-    </AssociationSet>
-    <AssociationSet Name="MonsterConditionImmunity" Association="InitiativeTrackerDB.Store.MonsterConditionImmunity">
-      <End Role="Monster" EntitySet="Monsters" />
-      <End Role="ConditionImmunity" EntitySet="ConditionImmunities" />
-    </AssociationSet>
-    <AssociationSet Name="MonsterProficiency" Association="InitiativeTrackerDB.Store.MonsterProficiency">
-      <End Role="Monster" EntitySet="Monsters" />
-      <End Role="Proficiency" EntitySet="Proficiencies" />
-    </AssociationSet>
-    <AssociationSet Name="MonsterSpeed" Association="InitiativeTrackerDB.Store.MonsterSpeed">
-      <End Role="Monster" EntitySet="Monsters" />
-      <End Role="Speed" EntitySet="Speeds" />
-    </AssociationSet>
-    <AssociationSet Name="MonsterAction" Association="InitiativeTrackerDB.Store.MonsterAction">
-      <End Role="Monster" EntitySet="Monsters" />
-      <End Role="Action" EntitySet="Actions" />
-    </AssociationSet>
-    <AssociationSet Name="MonsterSpellCastingStats" Association="InitiativeTrackerDB.Store.MonsterSpellCastingStats">
-      <End Role="Monster" EntitySet="Monsters" />
-      <End Role="SpellCastingStats" EntitySet="SpellCastingStats" />
-    </AssociationSet>
-    <AssociationSet Name="MonsterSpecialAbility" Association="InitiativeTrackerDB.Store.MonsterSpecialAbility">
-      <End Role="Monster" EntitySet="Monsters" />
-      <End Role="SpecialAbility" EntitySet="SpecialAbilities" />
-    </AssociationSet>
-    <AssociationSet Name="MonsterLegendaryAction" Association="InitiativeTrackerDB.Store.MonsterLegendaryAction">
-      <End Role="Monster" EntitySet="Monsters" />
-      <End Role="LegendaryAction" EntitySet="LegendaryActions" />
-    </AssociationSet>
+    <EntitySet Name="SpellHealings" EntityType="InitiativeTrackerDB.Store.SpellHealings" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="ActionDamage" Association="InitiativeTrackerDB.Store.ActionDamage">
       <End Role="Action" EntitySet="Actions" />
       <End Role="Damage" EntitySet="Damages" />
@@ -68,10 +33,6 @@
     <AssociationSet Name="LegendaryActionDamage" Association="InitiativeTrackerDB.Store.LegendaryActionDamage">
       <End Role="LegendaryAction" EntitySet="LegendaryActions" />
       <End Role="Damage" EntitySet="Damages" />
-    </AssociationSet>
-    <AssociationSet Name="MonsterSpellMonsterTable" Association="InitiativeTrackerDB.Store.MonsterSpellMonsterTable">
-      <End Role="Monster" EntitySet="Monsters" />
-      <End Role="SpellMonsterTable" EntitySet="SpellMonsterTables" />
     </AssociationSet>
     <AssociationSet Name="ScenarioCharacterScenarioTable" Association="InitiativeTrackerDB.Store.ScenarioCharacterScenarioTable">
       <End Role="Scenario" EntitySet="Scenarios" />
@@ -84,14 +45,6 @@
     <AssociationSet Name="ScenarioMonsterScenarioTable" Association="InitiativeTrackerDB.Store.ScenarioMonsterScenarioTable">
       <End Role="Scenario" EntitySet="Scenarios" />
       <End Role="MonsterScenarioTable" EntitySet="MonsterScenarioTables" />
-    </AssociationSet>
-    <AssociationSet Name="MonsterMonsterScenarioTable" Association="InitiativeTrackerDB.Store.MonsterMonsterScenarioTable">
-      <End Role="Monster" EntitySet="Monsters" />
-      <End Role="MonsterScenarioTable" EntitySet="MonsterScenarioTables" />
-    </AssociationSet>
-    <AssociationSet Name="SpellSpellDamage" Association="InitiativeTrackerDB.Store.SpellSpellDamage">
-      <End Role="Spell" EntitySet="Spells" />
-      <End Role="SpellDamage" EntitySet="SpellDamages" />
     </AssociationSet>
     <AssociationSet Name="SpellSpellMonsterTable" Association="InitiativeTrackerDB.Store.SpellSpellMonsterTable">
       <End Role="Spell" EntitySet="Spells" />
@@ -109,12 +62,63 @@
       <End Role="Spell" EntitySet="Spells" />
       <End Role="DifficultyClass" EntitySet="DifficultyClasses" />
     </AssociationSet>
+    <AssociationSet Name="MonsterAction" Association="InitiativeTrackerDB.Store.MonsterAction">
+      <End Role="Monster" EntitySet="Monsters" />
+      <End Role="Action" EntitySet="Actions" />
+    </AssociationSet>
+    <AssociationSet Name="MonsterLegendaryAction" Association="InitiativeTrackerDB.Store.MonsterLegendaryAction">
+      <End Role="Monster" EntitySet="Monsters" />
+      <End Role="LegendaryAction" EntitySet="LegendaryActions" />
+    </AssociationSet>
+    <AssociationSet Name="MonsterSpecialAbility" Association="InitiativeTrackerDB.Store.MonsterSpecialAbility">
+      <End Role="Monster" EntitySet="Monsters" />
+      <End Role="SpecialAbility" EntitySet="SpecialAbilities" />
+    </AssociationSet>
+    <AssociationSet Name="MonsterConditionImmunity" Association="InitiativeTrackerDB.Store.MonsterConditionImmunity">
+      <End Role="Monster" EntitySet="Monsters" />
+      <End Role="ConditionImmunity" EntitySet="ConditionImmunities" />
+    </AssociationSet>
+    <AssociationSet Name="MonsterSpellMonsterTable" Association="InitiativeTrackerDB.Store.MonsterSpellMonsterTable">
+      <End Role="Monster" EntitySet="Monsters" />
+      <End Role="SpellMonsterTable" EntitySet="SpellMonsterTables" />
+    </AssociationSet>
+    <AssociationSet Name="MonsterProficiency" Association="InitiativeTrackerDB.Store.MonsterProficiency">
+      <End Role="Monster" EntitySet="Monsters" />
+      <End Role="Proficiency" EntitySet="Proficiencies" />
+    </AssociationSet>
+    <AssociationSet Name="MonsterSpellCastingStats" Association="InitiativeTrackerDB.Store.MonsterSpellCastingStats">
+      <End Role="Monster" EntitySet="Monsters" />
+      <End Role="SpellCastingStats" EntitySet="SpellCastingStats" />
+    </AssociationSet>
+    <AssociationSet Name="MonsterAbilities" Association="InitiativeTrackerDB.Store.MonsterAbilities">
+      <End Role="Monster" EntitySet="Monsters" />
+      <End Role="Abilities" EntitySet="Abilities" />
+    </AssociationSet>
+    <AssociationSet Name="MonsterArmorClass" Association="InitiativeTrackerDB.Store.MonsterArmorClass">
+      <End Role="Monster" EntitySet="Monsters" />
+      <End Role="ArmorClass" EntitySet="ArmorClasses" />
+    </AssociationSet>
+    <AssociationSet Name="MonsterSpeed" Association="InitiativeTrackerDB.Store.MonsterSpeed">
+      <End Role="Monster" EntitySet="Monsters" />
+      <End Role="Speed" EntitySet="Speeds" />
+    </AssociationSet>
+    <AssociationSet Name="MonsterMonsterScenarioTable" Association="InitiativeTrackerDB.Store.MonsterMonsterScenarioTable">
+      <End Role="Monster" EntitySet="Monsters" />
+      <End Role="MonsterScenarioTable" EntitySet="MonsterScenarioTables" />
+    </AssociationSet>
+    <AssociationSet Name="SpellSpellDamage" Association="InitiativeTrackerDB.Store.SpellSpellDamage">
+      <End Role="Spell" EntitySet="Spells" />
+      <End Role="SpellDamage" EntitySet="SpellDamages" />
+    </AssociationSet>
+    <AssociationSet Name="SpellSpellHealing" Association="InitiativeTrackerDB.Store.SpellSpellHealing">
+      <End Role="Spell" EntitySet="Spells" />
+      <End Role="SpellHealing" EntitySet="SpellHealings" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Monsters">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="HP" Type="int" Nullable="false" />
     <Property Name="Initiative_Modifier" Type="smallint" Nullable="false" />
@@ -125,14 +129,12 @@
     <Property Name="Hit_Points_Roll" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Alignment" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Languages" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Challenge_Rating" Type="smallint" Nullable="false" />
+    <Property Name="Challenge_Rating" Type="float" Nullable="false" />
     <Property Name="XP" Type="int" Nullable="false" />
     <Property Name="Damage_Vulnerabilities" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Damage_Resistances" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Damage_Immunities" Type="nvarchar(max)" Nullable="true" />
     <Property Name="IsSpellcaster" Type="bit" Nullable="false" />
-    <Property Name="Ability_Id" Type="int" Nullable="false" />
-    <Property Name="SpellCastingStat_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Abilities">
     <Key>
@@ -146,6 +148,7 @@
     <Property Name="Wisdom" Type="smallint" Nullable="false" />
     <Property Name="Charisma" Type="smallint" Nullable="false" />
     <Property Name="Proficiency_Bonus" Type="smallint" Nullable="false" />
+    <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ArmorClasses">
     <Key>
@@ -154,7 +157,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ac_Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AC" Type="smallint" Nullable="false" />
-    <Property Name="MonsterId" Type="int" Nullable="false" />
+    <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ConditionImmunities">
     <Key>
@@ -163,7 +166,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="URL" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="MonsterId" Type="int" Nullable="false" />
+    <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Proficiencies">
     <Key>
@@ -172,7 +175,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Bonus" Type="smallint" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="MonsterId" Type="int" Nullable="false" />
+    <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Speeds">
     <Key>
@@ -181,7 +184,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Distance" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="MonsterId" Type="int" Nullable="false" />
+    <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Actions">
     <Key>
@@ -193,7 +196,7 @@
     <Property Name="Attack_Bonus" Type="smallint" Nullable="true" />
     <Property Name="Usage_Type" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Usage_Times" Type="smallint" Nullable="true" />
-    <Property Name="MonsterId" Type="int" Nullable="false" />
+    <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="SpellCastingStats">
     <Key>
@@ -214,6 +217,7 @@
     <Property Name="L7_Slots" Type="smallint" Nullable="true" />
     <Property Name="L8_Slots" Type="smallint" Nullable="true" />
     <Property Name="L9_Slots" Type="smallint" Nullable="true" />
+    <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="SpecialAbilities">
     <Key>
@@ -222,7 +226,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="MonsterId" Type="int" Nullable="false" />
+    <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="LegendaryActions">
     <Key>
@@ -232,7 +236,7 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Attack_Bonus" Type="smallint" Nullable="true" />
-    <Property Name="MonsterId" Type="int" Nullable="false" />
+    <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Damages">
     <Key>
@@ -288,7 +292,7 @@
     <Property Name="Damage_L7" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Damage_L8" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Damage_L9" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="SpellId" Type="int" Nullable="false" />
+    <Property Name="Damage_L0" Type="nvarchar(max)" Nullable="true" />
     <Property Name="SpellName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="SpellMonsterTables">
@@ -296,8 +300,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="MonsterId" Type="int" Nullable="false" />
     <Property Name="SpellName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Scenarios">
     <Key>
@@ -322,6 +326,7 @@
     <Property Name="HP" Type="int" Nullable="false" />
     <Property Name="AC" Type="smallint" Nullable="false" />
     <Property Name="CR_2_Score" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="MonsterScenarioTables">
     <Key>
@@ -329,116 +334,24 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ScenarioId" Type="int" Nullable="false" />
-    <Property Name="MonsterId" Type="int" Nullable="false" />
+    <Property Name="MonsterName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <Association Name="MonsterAbilities">
-    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="*" />
-    <End Role="Abilities" Type="InitiativeTrackerDB.Store.Abilities" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Abilities">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Monster">
-        <PropertyRef Name="Ability_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="MonsterArmorClass">
-    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
-    <End Role="ArmorClass" Type="InitiativeTrackerDB.Store.ArmorClasses" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Monster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ArmorClass">
-        <PropertyRef Name="MonsterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="MonsterConditionImmunity">
-    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
-    <End Role="ConditionImmunity" Type="InitiativeTrackerDB.Store.ConditionImmunities" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Monster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ConditionImmunity">
-        <PropertyRef Name="MonsterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="MonsterProficiency">
-    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
-    <End Role="Proficiency" Type="InitiativeTrackerDB.Store.Proficiencies" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Monster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Proficiency">
-        <PropertyRef Name="MonsterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="MonsterSpeed">
-    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
-    <End Role="Speed" Type="InitiativeTrackerDB.Store.Speeds" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Monster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Speed">
-        <PropertyRef Name="MonsterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="MonsterAction">
-    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
-    <End Role="Action" Type="InitiativeTrackerDB.Store.Actions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Monster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Action">
-        <PropertyRef Name="MonsterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="MonsterSpellCastingStats">
-    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="*" />
-    <End Role="SpellCastingStats" Type="InitiativeTrackerDB.Store.SpellCastingStats" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="SpellCastingStats">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Monster">
-        <PropertyRef Name="SpellCastingStat_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="MonsterSpecialAbility">
-    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
-    <End Role="SpecialAbility" Type="InitiativeTrackerDB.Store.SpecialAbilities" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Monster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SpecialAbility">
-        <PropertyRef Name="MonsterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="MonsterLegendaryAction">
-    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
-    <End Role="LegendaryAction" Type="InitiativeTrackerDB.Store.LegendaryActions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Monster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="LegendaryAction">
-        <PropertyRef Name="MonsterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="SpellHealings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Healing_L1" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Healing_L2" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Healing_L3" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Healing_L4" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Healing_L5" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Healing_L6" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Healing_L7" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Healing_L8" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Healing_L9" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SpellName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <Association Name="ActionDamage">
     <End Role="Action" Type="InitiativeTrackerDB.Store.Actions" Multiplicity="0..1" />
     <End Role="Damage" Type="InitiativeTrackerDB.Store.Damages" Multiplicity="*" />
@@ -460,18 +373,6 @@
       </Principal>
       <Dependent Role="Damage">
         <PropertyRef Name="LegendaryActionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="MonsterSpellMonsterTable">
-    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
-    <End Role="SpellMonsterTable" Type="InitiativeTrackerDB.Store.SpellMonsterTables" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Monster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SpellMonsterTable">
-        <PropertyRef Name="MonsterId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -508,30 +409,6 @@
       </Principal>
       <Dependent Role="MonsterScenarioTable">
         <PropertyRef Name="ScenarioId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="MonsterMonsterScenarioTable">
-    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
-    <End Role="MonsterScenarioTable" Type="InitiativeTrackerDB.Store.MonsterScenarioTables" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Monster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="MonsterScenarioTable">
-        <PropertyRef Name="MonsterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="SpellSpellDamage">
-    <End Role="Spell" Type="InitiativeTrackerDB.Store.Spells" Multiplicity="1" />
-    <End Role="SpellDamage" Type="InitiativeTrackerDB.Store.SpellDamages" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Spell">
-        <PropertyRef Name="Name" />
-      </Principal>
-      <Dependent Role="SpellDamage">
-        <PropertyRef Name="SpellName" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -583,6 +460,162 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="MonsterAction">
+    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
+    <End Role="Action" Type="InitiativeTrackerDB.Store.Actions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monster">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="Action">
+        <PropertyRef Name="MonsterName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonsterLegendaryAction">
+    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
+    <End Role="LegendaryAction" Type="InitiativeTrackerDB.Store.LegendaryActions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monster">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="LegendaryAction">
+        <PropertyRef Name="MonsterName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonsterSpecialAbility">
+    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
+    <End Role="SpecialAbility" Type="InitiativeTrackerDB.Store.SpecialAbilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monster">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="SpecialAbility">
+        <PropertyRef Name="MonsterName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonsterConditionImmunity">
+    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
+    <End Role="ConditionImmunity" Type="InitiativeTrackerDB.Store.ConditionImmunities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monster">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="ConditionImmunity">
+        <PropertyRef Name="MonsterName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonsterSpellMonsterTable">
+    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
+    <End Role="SpellMonsterTable" Type="InitiativeTrackerDB.Store.SpellMonsterTables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monster">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="SpellMonsterTable">
+        <PropertyRef Name="MonsterName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonsterProficiency">
+    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
+    <End Role="Proficiency" Type="InitiativeTrackerDB.Store.Proficiencies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monster">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="Proficiency">
+        <PropertyRef Name="MonsterName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonsterSpellCastingStats">
+    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
+    <End Role="SpellCastingStats" Type="InitiativeTrackerDB.Store.SpellCastingStats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monster">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="SpellCastingStats">
+        <PropertyRef Name="MonsterName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonsterAbilities">
+    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
+    <End Role="Abilities" Type="InitiativeTrackerDB.Store.Abilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monster">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="Abilities">
+        <PropertyRef Name="MonsterName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonsterArmorClass">
+    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
+    <End Role="ArmorClass" Type="InitiativeTrackerDB.Store.ArmorClasses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monster">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="ArmorClass">
+        <PropertyRef Name="MonsterName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonsterSpeed">
+    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
+    <End Role="Speed" Type="InitiativeTrackerDB.Store.Speeds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monster">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="Speed">
+        <PropertyRef Name="MonsterName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonsterMonsterScenarioTable">
+    <End Role="Monster" Type="InitiativeTrackerDB.Store.Monsters" Multiplicity="1" />
+    <End Role="MonsterScenarioTable" Type="InitiativeTrackerDB.Store.MonsterScenarioTables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monster">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="MonsterScenarioTable">
+        <PropertyRef Name="MonsterName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpellSpellDamage">
+    <End Role="Spell" Type="InitiativeTrackerDB.Store.Spells" Multiplicity="1" />
+    <End Role="SpellDamage" Type="InitiativeTrackerDB.Store.SpellDamages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spell">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="SpellDamage">
+        <PropertyRef Name="SpellName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpellSpellHealing">
+    <End Role="Spell" Type="InitiativeTrackerDB.Store.Spells" Multiplicity="1" />
+    <End Role="SpellHealing" Type="InitiativeTrackerDB.Store.SpellHealings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spell">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="SpellHealing">
+        <PropertyRef Name="SpellName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -590,50 +623,14 @@
         <EntityContainer Name="InitiativeTrackerDBContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Monsters" EntityType="InitiativeTrackerDB.Monster" />
           <EntitySet Name="Abilities" EntityType="InitiativeTrackerDB.Abilities" />
-          <AssociationSet Name="MonsterAbilities" Association="InitiativeTrackerDB.MonsterAbilities">
-            <End Role="Monster" EntitySet="Monsters" />
-            <End Role="Abilities" EntitySet="Abilities" />
-          </AssociationSet>
           <EntitySet Name="ArmorClasses" EntityType="InitiativeTrackerDB.ArmorClass" />
-          <AssociationSet Name="MonsterArmorClass" Association="InitiativeTrackerDB.MonsterArmorClass">
-            <End Role="Monster" EntitySet="Monsters" />
-            <End Role="ArmorClass" EntitySet="ArmorClasses" />
-          </AssociationSet>
           <EntitySet Name="ConditionImmunities" EntityType="InitiativeTrackerDB.ConditionImmunity" />
-          <AssociationSet Name="MonsterConditionImmunity" Association="InitiativeTrackerDB.MonsterConditionImmunity">
-            <End Role="Monster" EntitySet="Monsters" />
-            <End Role="ConditionImmunity" EntitySet="ConditionImmunities" />
-          </AssociationSet>
           <EntitySet Name="Proficiencies" EntityType="InitiativeTrackerDB.Proficiency" />
-          <AssociationSet Name="MonsterProficiency" Association="InitiativeTrackerDB.MonsterProficiency">
-            <End Role="Monster" EntitySet="Monsters" />
-            <End Role="Proficiency" EntitySet="Proficiencies" />
-          </AssociationSet>
           <EntitySet Name="Speeds" EntityType="InitiativeTrackerDB.Speed" />
-          <AssociationSet Name="MonsterSpeed" Association="InitiativeTrackerDB.MonsterSpeed">
-            <End Role="Monster" EntitySet="Monsters" />
-            <End Role="Speed" EntitySet="Speeds" />
-          </AssociationSet>
           <EntitySet Name="Actions" EntityType="InitiativeTrackerDB.Action" />
-          <AssociationSet Name="MonsterAction" Association="InitiativeTrackerDB.MonsterAction">
-            <End Role="Monster" EntitySet="Monsters" />
-            <End Role="Action" EntitySet="Actions" />
-          </AssociationSet>
           <EntitySet Name="SpellCastingStats" EntityType="InitiativeTrackerDB.SpellCastingStats" />
-          <AssociationSet Name="MonsterSpellCastingStats" Association="InitiativeTrackerDB.MonsterSpellCastingStats">
-            <End Role="Monster" EntitySet="Monsters" />
-            <End Role="SpellCastingStats" EntitySet="SpellCastingStats" />
-          </AssociationSet>
           <EntitySet Name="SpecialAbilities" EntityType="InitiativeTrackerDB.SpecialAbility" />
-          <AssociationSet Name="MonsterSpecialAbility" Association="InitiativeTrackerDB.MonsterSpecialAbility">
-            <End Role="Monster" EntitySet="Monsters" />
-            <End Role="SpecialAbility" EntitySet="SpecialAbilities" />
-          </AssociationSet>
           <EntitySet Name="LegendaryActions" EntityType="InitiativeTrackerDB.LegendaryAction" />
-          <AssociationSet Name="MonsterLegendaryAction" Association="InitiativeTrackerDB.MonsterLegendaryAction">
-            <End Role="Monster" EntitySet="Monsters" />
-            <End Role="LegendaryAction" EntitySet="LegendaryActions" />
-          </AssociationSet>
           <EntitySet Name="Damages" EntityType="InitiativeTrackerDB.Damage" />
           <AssociationSet Name="ActionDamage" Association="InitiativeTrackerDB.ActionDamage">
             <End Role="Action" EntitySet="Actions" />
@@ -647,10 +644,6 @@
           <EntitySet Name="Spells" EntityType="InitiativeTrackerDB.Spell" />
           <EntitySet Name="SpellDamages" EntityType="InitiativeTrackerDB.SpellDamage" />
           <EntitySet Name="SpellMonsterTables" EntityType="InitiativeTrackerDB.SpellMonsterTable" />
-          <AssociationSet Name="MonsterSpellMonsterTable" Association="InitiativeTrackerDB.MonsterSpellMonsterTable">
-            <End Role="Monster" EntitySet="Monsters" />
-            <End Role="SpellMonsterTable" EntitySet="SpellMonsterTables" />
-          </AssociationSet>
           <EntitySet Name="Scenarios" EntityType="InitiativeTrackerDB.Scenario" />
           <EntitySet Name="CharacterScenarioTables" EntityType="InitiativeTrackerDB.CharacterScenarioTable" />
           <EntitySet Name="PlayerCharacterBasics" EntityType="InitiativeTrackerDB.PlayerCharacterBasic" />
@@ -666,14 +659,6 @@
           <AssociationSet Name="ScenarioMonsterScenarioTable" Association="InitiativeTrackerDB.ScenarioMonsterScenarioTable">
             <End Role="Scenario" EntitySet="Scenarios" />
             <End Role="MonsterScenarioTable" EntitySet="MonsterScenarioTables" />
-          </AssociationSet>
-          <AssociationSet Name="MonsterMonsterScenarioTable" Association="InitiativeTrackerDB.MonsterMonsterScenarioTable">
-            <End Role="Monster" EntitySet="Monsters" />
-            <End Role="MonsterScenarioTable" EntitySet="MonsterScenarioTables" />
-          </AssociationSet>
-          <AssociationSet Name="SpellSpellDamage" Association="InitiativeTrackerDB.SpellSpellDamage">
-            <End Role="Spell" EntitySet="Spells" />
-            <End Role="SpellDamage" EntitySet="SpellDamages" />
           </AssociationSet>
           <AssociationSet Name="SpellSpellMonsterTable" Association="InitiativeTrackerDB.SpellSpellMonsterTable">
             <End Role="Spell" EntitySet="Spells" />
@@ -691,13 +676,65 @@
             <End Role="Spell" EntitySet="Spells" />
             <End Role="DifficultyClass" EntitySet="DifficultyClasses" />
           </AssociationSet>
+          <AssociationSet Name="MonsterAction" Association="InitiativeTrackerDB.MonsterAction">
+            <End Role="Monster" EntitySet="Monsters" />
+            <End Role="Action" EntitySet="Actions" />
+          </AssociationSet>
+          <AssociationSet Name="MonsterLegendaryAction" Association="InitiativeTrackerDB.MonsterLegendaryAction">
+            <End Role="Monster" EntitySet="Monsters" />
+            <End Role="LegendaryAction" EntitySet="LegendaryActions" />
+          </AssociationSet>
+          <AssociationSet Name="MonsterSpecialAbility" Association="InitiativeTrackerDB.MonsterSpecialAbility">
+            <End Role="Monster" EntitySet="Monsters" />
+            <End Role="SpecialAbility" EntitySet="SpecialAbilities" />
+          </AssociationSet>
+          <AssociationSet Name="MonsterConditionImmunity" Association="InitiativeTrackerDB.MonsterConditionImmunity">
+            <End Role="Monster" EntitySet="Monsters" />
+            <End Role="ConditionImmunity" EntitySet="ConditionImmunities" />
+          </AssociationSet>
+          <AssociationSet Name="MonsterSpellMonsterTable" Association="InitiativeTrackerDB.MonsterSpellMonsterTable">
+            <End Role="Monster" EntitySet="Monsters" />
+            <End Role="SpellMonsterTable" EntitySet="SpellMonsterTables" />
+          </AssociationSet>
+          <AssociationSet Name="MonsterProficiency" Association="InitiativeTrackerDB.MonsterProficiency">
+            <End Role="Monster" EntitySet="Monsters" />
+            <End Role="Proficiency" EntitySet="Proficiencies" />
+          </AssociationSet>
+          <AssociationSet Name="MonsterSpellCastingStats" Association="InitiativeTrackerDB.MonsterSpellCastingStats">
+            <End Role="Monster" EntitySet="Monsters" />
+            <End Role="SpellCastingStats" EntitySet="SpellCastingStats" />
+          </AssociationSet>
+          <AssociationSet Name="MonsterAbilities" Association="InitiativeTrackerDB.MonsterAbilities">
+            <End Role="Monster" EntitySet="Monsters" />
+            <End Role="Abilities" EntitySet="Abilities" />
+          </AssociationSet>
+          <AssociationSet Name="MonsterArmorClass" Association="InitiativeTrackerDB.MonsterArmorClass">
+            <End Role="Monster" EntitySet="Monsters" />
+            <End Role="ArmorClass" EntitySet="ArmorClasses" />
+          </AssociationSet>
+          <AssociationSet Name="MonsterSpeed" Association="InitiativeTrackerDB.MonsterSpeed">
+            <End Role="Monster" EntitySet="Monsters" />
+            <End Role="Speed" EntitySet="Speeds" />
+          </AssociationSet>
+          <AssociationSet Name="MonsterMonsterScenarioTable" Association="InitiativeTrackerDB.MonsterMonsterScenarioTable">
+            <End Role="Monster" EntitySet="Monsters" />
+            <End Role="MonsterScenarioTable" EntitySet="MonsterScenarioTables" />
+          </AssociationSet>
+          <EntitySet Name="SpellHealings" EntityType="InitiativeTrackerDB.SpellHealing" />
+          <AssociationSet Name="SpellSpellDamage" Association="InitiativeTrackerDB.SpellSpellDamage">
+            <End Role="Spell" EntitySet="Spells" />
+            <End Role="SpellDamage" EntitySet="SpellDamages" />
+          </AssociationSet>
+          <AssociationSet Name="SpellSpellHealing" Association="InitiativeTrackerDB.SpellSpellHealing">
+            <End Role="Spell" EntitySet="Spells" />
+            <End Role="SpellHealing" EntitySet="SpellHealings" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Monster">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="HP" Type="Int32" Nullable="false" />
           <Property Name="Initiative_Modifier" Type="Int16" Nullable="false" />
           <Property Name="Desc" Type="String" Nullable="false" />
@@ -707,22 +744,22 @@
           <Property Name="Hit_Points_Roll" Type="String" Nullable="false" />
           <Property Name="Alignment" Type="String" Nullable="false" />
           <Property Name="Languages" Type="String" Nullable="false" />
-          <Property Name="Challenge_Rating" Type="Int16" Nullable="false" />
+          <Property Name="Challenge_Rating" Type="Double" Nullable="false" />
           <Property Name="XP" Type="Int32" Nullable="false" />
           <Property Name="Damage_Vulnerabilities" Type="String" Nullable="true" />
           <Property Name="Damage_Resistances" Type="String" Nullable="true" />
           <Property Name="Damage_Immunities" Type="String" Nullable="true" />
           <Property Name="IsSpellcaster" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Ability" Relationship="InitiativeTrackerDB.MonsterAbilities" FromRole="Monster" ToRole="Abilities" />
-          <NavigationProperty Name="ArmorClasses" Relationship="InitiativeTrackerDB.MonsterArmorClass" FromRole="Monster" ToRole="ArmorClass" />
-          <NavigationProperty Name="ConditionImmunities" Relationship="InitiativeTrackerDB.MonsterConditionImmunity" FromRole="Monster" ToRole="ConditionImmunity" />
-          <NavigationProperty Name="Proficiencies" Relationship="InitiativeTrackerDB.MonsterProficiency" FromRole="Monster" ToRole="Proficiency" />
-          <NavigationProperty Name="Speeds" Relationship="InitiativeTrackerDB.MonsterSpeed" FromRole="Monster" ToRole="Speed" />
           <NavigationProperty Name="Actions" Relationship="InitiativeTrackerDB.MonsterAction" FromRole="Monster" ToRole="Action" />
-          <NavigationProperty Name="SpellCastingStat" Relationship="InitiativeTrackerDB.MonsterSpellCastingStats" FromRole="Monster" ToRole="SpellCastingStats" />
-          <NavigationProperty Name="SpecialAbilities" Relationship="InitiativeTrackerDB.MonsterSpecialAbility" FromRole="Monster" ToRole="SpecialAbility" />
           <NavigationProperty Name="LegendaryActions" Relationship="InitiativeTrackerDB.MonsterLegendaryAction" FromRole="Monster" ToRole="LegendaryAction" />
+          <NavigationProperty Name="SpecialAbilities" Relationship="InitiativeTrackerDB.MonsterSpecialAbility" FromRole="Monster" ToRole="SpecialAbility" />
+          <NavigationProperty Name="ConditionImmunities" Relationship="InitiativeTrackerDB.MonsterConditionImmunity" FromRole="Monster" ToRole="ConditionImmunity" />
           <NavigationProperty Name="SpellMonsterTables" Relationship="InitiativeTrackerDB.MonsterSpellMonsterTable" FromRole="Monster" ToRole="SpellMonsterTable" />
+          <NavigationProperty Name="Proficiencies" Relationship="InitiativeTrackerDB.MonsterProficiency" FromRole="Monster" ToRole="Proficiency" />
+          <NavigationProperty Name="SpellCastingStats" Relationship="InitiativeTrackerDB.MonsterSpellCastingStats" FromRole="Monster" ToRole="SpellCastingStats" />
+          <NavigationProperty Name="Abilities" Relationship="InitiativeTrackerDB.MonsterAbilities" FromRole="Monster" ToRole="Abilities" />
+          <NavigationProperty Name="ArmorClasses" Relationship="InitiativeTrackerDB.MonsterArmorClass" FromRole="Monster" ToRole="ArmorClass" />
+          <NavigationProperty Name="Speeds" Relationship="InitiativeTrackerDB.MonsterSpeed" FromRole="Monster" ToRole="Speed" />
           <NavigationProperty Name="MonsterScenarioTables" Relationship="InitiativeTrackerDB.MonsterMonsterScenarioTable" FromRole="Monster" ToRole="MonsterScenarioTable" />
         </EntityType>
         <EntityType Name="Abilities">
@@ -738,11 +775,8 @@
           <Property Name="Charisma" Type="Int16" Nullable="false" />
           <Property Name="Proficiency_Bonus" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterAbilities" FromRole="Abilities" ToRole="Monster" />
+          <Property Name="MonsterName" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="MonsterAbilities">
-          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.Abilities" Role="Abilities" Multiplicity="1" />
-        </Association>
         <EntityType Name="ArmorClass">
           <Key>
             <PropertyRef Name="Id" />
@@ -751,20 +785,8 @@
           <Property Name="Ac_Type" Type="String" Nullable="false" />
           <Property Name="AC" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterArmorClass" FromRole="ArmorClass" ToRole="Monster" />
-          <Property Name="MonsterId" Type="Int32" Nullable="false" />
+          <Property Name="MonsterName" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="MonsterArmorClass">
-          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.ArmorClass" Role="ArmorClass" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ArmorClass">
-              <PropertyRef Name="MonsterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="ConditionImmunity">
           <Key>
             <PropertyRef Name="Id" />
@@ -773,20 +795,8 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="URL" Type="String" Nullable="false" />
           <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterConditionImmunity" FromRole="ConditionImmunity" ToRole="Monster" />
-          <Property Name="MonsterId" Type="Int32" Nullable="false" />
+          <Property Name="MonsterName" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="MonsterConditionImmunity">
-          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.ConditionImmunity" Role="ConditionImmunity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ConditionImmunity">
-              <PropertyRef Name="MonsterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Proficiency">
           <Key>
             <PropertyRef Name="Id" />
@@ -795,20 +805,8 @@
           <Property Name="Bonus" Type="Int16" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterProficiency" FromRole="Proficiency" ToRole="Monster" />
-          <Property Name="MonsterId" Type="Int32" Nullable="false" />
+          <Property Name="MonsterName" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="MonsterProficiency">
-          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.Proficiency" Role="Proficiency" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Proficiency">
-              <PropertyRef Name="MonsterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Speed">
           <Key>
             <PropertyRef Name="Id" />
@@ -817,20 +815,8 @@
           <Property Name="Type" Type="String" Nullable="false" />
           <Property Name="Distance" Type="String" Nullable="false" />
           <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterSpeed" FromRole="Speed" ToRole="Monster" />
-          <Property Name="MonsterId" Type="Int32" Nullable="false" />
+          <Property Name="MonsterName" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="MonsterSpeed">
-          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.Speed" Role="Speed" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Speed">
-              <PropertyRef Name="MonsterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Action">
           <Key>
             <PropertyRef Name="Id" />
@@ -841,23 +827,11 @@
           <Property Name="Attack_Bonus" Type="Int16" Nullable="true" />
           <Property Name="Usage_Type" Type="String" Nullable="true" />
           <Property Name="Usage_Times" Type="Int16" Nullable="true" />
-          <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterAction" FromRole="Action" ToRole="Monster" />
-          <Property Name="MonsterId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Damages" Relationship="InitiativeTrackerDB.ActionDamage" FromRole="Action" ToRole="Damage" />
           <NavigationProperty Name="DifficultyClasses" Relationship="InitiativeTrackerDB.ActionDifficultyClass" FromRole="Action" ToRole="DifficultyClass" />
+          <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterAction" FromRole="Action" ToRole="Monster" />
+          <Property Name="MonsterName" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="MonsterAction">
-          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.Action" Role="Action" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Action">
-              <PropertyRef Name="MonsterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="SpellCastingStats">
           <Key>
             <PropertyRef Name="Id" />
@@ -878,11 +852,8 @@
           <Property Name="L8_Slots" Type="Int16" Nullable="true" />
           <Property Name="L9_Slots" Type="Int16" Nullable="true" />
           <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterSpellCastingStats" FromRole="SpellCastingStats" ToRole="Monster" />
+          <Property Name="MonsterName" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="MonsterSpellCastingStats">
-          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.SpellCastingStats" Role="SpellCastingStats" Multiplicity="1" />
-        </Association>
         <EntityType Name="SpecialAbility">
           <Key>
             <PropertyRef Name="Id" />
@@ -891,20 +862,8 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Desc" Type="String" Nullable="false" />
           <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterSpecialAbility" FromRole="SpecialAbility" ToRole="Monster" />
-          <Property Name="MonsterId" Type="Int32" Nullable="false" />
+          <Property Name="MonsterName" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="MonsterSpecialAbility">
-          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.SpecialAbility" Role="SpecialAbility" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SpecialAbility">
-              <PropertyRef Name="MonsterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="LegendaryAction">
           <Key>
             <PropertyRef Name="Id" />
@@ -913,23 +872,11 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Desc" Type="String" Nullable="false" />
           <Property Name="Attack_Bonus" Type="Int16" Nullable="true" />
-          <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterLegendaryAction" FromRole="LegendaryAction" ToRole="Monster" />
-          <Property Name="MonsterId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Damages" Relationship="InitiativeTrackerDB.LegendaryActionDamage" FromRole="LegendaryAction" ToRole="Damage" />
           <NavigationProperty Name="DifficultyClasses" Relationship="InitiativeTrackerDB.LegendaryActionDifficultyClass" FromRole="LegendaryAction" ToRole="DifficultyClass" />
+          <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterLegendaryAction" FromRole="LegendaryAction" ToRole="Monster" />
+          <Property Name="MonsterName" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="MonsterLegendaryAction">
-          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.LegendaryAction" Role="LegendaryAction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="LegendaryAction">
-              <PropertyRef Name="MonsterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Damage">
           <Key>
             <PropertyRef Name="Id" />
@@ -994,12 +941,13 @@
           <Property Name="Casting_Time" Type="String" Nullable="false" />
           <Property Name="Level" Type="Int16" Nullable="false" />
           <Property Name="School" Type="String" Nullable="false" />
-          <NavigationProperty Name="SpellDamages" Relationship="InitiativeTrackerDB.SpellSpellDamage" FromRole="Spell" ToRole="SpellDamage" />
           <NavigationProperty Name="SpellMonsterTables" Relationship="InitiativeTrackerDB.SpellSpellMonsterTable" FromRole="Spell" ToRole="SpellMonsterTable" />
           <Property Name="Higher_Level" Type="String" Nullable="true" />
           <Property Name="Material" Type="String" Nullable="true" />
           <Property Name="Area_Of_Effect" Type="String" Nullable="true" />
           <NavigationProperty Name="DifficultyClasses" Relationship="InitiativeTrackerDB.SpellDifficultyClass" FromRole="Spell" ToRole="DifficultyClass" />
+          <NavigationProperty Name="SpellDamages" Relationship="InitiativeTrackerDB.SpellSpellDamage" FromRole="Spell" ToRole="SpellDamage" />
+          <NavigationProperty Name="SpellHealings" Relationship="InitiativeTrackerDB.SpellSpellHealing" FromRole="Spell" ToRole="SpellHealing" />
         </EntityType>
         <EntityType Name="SpellDamage">
           <Key>
@@ -1016,7 +964,7 @@
           <Property Name="Damage_L7" Type="String" Nullable="true" />
           <Property Name="Damage_L8" Type="String" Nullable="true" />
           <Property Name="Damage_L9" Type="String" Nullable="true" />
-          <Property Name="SpellId" Type="Int32" Nullable="false" />
+          <Property Name="Damage_L0" Type="String" Nullable="true" />
           <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellSpellDamage" FromRole="SpellDamage" ToRole="Spell" />
           <Property Name="SpellName" Type="String" Nullable="false" />
         </EntityType>
@@ -1025,23 +973,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterSpellMonsterTable" FromRole="SpellMonsterTable" ToRole="Monster" />
-          <Property Name="MonsterId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellSpellMonsterTable" FromRole="SpellMonsterTable" ToRole="Spell" />
           <Property Name="SpellName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterSpellMonsterTable" FromRole="SpellMonsterTable" ToRole="Monster" />
+          <Property Name="MonsterName" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="MonsterSpellMonsterTable">
-          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.SpellMonsterTable" Role="SpellMonsterTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SpellMonsterTable">
-              <PropertyRef Name="MonsterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Scenario">
           <Key>
             <PropertyRef Name="Id" />
@@ -1070,6 +1006,7 @@
           <Property Name="AC" Type="Int16" Nullable="false" />
           <Property Name="CR_2_Score" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CharacterScenarioTables" Relationship="InitiativeTrackerDB.PlayerCharacterBasicCharacterScenarioTable" FromRole="PlayerCharacterBasic" ToRole="CharacterScenarioTable" />
+          <Property Name="Name" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="ScenarioCharacterScenarioTable">
           <End Type="InitiativeTrackerDB.Scenario" Role="Scenario" Multiplicity="1" />
@@ -1103,7 +1040,7 @@
           <NavigationProperty Name="Scenario" Relationship="InitiativeTrackerDB.ScenarioMonsterScenarioTable" FromRole="MonsterScenarioTable" ToRole="Scenario" />
           <Property Name="ScenarioId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Monster" Relationship="InitiativeTrackerDB.MonsterMonsterScenarioTable" FromRole="MonsterScenarioTable" ToRole="Monster" />
-          <Property Name="MonsterId" Type="Int32" Nullable="false" />
+          <Property Name="MonsterName" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="ScenarioMonsterScenarioTable">
           <End Type="InitiativeTrackerDB.Scenario" Role="Scenario" Multiplicity="1" />
@@ -1114,30 +1051,6 @@
             </Principal>
             <Dependent Role="MonsterScenarioTable">
               <PropertyRef Name="ScenarioId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="MonsterMonsterScenarioTable">
-          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.MonsterScenarioTable" Role="MonsterScenarioTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MonsterScenarioTable">
-              <PropertyRef Name="MonsterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SpellSpellDamage">
-          <End Type="InitiativeTrackerDB.Spell" Role="Spell" Multiplicity="1" />
-          <End Type="InitiativeTrackerDB.SpellDamage" Role="SpellDamage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Spell">
-              <PropertyRef Name="Name" />
-            </Principal>
-            <Dependent Role="SpellDamage">
-              <PropertyRef Name="SpellName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1189,6 +1102,179 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="MonsterAction">
+          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.Action" Role="Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monster">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Action">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MonsterLegendaryAction">
+          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.LegendaryAction" Role="LegendaryAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monster">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="LegendaryAction">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MonsterSpecialAbility">
+          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.SpecialAbility" Role="SpecialAbility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monster">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpecialAbility">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MonsterConditionImmunity">
+          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.ConditionImmunity" Role="ConditionImmunity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monster">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ConditionImmunity">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MonsterSpellMonsterTable">
+          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.SpellMonsterTable" Role="SpellMonsterTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monster">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellMonsterTable">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MonsterProficiency">
+          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.Proficiency" Role="Proficiency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monster">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Proficiency">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MonsterSpellCastingStats">
+          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.SpellCastingStats" Role="SpellCastingStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monster">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellCastingStats">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MonsterAbilities">
+          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.Abilities" Role="Abilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monster">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Abilities">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MonsterArmorClass">
+          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.ArmorClass" Role="ArmorClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monster">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ArmorClass">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MonsterSpeed">
+          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.Speed" Role="Speed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monster">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Speed">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MonsterMonsterScenarioTable">
+          <End Type="InitiativeTrackerDB.Monster" Role="Monster" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.MonsterScenarioTable" Role="MonsterScenarioTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monster">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="MonsterScenarioTable">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SpellHealing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Healing_L1" Type="String" Nullable="true" />
+          <Property Name="Healing_L2" Type="String" Nullable="true" />
+          <Property Name="Healing_L3" Type="String" Nullable="true" />
+          <Property Name="Healing_L4" Type="String" Nullable="true" />
+          <Property Name="Healing_L5" Type="String" Nullable="true" />
+          <Property Name="Healing_L6" Type="String" Nullable="true" />
+          <Property Name="Healing_L7" Type="String" Nullable="true" />
+          <Property Name="Healing_L8" Type="String" Nullable="true" />
+          <Property Name="Healing_L9" Type="String" Nullable="true" />
+          <NavigationProperty Name="Spell" Relationship="InitiativeTrackerDB.SpellSpellHealing" FromRole="SpellHealing" ToRole="Spell" />
+          <Property Name="SpellName" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="SpellSpellDamage">
+          <End Type="InitiativeTrackerDB.Spell" Role="Spell" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.SpellDamage" Role="SpellDamage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellDamage">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpellSpellHealing">
+          <End Type="InitiativeTrackerDB.Spell" Role="Spell" Multiplicity="1" />
+          <End Type="InitiativeTrackerDB.SpellHealing" Role="SpellHealing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellHealing">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1198,7 +1284,6 @@
     <EntitySetMapping Name="Monsters">
       <EntityTypeMapping TypeName="IsTypeOf(InitiativeTrackerDB.Monster)">
         <MappingFragment StoreEntitySet="Monsters">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="HP" ColumnName="HP" />
           <ScalarProperty Name="Initiative_Modifier" ColumnName="Initiative_Modifier" />
@@ -1229,6 +1314,7 @@
           <ScalarProperty Name="Wisdom" ColumnName="Wisdom" />
           <ScalarProperty Name="Charisma" ColumnName="Charisma" />
           <ScalarProperty Name="Proficiency_Bonus" ColumnName="Proficiency_Bonus" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1238,7 +1324,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Ac_Type" ColumnName="Ac_Type" />
           <ScalarProperty Name="AC" ColumnName="AC" />
-          <ScalarProperty Name="MonsterId" ColumnName="MonsterId" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1248,7 +1334,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="URL" ColumnName="URL" />
-          <ScalarProperty Name="MonsterId" ColumnName="MonsterId" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1258,7 +1344,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Bonus" ColumnName="Bonus" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="MonsterId" ColumnName="MonsterId" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1268,7 +1354,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Distance" ColumnName="Distance" />
-          <ScalarProperty Name="MonsterId" ColumnName="MonsterId" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1281,7 +1367,7 @@
           <ScalarProperty Name="Attack_Bonus" ColumnName="Attack_Bonus" />
           <ScalarProperty Name="Usage_Type" ColumnName="Usage_Type" />
           <ScalarProperty Name="Usage_Times" ColumnName="Usage_Times" />
-          <ScalarProperty Name="MonsterId" ColumnName="MonsterId" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1303,6 +1389,7 @@
           <ScalarProperty Name="L7_Slots" ColumnName="L7_Slots" />
           <ScalarProperty Name="L8_Slots" ColumnName="L8_Slots" />
           <ScalarProperty Name="L9_Slots" ColumnName="L9_Slots" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1312,7 +1399,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />
-          <ScalarProperty Name="MonsterId" ColumnName="MonsterId" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1323,7 +1410,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />
           <ScalarProperty Name="Attack_Bonus" ColumnName="Attack_Bonus" />
-          <ScalarProperty Name="MonsterId" ColumnName="MonsterId" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1383,7 +1470,7 @@
           <ScalarProperty Name="Damage_L7" ColumnName="Damage_L7" />
           <ScalarProperty Name="Damage_L8" ColumnName="Damage_L8" />
           <ScalarProperty Name="Damage_L9" ColumnName="Damage_L9" />
-          <ScalarProperty Name="SpellId" ColumnName="SpellId" />
+          <ScalarProperty Name="Damage_L0" ColumnName="Damage_L0" />
           <ScalarProperty Name="SpellName" ColumnName="SpellName" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -1392,8 +1479,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(InitiativeTrackerDB.SpellMonsterTable)">
         <MappingFragment StoreEntitySet="SpellMonsterTables">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="MonsterId" ColumnName="MonsterId" />
           <ScalarProperty Name="SpellName" ColumnName="SpellName" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1421,6 +1508,7 @@
           <ScalarProperty Name="HP" ColumnName="HP" />
           <ScalarProperty Name="AC" ColumnName="AC" />
           <ScalarProperty Name="CR_2_Score" ColumnName="CR_2_Score" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1429,26 +1517,27 @@
         <MappingFragment StoreEntitySet="MonsterScenarioTables">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ScenarioId" ColumnName="ScenarioId" />
-          <ScalarProperty Name="MonsterId" ColumnName="MonsterId" />
+          <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="MonsterAbilities" TypeName="InitiativeTrackerDB.MonsterAbilities" StoreEntitySet="Monsters">
-      <EndProperty Name="Abilities">
-        <ScalarProperty Name="Id" ColumnName="Ability_Id" />
-      </EndProperty>
-      <EndProperty Name="Monster">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="MonsterSpellCastingStats" TypeName="InitiativeTrackerDB.MonsterSpellCastingStats" StoreEntitySet="Monsters">
-      <EndProperty Name="SpellCastingStats">
-        <ScalarProperty Name="Id" ColumnName="SpellCastingStat_Id" />
-      </EndProperty>
-      <EndProperty Name="Monster">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
+    <EntitySetMapping Name="SpellHealings">
+      <EntityTypeMapping TypeName="IsTypeOf(InitiativeTrackerDB.SpellHealing)">
+        <MappingFragment StoreEntitySet="SpellHealings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Healing_L1" ColumnName="Healing_L1" />
+          <ScalarProperty Name="Healing_L2" ColumnName="Healing_L2" />
+          <ScalarProperty Name="Healing_L3" ColumnName="Healing_L3" />
+          <ScalarProperty Name="Healing_L4" ColumnName="Healing_L4" />
+          <ScalarProperty Name="Healing_L5" ColumnName="Healing_L5" />
+          <ScalarProperty Name="Healing_L6" ColumnName="Healing_L6" />
+          <ScalarProperty Name="Healing_L7" ColumnName="Healing_L7" />
+          <ScalarProperty Name="Healing_L8" ColumnName="Healing_L8" />
+          <ScalarProperty Name="Healing_L9" ColumnName="Healing_L9" />
+          <ScalarProperty Name="SpellName" ColumnName="SpellName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

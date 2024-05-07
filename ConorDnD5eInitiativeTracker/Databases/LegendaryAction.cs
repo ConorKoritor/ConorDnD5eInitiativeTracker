@@ -7,15 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker.Database
+namespace ConorDnD5eInitiativeTracker.Databases
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Action
+    public partial class LegendaryAction
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Action()
+        public LegendaryAction()
         {
             this.Damages = new HashSet<Damage>();
             this.DifficultyClasses = new HashSet<DifficultyClass>();
@@ -25,14 +25,12 @@ namespace ConorDnD5eInitiativeTracker.Database
         public string Name { get; set; }
         public string Desc { get; set; }
         public Nullable<short> Attack_Bonus { get; set; }
-        public string Usage_Type { get; set; }
-        public Nullable<short> Usage_Times { get; set; }
-        public int MonsterId { get; set; }
+        public string MonsterName { get; set; }
     
-        public virtual Monster Monster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Damage> Damages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DifficultyClass> DifficultyClasses { get; set; }
+        public virtual Monster Monster { get; set; }
     }
 }

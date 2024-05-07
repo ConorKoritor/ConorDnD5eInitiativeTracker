@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker.Database
+namespace ConorDnD5eInitiativeTracker.Databases
 {
     using System;
     using System.Data.Entity;
@@ -44,5 +44,6 @@ namespace ConorDnD5eInitiativeTracker.Database
         public virtual DbSet<CharacterScenarioTable> CharacterScenarioTables { get; set; }
         public virtual DbSet<PlayerCharacterBasic> PlayerCharacterBasics { get; set; }
         public virtual DbSet<MonsterScenarioTable> MonsterScenarioTables { get; set; }
+        public virtual DbSet<SpellHealing> SpellHealings { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConorDnD5eInitiativeTracker.Database
+namespace ConorDnD5eInitiativeTracker.Databases
 {
     using System;
     using System.Collections.Generic;
@@ -17,9 +17,10 @@ namespace ConorDnD5eInitiativeTracker.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Spell()
         {
-            this.SpellDamages = new HashSet<SpellDamage>();
             this.SpellMonsterTables = new HashSet<SpellMonsterTable>();
             this.DifficultyClasses = new HashSet<DifficultyClass>();
+            this.SpellDamages = new HashSet<SpellDamage>();
+            this.SpellHealings = new HashSet<SpellHealing>();
         }
     
         public string Name { get; set; }
@@ -37,10 +38,12 @@ namespace ConorDnD5eInitiativeTracker.Database
         public string Area_Of_Effect { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpellDamage> SpellDamages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SpellMonsterTable> SpellMonsterTables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DifficultyClass> DifficultyClasses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SpellDamage> SpellDamages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SpellHealing> SpellHealings { get; set; }
     }
 }
