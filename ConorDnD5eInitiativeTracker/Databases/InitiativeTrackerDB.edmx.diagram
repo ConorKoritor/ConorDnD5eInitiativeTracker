@@ -16,8 +16,6 @@
         <EntityTypeShape EntityType="InitiativeTrackerDB.SpecialAbility" Width="1.5" PointX="31.25" PointY="25.875" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.LegendaryAction" Width="1.5" PointX="31.25" PointY="22.75" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.Damage" Width="1.5" PointX="34.625" PointY="22.375" />
-        <AssociationConnector Association="InitiativeTrackerDB.ActionDamage" />
-        <AssociationConnector Association="InitiativeTrackerDB.LegendaryActionDamage" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.DifficultyClass" Width="1.5" PointX="34.625" PointY="25.75" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.Spell" Width="1.5" PointX="31.625" PointY="31.375" />
         <EntityTypeShape EntityType="InitiativeTrackerDB.SpellDamage" Width="1.5" PointX="34.875" PointY="33.375" />
@@ -30,8 +28,6 @@
         <EntityTypeShape EntityType="InitiativeTrackerDB.MonsterScenarioTable" Width="1.5" PointX="20.875" PointY="26.25" />
         <AssociationConnector Association="InitiativeTrackerDB.ScenarioMonsterScenarioTable" />
         <AssociationConnector Association="InitiativeTrackerDB.SpellSpellMonsterTable" />
-        <AssociationConnector Association="InitiativeTrackerDB.LegendaryActionDifficultyClass" />
-        <AssociationConnector Association="InitiativeTrackerDB.ActionDifficultyClass" />
         <AssociationConnector Association="InitiativeTrackerDB.SpellDifficultyClass" />
         <AssociationConnector Association="InitiativeTrackerDB.MonsterAction" />
         <AssociationConnector Association="InitiativeTrackerDB.MonsterLegendaryAction" />
@@ -47,6 +43,10 @@
         <EntityTypeShape EntityType="InitiativeTrackerDB.SpellHealing" Width="1.5" PointX="34.75" PointY="29.75" />
         <AssociationConnector Association="InitiativeTrackerDB.SpellSpellDamage" />
         <AssociationConnector Association="InitiativeTrackerDB.SpellSpellHealing" />
+        <AssociationConnector Association="InitiativeTrackerDB.ActionDamage" />
+        <AssociationConnector Association="InitiativeTrackerDB.LegendaryActionDamage" />
+        <AssociationConnector Association="InitiativeTrackerDB.ActionDifficultyClass" />
+        <AssociationConnector Association="InitiativeTrackerDB.LegendaryActionDifficultyClass" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
