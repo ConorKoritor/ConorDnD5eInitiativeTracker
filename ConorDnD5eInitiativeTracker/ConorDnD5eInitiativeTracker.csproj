@@ -136,32 +136,6 @@
     <Compile Include="APIRequests\SpellModels.cs" />
     <Compile Include="APIRequests\SpellsDictionaryModels.cs" />
     <Compile Include="DatabaseLinq\SpellsLinq\AddSpellsToDatabase.cs" />
-    <Compile Include="Databases\Abilities.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\Action.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\ArmorClass.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\CharacterScenarioTable.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\ConditionImmunity.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\Damage.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\DifficultyClass.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\InitiativeTrackerDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -170,57 +144,74 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Databases\InitiativeTrackerDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InitiativeTrackerDB.Context.tt</DependentUpon>
+    <Compile Include="Databases\Ability.cs">
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Databases\InitiativeTrackerDB.Designer.cs">
+    <Compile Include="Databases\Action.cs">
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\ArmorClass.cs">
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\ConditionImmunity.cs">
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\Damage.cs">
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\DifficultyClass.cs">
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\InititativeTrackerDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InitiativeTrackerDB.edmx</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\InititativeTrackerDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\InititativeTrackerDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InititativeTrackerDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Databases\LegendaryAction.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\Monster.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\MonsterScenarioTable.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\PlayerCharacterBasic.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\Proficiency.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\Scenario.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\SpecialAbility.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\Speed.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\Spell.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Databases\SpellCastingStats.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+    <Compile Include="Databases\SpellCastingStat.cs">
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\SpellDamage.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\SpellDamageAtCharacterLevel.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Databases\SpellHealing.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\SpellMonsterTable.cs">
-      <DependentUpon>InitiativeTrackerDB.tt</DependentUpon>
+      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -245,12 +236,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Databases\InitiativeTrackerDB.edmx">
+    <EntityDeploy Include="Databases\InititativeTrackerDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>InitiativeTrackerDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>InititativeTrackerDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Databases\InitiativeTrackerDB.edmx.diagram">
-      <DependentUpon>InitiativeTrackerDB.edmx</DependentUpon>
+    <None Include="Databases\InititativeTrackerDB.edmx.diagram">
+      <DependentUpon>InititativeTrackerDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -262,23 +253,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Databases\InitiativeTrackerDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>InitiativeTrackerDB.Context.cs</LastGenOutput>
-      <DependentUpon>InitiativeTrackerDB.edmx</DependentUpon>
-    </Content>
     <Content Include="Databases\InitiativeTrackerDB.edmx.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Databases\InitiativeTrackerDB.mdf">
+    <Content Include="Databases\InititativeTrackerDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InititativeTrackerDB.edmx</DependentUpon>
+      <LastGenOutput>InititativeTrackerDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Databases\InititativeTrackerDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InititativeTrackerDB.edmx</DependentUpon>
+      <LastGenOutput>InititativeTrackerDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="InitiativeTrackerDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Databases\InitiativeTrackerDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>InitiativeTrackerDB.cs</LastGenOutput>
-      <DependentUpon>InitiativeTrackerDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="Databases\InitiativeTrackerDB_log.ldf">
+    <Content Include="InitiativeTrackerDB_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>InitiativeTrackerDB.mdf</DependentUpon>
     </Content>

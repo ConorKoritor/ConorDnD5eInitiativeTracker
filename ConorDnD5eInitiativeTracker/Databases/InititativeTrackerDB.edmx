@@ -1,0 +1,1610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="InitiativeTrackerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Abilities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Strength" Type="smallint" Nullable="false" />
+          <Property Name="Dexterity" Type="smallint" Nullable="false" />
+          <Property Name="Constitution" Type="smallint" Nullable="false" />
+          <Property Name="Intelligence" Type="smallint" Nullable="false" />
+          <Property Name="Wisdom" Type="smallint" Nullable="false" />
+          <Property Name="Charisma" Type="smallint" Nullable="false" />
+          <Property Name="Proficiency_Bonus" Type="smallint" Nullable="false" />
+          <Property Name="MonsterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Actions">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="MonsterName" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Attack_Bonus" Type="smallint" />
+          <Property Name="Usage_Type" Type="nvarchar(max)" />
+          <Property Name="Usage_Times" Type="smallint" />
+          <Property Name="MonsterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ArmorClasses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ac_Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AC" Type="smallint" Nullable="false" />
+          <Property Name="MonsterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CharacterScenarioTables">
+          <Key>
+            <PropertyRef Name="ScenarioId" />
+            <PropertyRef Name="PlayerCharacterBasicId" />
+          </Key>
+          <Property Name="ScenarioId" Type="int" Nullable="false" />
+          <Property Name="PlayerCharacterBasicId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConditionImmunities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="URL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MonsterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Damages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Damage_Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Damage_Dice" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ActionMonsterName" Type="nvarchar" MaxLength="200" />
+          <Property Name="ActionName" Type="nvarchar" MaxLength="200" />
+          <Property Name="LegendaryActionMonsterName" Type="nvarchar" MaxLength="200" />
+          <Property Name="LegendaryActionName" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="DifficultyClasses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DC_Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DC_Value" Type="smallint" />
+          <Property Name="SpellName" Type="nvarchar" MaxLength="200" />
+          <Property Name="ActionMonsterName" Type="nvarchar" MaxLength="200" />
+          <Property Name="ActionName" Type="nvarchar" MaxLength="200" />
+          <Property Name="LegendaryActionMonsterName" Type="nvarchar" MaxLength="200" />
+          <Property Name="LegendaryActionName" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="LegendaryActions">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="MonsterName" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Attack_Bonus" Type="smallint" />
+          <Property Name="MonsterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Monsters">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="HP" Type="int" Nullable="false" />
+          <Property Name="Initiative_Modifier" Type="smallint" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Size" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Hit_Dice" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Hit_Points_Roll" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Alignment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Languages" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Challenge_Rating" Type="float" Nullable="false" />
+          <Property Name="XP" Type="int" Nullable="false" />
+          <Property Name="Damage_Vulnerabilities" Type="nvarchar(max)" />
+          <Property Name="Damage_Resistances" Type="nvarchar(max)" />
+          <Property Name="Damage_Immunities" Type="nvarchar(max)" />
+          <Property Name="IsSpellcaster" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MonsterScenarioTables">
+          <Key>
+            <PropertyRef Name="ScenarioId" />
+            <PropertyRef Name="MonsterName" />
+          </Key>
+          <Property Name="ScenarioId" Type="int" Nullable="false" />
+          <Property Name="MonsterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlayerCharacterBasics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HP" Type="int" Nullable="false" />
+          <Property Name="AC" Type="smallint" Nullable="false" />
+          <Property Name="CR_2_Score" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proficiencies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bonus" Type="smallint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MonsterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Scenarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Scenario_Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpecialAbilities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MonsterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Speeds">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Distance" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MonsterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpellCastingStats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level" Type="smallint" Nullable="false" />
+          <Property Name="Ability" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DC" Type="smallint" Nullable="false" />
+          <Property Name="Modifier" Type="smallint" Nullable="false" />
+          <Property Name="School" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="L1_Slots" Type="smallint" Nullable="false" />
+          <Property Name="L2_Slots" Type="smallint" />
+          <Property Name="L3_Slots" Type="smallint" />
+          <Property Name="L4_Slots" Type="smallint" />
+          <Property Name="L5_Slots" Type="smallint" />
+          <Property Name="L6_Slots" Type="smallint" />
+          <Property Name="L7_Slots" Type="smallint" />
+          <Property Name="L8_Slots" Type="smallint" />
+          <Property Name="L9_Slots" Type="smallint" />
+          <Property Name="MonsterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpellDamageAtCharacterLevels">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Damage_Type" Type="nvarchar(max)" />
+          <Property Name="Damage_L1" Type="nvarchar(max)" />
+          <Property Name="Damage_L2" Type="nvarchar(max)" />
+          <Property Name="Damage_L3" Type="nvarchar(max)" />
+          <Property Name="Damage_L4" Type="nvarchar(max)" />
+          <Property Name="Damage_L5" Type="nvarchar(max)" />
+          <Property Name="Damage_L6" Type="nvarchar(max)" />
+          <Property Name="Damage_L7" Type="nvarchar(max)" />
+          <Property Name="Damage_L8" Type="nvarchar(max)" />
+          <Property Name="Damage_L9" Type="nvarchar(max)" />
+          <Property Name="Damage_L10" Type="nvarchar(max)" />
+          <Property Name="Damage_L11" Type="nvarchar(max)" />
+          <Property Name="Damage_L12" Type="nvarchar(max)" />
+          <Property Name="Damage_L13" Type="nvarchar(max)" />
+          <Property Name="Damage_L14" Type="nvarchar(max)" />
+          <Property Name="Damage_L15" Type="nvarchar(max)" />
+          <Property Name="Damage_L16" Type="nvarchar(max)" />
+          <Property Name="Damage_L17" Type="nvarchar(max)" />
+          <Property Name="Damage_L18" Type="nvarchar(max)" />
+          <Property Name="Damage_L19" Type="nvarchar(max)" />
+          <Property Name="Damage_L20" Type="nvarchar(max)" />
+          <Property Name="SpellName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpellDamages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Damage_Type" Type="nvarchar(max)" />
+          <Property Name="Damage_L1" Type="nvarchar(max)" />
+          <Property Name="Damage_L2" Type="nvarchar(max)" />
+          <Property Name="Damage_L3" Type="nvarchar(max)" />
+          <Property Name="Damage_L4" Type="nvarchar(max)" />
+          <Property Name="Damage_L5" Type="nvarchar(max)" />
+          <Property Name="Damage_L6" Type="nvarchar(max)" />
+          <Property Name="Damage_L7" Type="nvarchar(max)" />
+          <Property Name="Damage_L8" Type="nvarchar(max)" />
+          <Property Name="Damage_L9" Type="nvarchar(max)" />
+          <Property Name="SpellName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpellHealings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Healing_L1" Type="nvarchar(max)" />
+          <Property Name="Healing_L2" Type="nvarchar(max)" />
+          <Property Name="Healing_L3" Type="nvarchar(max)" />
+          <Property Name="Healing_L4" Type="nvarchar(max)" />
+          <Property Name="Healing_L5" Type="nvarchar(max)" />
+          <Property Name="Healing_L6" Type="nvarchar(max)" />
+          <Property Name="Healing_L7" Type="nvarchar(max)" />
+          <Property Name="Healing_L8" Type="nvarchar(max)" />
+          <Property Name="Healing_L9" Type="nvarchar(max)" />
+          <Property Name="SpellName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpellMonsterTables">
+          <Key>
+            <PropertyRef Name="SpellName" />
+            <PropertyRef Name="MonsterName" />
+          </Key>
+          <Property Name="SpellName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MonsterName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Spells">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Range" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Components" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsRitual" Type="bit" Nullable="false" />
+          <Property Name="Duration" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsConcentration" Type="bit" Nullable="false" />
+          <Property Name="Casting_Time" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="School" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Higher_Level" Type="nvarchar(max)" />
+          <Property Name="Material" Type="nvarchar(max)" />
+          <Property Name="Area_Of_Effect_Type" Type="nvarchar(max)" />
+          <Property Name="Area_Of_Effect_Size" Type="int" />
+          <Property Name="DC_Type" Type="nvarchar(max)" />
+          <Property Name="DC_Success" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_ActionDamage">
+          <End Role="Actions" Type="Self.Actions" Multiplicity="0..1" />
+          <End Role="Damages" Type="Self.Damages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actions">
+              <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Damages">
+              <PropertyRef Name="ActionMonsterName" />
+              <PropertyRef Name="ActionName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActionDifficultyClass">
+          <End Role="Actions" Type="Self.Actions" Multiplicity="0..1" />
+          <End Role="DifficultyClasses" Type="Self.DifficultyClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actions">
+              <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="DifficultyClasses">
+              <PropertyRef Name="ActionMonsterName" />
+              <PropertyRef Name="ActionName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LegendaryActionDamage">
+          <End Role="LegendaryActions" Type="Self.LegendaryActions" Multiplicity="0..1" />
+          <End Role="Damages" Type="Self.Damages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LegendaryActions">
+              <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Damages">
+              <PropertyRef Name="LegendaryActionMonsterName" />
+              <PropertyRef Name="LegendaryActionName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LegendaryActionDifficultyClass">
+          <End Role="LegendaryActions" Type="Self.LegendaryActions" Multiplicity="0..1" />
+          <End Role="DifficultyClasses" Type="Self.DifficultyClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LegendaryActions">
+              <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="DifficultyClasses">
+              <PropertyRef Name="LegendaryActionMonsterName" />
+              <PropertyRef Name="LegendaryActionName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterAbilities">
+          <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+          <End Role="Abilities" Type="Self.Abilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Abilities">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterAction">
+          <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+          <End Role="Actions" Type="Self.Actions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Actions">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterArmorClass">
+          <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+          <End Role="ArmorClasses" Type="Self.ArmorClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ArmorClasses">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterConditionImmunity">
+          <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+          <End Role="ConditionImmunities" Type="Self.ConditionImmunities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ConditionImmunities">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterLegendaryAction">
+          <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+          <End Role="LegendaryActions" Type="Self.LegendaryActions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="LegendaryActions">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterMonsterScenarioTable">
+          <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+          <End Role="MonsterScenarioTables" Type="Self.MonsterScenarioTables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="MonsterScenarioTables">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterProficiency">
+          <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+          <End Role="Proficiencies" Type="Self.Proficiencies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Proficiencies">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterSpecialAbility">
+          <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+          <End Role="SpecialAbilities" Type="Self.SpecialAbilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpecialAbilities">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterSpeed">
+          <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+          <End Role="Speeds" Type="Self.Speeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Speeds">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterSpellCastingStats">
+          <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+          <End Role="SpellCastingStats" Type="Self.SpellCastingStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellCastingStats">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterSpellMonsterTable">
+          <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+          <End Role="SpellMonsterTables" Type="Self.SpellMonsterTables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellMonsterTables">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayerCharacterBasicCharacterScenarioTable">
+          <End Role="PlayerCharacterBasics" Type="Self.PlayerCharacterBasics" Multiplicity="1" />
+          <End Role="CharacterScenarioTables" Type="Self.CharacterScenarioTables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerCharacterBasics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CharacterScenarioTables">
+              <PropertyRef Name="PlayerCharacterBasicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScenarioCharacterScenarioTable">
+          <End Role="Scenarios" Type="Self.Scenarios" Multiplicity="1" />
+          <End Role="CharacterScenarioTables" Type="Self.CharacterScenarioTables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scenarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CharacterScenarioTables">
+              <PropertyRef Name="ScenarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScenarioMonsterScenarioTable">
+          <End Role="Scenarios" Type="Self.Scenarios" Multiplicity="1" />
+          <End Role="MonsterScenarioTables" Type="Self.MonsterScenarioTables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scenarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MonsterScenarioTables">
+              <PropertyRef Name="ScenarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpellDifficultyClass">
+          <End Role="Spells" Type="Self.Spells" Multiplicity="0..1" />
+          <End Role="DifficultyClasses" Type="Self.DifficultyClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spells">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="DifficultyClasses">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpellSpellDamage">
+          <End Role="Spells" Type="Self.Spells" Multiplicity="1" />
+          <End Role="SpellDamages" Type="Self.SpellDamages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spells">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellDamages">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpellSpellDamageAtCharacterLevel">
+          <End Role="Spells" Type="Self.Spells" Multiplicity="1" />
+          <End Role="SpellDamageAtCharacterLevels" Type="Self.SpellDamageAtCharacterLevels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spells">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellDamageAtCharacterLevels">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpellSpellHealing">
+          <End Role="Spells" Type="Self.Spells" Multiplicity="1" />
+          <End Role="SpellHealings" Type="Self.SpellHealings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spells">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellHealings">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpellSpellMonsterTable">
+          <End Role="Spells" Type="Self.Spells" Multiplicity="1" />
+          <End Role="SpellMonsterTables" Type="Self.SpellMonsterTables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spells">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellMonsterTables">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InitiativeTrackerDBModelStoreContainer">
+          <EntitySet Name="Abilities" EntityType="Self.Abilities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Actions" EntityType="Self.Actions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArmorClasses" EntityType="Self.ArmorClasses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CharacterScenarioTables" EntityType="Self.CharacterScenarioTables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConditionImmunities" EntityType="Self.ConditionImmunities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Damages" EntityType="Self.Damages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DifficultyClasses" EntityType="Self.DifficultyClasses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LegendaryActions" EntityType="Self.LegendaryActions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Monsters" EntityType="Self.Monsters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonsterScenarioTables" EntityType="Self.MonsterScenarioTables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlayerCharacterBasics" EntityType="Self.PlayerCharacterBasics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proficiencies" EntityType="Self.Proficiencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Scenarios" EntityType="Self.Scenarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecialAbilities" EntityType="Self.SpecialAbilities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Speeds" EntityType="Self.Speeds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpellCastingStats" EntityType="Self.SpellCastingStats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpellDamageAtCharacterLevels" EntityType="Self.SpellDamageAtCharacterLevels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpellDamages" EntityType="Self.SpellDamages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpellHealings" EntityType="Self.SpellHealings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpellMonsterTables" EntityType="Self.SpellMonsterTables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Spells" EntityType="Self.Spells" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ActionDamage" Association="Self.FK_ActionDamage">
+            <End Role="Actions" EntitySet="Actions" />
+            <End Role="Damages" EntitySet="Damages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActionDifficultyClass" Association="Self.FK_ActionDifficultyClass">
+            <End Role="Actions" EntitySet="Actions" />
+            <End Role="DifficultyClasses" EntitySet="DifficultyClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LegendaryActionDamage" Association="Self.FK_LegendaryActionDamage">
+            <End Role="LegendaryActions" EntitySet="LegendaryActions" />
+            <End Role="Damages" EntitySet="Damages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LegendaryActionDifficultyClass" Association="Self.FK_LegendaryActionDifficultyClass">
+            <End Role="LegendaryActions" EntitySet="LegendaryActions" />
+            <End Role="DifficultyClasses" EntitySet="DifficultyClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterAbilities" Association="Self.FK_MonsterAbilities">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="Abilities" EntitySet="Abilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterAction" Association="Self.FK_MonsterAction">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="Actions" EntitySet="Actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterArmorClass" Association="Self.FK_MonsterArmorClass">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="ArmorClasses" EntitySet="ArmorClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterConditionImmunity" Association="Self.FK_MonsterConditionImmunity">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="ConditionImmunities" EntitySet="ConditionImmunities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterLegendaryAction" Association="Self.FK_MonsterLegendaryAction">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="LegendaryActions" EntitySet="LegendaryActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterMonsterScenarioTable" Association="Self.FK_MonsterMonsterScenarioTable">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="MonsterScenarioTables" EntitySet="MonsterScenarioTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterProficiency" Association="Self.FK_MonsterProficiency">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="Proficiencies" EntitySet="Proficiencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterSpecialAbility" Association="Self.FK_MonsterSpecialAbility">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="SpecialAbilities" EntitySet="SpecialAbilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterSpeed" Association="Self.FK_MonsterSpeed">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="Speeds" EntitySet="Speeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterSpellCastingStats" Association="Self.FK_MonsterSpellCastingStats">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="SpellCastingStats" EntitySet="SpellCastingStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterSpellMonsterTable" Association="Self.FK_MonsterSpellMonsterTable">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="SpellMonsterTables" EntitySet="SpellMonsterTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayerCharacterBasicCharacterScenarioTable" Association="Self.FK_PlayerCharacterBasicCharacterScenarioTable">
+            <End Role="PlayerCharacterBasics" EntitySet="PlayerCharacterBasics" />
+            <End Role="CharacterScenarioTables" EntitySet="CharacterScenarioTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScenarioCharacterScenarioTable" Association="Self.FK_ScenarioCharacterScenarioTable">
+            <End Role="Scenarios" EntitySet="Scenarios" />
+            <End Role="CharacterScenarioTables" EntitySet="CharacterScenarioTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScenarioMonsterScenarioTable" Association="Self.FK_ScenarioMonsterScenarioTable">
+            <End Role="Scenarios" EntitySet="Scenarios" />
+            <End Role="MonsterScenarioTables" EntitySet="MonsterScenarioTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpellDifficultyClass" Association="Self.FK_SpellDifficultyClass">
+            <End Role="Spells" EntitySet="Spells" />
+            <End Role="DifficultyClasses" EntitySet="DifficultyClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpellSpellDamage" Association="Self.FK_SpellSpellDamage">
+            <End Role="Spells" EntitySet="Spells" />
+            <End Role="SpellDamages" EntitySet="SpellDamages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpellSpellDamageAtCharacterLevel" Association="Self.FK_SpellSpellDamageAtCharacterLevel">
+            <End Role="Spells" EntitySet="Spells" />
+            <End Role="SpellDamageAtCharacterLevels" EntitySet="SpellDamageAtCharacterLevels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpellSpellHealing" Association="Self.FK_SpellSpellHealing">
+            <End Role="Spells" EntitySet="Spells" />
+            <End Role="SpellHealings" EntitySet="SpellHealings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpellSpellMonsterTable" Association="Self.FK_SpellSpellMonsterTable">
+            <End Role="Spells" EntitySet="Spells" />
+            <End Role="SpellMonsterTables" EntitySet="SpellMonsterTables" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InitiativeTrackerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ability">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Strength" Type="Int16" Nullable="false" />
+          <Property Name="Dexterity" Type="Int16" Nullable="false" />
+          <Property Name="Constitution" Type="Int16" Nullable="false" />
+          <Property Name="Intelligence" Type="Int16" Nullable="false" />
+          <Property Name="Wisdom" Type="Int16" Nullable="false" />
+          <Property Name="Charisma" Type="Int16" Nullable="false" />
+          <Property Name="Proficiency_Bonus" Type="Int16" Nullable="false" />
+          <Property Name="MonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Monster" Relationship="Self.FK_MonsterAbilities" FromRole="Abilities" ToRole="Monsters" />
+        </EntityType>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="MonsterName" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Attack_Bonus" Type="Int16" />
+          <Property Name="Usage_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Usage_Times" Type="Int16" />
+          <Property Name="MonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Damages" Relationship="Self.FK_ActionDamage" FromRole="Actions" ToRole="Damages" />
+          <NavigationProperty Name="DifficultyClasses" Relationship="Self.FK_ActionDifficultyClass" FromRole="Actions" ToRole="DifficultyClasses" />
+          <NavigationProperty Name="Monster" Relationship="Self.FK_MonsterAction" FromRole="Actions" ToRole="Monsters" />
+        </EntityType>
+        <EntityType Name="ArmorClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ac_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AC" Type="Int16" Nullable="false" />
+          <Property Name="MonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Monster" Relationship="Self.FK_MonsterArmorClass" FromRole="ArmorClasses" ToRole="Monsters" />
+        </EntityType>
+        <EntityType Name="ConditionImmunity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Monster" Relationship="Self.FK_MonsterConditionImmunity" FromRole="ConditionImmunities" ToRole="Monsters" />
+        </EntityType>
+        <EntityType Name="Damage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Damage_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Damage_Dice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActionMonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LegendaryActionMonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LegendaryActionName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Action" Relationship="Self.FK_ActionDamage" FromRole="Damages" ToRole="Actions" />
+          <NavigationProperty Name="LegendaryAction" Relationship="Self.FK_LegendaryActionDamage" FromRole="Damages" ToRole="LegendaryActions" />
+        </EntityType>
+        <EntityType Name="DifficultyClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DC_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DC_Value" Type="Int16" />
+          <Property Name="SpellName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ActionMonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LegendaryActionMonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LegendaryActionName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Action" Relationship="Self.FK_ActionDifficultyClass" FromRole="DifficultyClasses" ToRole="Actions" />
+          <NavigationProperty Name="LegendaryAction" Relationship="Self.FK_LegendaryActionDifficultyClass" FromRole="DifficultyClasses" ToRole="LegendaryActions" />
+          <NavigationProperty Name="Spell" Relationship="Self.FK_SpellDifficultyClass" FromRole="DifficultyClasses" ToRole="Spells" />
+        </EntityType>
+        <EntityType Name="LegendaryAction">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="MonsterName" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Attack_Bonus" Type="Int16" />
+          <Property Name="MonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Damages" Relationship="Self.FK_LegendaryActionDamage" FromRole="LegendaryActions" ToRole="Damages" />
+          <NavigationProperty Name="DifficultyClasses" Relationship="Self.FK_LegendaryActionDifficultyClass" FromRole="LegendaryActions" ToRole="DifficultyClasses" />
+          <NavigationProperty Name="Monster" Relationship="Self.FK_MonsterLegendaryAction" FromRole="LegendaryActions" ToRole="Monsters" />
+        </EntityType>
+        <EntityType Name="Monster">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HP" Type="Int32" Nullable="false" />
+          <Property Name="Initiative_Modifier" Type="Int16" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Size" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hit_Dice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hit_Points_Roll" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Alignment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Languages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Challenge_Rating" Type="Double" Nullable="false" />
+          <Property Name="XP" Type="Int32" Nullable="false" />
+          <Property Name="Damage_Vulnerabilities" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_Resistances" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_Immunities" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsSpellcaster" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Abilities" Relationship="Self.FK_MonsterAbilities" FromRole="Monsters" ToRole="Abilities" />
+          <NavigationProperty Name="Actions" Relationship="Self.FK_MonsterAction" FromRole="Monsters" ToRole="Actions" />
+          <NavigationProperty Name="ArmorClasses" Relationship="Self.FK_MonsterArmorClass" FromRole="Monsters" ToRole="ArmorClasses" />
+          <NavigationProperty Name="ConditionImmunities" Relationship="Self.FK_MonsterConditionImmunity" FromRole="Monsters" ToRole="ConditionImmunities" />
+          <NavigationProperty Name="LegendaryActions" Relationship="Self.FK_MonsterLegendaryAction" FromRole="Monsters" ToRole="LegendaryActions" />
+          <NavigationProperty Name="Proficiencies" Relationship="Self.FK_MonsterProficiency" FromRole="Monsters" ToRole="Proficiencies" />
+          <NavigationProperty Name="SpecialAbilities" Relationship="Self.FK_MonsterSpecialAbility" FromRole="Monsters" ToRole="SpecialAbilities" />
+          <NavigationProperty Name="Speeds" Relationship="Self.FK_MonsterSpeed" FromRole="Monsters" ToRole="Speeds" />
+          <NavigationProperty Name="SpellCastingStats" Relationship="Self.FK_MonsterSpellCastingStats" FromRole="Monsters" ToRole="SpellCastingStats" />
+          <NavigationProperty Name="Scenarios" Relationship="Self.MonsterScenarioTables" FromRole="Monsters" ToRole="Scenarios" />
+          <NavigationProperty Name="Spells" Relationship="Self.SpellMonsterTables" FromRole="Monsters" ToRole="Spells" />
+        </EntityType>
+        <EntityType Name="PlayerCharacterBasic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HP" Type="Int32" Nullable="false" />
+          <Property Name="AC" Type="Int16" Nullable="false" />
+          <Property Name="CR_2_Score" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Scenarios" Relationship="Self.CharacterScenarioTables" FromRole="PlayerCharacterBasics" ToRole="Scenarios" />
+        </EntityType>
+        <EntityType Name="Proficiency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bonus" Type="Int16" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Monster" Relationship="Self.FK_MonsterProficiency" FromRole="Proficiencies" ToRole="Monsters" />
+        </EntityType>
+        <EntityType Name="Scenario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Scenario_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PlayerCharacterBasics" Relationship="Self.CharacterScenarioTables" FromRole="Scenarios" ToRole="PlayerCharacterBasics" />
+          <NavigationProperty Name="Monsters" Relationship="Self.MonsterScenarioTables" FromRole="Scenarios" ToRole="Monsters" />
+        </EntityType>
+        <EntityType Name="SpecialAbility">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Monster" Relationship="Self.FK_MonsterSpecialAbility" FromRole="SpecialAbilities" ToRole="Monsters" />
+        </EntityType>
+        <EntityType Name="Speed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Distance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Monster" Relationship="Self.FK_MonsterSpeed" FromRole="Speeds" ToRole="Monsters" />
+        </EntityType>
+        <EntityType Name="SpellCastingStat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level" Type="Int16" Nullable="false" />
+          <Property Name="Ability" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DC" Type="Int16" Nullable="false" />
+          <Property Name="Modifier" Type="Int16" Nullable="false" />
+          <Property Name="School" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="L1_Slots" Type="Int16" Nullable="false" />
+          <Property Name="L2_Slots" Type="Int16" />
+          <Property Name="L3_Slots" Type="Int16" />
+          <Property Name="L4_Slots" Type="Int16" />
+          <Property Name="L5_Slots" Type="Int16" />
+          <Property Name="L6_Slots" Type="Int16" />
+          <Property Name="L7_Slots" Type="Int16" />
+          <Property Name="L8_Slots" Type="Int16" />
+          <Property Name="L9_Slots" Type="Int16" />
+          <Property Name="MonsterName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Monster" Relationship="Self.FK_MonsterSpellCastingStats" FromRole="SpellCastingStats" ToRole="Monsters" />
+        </EntityType>
+        <EntityType Name="SpellDamageAtCharacterLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Damage_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L11" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L12" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L13" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L14" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L15" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L16" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L17" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L18" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L19" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L20" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SpellName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Spell" Relationship="Self.FK_SpellSpellDamageAtCharacterLevel" FromRole="SpellDamageAtCharacterLevels" ToRole="Spells" />
+        </EntityType>
+        <EntityType Name="SpellDamage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Damage_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Damage_L9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SpellName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Spell" Relationship="Self.FK_SpellSpellDamage" FromRole="SpellDamages" ToRole="Spells" />
+        </EntityType>
+        <EntityType Name="SpellHealing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Healing_L1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Healing_L2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Healing_L3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Healing_L4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Healing_L5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Healing_L6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Healing_L7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Healing_L8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Healing_L9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SpellName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Spell" Relationship="Self.FK_SpellSpellHealing" FromRole="SpellHealings" ToRole="Spells" />
+        </EntityType>
+        <EntityType Name="Spell">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Range" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Components" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsRitual" Type="Boolean" Nullable="false" />
+          <Property Name="Duration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsConcentration" Type="Boolean" Nullable="false" />
+          <Property Name="Casting_Time" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="School" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Higher_Level" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Material" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Area_Of_Effect_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Area_Of_Effect_Size" Type="Int32" />
+          <Property Name="DC_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DC_Success" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DifficultyClasses" Relationship="Self.FK_SpellDifficultyClass" FromRole="Spells" ToRole="DifficultyClasses" />
+          <NavigationProperty Name="SpellDamageAtCharacterLevels" Relationship="Self.FK_SpellSpellDamageAtCharacterLevel" FromRole="Spells" ToRole="SpellDamageAtCharacterLevels" />
+          <NavigationProperty Name="SpellDamages" Relationship="Self.FK_SpellSpellDamage" FromRole="Spells" ToRole="SpellDamages" />
+          <NavigationProperty Name="SpellHealings" Relationship="Self.FK_SpellSpellHealing" FromRole="Spells" ToRole="SpellHealings" />
+          <NavigationProperty Name="Monsters" Relationship="Self.SpellMonsterTables" FromRole="Spells" ToRole="Monsters" />
+        </EntityType>
+        <Association Name="FK_MonsterAbilities">
+          <End Role="Monsters" Type="Self.Monster" Multiplicity="1" />
+          <End Role="Abilities" Type="Self.Ability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Abilities">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActionDamage">
+          <End Role="Actions" Type="Self.Action" Multiplicity="0..1" />
+          <End Role="Damages" Type="Self.Damage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actions">
+              <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Damages">
+              <PropertyRef Name="ActionMonsterName" />
+              <PropertyRef Name="ActionName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActionDifficultyClass">
+          <End Role="Actions" Type="Self.Action" Multiplicity="0..1" />
+          <End Role="DifficultyClasses" Type="Self.DifficultyClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actions">
+              <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="DifficultyClasses">
+              <PropertyRef Name="ActionMonsterName" />
+              <PropertyRef Name="ActionName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterAction">
+          <End Role="Monsters" Type="Self.Monster" Multiplicity="1" />
+          <End Role="Actions" Type="Self.Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Actions">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterArmorClass">
+          <End Role="Monsters" Type="Self.Monster" Multiplicity="1" />
+          <End Role="ArmorClasses" Type="Self.ArmorClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ArmorClasses">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterConditionImmunity">
+          <End Role="Monsters" Type="Self.Monster" Multiplicity="1" />
+          <End Role="ConditionImmunities" Type="Self.ConditionImmunity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ConditionImmunities">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LegendaryActionDamage">
+          <End Role="LegendaryActions" Type="Self.LegendaryAction" Multiplicity="0..1" />
+          <End Role="Damages" Type="Self.Damage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LegendaryActions">
+              <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Damages">
+              <PropertyRef Name="LegendaryActionMonsterName" />
+              <PropertyRef Name="LegendaryActionName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LegendaryActionDifficultyClass">
+          <End Role="LegendaryActions" Type="Self.LegendaryAction" Multiplicity="0..1" />
+          <End Role="DifficultyClasses" Type="Self.DifficultyClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LegendaryActions">
+              <PropertyRef Name="MonsterName" />
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="DifficultyClasses">
+              <PropertyRef Name="LegendaryActionMonsterName" />
+              <PropertyRef Name="LegendaryActionName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpellDifficultyClass">
+          <End Role="Spells" Type="Self.Spell" Multiplicity="0..1" />
+          <End Role="DifficultyClasses" Type="Self.DifficultyClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spells">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="DifficultyClasses">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterLegendaryAction">
+          <End Role="Monsters" Type="Self.Monster" Multiplicity="1" />
+          <End Role="LegendaryActions" Type="Self.LegendaryAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="LegendaryActions">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterProficiency">
+          <End Role="Monsters" Type="Self.Monster" Multiplicity="1" />
+          <End Role="Proficiencies" Type="Self.Proficiency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Proficiencies">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterSpecialAbility">
+          <End Role="Monsters" Type="Self.Monster" Multiplicity="1" />
+          <End Role="SpecialAbilities" Type="Self.SpecialAbility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpecialAbilities">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterSpeed">
+          <End Role="Monsters" Type="Self.Monster" Multiplicity="1" />
+          <End Role="Speeds" Type="Self.Speed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Speeds">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MonsterSpellCastingStats">
+          <End Role="Monsters" Type="Self.Monster" Multiplicity="1" />
+          <End Role="SpellCastingStats" Type="Self.SpellCastingStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monsters">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellCastingStats">
+              <PropertyRef Name="MonsterName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpellSpellDamageAtCharacterLevel">
+          <End Role="Spells" Type="Self.Spell" Multiplicity="1" />
+          <End Role="SpellDamageAtCharacterLevels" Type="Self.SpellDamageAtCharacterLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spells">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellDamageAtCharacterLevels">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpellSpellDamage">
+          <End Role="Spells" Type="Self.Spell" Multiplicity="1" />
+          <End Role="SpellDamages" Type="Self.SpellDamage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spells">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellDamages">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpellSpellHealing">
+          <End Role="Spells" Type="Self.Spell" Multiplicity="1" />
+          <End Role="SpellHealings" Type="Self.SpellHealing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spells">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="SpellHealings">
+              <PropertyRef Name="SpellName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CharacterScenarioTables">
+          <End Role="PlayerCharacterBasics" Type="Self.PlayerCharacterBasic" Multiplicity="*" />
+          <End Role="Scenarios" Type="Self.Scenario" Multiplicity="*" />
+        </Association>
+        <Association Name="MonsterScenarioTables">
+          <End Role="Monsters" Type="Self.Monster" Multiplicity="*" />
+          <End Role="Scenarios" Type="Self.Scenario" Multiplicity="*" />
+        </Association>
+        <Association Name="SpellMonsterTables">
+          <End Role="Monsters" Type="Self.Monster" Multiplicity="*" />
+          <End Role="Spells" Type="Self.Spell" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="InitiativeTrackerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Abilities" EntityType="Self.Ability" />
+          <EntitySet Name="Actions" EntityType="Self.Action" />
+          <EntitySet Name="ArmorClasses" EntityType="Self.ArmorClass" />
+          <EntitySet Name="ConditionImmunities" EntityType="Self.ConditionImmunity" />
+          <EntitySet Name="Damages" EntityType="Self.Damage" />
+          <EntitySet Name="DifficultyClasses" EntityType="Self.DifficultyClass" />
+          <EntitySet Name="LegendaryActions" EntityType="Self.LegendaryAction" />
+          <EntitySet Name="Monsters" EntityType="Self.Monster" />
+          <EntitySet Name="PlayerCharacterBasics" EntityType="Self.PlayerCharacterBasic" />
+          <EntitySet Name="Proficiencies" EntityType="Self.Proficiency" />
+          <EntitySet Name="Scenarios" EntityType="Self.Scenario" />
+          <EntitySet Name="SpecialAbilities" EntityType="Self.SpecialAbility" />
+          <EntitySet Name="Speeds" EntityType="Self.Speed" />
+          <EntitySet Name="SpellCastingStats" EntityType="Self.SpellCastingStat" />
+          <EntitySet Name="SpellDamageAtCharacterLevels" EntityType="Self.SpellDamageAtCharacterLevel" />
+          <EntitySet Name="SpellDamages" EntityType="Self.SpellDamage" />
+          <EntitySet Name="SpellHealings" EntityType="Self.SpellHealing" />
+          <EntitySet Name="Spells" EntityType="Self.Spell" />
+          <AssociationSet Name="FK_MonsterAbilities" Association="Self.FK_MonsterAbilities">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="Abilities" EntitySet="Abilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActionDamage" Association="Self.FK_ActionDamage">
+            <End Role="Actions" EntitySet="Actions" />
+            <End Role="Damages" EntitySet="Damages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActionDifficultyClass" Association="Self.FK_ActionDifficultyClass">
+            <End Role="Actions" EntitySet="Actions" />
+            <End Role="DifficultyClasses" EntitySet="DifficultyClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterAction" Association="Self.FK_MonsterAction">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="Actions" EntitySet="Actions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterArmorClass" Association="Self.FK_MonsterArmorClass">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="ArmorClasses" EntitySet="ArmorClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterConditionImmunity" Association="Self.FK_MonsterConditionImmunity">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="ConditionImmunities" EntitySet="ConditionImmunities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LegendaryActionDamage" Association="Self.FK_LegendaryActionDamage">
+            <End Role="LegendaryActions" EntitySet="LegendaryActions" />
+            <End Role="Damages" EntitySet="Damages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LegendaryActionDifficultyClass" Association="Self.FK_LegendaryActionDifficultyClass">
+            <End Role="LegendaryActions" EntitySet="LegendaryActions" />
+            <End Role="DifficultyClasses" EntitySet="DifficultyClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpellDifficultyClass" Association="Self.FK_SpellDifficultyClass">
+            <End Role="Spells" EntitySet="Spells" />
+            <End Role="DifficultyClasses" EntitySet="DifficultyClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterLegendaryAction" Association="Self.FK_MonsterLegendaryAction">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="LegendaryActions" EntitySet="LegendaryActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterProficiency" Association="Self.FK_MonsterProficiency">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="Proficiencies" EntitySet="Proficiencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterSpecialAbility" Association="Self.FK_MonsterSpecialAbility">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="SpecialAbilities" EntitySet="SpecialAbilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterSpeed" Association="Self.FK_MonsterSpeed">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="Speeds" EntitySet="Speeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MonsterSpellCastingStats" Association="Self.FK_MonsterSpellCastingStats">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="SpellCastingStats" EntitySet="SpellCastingStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpellSpellDamageAtCharacterLevel" Association="Self.FK_SpellSpellDamageAtCharacterLevel">
+            <End Role="Spells" EntitySet="Spells" />
+            <End Role="SpellDamageAtCharacterLevels" EntitySet="SpellDamageAtCharacterLevels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpellSpellDamage" Association="Self.FK_SpellSpellDamage">
+            <End Role="Spells" EntitySet="Spells" />
+            <End Role="SpellDamages" EntitySet="SpellDamages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpellSpellHealing" Association="Self.FK_SpellSpellHealing">
+            <End Role="Spells" EntitySet="Spells" />
+            <End Role="SpellHealings" EntitySet="SpellHealings" />
+          </AssociationSet>
+          <AssociationSet Name="CharacterScenarioTables" Association="Self.CharacterScenarioTables">
+            <End Role="PlayerCharacterBasics" EntitySet="PlayerCharacterBasics" />
+            <End Role="Scenarios" EntitySet="Scenarios" />
+          </AssociationSet>
+          <AssociationSet Name="MonsterScenarioTables" Association="Self.MonsterScenarioTables">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="Scenarios" EntitySet="Scenarios" />
+          </AssociationSet>
+          <AssociationSet Name="SpellMonsterTables" Association="Self.SpellMonsterTables">
+            <End Role="Monsters" EntitySet="Monsters" />
+            <End Role="Spells" EntitySet="Spells" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InitiativeTrackerDBModelStoreContainer" CdmEntityContainer="InitiativeTrackerDBEntities">
+          <EntitySetMapping Name="Abilities">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.Ability">
+              <MappingFragment StoreEntitySet="Abilities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="Dexterity" ColumnName="Dexterity" />
+                <ScalarProperty Name="Constitution" ColumnName="Constitution" />
+                <ScalarProperty Name="Intelligence" ColumnName="Intelligence" />
+                <ScalarProperty Name="Wisdom" ColumnName="Wisdom" />
+                <ScalarProperty Name="Charisma" ColumnName="Charisma" />
+                <ScalarProperty Name="Proficiency_Bonus" ColumnName="Proficiency_Bonus" />
+                <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Actions">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.Action">
+              <MappingFragment StoreEntitySet="Actions">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Attack_Bonus" ColumnName="Attack_Bonus" />
+                <ScalarProperty Name="Usage_Type" ColumnName="Usage_Type" />
+                <ScalarProperty Name="Usage_Times" ColumnName="Usage_Times" />
+                <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArmorClasses">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.ArmorClass">
+              <MappingFragment StoreEntitySet="ArmorClasses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ac_Type" ColumnName="Ac_Type" />
+                <ScalarProperty Name="AC" ColumnName="AC" />
+                <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConditionImmunities">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.ConditionImmunity">
+              <MappingFragment StoreEntitySet="ConditionImmunities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Damages">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.Damage">
+              <MappingFragment StoreEntitySet="Damages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Damage_Type" ColumnName="Damage_Type" />
+                <ScalarProperty Name="Damage_Dice" ColumnName="Damage_Dice" />
+                <ScalarProperty Name="ActionMonsterName" ColumnName="ActionMonsterName" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="LegendaryActionMonsterName" ColumnName="LegendaryActionMonsterName" />
+                <ScalarProperty Name="LegendaryActionName" ColumnName="LegendaryActionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DifficultyClasses">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.DifficultyClass">
+              <MappingFragment StoreEntitySet="DifficultyClasses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DC_Type" ColumnName="DC_Type" />
+                <ScalarProperty Name="DC_Value" ColumnName="DC_Value" />
+                <ScalarProperty Name="SpellName" ColumnName="SpellName" />
+                <ScalarProperty Name="ActionMonsterName" ColumnName="ActionMonsterName" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="LegendaryActionMonsterName" ColumnName="LegendaryActionMonsterName" />
+                <ScalarProperty Name="LegendaryActionName" ColumnName="LegendaryActionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LegendaryActions">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.LegendaryAction">
+              <MappingFragment StoreEntitySet="LegendaryActions">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Attack_Bonus" ColumnName="Attack_Bonus" />
+                <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Monsters">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.Monster">
+              <MappingFragment StoreEntitySet="Monsters">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HP" ColumnName="HP" />
+                <ScalarProperty Name="Initiative_Modifier" ColumnName="Initiative_Modifier" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Hit_Dice" ColumnName="Hit_Dice" />
+                <ScalarProperty Name="Hit_Points_Roll" ColumnName="Hit_Points_Roll" />
+                <ScalarProperty Name="Alignment" ColumnName="Alignment" />
+                <ScalarProperty Name="Languages" ColumnName="Languages" />
+                <ScalarProperty Name="Challenge_Rating" ColumnName="Challenge_Rating" />
+                <ScalarProperty Name="XP" ColumnName="XP" />
+                <ScalarProperty Name="Damage_Vulnerabilities" ColumnName="Damage_Vulnerabilities" />
+                <ScalarProperty Name="Damage_Resistances" ColumnName="Damage_Resistances" />
+                <ScalarProperty Name="Damage_Immunities" ColumnName="Damage_Immunities" />
+                <ScalarProperty Name="IsSpellcaster" ColumnName="IsSpellcaster" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlayerCharacterBasics">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.PlayerCharacterBasic">
+              <MappingFragment StoreEntitySet="PlayerCharacterBasics">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HP" ColumnName="HP" />
+                <ScalarProperty Name="AC" ColumnName="AC" />
+                <ScalarProperty Name="CR_2_Score" ColumnName="CR_2_Score" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proficiencies">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.Proficiency">
+              <MappingFragment StoreEntitySet="Proficiencies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scenarios">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.Scenario">
+              <MappingFragment StoreEntitySet="Scenarios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Scenario_Name" ColumnName="Scenario_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialAbilities">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.SpecialAbility">
+              <MappingFragment StoreEntitySet="SpecialAbilities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Speeds">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.Speed">
+              <MappingFragment StoreEntitySet="Speeds">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpellCastingStats">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.SpellCastingStat">
+              <MappingFragment StoreEntitySet="SpellCastingStats">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Ability" ColumnName="Ability" />
+                <ScalarProperty Name="DC" ColumnName="DC" />
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="L1_Slots" ColumnName="L1_Slots" />
+                <ScalarProperty Name="L2_Slots" ColumnName="L2_Slots" />
+                <ScalarProperty Name="L3_Slots" ColumnName="L3_Slots" />
+                <ScalarProperty Name="L4_Slots" ColumnName="L4_Slots" />
+                <ScalarProperty Name="L5_Slots" ColumnName="L5_Slots" />
+                <ScalarProperty Name="L6_Slots" ColumnName="L6_Slots" />
+                <ScalarProperty Name="L7_Slots" ColumnName="L7_Slots" />
+                <ScalarProperty Name="L8_Slots" ColumnName="L8_Slots" />
+                <ScalarProperty Name="L9_Slots" ColumnName="L9_Slots" />
+                <ScalarProperty Name="MonsterName" ColumnName="MonsterName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpellDamageAtCharacterLevels">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.SpellDamageAtCharacterLevel">
+              <MappingFragment StoreEntitySet="SpellDamageAtCharacterLevels">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Damage_Type" ColumnName="Damage_Type" />
+                <ScalarProperty Name="Damage_L1" ColumnName="Damage_L1" />
+                <ScalarProperty Name="Damage_L2" ColumnName="Damage_L2" />
+                <ScalarProperty Name="Damage_L3" ColumnName="Damage_L3" />
+                <ScalarProperty Name="Damage_L4" ColumnName="Damage_L4" />
+                <ScalarProperty Name="Damage_L5" ColumnName="Damage_L5" />
+                <ScalarProperty Name="Damage_L6" ColumnName="Damage_L6" />
+                <ScalarProperty Name="Damage_L7" ColumnName="Damage_L7" />
+                <ScalarProperty Name="Damage_L8" ColumnName="Damage_L8" />
+                <ScalarProperty Name="Damage_L9" ColumnName="Damage_L9" />
+                <ScalarProperty Name="Damage_L10" ColumnName="Damage_L10" />
+                <ScalarProperty Name="Damage_L11" ColumnName="Damage_L11" />
+                <ScalarProperty Name="Damage_L12" ColumnName="Damage_L12" />
+                <ScalarProperty Name="Damage_L13" ColumnName="Damage_L13" />
+                <ScalarProperty Name="Damage_L14" ColumnName="Damage_L14" />
+                <ScalarProperty Name="Damage_L15" ColumnName="Damage_L15" />
+                <ScalarProperty Name="Damage_L16" ColumnName="Damage_L16" />
+                <ScalarProperty Name="Damage_L17" ColumnName="Damage_L17" />
+                <ScalarProperty Name="Damage_L18" ColumnName="Damage_L18" />
+                <ScalarProperty Name="Damage_L19" ColumnName="Damage_L19" />
+                <ScalarProperty Name="Damage_L20" ColumnName="Damage_L20" />
+                <ScalarProperty Name="SpellName" ColumnName="SpellName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpellDamages">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.SpellDamage">
+              <MappingFragment StoreEntitySet="SpellDamages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Damage_Type" ColumnName="Damage_Type" />
+                <ScalarProperty Name="Damage_L1" ColumnName="Damage_L1" />
+                <ScalarProperty Name="Damage_L2" ColumnName="Damage_L2" />
+                <ScalarProperty Name="Damage_L3" ColumnName="Damage_L3" />
+                <ScalarProperty Name="Damage_L4" ColumnName="Damage_L4" />
+                <ScalarProperty Name="Damage_L5" ColumnName="Damage_L5" />
+                <ScalarProperty Name="Damage_L6" ColumnName="Damage_L6" />
+                <ScalarProperty Name="Damage_L7" ColumnName="Damage_L7" />
+                <ScalarProperty Name="Damage_L8" ColumnName="Damage_L8" />
+                <ScalarProperty Name="Damage_L9" ColumnName="Damage_L9" />
+                <ScalarProperty Name="SpellName" ColumnName="SpellName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpellHealings">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.SpellHealing">
+              <MappingFragment StoreEntitySet="SpellHealings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Healing_L1" ColumnName="Healing_L1" />
+                <ScalarProperty Name="Healing_L2" ColumnName="Healing_L2" />
+                <ScalarProperty Name="Healing_L3" ColumnName="Healing_L3" />
+                <ScalarProperty Name="Healing_L4" ColumnName="Healing_L4" />
+                <ScalarProperty Name="Healing_L5" ColumnName="Healing_L5" />
+                <ScalarProperty Name="Healing_L6" ColumnName="Healing_L6" />
+                <ScalarProperty Name="Healing_L7" ColumnName="Healing_L7" />
+                <ScalarProperty Name="Healing_L8" ColumnName="Healing_L8" />
+                <ScalarProperty Name="Healing_L9" ColumnName="Healing_L9" />
+                <ScalarProperty Name="SpellName" ColumnName="SpellName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Spells">
+            <EntityTypeMapping TypeName="InitiativeTrackerDBModel.Spell">
+              <MappingFragment StoreEntitySet="Spells">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Range" ColumnName="Range" />
+                <ScalarProperty Name="Components" ColumnName="Components" />
+                <ScalarProperty Name="IsRitual" ColumnName="IsRitual" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="IsConcentration" ColumnName="IsConcentration" />
+                <ScalarProperty Name="Casting_Time" ColumnName="Casting_Time" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="Higher_Level" ColumnName="Higher_Level" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Area_Of_Effect_Type" ColumnName="Area_Of_Effect_Type" />
+                <ScalarProperty Name="Area_Of_Effect_Size" ColumnName="Area_Of_Effect_Size" />
+                <ScalarProperty Name="DC_Type" ColumnName="DC_Type" />
+                <ScalarProperty Name="DC_Success" ColumnName="DC_Success" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CharacterScenarioTables" TypeName="InitiativeTrackerDBModel.CharacterScenarioTables" StoreEntitySet="CharacterScenarioTables">
+            <EndProperty Name="PlayerCharacterBasics">
+              <ScalarProperty Name="Id" ColumnName="PlayerCharacterBasicId" />
+            </EndProperty>
+            <EndProperty Name="Scenarios">
+              <ScalarProperty Name="Id" ColumnName="ScenarioId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="MonsterScenarioTables" TypeName="InitiativeTrackerDBModel.MonsterScenarioTables" StoreEntitySet="MonsterScenarioTables">
+            <EndProperty Name="Monsters">
+              <ScalarProperty Name="Name" ColumnName="MonsterName" />
+            </EndProperty>
+            <EndProperty Name="Scenarios">
+              <ScalarProperty Name="Id" ColumnName="ScenarioId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SpellMonsterTables" TypeName="InitiativeTrackerDBModel.SpellMonsterTables" StoreEntitySet="SpellMonsterTables">
+            <EndProperty Name="Monsters">
+              <ScalarProperty Name="Name" ColumnName="MonsterName" />
+            </EndProperty>
+            <EndProperty Name="Spells">
+              <ScalarProperty Name="Name" ColumnName="SpellName" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

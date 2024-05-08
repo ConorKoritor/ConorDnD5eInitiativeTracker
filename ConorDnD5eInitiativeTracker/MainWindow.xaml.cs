@@ -35,7 +35,8 @@ namespace ConorDnD5eInitiativeTracker
 
         private void btn_test_Click(object sender, RoutedEventArgs e) 
         {
-
+            AddSpellsToDatabase aspi = new AddSpellsToDatabase();
+            aspi.InsertToSpellsTable();
         }
     }
 }

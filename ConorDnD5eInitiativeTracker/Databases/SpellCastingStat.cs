@@ -12,7 +12,7 @@ namespace ConorDnD5eInitiativeTracker.Databases
     using System;
     using System.Collections.Generic;
     
-    public partial class SpellCastingStats
+    public partial class SpellCastingStat
     {
         public int Id { get; set; }
         public short Level { get; set; }

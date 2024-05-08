@@ -17,17 +17,17 @@ namespace ConorDnD5eInitiativeTracker.Databases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Monster()
         {
+            this.Abilities = new HashSet<Ability>();
             this.Actions = new HashSet<Action>();
-            this.LegendaryActions = new HashSet<LegendaryAction>();
-            this.SpecialAbilities = new HashSet<SpecialAbility>();
-            this.ConditionImmunities = new HashSet<ConditionImmunity>();
-            this.SpellMonsterTables = new HashSet<SpellMonsterTable>();
-            this.Proficiencies = new HashSet<Proficiency>();
-            this.SpellCastingStats = new HashSet<SpellCastingStats>();
-            this.Abilities = new HashSet<Abilities>();
             this.ArmorClasses = new HashSet<ArmorClass>();
+            this.ConditionImmunities = new HashSet<ConditionImmunity>();
+            this.LegendaryActions = new HashSet<LegendaryAction>();
+            this.Proficiencies = new HashSet<Proficiency>();
+            this.SpecialAbilities = new HashSet<SpecialAbility>();
             this.Speeds = new HashSet<Speed>();
-            this.MonsterScenarioTables = new HashSet<MonsterScenarioTable>();
+            this.SpellCastingStats = new HashSet<SpellCastingStat>();
+            this.Scenarios = new HashSet<Scenario>();
+            this.Spells = new HashSet<Spell>();
         }
     
         public string Name { get; set; }
@@ -48,26 +48,26 @@ namespace ConorDnD5eInitiativeTracker.Databases
         public bool IsSpellcaster { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ability> Abilities { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Action> Actions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LegendaryAction> LegendaryActions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpecialAbility> SpecialAbilities { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ConditionImmunity> ConditionImmunities { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpellMonsterTable> SpellMonsterTables { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Proficiency> Proficiencies { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpellCastingStats> SpellCastingStats { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Abilities> Abilities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ArmorClass> ArmorClasses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConditionImmunity> ConditionImmunities { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LegendaryAction> LegendaryActions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Proficiency> Proficiencies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SpecialAbility> SpecialAbilities { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Speed> Speeds { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MonsterScenarioTable> MonsterScenarioTables { get; set; }
+        public virtual ICollection<SpellCastingStat> SpellCastingStats { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Scenario> Scenarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Spell> Spells { get; set; }
     }
 }

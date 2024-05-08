@@ -13,10 +13,10 @@ namespace ConorDnD5eInitiativeTracker.Databases
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class InitiativeTrackerDBContainer : DbContext
+    public partial class InitiativeTrackerDBEntities : DbContext
     {
-        public InitiativeTrackerDBContainer()
-            : base("name=InitiativeTrackerDBContainer")
+        public InitiativeTrackerDBEntities()
+            : base("name=InitiativeTrackerDBEntities")
         {
         }
     
@@ -25,26 +25,23 @@ namespace ConorDnD5eInitiativeTracker.Databases
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Monster> Monsters { get; set; }
-        public virtual DbSet<Abilities> Abilities { get; set; }
+        public virtual DbSet<Ability> Abilities { get; set; }
+        public virtual DbSet<Action> Actions { get; set; }
         public virtual DbSet<ArmorClass> ArmorClasses { get; set; }
         public virtual DbSet<ConditionImmunity> ConditionImmunities { get; set; }
-        public virtual DbSet<Proficiency> Proficiencies { get; set; }
-        public virtual DbSet<Speed> Speeds { get; set; }
-        public virtual DbSet<Action> Actions { get; set; }
-        public virtual DbSet<SpellCastingStats> SpellCastingStats { get; set; }
-        public virtual DbSet<SpecialAbility> SpecialAbilities { get; set; }
-        public virtual DbSet<LegendaryAction> LegendaryActions { get; set; }
         public virtual DbSet<Damage> Damages { get; set; }
         public virtual DbSet<DifficultyClass> DifficultyClasses { get; set; }
-        public virtual DbSet<Spell> Spells { get; set; }
-        public virtual DbSet<SpellDamage> SpellDamages { get; set; }
-        public virtual DbSet<SpellMonsterTable> SpellMonsterTables { get; set; }
-        public virtual DbSet<Scenario> Scenarios { get; set; }
-        public virtual DbSet<CharacterScenarioTable> CharacterScenarioTables { get; set; }
+        public virtual DbSet<LegendaryAction> LegendaryActions { get; set; }
+        public virtual DbSet<Monster> Monsters { get; set; }
         public virtual DbSet<PlayerCharacterBasic> PlayerCharacterBasics { get; set; }
-        public virtual DbSet<MonsterScenarioTable> MonsterScenarioTables { get; set; }
-        public virtual DbSet<SpellHealing> SpellHealings { get; set; }
+        public virtual DbSet<Proficiency> Proficiencies { get; set; }
+        public virtual DbSet<Scenario> Scenarios { get; set; }
+        public virtual DbSet<SpecialAbility> SpecialAbilities { get; set; }
+        public virtual DbSet<Speed> Speeds { get; set; }
+        public virtual DbSet<SpellCastingStat> SpellCastingStats { get; set; }
         public virtual DbSet<SpellDamageAtCharacterLevel> SpellDamageAtCharacterLevels { get; set; }
+        public virtual DbSet<SpellDamage> SpellDamages { get; set; }
+        public virtual DbSet<SpellHealing> SpellHealings { get; set; }
+        public virtual DbSet<Spell> Spells { get; set; }
     }
 }

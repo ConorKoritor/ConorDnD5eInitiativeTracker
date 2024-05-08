@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/07/2024 15:16:42
+-- Date Created: 05/08/2024 17:22:25
 -- Generated from EDMX file: C:\Users\ckori\Documents\ConorDnD5eInitiativeTracker\ConorDnD5eInitiativeTracker\Databases\InitiativeTrackerDB.edmx
 -- --------------------------------------------------
 
@@ -14,144 +14,59 @@ GO
 -- --------------------------------------------------
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
+-- Drop foreign key constraints
+ALTER TABLE [dbo].[CharacterScenarioTables] DROP CONSTRAINT [FK_ScenarioCharacterScenarioTable];
+ALTER TABLE [dbo].[CharacterScenarioTables] DROP CONSTRAINT [FK_PlayerCharacterBasicCharacterScenarioTable];
+ALTER TABLE [dbo].[MonsterScenarioTables] DROP CONSTRAINT [FK_ScenarioMonsterScenarioTable];
+ALTER TABLE [dbo].[SpellMonsterTables] DROP CONSTRAINT [FK_SpellSpellMonsterTable];
+ALTER TABLE [dbo].[DifficultyClasses] DROP CONSTRAINT [FK_SpellDifficultyClass];
+ALTER TABLE [dbo].[Actions] DROP CONSTRAINT [FK_MonsterAction];
+ALTER TABLE [dbo].[LegendaryActions] DROP CONSTRAINT [FK_MonsterLegendaryAction];
+ALTER TABLE [dbo].[SpecialAbilities] DROP CONSTRAINT [FK_MonsterSpecialAbility];
+ALTER TABLE [dbo].[ConditionImmunities] DROP CONSTRAINT [FK_MonsterConditionImmunity];
+ALTER TABLE [dbo].[SpellMonsterTables] DROP CONSTRAINT [FK_MonsterSpellMonsterTable];
+ALTER TABLE [dbo].[SpellCastingStats] DROP CONSTRAINT [FK_MonsterSpellCastingStats];
+ALTER TABLE [dbo].[Abilities] DROP CONSTRAINT [FK_MonsterAbilities];
+ALTER TABLE [dbo].[ArmorClasses] DROP CONSTRAINT [FK_MonsterArmorClass];
+ALTER TABLE [dbo].[Speeds] DROP CONSTRAINT [FK_MonsterSpeed];
+ALTER TABLE [dbo].[MonsterScenarioTables] DROP CONSTRAINT [FK_MonsterMonsterScenarioTable];
+ALTER TABLE [dbo].[SpellDamages] DROP CONSTRAINT [FK_SpellSpellDamage];
+ALTER TABLE [dbo].[SpellHealings] DROP CONSTRAINT [FK_SpellSpellHealing];
+ALTER TABLE [dbo].[Damages] DROP CONSTRAINT [FK_ActionDamage];
+ALTER TABLE [dbo].[DifficultyClasses] DROP CONSTRAINT [FK_ActionDifficultyClass];
+ALTER TABLE [dbo].[Damages] DROP CONSTRAINT [FK_LegendaryActionDamage];
+ALTER TABLE [dbo].[DifficultyClasses] DROP CONSTRAINT [FK_LegendaryActionDifficultyClass];
+ALTER TABLE [dbo].[SpellDamageAtCharacterLevels] DROP CONSTRAINT [FK_SpellSpellDamageAtCharacterLevel];
 
-IF OBJECT_ID(N'[dbo].[FK_ScenarioCharacterScenarioTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CharacterScenarioTables] DROP CONSTRAINT [FK_ScenarioCharacterScenarioTable];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerCharacterBasicCharacterScenarioTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CharacterScenarioTables] DROP CONSTRAINT [FK_PlayerCharacterBasicCharacterScenarioTable];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ScenarioMonsterScenarioTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MonsterScenarioTables] DROP CONSTRAINT [FK_ScenarioMonsterScenarioTable];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SpellSpellMonsterTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SpellMonsterTables] DROP CONSTRAINT [FK_SpellSpellMonsterTable];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SpellDifficultyClass]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DifficultyClasses] DROP CONSTRAINT [FK_SpellDifficultyClass];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterAction]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Actions] DROP CONSTRAINT [FK_MonsterAction];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterLegendaryAction]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LegendaryActions] DROP CONSTRAINT [FK_MonsterLegendaryAction];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterSpecialAbility]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SpecialAbilities] DROP CONSTRAINT [FK_MonsterSpecialAbility];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterConditionImmunity]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ConditionImmunities] DROP CONSTRAINT [FK_MonsterConditionImmunity];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterSpellMonsterTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SpellMonsterTables] DROP CONSTRAINT [FK_MonsterSpellMonsterTable];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterProficiency]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Proficiencies] DROP CONSTRAINT [FK_MonsterProficiency];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterSpellCastingStats]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SpellCastingStats] DROP CONSTRAINT [FK_MonsterSpellCastingStats];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterAbilities]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Abilities] DROP CONSTRAINT [FK_MonsterAbilities];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterArmorClass]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ArmorClasses] DROP CONSTRAINT [FK_MonsterArmorClass];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterSpeed]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Speeds] DROP CONSTRAINT [FK_MonsterSpeed];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MonsterMonsterScenarioTable]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MonsterScenarioTables] DROP CONSTRAINT [FK_MonsterMonsterScenarioTable];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SpellSpellDamage]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SpellDamages] DROP CONSTRAINT [FK_SpellSpellDamage];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SpellSpellHealing]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SpellHealings] DROP CONSTRAINT [FK_SpellSpellHealing];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ActionDamage]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Damages] DROP CONSTRAINT [FK_ActionDamage];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ActionDifficultyClass]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DifficultyClasses] DROP CONSTRAINT [FK_ActionDifficultyClass];
-GO
-IF OBJECT_ID(N'[dbo].[FK_LegendaryActionDamage]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Damages] DROP CONSTRAINT [FK_LegendaryActionDamage];
-GO
-IF OBJECT_ID(N'[dbo].[FK_LegendaryActionDifficultyClass]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DifficultyClasses] DROP CONSTRAINT [FK_LegendaryActionDifficultyClass];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SpellSpellDamageAtCharacterLevel]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SpellDamageAtCharacterLevels] DROP CONSTRAINT [FK_SpellSpellDamageAtCharacterLevel];
-GO
+
+-- Drop tables
+
+DROP TABLE [dbo].[Abilities];
+DROP TABLE [dbo].[ArmorClasses];
+DROP TABLE [dbo].[ConditionImmunities];
+DROP TABLE [dbo].[Proficiencies];
+DROP TABLE [dbo].[Speeds];
+DROP TABLE [dbo].[Actions];
+DROP TABLE [dbo].[SpellCastingStats];
+DROP TABLE [dbo].[SpecialAbilities];
+DROP TABLE [dbo].[LegendaryActions];
+DROP TABLE [dbo].[Damages];
+DROP TABLE [dbo].[DifficultyClasses];
+DROP TABLE [dbo].[Spells];
+DROP TABLE [dbo].[SpellDamages];
+DROP TABLE [dbo].[SpellMonsterTables];
+DROP TABLE [dbo].[Scenarios];
+DROP TABLE [dbo].[CharacterScenarioTables];
+DROP TABLE [dbo].[PlayerCharacterBasics];
+DROP TABLE [dbo].[MonsterScenarioTables];
+DROP TABLE [dbo].[SpellHealings];
+DROP TABLE [dbo].[SpellDamageAtCharacterLevels];
+DROP TABLE [dbo].[Monsters];
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Monsters]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Monsters];
-GO
-IF OBJECT_ID(N'[dbo].[Abilities]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Abilities];
-GO
-IF OBJECT_ID(N'[dbo].[ArmorClasses]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ArmorClasses];
-GO
-IF OBJECT_ID(N'[dbo].[ConditionImmunities]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ConditionImmunities];
-GO
-IF OBJECT_ID(N'[dbo].[Proficiencies]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Proficiencies];
-GO
-IF OBJECT_ID(N'[dbo].[Speeds]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Speeds];
-GO
-IF OBJECT_ID(N'[dbo].[Actions]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Actions];
-GO
-IF OBJECT_ID(N'[dbo].[SpellCastingStats]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SpellCastingStats];
-GO
-IF OBJECT_ID(N'[dbo].[SpecialAbilities]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SpecialAbilities];
-GO
-IF OBJECT_ID(N'[dbo].[LegendaryActions]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[LegendaryActions];
-GO
-IF OBJECT_ID(N'[dbo].[Damages]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Damages];
-GO
-IF OBJECT_ID(N'[dbo].[DifficultyClasses]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[DifficultyClasses];
-GO
-IF OBJECT_ID(N'[dbo].[Spells]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Spells];
-GO
-IF OBJECT_ID(N'[dbo].[SpellDamages]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SpellDamages];
-GO
-IF OBJECT_ID(N'[dbo].[SpellMonsterTables]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SpellMonsterTables];
-GO
-IF OBJECT_ID(N'[dbo].[Scenarios]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Scenarios];
-GO
-IF OBJECT_ID(N'[dbo].[CharacterScenarioTables]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CharacterScenarioTables];
-GO
-IF OBJECT_ID(N'[dbo].[PlayerCharacterBasics]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PlayerCharacterBasics];
-GO
-IF OBJECT_ID(N'[dbo].[MonsterScenarioTables]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[MonsterScenarioTables];
-GO
-IF OBJECT_ID(N'[dbo].[SpellHealings]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SpellHealings];
-GO
-IF OBJECT_ID(N'[dbo].[SpellDamageAtCharacterLevels]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SpellDamageAtCharacterLevels];
-GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -327,7 +242,7 @@ GO
 -- Creating table 'SpellDamages'
 CREATE TABLE [dbo].[SpellDamages] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Damage_Type] nvarchar(max)  NOT NULL,
+    [Damage_Type] nvarchar(max)  NULL,
     [Damage_L1] nvarchar(max)  NULL,
     [Damage_L2] nvarchar(max)  NULL,
     [Damage_L3] nvarchar(max)  NULL,
@@ -398,7 +313,7 @@ GO
 -- Creating table 'SpellDamageAtCharacterLevels'
 CREATE TABLE [dbo].[SpellDamageAtCharacterLevels] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Damage_Type] nvarchar(max)  NOT NULL,
+    [Damage_Type] nvarchar(max)  NULL,
     [Damage_L1] nvarchar(max)  NULL,
     [Damage_L2] nvarchar(max)  NULL,
     [Damage_L3] nvarchar(max)  NULL,

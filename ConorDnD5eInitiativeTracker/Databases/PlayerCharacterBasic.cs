@@ -17,7 +17,7 @@ namespace ConorDnD5eInitiativeTracker.Databases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PlayerCharacterBasic()
         {
-            this.CharacterScenarioTables = new HashSet<CharacterScenarioTable>();
+            this.Scenarios = new HashSet<Scenario>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace ConorDnD5eInitiativeTracker.Databases
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CharacterScenarioTable> CharacterScenarioTables { get; set; }
+        public virtual ICollection<Scenario> Scenarios { get; set; }
     }
 }

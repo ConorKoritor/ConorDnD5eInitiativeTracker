@@ -26,10 +26,10 @@ namespace ConorDnD5eInitiativeTracker.Databases
         public Nullable<short> Attack_Bonus { get; set; }
         public string MonsterName { get; set; }
     
-        public virtual Monster Monster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Damage> Damages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DifficultyClass> DifficultyClasses { get; set; }
+        public virtual Monster Monster { get; set; }
     }
 }

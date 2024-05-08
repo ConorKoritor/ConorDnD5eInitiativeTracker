@@ -6,32 +6,33 @@ using System.Threading.Tasks;
 using ConorDnD5eInitiativeTracker.DatabaseLinq.SpellsLinq;
 using ConorDnD5eInitiativeTracker.Databases;
 using NUnit.Framework;
+using System.Data.SqlClient;
 
 namespace DnDInitiativeTrackerTest.DatabaseTests
 {
-    [SetUpFixture]
-    internal class Setup
-    {
-        [OneTimeSetUp]
-        public async Task OneTimeSetup()
-        {
-            AddSpellsToDatabase astdb = new AddSpellsToDatabase();
-            await astdb.InsertToSpellsTable();
-        }
-    }
 
     [TestFixture]
     internal class DatabaseSpellsTest
     {
+        [OneTimeSetUp]
+        public void OneTimeSetup()
+        {
+
+        }
+
         [Test]
         public void Test_Database_Spells_Table()
         {
             //Arrange
-            InitiativeTrackerDBContainer db = new InitiativeTrackerDBContainer();
+            InitiativeTrackerDBEntities db = new InitiativeTrackerDBEntities();
 
             //Act
+            var query = from s in db.Spells
+                        where s.Name == "Fireball"
+                        select s.Level;
 
             //Assert
+            Assert.That(query.First(), Is.EqualTo(3));
         }
     }
 }

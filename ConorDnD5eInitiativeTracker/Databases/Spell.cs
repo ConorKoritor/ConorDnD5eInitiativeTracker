@@ -17,11 +17,11 @@ namespace ConorDnD5eInitiativeTracker.Databases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Spell()
         {
-            this.SpellMonsterTables = new HashSet<SpellMonsterTable>();
             this.DifficultyClasses = new HashSet<DifficultyClass>();
+            this.SpellDamageAtCharacterLevels = new HashSet<SpellDamageAtCharacterLevel>();
             this.SpellDamages = new HashSet<SpellDamage>();
             this.SpellHealings = new HashSet<SpellHealing>();
-            this.SpellDamageAtCharacterLevels = new HashSet<SpellDamageAtCharacterLevel>();
+            this.Monsters = new HashSet<Monster>();
         }
     
         public string Name { get; set; }
@@ -42,14 +42,14 @@ namespace ConorDnD5eInitiativeTracker.Databases
         public string DC_Success { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpellMonsterTable> SpellMonsterTables { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DifficultyClass> DifficultyClasses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SpellDamageAtCharacterLevel> SpellDamageAtCharacterLevels { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SpellDamage> SpellDamages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SpellHealing> SpellHealings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpellDamageAtCharacterLevel> SpellDamageAtCharacterLevels { get; set; }
+        public virtual ICollection<Monster> Monsters { get; set; }
     }
 }

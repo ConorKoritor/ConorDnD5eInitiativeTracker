@@ -23,8 +23,8 @@ namespace ConorDnD5eInitiativeTracker.Databases
         public string LegendaryActionMonsterName { get; set; }
         public string LegendaryActionName { get; set; }
     
-        public virtual Spell Spell { get; set; }
         public virtual Action Action { get; set; }
         public virtual LegendaryAction LegendaryAction { get; set; }
+        public virtual Spell Spell { get; set; }
     }
 }
