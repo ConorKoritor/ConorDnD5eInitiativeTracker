@@ -115,6 +115,7 @@ namespace DnDInitiativeTrackerTest.JSONTests
             Assert.That(monsters[27].special_abilities[1].spellcasting.ability.name, Is.EqualTo("INT"));
             Assert.That(monsters[27].special_abilities[1].spellcasting.spells.Count, Is.EqualTo(27));
             Assert.That(monsters[27].special_abilities[1].spellcasting.spells[0].name, Is.EqualTo("Disguise Self"));
+            Assert.That(monsters[27].special_abilities[1].spellcasting.slots._3, Is.EqualTo(3));
         }
 
         [Test]

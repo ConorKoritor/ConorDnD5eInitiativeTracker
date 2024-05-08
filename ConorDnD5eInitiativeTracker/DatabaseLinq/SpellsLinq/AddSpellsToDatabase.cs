@@ -34,10 +34,10 @@ namespace ConorDnD5eInitiativeTracker.DatabaseLinq.SpellsLinq
         {
             spells = await GetSpells();
 
-            await LoopThroughSpells();
+            await LoopThroughSpellsAndSaveToDatabase();
         }
 
-        public async Task LoopThroughSpells()
+        public async Task LoopThroughSpellsAndSaveToDatabase()
         {
             foreach (var spellResult in spells)
             {
@@ -172,27 +172,6 @@ namespace ConorDnD5eInitiativeTracker.DatabaseLinq.SpellsLinq
                         // Log or handle the failed entity (e.g., display an error message)
                         MessageBox.Show($"Failed to save entity {entity.Name}: {ex.Message}");
                     }
-                    if (entry.Entity is SpellDamage)
-                    {
-                        // Handle the specific entity that caused the exception
-                        SpellDamage entity = (SpellDamage)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save Damage entity {entity.SpellName}: {ex.Message}");
-                    }
-                    if (entry.Entity is SpellDamageAtCharacterLevel)
-                    {
-                        // Handle the specific entity that caused the exception
-                        SpellDamageAtCharacterLevel entity = (SpellDamageAtCharacterLevel)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save Damage Character At Level entity {entity.SpellName}: {ex.Message}");
-                    }
-                    if (entry.Entity is SpellHealing)
-                    {
-                        // Handle the specific entity that caused the exception
-                        SpellHealing entity = (SpellHealing)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save Healing entity {entity.SpellName}: {ex.Message}");
-                    }
                 }
 
             }
@@ -269,33 +248,12 @@ namespace ConorDnD5eInitiativeTracker.DatabaseLinq.SpellsLinq
                 }
                 foreach (var entry in ex.Entries)
                 {
-                    if (entry.Entity is Spell)
-                    {
-                        // Handle the specific entity that caused the exception
-                        Spell entity = (Spell)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save entity {entity.Name}: {ex.Message}");
-                    }
                     if (entry.Entity is SpellDamage)
                     {
                         // Handle the specific entity that caused the exception
                         SpellDamage entity = (SpellDamage)entry.Entity;
                         // Log or handle the failed entity (e.g., display an error message)
                         MessageBox.Show($"Failed to save Damage entity {entity.SpellName}: {ex.Message}");
-                    }
-                    if (entry.Entity is SpellDamageAtCharacterLevel)
-                    {
-                        // Handle the specific entity that caused the exception
-                        SpellDamageAtCharacterLevel entity = (SpellDamageAtCharacterLevel)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save Damage Character At Level entity {entity.SpellName}: {ex.Message}");
-                    }
-                    if (entry.Entity is SpellHealing)
-                    {
-                        // Handle the specific entity that caused the exception
-                        SpellHealing entity = (SpellHealing)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save Healing entity {entity.SpellName}: {ex.Message}");
                     }
                 }
 
@@ -359,33 +317,12 @@ namespace ConorDnD5eInitiativeTracker.DatabaseLinq.SpellsLinq
                 }
                 foreach (var entry in ex.Entries)
                 {
-                    if (entry.Entity is Spell)
-                    {
-                        // Handle the specific entity that caused the exception
-                        Spell entity = (Spell)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save entity {entity.Name}: {ex.Message}");
-                    }
                     if (entry.Entity is SpellDamage)
                     {
                         // Handle the specific entity that caused the exception
                         SpellDamage entity = (SpellDamage)entry.Entity;
                         // Log or handle the failed entity (e.g., display an error message)
                         MessageBox.Show($"Failed to save Damage entity {entity.SpellName}: {ex.Message}");
-                    }
-                    if (entry.Entity is SpellDamageAtCharacterLevel)
-                    {
-                        // Handle the specific entity that caused the exception
-                        SpellDamageAtCharacterLevel entity = (SpellDamageAtCharacterLevel)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save Damage Character At Level entity {entity.SpellName}: {ex.Message}");
-                    }
-                    if (entry.Entity is SpellHealing)
-                    {
-                        // Handle the specific entity that caused the exception
-                        SpellHealing entity = (SpellHealing)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save Healing entity {entity.SpellName}: {ex.Message}");
                     }
                 }
 
@@ -432,27 +369,6 @@ namespace ConorDnD5eInitiativeTracker.DatabaseLinq.SpellsLinq
                 }
                 foreach (var entry in ex.Entries)
                 {
-                    if (entry.Entity is Spell)
-                    {
-                        // Handle the specific entity that caused the exception
-                        Spell entity = (Spell)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save entity {entity.Name}: {ex.Message}");
-                    }
-                    if (entry.Entity is SpellDamage)
-                    {
-                        // Handle the specific entity that caused the exception
-                        SpellDamage entity = (SpellDamage)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save Damage entity {entity.SpellName}: {ex.Message}");
-                    }
-                    if (entry.Entity is SpellDamageAtCharacterLevel)
-                    {
-                        // Handle the specific entity that caused the exception
-                        SpellDamageAtCharacterLevel entity = (SpellDamageAtCharacterLevel)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        MessageBox.Show($"Failed to save Damage Character At Level entity {entity.SpellName}: {ex.Message}");
-                    }
                     if (entry.Entity is SpellHealing)
                     {
                         // Handle the specific entity that caused the exception
