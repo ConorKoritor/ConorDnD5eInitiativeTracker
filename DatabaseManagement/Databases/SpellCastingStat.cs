@@ -19,8 +19,8 @@ namespace DatabaseModel.Databases
 
         public short Modifier { get; set; }
 
-        [Required]
-        public string School { get; set; }
+        
+        public string? School { get; set; }
 
         public short? L1_Slots { get; set; }
 

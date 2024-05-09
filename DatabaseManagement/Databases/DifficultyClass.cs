@@ -30,6 +30,14 @@ namespace DatabaseModel.Databases
         [StringLength(200)]
         public string? LegendaryActionName { get; set; }
 
+        [StringLength(200)]
+        public string? SpecialAbilityMonsterName { get; set; }
+
+        [StringLength(200)]
+        public string? SpecialAbilityName { get; set; }
+
+        public virtual SpecialAbility? SpecialAbility { get; set; }
+
         public virtual Action? Action { get; set; }
 
         public virtual LegendaryAction? LegendaryAction { get; set; }

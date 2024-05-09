@@ -16,7 +16,7 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public int? attack_bonus { get; set; }
             public Monster_Dc dc { get; set; }
             public List<Monster_Damage> damage { get; set; }
-            public Usage usage { get; set; }
+            public MonsterUsage usage { get; set; }
             public string action_name { get; set; }
             public string count { get; set; }
             public string type { get; set; }
@@ -105,7 +105,7 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public double challenge_rating { get; set; }
             public int proficiency_bonus { get; set; }
             public int xp { get; set; }
-            public List<SpecialAbility> special_abilities { get; set; }
+            public List<MonsterSpecialAbility> special_abilities { get; set; }
             public List<Action> actions { get; set; }
             public List<LegendaryAction> legendary_actions { get; set; }
             public string image { get; set; }
@@ -128,11 +128,11 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public string url { get; set; }
         }
 
-        public class SpecialAbility
+        public class MonsterSpecialAbility
         {
             public string name { get; set; }
             public string desc { get; set; }
-            public Usage usage { get; set; }
+            public MonsterUsage usage { get; set; }
             public Monster_Dc dc { get; set; }
             public Spellcasting spellcasting { get; set; }
         }
@@ -146,7 +146,7 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public string climb { get; set; }
         }
 
-        public class Usage
+        public class MonsterUsage
         {
             public string type { get; set; }
             public int times { get; set; }
@@ -165,13 +165,16 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public string name { get; set; }
             public int level { get; set; }
             public string url { get; set; }
-            public Usage usage { get; set; }
+            public MonsterUsage usage { get; set; }
         }
 
         public class Spellcasting
         {
             public Spellcasting_Ability ability { get; set; }
             public int dc { get; set; }
+            public int level { get; set; }
+            public int modifier { get; set; }
+            public string school { get; set; }
             public MonsterSpellSlots slots { get; set; }
             public List<string> components_required { get; set; }
             public List<Monster_Spell> spells { get; set; }

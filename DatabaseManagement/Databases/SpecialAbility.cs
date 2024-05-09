@@ -8,14 +8,17 @@ namespace DatabaseModel.Databases
 
     public partial class SpecialAbility
     {
-        public int Id { get; set; }
-
+        [Key]
+        [Column(Order = 0)]
+        [StringLength(200)]
         [Required]
         public string Name { get; set; }
 
         [Required]
         public string Desc { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
         [Required]
         [StringLength(200)]
         public string MonsterName { get; set; }

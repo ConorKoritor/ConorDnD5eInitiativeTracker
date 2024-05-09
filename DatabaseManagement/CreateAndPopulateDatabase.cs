@@ -7,7 +7,7 @@ using DatabaseModel.Databases;
 
 namespace DatabaseModel
 {
-    public class DatabaseModelExecution
+    public class CreateAndPopulateDatabase
     {
         
         static void Main(string[] args)
