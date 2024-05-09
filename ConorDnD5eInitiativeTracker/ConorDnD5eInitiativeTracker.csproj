@@ -130,89 +130,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="APIRequests\APIRequests.cs" />
-    <Compile Include="APIRequests\MonsterDictionaryModels.cs" />
-    <Compile Include="APIRequests\MonsterModels.cs" />
-    <Compile Include="APIRequests\SpellModels.cs" />
-    <Compile Include="APIRequests\SpellsDictionaryModels.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\AddMonstersToDatabase.cs" />
-    <Compile Include="DatabaseLinq\SpellsLinq\AddSpellsToDatabase.cs" />
+    <Compile Include="APIRequests\APIGetRequests\APIRequestsSetup.cs" />
+    <Compile Include="APIRequests\APIGetRequests\ConditionAPIRequests.cs" />
+    <Compile Include="APIRequests\APIGetRequests\MonsterAPIRequests.cs" />
+    <Compile Include="APIRequests\MonsterModels\MonsterDictionaryModels.cs" />
+    <Compile Include="APIRequests\MonsterModels\MonsterModels.cs" />
+    <Compile Include="APIRequests\SpellModels\SpellModels.cs" />
+    <Compile Include="APIRequests\SpellModels\SpellsDictionaryModels.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="APIRequests\APIGetRequests\SpellsAPIRequests.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Databases\Ability.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\Action.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\ArmorClass.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\ConditionImmunity.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\Damage.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\DifficultyClass.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\InititativeTrackerDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InititativeTrackerDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\InititativeTrackerDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\InititativeTrackerDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InititativeTrackerDB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\LegendaryAction.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\Monster.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\PlayerCharacterBasic.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\Proficiency.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\Scenario.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\SpecialAbility.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\Speed.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\Spell.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\SpellCastingStat.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\SpellDamage.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\SpellDamageAtCharacterLevel.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Databases\SpellHealing.cs">
-      <DependentUpon>InititativeTrackerDB.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -237,13 +169,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Databases\InititativeTrackerDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>InititativeTrackerDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Databases\InititativeTrackerDB.edmx.diagram">
-      <DependentUpon>InititativeTrackerDB.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -252,28 +177,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Databases\InitiativeTrackerDB.edmx.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Databases\InititativeTrackerDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InititativeTrackerDB.edmx</DependentUpon>
-      <LastGenOutput>InititativeTrackerDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Databases\InititativeTrackerDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InititativeTrackerDB.edmx</DependentUpon>
-      <LastGenOutput>InititativeTrackerDB.cs</LastGenOutput>
-    </Content>
-    <Content Include="InitiativeTrackerDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="InitiativeTrackerDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>InitiativeTrackerDB.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

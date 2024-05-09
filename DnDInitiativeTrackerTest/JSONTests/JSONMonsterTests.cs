@@ -197,5 +197,18 @@ namespace DnDInitiativeTrackerTest.JSONTests
             Assert.That(monsters[79].speed.walk, Is.EqualTo("30 ft."));
             Assert.That(monsters[79].speed.fly, Is.EqualTo("90 ft."));
         }
+
+        [Test]
+        public void Pulling_Monster_Condition_Immunities_FromApi_Test()
+        {
+            //Arrange and Act taken care of in setup so I dont have to pull from the api multiple times
+
+            //Assert
+            //Based on API Data for Deva which should be the the 81st request made
+
+            //Testing for Proficiencies
+            Assert.That(monsters[79].condition_immunities[0].name, Is.EqualTo("Charmed"));
+            Assert.That(monsters[79].condition_immunities[0].index, Is.EqualTo("charmed"));
+        }
     }
 }
