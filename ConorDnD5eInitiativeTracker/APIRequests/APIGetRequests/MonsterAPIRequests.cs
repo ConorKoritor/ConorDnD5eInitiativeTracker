@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ConorDnD5eInitiativeTracker.APIRequests;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace ConorDnD5eInitiativeTracker.APIRequests
 {
-    //Makes requests for Specific monsters when called
     public class MonsterAPIRequests
     {
 
@@ -65,6 +65,5 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
         {
             return MonsterModels;
         }
-
     }
 }

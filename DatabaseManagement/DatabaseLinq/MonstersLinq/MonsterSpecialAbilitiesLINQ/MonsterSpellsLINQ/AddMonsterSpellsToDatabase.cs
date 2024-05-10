@@ -1,39 +1,42 @@
-﻿using ConorDnD5eInitiativeTracker.APIRequests;
-using DatabaseModel.Databases;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using ConorDnD5eInitiativeTracker.APIRequests;
+using DatabaseModel.DatabaseLinq.SpellsLinq;
+using DatabaseModel.Databases;
 
 namespace DatabaseModel.DatabaseLinq.MonstersLinq
 {
-    internal class AddArmorClassesToDatabase
+    internal class AddMonsterSpellsToDatabase
     {
-        internal void AddArmorClasses(MonsterModel monster, InitiativeTrackerDB db)
-        {
-            if (monster.armor_class != null)
-            {
-                foreach (var ac in monster.armor_class)
-                {
-                    AddArmorClassToDatabase(ac, db, monster);
-                }
-            }
+        internal void AddMonsterSpells(MonsterModel monster, InitiativeTrackerDB db, MonsterSpecialAbility specialAbility)
+        { 
 
-        }
-        internal void AddArmorClassToDatabase(MonsterArmorClass ac, InitiativeTrackerDB db, MonsterModel monster)
-        {
-            ArmorClass armorClass = new ArmorClass
+            foreach(var spell in specialAbility.spellcasting.spells)
             {
-                AC = (short)ac.value,
-                Ac_Type = ac.type,
+                AddEachMonsterSpellToDatabase(monster, db, spell);
+            }
+        }
+
+        internal void AddEachMonsterSpellToDatabase(MonsterModel monster, InitiativeTrackerDB db, Monster_Spell spell)
+        {
+            MonsterSpellTable monsterSpell = new MonsterSpellTable()
+            {
+                SpellName = spell.name,
                 MonsterName = monster.name
             };
+
             try
             {
-                db.ArmorClasses.Add(armorClass);
+                db.MonsterSpells.Add(monsterSpell);
             }
             catch (DbEntityValidationException ex)
             {
@@ -57,12 +60,12 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 }
                 foreach (var entry in ex.Entries)
                 {
-                    if (entry.Entity is ArmorClass)
+                    if (entry.Entity is MonsterSpellTable)
                     {
                         // Handle the specific entity that caused the exception
-                        ArmorClass entity = (ArmorClass)entry.Entity;
+                        MonsterSpellTable entity = (MonsterSpellTable)entry.Entity;
                         // Log or handle the failed entity (e.g., display an error message)
-                        Console.WriteLine($"Failed to save entity {entity.Ac_Type} of Monster {monster.name}: {ex.Message}");
+                        Console.WriteLine($"Failed to save entity {entity.SpellName} of Monster {monster.name}: {ex.Message}");
                     }
                 }
 

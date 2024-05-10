@@ -28,7 +28,7 @@ namespace DatabaseModel.Databases
         [StringLength(200)]
         public string? LegendaryActionName { get; set; }
 
-        public virtual Action? Action { get; set; }
+        public virtual CombatAction? Action { get; set; }
 
         public virtual LegendaryAction? LegendaryAction { get; set; }
     }

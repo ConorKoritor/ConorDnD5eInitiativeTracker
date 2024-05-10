@@ -13,6 +13,8 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
     internal class AddSpecialAbilitiesToDatabase
     {
         AddSpellcastingStatToDatabase addSpellcastingStatToDatabase = new AddSpellcastingStatToDatabase();
+        AddMonsterSpellsToDatabase addMonsterSpellsToDatabase = new AddMonsterSpellsToDatabase();    
+
         internal void CheckSpecialAbilities(MonsterModel monster, InitiativeTrackerDB db)
         {
             foreach (var specialAbility in monster.special_abilities)
@@ -21,7 +23,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 {
                     AddSpecialAbility(monster, db, specialAbility);
                     addSpellcastingStatToDatabase.AddSpellcastingStats(monster, db, specialAbility);
-                    //AddMonsterSpells(monster, db);
+                    addMonsterSpellsToDatabase.AddMonsterSpells(monster, db, specialAbility);
                 }
                 else
                 {
@@ -139,8 +141,48 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
         {
             Usage usage = new Usage()
             {
-
+                Type = specialAbility.usage.type,
+                Times = specialAbility.usage.times,
+                SpecialAbilityName = specialAbility.name,
+                SpecialAbilityMonsterName = monster.name
             };
+
+            try
+            {
+                db.Usages.Add(usage);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                Exception innerException = ex.InnerException;
+
+                // Handle the inner exception
+                if (innerException != null)
+                {
+                    // Log or handle the inner exception
+                    Console.WriteLine($"Inner Exception: {innerException.Message}");
+                }
+                foreach (var entry in ex.Entries)
+                {
+                    if (entry.Entity is Usage)
+                    {
+                        // Handle the specific entity that caused the exception
+                        Usage entity = (Usage)entry.Entity;
+                        // Log or handle the failed entity (e.g., display an error message)
+                        Console.WriteLine($"Failed to save entity {entity.Type} of SpecialAbility {specialAbility.name} of Monster {monster.name}: {ex.Message}");
+                    }
+                }
+
+            }
         }
     }
 }

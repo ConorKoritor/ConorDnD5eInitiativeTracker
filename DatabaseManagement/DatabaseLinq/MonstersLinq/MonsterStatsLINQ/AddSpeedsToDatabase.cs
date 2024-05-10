@@ -73,12 +73,12 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
 
             foreach (var speed in speeds)
             {
-                AddSpeedToDatabase(speed, monster, db);
+                AddEachSpeedToDatabase(speed, monster, db);
             }
 
         }
 
-        internal void AddSpeedToDatabase(Speed speed, MonsterModel monster, InitiativeTrackerDB db)
+        internal void AddEachSpeedToDatabase(Speed speed, MonsterModel monster, InitiativeTrackerDB db)
         {
             try
             {

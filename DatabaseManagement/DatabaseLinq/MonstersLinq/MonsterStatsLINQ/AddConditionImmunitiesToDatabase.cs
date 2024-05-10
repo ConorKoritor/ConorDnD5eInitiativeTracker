@@ -16,11 +16,11 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
         {
             foreach (var conditionImmunity in monster.condition_immunities)
             {
-                AddConditionImmunityToDatabase(conditionImmunity, monster, db);
+                AddEachConditionImmunityToDatabase(conditionImmunity, monster, db);
             }
         }
 
-        internal void AddConditionImmunityToDatabase(MonsterConditionImmunity conditionImmunity, MonsterModel monster, InitiativeTrackerDB db)
+        internal void AddEachConditionImmunityToDatabase(MonsterConditionImmunity conditionImmunity, MonsterModel monster, InitiativeTrackerDB db)
         {
             ConditionImmunity conditionImmunity1 = new ConditionImmunity()
             {

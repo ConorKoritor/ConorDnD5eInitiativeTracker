@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace ConorDnD5eInitiativeTracker.APIRequests
 {
-        public class Action
+        public class MonsterAction
         {
             public string name { get; set; }
             public string multiattack_type { get; set; }
             public string desc { get; set; }
-            public List<Action> actions { get; set; }
+            public List<MonsterAction> actions { get; set; }
             public int? attack_bonus { get; set; }
             public Monster_Dc dc { get; set; }
             public List<Monster_Damage> damage { get; set; }
@@ -55,7 +55,7 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public string url { get; set; }
         }
 
-        public class LegendaryAction
+        public class MonsterLegendaryAction
         {
             public string name { get; set; }
             public string desc { get; set; }
@@ -106,8 +106,8 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public int proficiency_bonus { get; set; }
             public int xp { get; set; }
             public List<MonsterSpecialAbility> special_abilities { get; set; }
-            public List<Action> actions { get; set; }
-            public List<LegendaryAction> legendary_actions { get; set; }
+            public List<MonsterAction> actions { get; set; }
+            public List<MonsterLegendaryAction> legendary_actions { get; set; }
             public string image { get; set; }
             public string url { get; set; }
         }

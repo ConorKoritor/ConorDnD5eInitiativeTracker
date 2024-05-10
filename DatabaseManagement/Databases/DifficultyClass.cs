@@ -38,7 +38,7 @@ namespace DatabaseModel.Databases
 
         public virtual SpecialAbility? SpecialAbility { get; set; }
 
-        public virtual Action? Action { get; set; }
+        public virtual CombatAction? Action { get; set; }
 
         public virtual LegendaryAction? LegendaryAction { get; set; }
 

@@ -13,7 +13,7 @@ namespace DatabaseModel.Databases
         }
 
         public virtual DbSet<Ability> Abilities { get; set; }
-        public virtual DbSet<Action> Actions { get; set; }
+        public virtual DbSet<CombatAction> Actions { get; set; }
         public virtual DbSet<ArmorClass> ArmorClasses { get; set; }
         public virtual DbSet<ConditionImmunity> ConditionImmunities { get; set; }
         public virtual DbSet<Damage> Damages { get; set; }
@@ -32,15 +32,16 @@ namespace DatabaseModel.Databases
         public virtual DbSet<SpellHealing> SpellHealings { get; set; }
         public virtual DbSet<Spell> Spells { get; set; }
         public virtual DbSet<Usage> Usages { get; set; }
+        public virtual DbSet<MonsterSpellTable> MonsterSpells { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Action>()
+            modelBuilder.Entity<CombatAction>()
                 .HasMany(e => e.Damages)
                 .WithOptional(e => e.Action)
                 .HasForeignKey(e => new { e.ActionName, e.ActionMonsterName });
 
-            modelBuilder.Entity<Action>()
+            modelBuilder.Entity<CombatAction>()
                 .HasMany(e => e.DifficultyClasses)
                 .WithOptional(e => e.Action)
                 .HasForeignKey(e => new { e.ActionName, e.ActionMonsterName });
@@ -101,14 +102,14 @@ namespace DatabaseModel.Databases
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Monster>()
+                .HasMany(e => e.SpellMonsters)
+                .WithRequired(e => e.Monster)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Monster>()
                 .HasMany(e => e.Scenarios)
                 .WithMany(e => e.Monsters)
                 .Map(m => m.ToTable("MonsterScenarioTables").MapLeftKey("MonsterName").MapRightKey("ScenarioId"));
-
-            modelBuilder.Entity<Monster>()
-                .HasMany(e => e.Spells)
-                .WithMany(e => e.Monsters)
-                .Map(m => m.ToTable("SpellMonsterTables").MapLeftKey("MonsterName").MapRightKey("SpellName"));
 
             modelBuilder.Entity<PlayerCharacterBasic>()
                 .HasMany(e => e.Scenarios)
@@ -143,6 +144,11 @@ namespace DatabaseModel.Databases
 
             modelBuilder.Entity<Spell>()
                 .HasMany(e => e.SpellHealings)
+                .WithRequired(e => e.Spell)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Spell>()
+                .HasMany(e => e.SpellMonsters)
                 .WithRequired(e => e.Spell)
                 .WillCascadeOnDelete(false);
         }

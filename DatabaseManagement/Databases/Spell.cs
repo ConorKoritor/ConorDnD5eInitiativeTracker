@@ -15,7 +15,7 @@ namespace DatabaseModel.Databases
             SpellDamageAtCharacterLevels = new HashSet<SpellDamageAtCharacterLevel>();
             SpellDamages = new HashSet<SpellDamage>();
             SpellHealings = new HashSet<SpellHealing>();
-            Monsters = new HashSet<Monster>();
+            SpellMonsters = new HashSet<MonsterSpellTable>();
         }
 
         [Key]
@@ -71,6 +71,6 @@ namespace DatabaseModel.Databases
         public virtual ICollection<SpellHealing> SpellHealings { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Monster> Monsters { get; set; }
+        public virtual ICollection<MonsterSpellTable> SpellMonsters { get; set; }
     }
 }

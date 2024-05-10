@@ -29,9 +29,17 @@
         [StringLength(200)]
         public string? SpecialAbilityName { get; set; }
 
+        [StringLength(200)]
+        public string? MonsterSpellMonsterName { get; set; }
+
+        [StringLength(200)]
+        public string? MonsterSpellSpellName { get; set; }
+
+        public virtual MonsterSpellTable? SpellMonster { get; set; }
+
         public virtual SpecialAbility? SpecialAbility { get; set; }
 
-        public virtual Action? Action { get; set; }
+        public virtual CombatAction? Action { get; set; }
 
         public virtual LegendaryAction? LegendaryAction { get; set; }
     }

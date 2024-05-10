@@ -26,6 +26,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
         AddSensesToDatabase addSensesToDatabase = new AddSensesToDatabase();
         AddConditionImmunitiesToDatabase addConditionImmunitiesToDatabase = new AddConditionImmunitiesToDatabase();
         AddSpecialAbilitiesToDatabase addSpecialAbilitiesToDatabase = new AddSpecialAbilitiesToDatabase();
+        AddActionsToDatabase addActionsToDatabase = new AddActionsToDatabase();
 
         public async Task InsertToMonstersTable(InitiativeTrackerDB db)
         {
@@ -49,6 +50,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 addSensesToDatabase.AddSenses(monster, db);
                 addConditionImmunitiesToDatabase.AddConditionImmunities(monster, db);
                 addSpecialAbilitiesToDatabase.CheckSpecialAbilities(monster, db);
+                addActionsToDatabase.AddActions(monster, db);
             }
 
             try

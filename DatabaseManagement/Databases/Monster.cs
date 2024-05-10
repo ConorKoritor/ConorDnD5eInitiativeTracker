@@ -1,5 +1,6 @@
 namespace DatabaseModel.Databases
 {
+    using ConorDnD5eInitiativeTracker.APIRequests;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -12,7 +13,7 @@ namespace DatabaseModel.Databases
         public Monster()
         {
             Abilities = new HashSet<Ability>();
-            Actions = new HashSet<Action>();
+            Actions = new HashSet<CombatAction>();
             ArmorClasses = new HashSet<ArmorClass>();
             ConditionImmunities = new HashSet<ConditionImmunity>();
             LegendaryActions = new HashSet<LegendaryAction>();
@@ -22,7 +23,7 @@ namespace DatabaseModel.Databases
             Speeds = new HashSet<Speed>();
             SpellCastingStats = new HashSet<SpellCastingStat>();
             Scenarios = new HashSet<Scenario>();
-            Spells = new HashSet<Spell>();
+            SpellMonsters = new HashSet<MonsterSpellTable>();
         }
 
         [Key]
@@ -72,7 +73,7 @@ namespace DatabaseModel.Databases
         public virtual ICollection<Ability> Abilities { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Action> Actions { get; set; }
+        public virtual ICollection<CombatAction> Actions { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ArmorClass> ArmorClasses { get; set; }
@@ -102,6 +103,6 @@ namespace DatabaseModel.Databases
         public virtual ICollection<Scenario> Scenarios { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Spell> Spells { get; set; }
+        public virtual ICollection<MonsterSpellTable> SpellMonsters { get; set; }
     }
 }
