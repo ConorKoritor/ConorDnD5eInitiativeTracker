@@ -32,23 +32,25 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
             }
         }
 
-        internal void AddSpecialAbility(MonsterModel monster, InitiativeTrackerDB db, MonsterSpecialAbility specialAbility)
+        internal void AddSpecialAbility(MonsterModel monster, InitiativeTrackerDB db, MonsterSpecialAbilityModel specialAbility)
         {
             SpecialAbility specialAbility1 = new SpecialAbility()
             {
                 Name = specialAbility.name,
                 Desc = specialAbility.desc,
                 MonsterName = monster.name,
+                IsDC = false,
+                IsUsage = false
             };
 
             if (specialAbility.dc != null)
             {
-                AddSpecialAbilityDifficultyClass(monster, specialAbility, db);
+                specialAbility1.IsDC = true;
             }
 
             if (specialAbility.usage != null)
             {
-                AddSpecialAbilityUsage(monster, specialAbility, db);
+                specialAbility1.IsUsage = true;
             }
 
             try
@@ -87,9 +89,16 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 }
 
             }
+
+
+            if (specialAbility.dc != null)
+            {
+                AddSpecialAbilityDifficultyClass(monster, specialAbility, db);
+            }
+
         }
 
-        internal void AddSpecialAbilityDifficultyClass(MonsterModel monster, MonsterSpecialAbility specialAbility, InitiativeTrackerDB db)
+        internal void AddSpecialAbilityDifficultyClass(MonsterModel monster, MonsterSpecialAbilityModel specialAbility, InitiativeTrackerDB db)
         {
             DifficultyClass difficultyClass = new DifficultyClass
             {
@@ -137,7 +146,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
             }
         }
 
-        internal void AddSpecialAbilityUsage(MonsterModel monster, MonsterSpecialAbility specialAbility, InitiativeTrackerDB db)
+        internal void AddSpecialAbilityUsage(MonsterModel monster, MonsterSpecialAbilityModel specialAbility, InitiativeTrackerDB db)
         {
             Usage usage = new Usage()
             {

@@ -19,7 +19,7 @@ namespace DatabaseModel.Databases
         [StringLength(200)]
         public string SpellName {  get; set; }
 
-
+        public bool IsUsage {  get; set; }
 
         public Monster Monster { get; set; }
 

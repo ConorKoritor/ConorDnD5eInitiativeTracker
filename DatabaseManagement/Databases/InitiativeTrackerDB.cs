@@ -13,7 +13,7 @@ namespace DatabaseModel.Databases
         }
 
         public virtual DbSet<Ability> Abilities { get; set; }
-        public virtual DbSet<CombatAction> Actions { get; set; }
+        public virtual DbSet<CombatAction> CombatActions { get; set; }
         public virtual DbSet<ArmorClass> ArmorClasses { get; set; }
         public virtual DbSet<ConditionImmunity> ConditionImmunities { get; set; }
         public virtual DbSet<Damage> Damages { get; set; }
@@ -36,33 +36,8 @@ namespace DatabaseModel.Databases
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CombatAction>()
-                .HasMany(e => e.Damages)
-                .WithOptional(e => e.Action)
-                .HasForeignKey(e => new { e.ActionName, e.ActionMonsterName });
-
-            modelBuilder.Entity<CombatAction>()
-                .HasMany(e => e.DifficultyClasses)
-                .WithOptional(e => e.Action)
-                .HasForeignKey(e => new { e.ActionName, e.ActionMonsterName });
-
-            modelBuilder.Entity<LegendaryAction>()
-                .HasMany(e => e.Damages)
-                .WithOptional(e => e.LegendaryAction)
-                .HasForeignKey(e => new { e.LegendaryActionName, e.LegendaryActionMonsterName });
-
-            modelBuilder.Entity<LegendaryAction>()
-                .HasMany(e => e.DifficultyClasses)
-                .WithOptional(e => e.LegendaryAction)
-                .HasForeignKey(e => new { e.LegendaryActionName, e.LegendaryActionMonsterName });
-
             modelBuilder.Entity<Monster>()
                 .HasMany(e => e.Abilities)
-                .WithRequired(e => e.Monster)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Monster>()
-                .HasMany(e => e.Actions)
                 .WithRequired(e => e.Monster)
                 .WillCascadeOnDelete(false);
 
@@ -103,6 +78,11 @@ namespace DatabaseModel.Databases
 
             modelBuilder.Entity<Monster>()
                 .HasMany(e => e.SpellMonsters)
+                .WithRequired(e => e.Monster)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Monster>()
+                .HasMany(e => e.Senses)
                 .WithRequired(e => e.Monster)
                 .WillCascadeOnDelete(false);
 
@@ -151,6 +131,14 @@ namespace DatabaseModel.Databases
                 .HasMany(e => e.SpellMonsters)
                 .WithRequired(e => e.Spell)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Monster>()
+                .HasMany(m => m.CombatActions)
+                .WithRequired(ca => ca.Monster)
+                .HasForeignKey(ca => ca.MonsterName)
+                .WillCascadeOnDelete(false);
         }
+
+
     }
 }

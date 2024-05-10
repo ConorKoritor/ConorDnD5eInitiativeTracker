@@ -34,7 +34,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 {
                     foreach (var validationError in entityValidationErrors.ValidationErrors)
                     {
-                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                        Console.WriteLine("Property: " + validationError.PropertyName + "For Monster: " + monster.name  + " Error: " + validationError.ErrorMessage);
                     }
                 }
             }

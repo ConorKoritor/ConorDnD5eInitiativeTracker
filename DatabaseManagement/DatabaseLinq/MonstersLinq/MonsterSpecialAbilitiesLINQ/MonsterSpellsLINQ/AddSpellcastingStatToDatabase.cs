@@ -12,7 +12,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
 {
     internal class AddSpellcastingStatToDatabase
     {
-        internal void AddSpellcastingStats(MonsterModel monster, InitiativeTrackerDB db, MonsterSpecialAbility specialAbility)
+        internal void AddSpellcastingStats(MonsterModel monster, InitiativeTrackerDB db, MonsterSpecialAbilityModel specialAbility)
         {
             SpellCastingStat spellCastingStat = new SpellCastingStat()
             {
@@ -21,17 +21,22 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 DC = (short)specialAbility.spellcasting.level,
                 Modifier = (short)specialAbility.spellcasting.modifier,
                 School = specialAbility.spellcasting.school,
-                L1_Slots = (short)specialAbility.spellcasting.slots._1,
-                L2_Slots = (short)specialAbility.spellcasting.slots._2,
-                L3_Slots = (short)specialAbility.spellcasting.slots._3,
-                L4_Slots = (short)specialAbility.spellcasting.slots._4,
-                L5_Slots = (short)specialAbility.spellcasting.slots._5,
-                L6_Slots = (short)specialAbility.spellcasting.slots._6,
-                L7_Slots = (short)specialAbility.spellcasting.slots._7,
-                L8_Slots = (short)specialAbility.spellcasting.slots._8,
-                L9_Slots = (short)specialAbility.spellcasting.slots._9,
                 MonsterName = monster.name
             };
+
+            if(specialAbility.spellcasting.slots != null)
+            {
+
+                spellCastingStat.L1_Slots = (short)specialAbility.spellcasting.slots._1;
+                spellCastingStat.L2_Slots = (short)specialAbility.spellcasting.slots._2;
+                spellCastingStat.L3_Slots = (short)specialAbility.spellcasting.slots._3;
+                spellCastingStat.L4_Slots = (short)specialAbility.spellcasting.slots._4;
+                spellCastingStat.L5_Slots = (short)specialAbility.spellcasting.slots._5;
+                spellCastingStat.L6_Slots = (short)specialAbility.spellcasting.slots._6;
+                spellCastingStat.L7_Slots = (short)specialAbility.spellcasting.slots._7;
+                spellCastingStat.L8_Slots = (short)specialAbility.spellcasting.slots._8;
+                spellCastingStat.L9_Slots = (short)specialAbility.spellcasting.slots._9;
+            }
 
             try
             {

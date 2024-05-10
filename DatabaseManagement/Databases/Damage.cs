@@ -10,8 +10,7 @@ namespace DatabaseModel.Databases
     {
         public int Id { get; set; }
 
-        [Required]
-        public string Damage_Type { get; set; }
+        public string? Damage_Type { get; set; }
 
         [Required]
         public string Damage_Dice { get; set; }

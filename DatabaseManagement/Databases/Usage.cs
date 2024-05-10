@@ -18,12 +18,6 @@
         public string? ActionName { get; set; }
 
         [StringLength(200)]
-        public string? LegendaryActionMonsterName { get; set; }
-
-        [StringLength(200)]
-        public string? LegendaryActionName { get; set; }
-
-        [StringLength(200)]
         public string? SpecialAbilityMonsterName { get; set; }
 
         [StringLength(200)]
@@ -40,7 +34,5 @@
         public virtual SpecialAbility? SpecialAbility { get; set; }
 
         public virtual CombatAction? Action { get; set; }
-
-        public virtual LegendaryAction? LegendaryAction { get; set; }
     }
 }

@@ -10,48 +10,42 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DatabaseLinq.MonstersLinq
 {
-    internal class AddActionsToDatabase
+    internal class AddLegendaryActionsToDatabase
     {
-        internal void AddActions(MonsterModel monster, InitiativeTrackerDB db)
+        internal void AddLegendaryActions(MonsterModel monster, InitiativeTrackerDB db)
         {
-            foreach (var action in monster.actions)
+            foreach (var legendaryAction in monster.legendary_actions)
             {
-                AddEachActionToDatabase(monster, db, action);
+                AddEachLegendaryActionToDatabase(monster, db, legendaryAction);
             }
 
         }
 
-        internal void AddEachActionToDatabase(MonsterModel monster, InitiativeTrackerDB db, MonsterActionModel action)
+        internal void AddEachLegendaryActionToDatabase(MonsterModel monster, InitiativeTrackerDB db, MonsterLegendaryActionModel legendaryAction)
         {
-            CombatAction action1 = new CombatAction()
+            LegendaryAction legendaryAction1 = new LegendaryAction()
             {
-                Name = action.name,
-                Desc = action.desc,
-                Attack_Bonus = (short)action.attack_bonus,
+                Name = legendaryAction.name,
+                Desc = legendaryAction.desc,
+                Attack_Bonus = (short)legendaryAction.attack_bonus,
                 MonsterName = monster.name,
-                IsUsage = false,
                 IsDamage = false,
                 IsDC = false
             };
 
-            if (action.usage != null)
+            if (legendaryAction.damage != null)
             {
-                action1.IsUsage = true;
+                legendaryAction1.IsDamage = true;
             }
 
-            if (action.damage != null)
+            if (legendaryAction.dc != null)
             {
-                action1.IsDamage = true;
-            }
-
-            if (action.dc != null)
-            {
-                action1.IsDC = true;
+                legendaryAction1.IsDC = true;
             }
 
             try
             {
-                db.CombatActions.Add(action1);
+                db.LegendaryActions.Add(legendaryAction1);
             }
             catch (DbEntityValidationException ex)
             {
@@ -75,10 +69,10 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 }
                 foreach (var entry in ex.Entries)
                 {
-                    if (entry.Entity is CombatAction)
+                    if (entry.Entity is LegendaryAction)
                     {
                         // Handle the specific entity that caused the exception
-                        CombatAction entity = (CombatAction)entry.Entity;
+                        LegendaryAction entity = (LegendaryAction)entry.Entity;
                         // Log or handle the failed entity (e.g., display an error message)
                         Console.WriteLine($"Failed to save entity {entity.Name} of Monster {monster.name}: {ex.Message}");
                     }
@@ -86,22 +80,17 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
 
             }
 
-            
-
-            if (action.usage != null)
+            if (legendaryAction.damage != null)
             {
-                AddActionUsage(monster, db, action.usage, action);
+                AddLegendaryActionDamage(monster, db, legendaryAction.damage, legendaryAction);
             }
 
-            if (action.damage != null)
+            if (legendaryAction.dc != null)
             {
-                AddActionDamage(monster, db, action.damage, action);
+                AddActionDC(monster, db, legendaryAction.dc, legendaryAction);
             }
 
-            if (action.dc != null)
-            {
-                AddActionDC(monster, db, action.dc, action);
-            }
+
 
             try
             {
@@ -133,68 +122,17 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
             }
         }
 
-        internal void AddActionUsage(MonsterModel monster, InitiativeTrackerDB db, MonsterUsageModel usage, MonsterActionModel action)
+        internal void AddLegendaryActionDamage(MonsterModel monster, InitiativeTrackerDB db, List<MonsterDamageModel> damages, MonsterLegendaryActionModel legendaryAction)
         {
-            Usage usage1 = new Usage()
-            {
-                Type = usage.type,
-                Times = usage.times,
-                ActionName = action.name,
-                ActionMonsterName = monster.name
-            };
-
-            try
-            {
-                db.Usages.Add(usage1);
-            }
-            catch (DbEntityValidationException ex)
-            {
-                foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in entityValidationErrors.ValidationErrors)
-                    {
-                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                    }
-                }
-            }
-            catch (DbUpdateException ex)
-            {
-                Exception innerException = ex.InnerException;
-
-                // Handle the inner exception
-                if (innerException != null)
-                {
-                    // Log or handle the inner exception
-                    Console.WriteLine($"Inner Exception: {innerException.Message}");
-                }
-                foreach (var entry in ex.Entries)
-                {
-                    if (entry.Entity is Usage)
-                    {
-                        // Handle the specific entity that caused the exception
-                        Usage entity = (Usage)entry.Entity;
-                        // Log or handle the failed entity (e.g., display an error message)
-                        Console.WriteLine($"Failed to save entity {entity.Type} of Action {action.name} of Monster {monster.name}: {ex.Message}");
-                    }
-                }
-
-            }
-        }
-
-        internal void AddActionDamage(MonsterModel monster, InitiativeTrackerDB db, List<MonsterDamageModel> damages, MonsterActionModel action)
-        {
-            foreach(var damage in damages)
+            foreach (var damage in damages)
             {
                 Damage damage1 = new Damage()
-                {               
-                    Damage_Dice = damage.damage_dice,
-                    ActionName = action.name,
-                    ActionMonsterName = monster.name
-                };
-                if(damage.damage_type != null)
                 {
-                    damage1.Damage_Type = damage.damage_type.name;
-                }
+                    Damage_Type = damage.damage_type.name,
+                    Damage_Dice = damage.damage_dice,
+                    LegendaryActionName = legendaryAction.name,
+                    LegendaryActionMonsterName = monster.name
+                };
 
                 try
                 {
@@ -227,7 +165,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                             // Handle the specific entity that caused the exception
                             Damage entity = (Damage)entry.Entity;
                             // Log or handle the failed entity (e.g., display an error message)
-                            Console.WriteLine($"Failed to save entity {entity.Damage_Type} of Action {action.name} of Monster {monster.name}: {ex.Message}");
+                            Console.WriteLine($"Failed to save entity {entity.Damage_Type} of Action {legendaryAction.name} of Monster {monster.name}: {ex.Message}");
                         }
                     }
 
@@ -235,14 +173,14 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
             }
         }
 
-        internal void AddActionDC(MonsterModel monster, InitiativeTrackerDB db, MonsterDcModel dc, MonsterActionModel action)
+        internal void AddActionDC(MonsterModel monster, InitiativeTrackerDB db, MonsterDcModel dc, MonsterLegendaryActionModel legendaryAction)
         {
             DifficultyClass difficultyClass = new DifficultyClass()
             {
-                DC_Type =dc.dc_type.name,
+                DC_Type = dc.dc_type.name,
                 DC_Value = (short)dc.dc_value,
-                ActionName = action.name,
-                ActionMonsterName = monster.name
+                LegendaryActionName = legendaryAction.name,
+                LegendaryActionMonsterName = monster.name
             };
 
             try
@@ -276,7 +214,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                         // Handle the specific entity that caused the exception
                         DifficultyClass entity = (DifficultyClass)entry.Entity;
                         // Log or handle the failed entity (e.g., display an error message)
-                        Console.WriteLine($"Failed to save entity {entity.DC_Type} of Action {action.name} of Monster {monster.name}: {ex.Message}");
+                        Console.WriteLine($"Failed to save entity {entity.DC_Type} of Action {legendaryAction.name} of Monster {monster.name}: {ex.Message}");
                     }
                 }
 

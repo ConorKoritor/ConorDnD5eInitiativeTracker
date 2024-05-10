@@ -7,70 +7,70 @@ using System.Threading.Tasks;
 
 namespace ConorDnD5eInitiativeTracker.APIRequests
 {
-        public class MonsterAction
+        public class MonsterActionModel
         {
             public string name { get; set; }
             public string multiattack_type { get; set; }
             public string desc { get; set; }
-            public List<MonsterAction> actions { get; set; }
-            public int? attack_bonus { get; set; }
-            public Monster_Dc dc { get; set; }
-            public List<Monster_Damage> damage { get; set; }
-            public MonsterUsage usage { get; set; }
+            public List<MonsterActionModel> actions { get; set; }
+            public int attack_bonus { get; set; }
+            public MonsterDcModel dc { get; set; }
+            public List<MonsterDamageModel> damage { get; set; }
+            public MonsterUsageModel usage { get; set; }
             public string action_name { get; set; }
             public string count { get; set; }
             public string type { get; set; }
         }
 
-        public class MonsterArmorClass
+        public class MonsterArmorClassModel
         {
             public string type { get; set; }
             public int value { get; set; }
         }
 
-        public class Monster_Damage
+        public class MonsterDamageModel
         {
-            public Monster_DamageType damage_type { get; set; }
+            public MonsterDamageTypeModel damage_type { get; set; }
             public string damage_dice { get; set; }
         }
 
-        public class Monster_DamageType
+        public class MonsterDamageTypeModel
         {
             public string index { get; set; }
             public string name { get; set; }
             public string url { get; set; }
         }
 
-        public class Monster_Dc
+        public class MonsterDcModel
         {
-            public Monster_DcType dc_type { get; set; }
+            public MonsterDcTypeModel dc_type { get; set; }
             public int dc_value { get; set; }
             public string success_type { get; set; }
         }
 
-        public class Monster_DcType
+        public class MonsterDcTypeModel
         {
             public string index { get; set; }
             public string name { get; set; }
             public string url { get; set; }
         }
 
-        public class MonsterLegendaryAction
+        public class MonsterLegendaryActionModel
         {
             public string name { get; set; }
             public string desc { get; set; }
-            public int? attack_bonus { get; set; }
-            public Monster_Dc dc { get; set; }
-            public List<Monster_Damage> damage { get; set; }
+            public int attack_bonus { get; set; }
+            public MonsterDcModel dc { get; set; }
+            public List<MonsterDamageModel> damage { get; set; }
         }
 
-        public class MonsterProficiency
+        public class MonsterProficiencyModel
         {
             public int value { get; set; }
-            public Proficiency2 proficiency { get; set; }
+            public MonsterProficiencyTypeModel proficiency { get; set; }
         }
 
-        public class Proficiency2
+        public class MonsterProficiencyTypeModel
         {
             public string index { get; set; }
             public string name { get; set; }
@@ -84,35 +84,35 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public string size { get; set; }
             public string type { get; set; }
             public string alignment { get; set; }
-            public List<MonsterArmorClass> armor_class { get; set; }
+            public List<MonsterArmorClassModel> armor_class { get; set; }
             public int hit_points { get; set; }
             public string hit_dice { get; set; }
             public string hit_points_roll { get; set; }
-            public MonsterSpeed speed { get; set; }
+            public MonsterSpeedModel speed { get; set; }
             public int strength { get; set; }
             public int dexterity { get; set; }
             public int constitution { get; set; }
             public int intelligence { get; set; }
             public int wisdom { get; set; }
             public int charisma { get; set; }
-            public List<MonsterProficiency> proficiencies { get; set; }
+            public List<MonsterProficiencyModel> proficiencies { get; set; }
             public List<object> damage_vulnerabilities { get; set; }
             public List<object> damage_resistances { get; set; }
             public List<object> damage_immunities { get; set; }
-            public List<MonsterConditionImmunity> condition_immunities { get; set; }
-            public Senses senses { get; set; }
+            public List<MonsterConditionImmunityModel> condition_immunities { get; set; }
+            public MonsterSensesModel senses { get; set; }
             public string languages { get; set; }
             public double challenge_rating { get; set; }
             public int proficiency_bonus { get; set; }
             public int xp { get; set; }
-            public List<MonsterSpecialAbility> special_abilities { get; set; }
-            public List<MonsterAction> actions { get; set; }
-            public List<MonsterLegendaryAction> legendary_actions { get; set; }
+            public List<MonsterSpecialAbilityModel> special_abilities { get; set; }
+            public List<MonsterActionModel> actions { get; set; }
+            public List<MonsterLegendaryActionModel> legendary_actions { get; set; }
             public string image { get; set; }
             public string url { get; set; }
         }
 
-        public class Senses
+        public class MonsterSensesModel
         {
             public string darkvision { get; set; }
             public int passive_perception { get; set; }
@@ -121,23 +121,23 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public string tremorsense {  get; set; }
         }
 
-        public class MonsterConditionImmunity
+        public class MonsterConditionImmunityModel
         {
             public string index { get; set; }
             public string name { get; set; }
             public string url { get; set; }
         }
 
-        public class MonsterSpecialAbility
+        public class MonsterSpecialAbilityModel
         {
             public string name { get; set; }
             public string desc { get; set; }
-            public MonsterUsage usage { get; set; }
-            public Monster_Dc dc { get; set; }
-            public Spellcasting spellcasting { get; set; }
+            public MonsterUsageModel usage { get; set; }
+            public MonsterDcModel dc { get; set; }
+            public MonsterSpellcastingModel spellcasting { get; set; }
         }
 
-        public class MonsterSpeed
+        public class MonsterSpeedModel
         {
             public string walk { get; set; }
             public string swim { get; set; }
@@ -146,41 +146,41 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
             public string climb { get; set; }
         }
 
-        public class MonsterUsage
+        public class MonsterUsageModel
         {
             public string type { get; set; }
             public int times { get; set; }
             public List<object> rest_types { get; set; }
         }
 
-        public class Spellcasting_Ability
+        public class MonsterSpellcastingAbilityModel
         {
             public string index { get; set; }
             public string name { get; set; }
             public string url { get; set; }
         }
 
-        public class Monster_Spell
+        public class MonsterSpellModel
         {
             public string name { get; set; }
             public int level { get; set; }
             public string url { get; set; }
-            public MonsterUsage usage { get; set; }
+            public MonsterUsageModel usage { get; set; }
         }
 
-        public class Spellcasting
+        public class MonsterSpellcastingModel
         {
-            public Spellcasting_Ability ability { get; set; }
+            public MonsterSpellcastingAbilityModel ability { get; set; }
             public int dc { get; set; }
             public int level { get; set; }
             public int modifier { get; set; }
             public string school { get; set; }
-            public MonsterSpellSlots slots { get; set; }
+            public MonsterSpellSlotsModel slots { get; set; }
             public List<string> components_required { get; set; }
-            public List<Monster_Spell> spells { get; set; }
+            public List<MonsterSpellModel> spells { get; set; }
         }
 
-        public class MonsterSpellSlots
+        public class MonsterSpellSlotsModel
         {
             [JsonProperty("1")]
             public int _1 { get; set; }

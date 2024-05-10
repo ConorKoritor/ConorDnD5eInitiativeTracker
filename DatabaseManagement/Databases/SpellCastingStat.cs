@@ -10,14 +10,14 @@ namespace DatabaseModel.Databases
     {
         public int Id { get; set; }
 
-        public short Level { get; set; }
+        public short? Level { get; set; }
 
         [Required]
         public string Ability { get; set; }
 
-        public short DC { get; set; }
+        public short? DC { get; set; }
 
-        public short Modifier { get; set; }
+        public short? Modifier { get; set; }
 
         
         public string? School { get; set; }

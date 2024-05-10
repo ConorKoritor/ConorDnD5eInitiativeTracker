@@ -8,32 +8,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModel.DatabaseLinq.MonstersLinq
+namespace DatabaseModel.DatabaseLinq.SpellsLinq
 {
-    internal class AddProficienciesToDatabase
+    internal class AddSpellHealingStats
     {
-        internal void AddProficiencies(MonsterModel monster, InitiativeTrackerDB db)
+        internal void AddSpellHealing(SpellModel spellResult, InitiativeTrackerDB db)
         {
-            if (monster.proficiencies != null)
+            SpellHealing spellHealing = new SpellHealing
             {
-                foreach (var proficiency in monster.proficiencies)
-                {
-                    AddProficiencyToDatabase(proficiency, monster, db);
-                }
-            }
-        }
-
-        internal void AddProficiencyToDatabase(MonsterProficiencyModel proficiency, MonsterModel monster, InitiativeTrackerDB db)
-        {
-            Proficiency proficiency1 = new Proficiency
-            {
-                Bonus = (short)proficiency.value,
-                Name = proficiency.proficiency.name,
-                MonsterName = monster.name
+                Healing_L1 = spellResult.heal_at_slot_level._1,
+                Healing_L2 = spellResult.heal_at_slot_level._2,
+                Healing_L3 = spellResult.heal_at_slot_level._3,
+                Healing_L4 = spellResult.heal_at_slot_level._4,
+                Healing_L5 = spellResult.heal_at_slot_level._5,
+                Healing_L6 = spellResult.heal_at_slot_level._6,
+                Healing_L7 = spellResult.heal_at_slot_level._7,
+                Healing_L8 = spellResult.heal_at_slot_level._8,
+                Healing_L9 = spellResult.heal_at_slot_level._9,
+                SpellName = spellResult.name
             };
             try
             {
-                db.Proficiencies.Add(proficiency1);
+                db.SpellHealings.Add(spellHealing);
             }
             catch (DbEntityValidationException ex)
             {
@@ -57,12 +53,12 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 }
                 foreach (var entry in ex.Entries)
                 {
-                    if (entry.Entity is Proficiency)
+                    if (entry.Entity is SpellHealing)
                     {
                         // Handle the specific entity that caused the exception
-                        Proficiency entity = (Proficiency)entry.Entity;
+                        SpellHealing entity = (SpellHealing)entry.Entity;
                         // Log or handle the failed entity (e.g., display an error message)
-                        Console.WriteLine($"Failed to save entity {entity.Name} of Monster {monster.name}: {ex.Message}");
+                        Console.WriteLine($"Failed to save Healing entity {entity.SpellName}: {ex.Message}");
                     }
                 }
 

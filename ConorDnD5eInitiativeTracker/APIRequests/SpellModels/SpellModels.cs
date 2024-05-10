@@ -10,27 +10,27 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
 {
     //Models for API /spell/{spellName}
     //Response comes with many JSON Objects that are all represented here. Not all will be needed for program but I would rather it work and have too many properties
-    public class AreaOfEffect
+    public class SpellAreaOfEffectModel
     {
         public string type { get; set; }
         public int size { get; set; }
     }
 
-    public class Class
+    public class SpellClassModel
     {
         public string index { get; set; }
         public string name { get; set; }
         public string url { get; set; }
     }
 
-    public class Damage
+    public class SpellDamageModel
     {
-        public DamageType damage_type { get; set; }
-        public DamageAtSlotLevel damage_at_slot_level { get; set; }
-        public DamageAtCharacterLevel damage_at_character_level {  get; set; }
+        public SpellDamageTypeModel damage_type { get; set; }
+        public SpellDamageAtSlotLevelModel damage_at_slot_level { get; set; }
+        public SpellDamageAtCharacterLevelModel damage_at_character_level {  get; set; }
     }
 
-    public class DamageAtCharacterLevel
+    public class SpellDamageAtCharacterLevelModel
     {
         [JsonProperty("1")]
         public string _1 { get; set; }
@@ -93,7 +93,7 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
         public string _20 { get; set; }
     }
 
-    public class DamageAtSlotLevel
+    public class SpellDamageAtSlotLevelModel
     {
         [JsonProperty("1")]
         public string _1 { get; set; }
@@ -123,7 +123,7 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
         public string _9 { get; set; }
     }
 
-    public class HealAtSlotLevel
+    public class SpellHealAtSlotLevelModel
     {
         [JsonProperty("1")]
         public string _1 { get; set; }
@@ -153,20 +153,20 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
         public string _9 { get; set; }
     }
 
-    public class DamageType
+    public class SpellDamageTypeModel
     {
         public string index { get; set; }
         public string name { get; set; }
         public string url { get; set; }
     }
 
-    public class Dc
+    public class SpellDcModel
     {
-        public DcType dc_type { get; set; }
+        public SpellDcTypeModel dc_type { get; set; }
         public string dc_success { get; set; }
     }
 
-    public class DcType
+    public class SpellDcTypeModel
     {
         public string index { get; set; }
         public string name { get; set; }
@@ -187,24 +187,24 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
         public bool concentration { get; set; }
         public string casting_time { get; set; }
         public int level { get; set; }
-        public Damage damage { get; set; }
-        public Dc dc { get; set; }
-        public AreaOfEffect area_of_effect { get; set; }
-        public School school { get; set; }
-        public List<Class> classes { get; set; }
-        public List<Subclass> subclasses { get; set; }
+        public SpellDamageModel damage { get; set; }
+        public SpellDcModel dc { get; set; }
+        public SpellAreaOfEffectModel area_of_effect { get; set; }
+        public SpellSchoolModel school { get; set; }
+        public List<SpellClassModel> classes { get; set; }
+        public List<SpellSubclassModel> subclasses { get; set; }
         public string url { get; set; }
-        public HealAtSlotLevel heal_at_slot_level { get; set; }
+        public SpellHealAtSlotLevelModel heal_at_slot_level { get; set; }
     }
 
-    public class School
+    public class SpellSchoolModel
     {
         public string index { get; set; }
         public string name { get; set; }
         public string url { get; set; }
     }
 
-    public class Subclass
+    public class SpellSubclassModel
     {
         public string index { get; set; }
         public string name { get; set; }

@@ -79,6 +79,17 @@ namespace DnDInitiativeTrackerTest.JSONTests
             Assert.That(monsters[0].senses.darkvision, Is.EqualTo("120 ft."));
         }
         [Test]
+        public void Pulling_Monster_Blindsight_From_Api_Test()
+        {
+            //Arrange and Act taken care of in setup so I dont have to pull from the api multiple times
+
+            //Assert
+            //Based on API Data for Aboleth which should be the first request made
+            //Testing for Senses
+            Assert.That(monsters[278].senses.blindsight, Is.EqualTo("120 ft."));
+            Assert.That(monsters[278].name, Is.EqualTo("Tarrasque"));
+        }
+        [Test]
         public void Pulling_Monster_Actions_From_Api_Test()
         {
             //Arrange and Act taken care of in setup so I dont have to pull from the api multiple times
@@ -89,6 +100,8 @@ namespace DnDInitiativeTrackerTest.JSONTests
             Assert.That(monsters[0].actions[1].name, Is.EqualTo("Tentacle"));
             Assert.That(monsters[0].actions[1].attack_bonus, Is.EqualTo(9));
         }
+
+
         [Test]
         public void Pulling_Monster_Damage_From_Api_Test()
         {

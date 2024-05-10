@@ -13,7 +13,7 @@ namespace DatabaseModel.Databases
         public Monster()
         {
             Abilities = new HashSet<Ability>();
-            Actions = new HashSet<CombatAction>();
+            CombatActions = new HashSet<CombatAction>();
             ArmorClasses = new HashSet<ArmorClass>();
             ConditionImmunities = new HashSet<ConditionImmunity>();
             LegendaryActions = new HashSet<LegendaryAction>();
@@ -52,8 +52,7 @@ namespace DatabaseModel.Databases
         [Required]
         public string Alignment { get; set; }
 
-        [Required]
-        public string Languages { get; set; }
+        public string? Languages { get; set; }
 
         public double Challenge_Rating { get; set; }
 
@@ -66,14 +65,14 @@ namespace DatabaseModel.Databases
         public string Damage_Immunities { get; set; }
 
         public bool IsSpellcaster { get; set; }
-        [Required]
-        public string Image {  get; set; }
+        
+        public string? Image {  get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ability> Abilities { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CombatAction> Actions { get; set; }
+        public virtual ICollection<CombatAction> CombatActions { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ArmorClass> ArmorClasses { get; set; }

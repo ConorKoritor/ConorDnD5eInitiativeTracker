@@ -8,6 +8,7 @@ namespace DatabaseModel.Databases
 
     public partial class SpellDamageAtCharacterLevel
     {
+        [Key]
         public int Id { get; set; }
 
         public string? Damage_Type { get; set; }

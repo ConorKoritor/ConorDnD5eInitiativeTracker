@@ -8,12 +8,6 @@ namespace DatabaseModel.Databases
 
     public partial class LegendaryAction
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LegendaryAction()
-        {
-            Damages = new HashSet<Damage>();
-            DifficultyClasses = new HashSet<DifficultyClass>();
-        }
 
         [Key]
         [Column(Order = 0)]
@@ -25,16 +19,13 @@ namespace DatabaseModel.Databases
 
         public short? Attack_Bonus { get; set; }
 
+        public bool IsDamage { get; set; }
+        public bool IsDC { get; set; }
+
         [Key]
         [Column(Order = 1)]
         [StringLength(200)]
         public string MonsterName { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Damage> Damages { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DifficultyClass> DifficultyClasses { get; set; }
 
         public virtual Monster Monster { get; set; }
     }

@@ -6,24 +6,22 @@ namespace  DatabaseModel.Databases
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Senses")]
     public partial class Sense
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         public short Passive_Perception { get; set; }
 
-        [StringLength(50)]
+        
         public string? Darkvision { get; set; }
 
-        [StringLength(50)]
+        
         public string? Truesight { get; set; }
 
-        [StringLength(50)]
+        
         public string? Blindsight { get; set; }
 
-        [StringLength(50)]
+        
         public string? Tremorsense { get; set; }
 
         [StringLength(200)]

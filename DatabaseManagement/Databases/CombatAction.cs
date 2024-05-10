@@ -8,12 +8,6 @@ namespace DatabaseModel.Databases
 
     public partial class CombatAction
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CombatAction()
-        {
-            Damages = new HashSet<Damage>();
-            DifficultyClasses = new HashSet<DifficultyClass>();
-        }
 
         [Key]
         [Column(Order = 0)]
@@ -25,21 +19,14 @@ namespace DatabaseModel.Databases
 
         public short? Attack_Bonus { get; set; }
 
-        public string Usage_Type { get; set; }
-
-        public short? Usage_Times { get; set; }
+        public bool IsDamage {  get; set; }
+        public bool IsDC {  get; set; }
+        public bool IsUsage {  get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(200)]
         public string MonsterName { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Damage> Damages { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DifficultyClass> DifficultyClasses { get; set; }
-
         public virtual Monster Monster { get; set; }
     }
 }

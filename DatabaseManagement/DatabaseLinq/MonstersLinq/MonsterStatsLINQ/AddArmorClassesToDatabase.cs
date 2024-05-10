@@ -23,7 +23,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
             }
 
         }
-        internal void AddEachArmorClassToDatabase(MonsterArmorClass ac, InitiativeTrackerDB db, MonsterModel monster)
+        internal void AddEachArmorClassToDatabase(MonsterArmorClassModel ac, InitiativeTrackerDB db, MonsterModel monster)
         {
             ArmorClass armorClass = new ArmorClass
             {

@@ -17,6 +17,9 @@ namespace DatabaseModel.Databases
         [Required]
         public string Desc { get; set; }
 
+        public bool IsDC {  get; set; }
+        public bool IsUsage {  get; set; }
+
         [Key]
         [Column(Order = 1)]
         [Required]

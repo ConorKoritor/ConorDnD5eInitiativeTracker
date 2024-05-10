@@ -57,6 +57,10 @@ namespace DatabaseModel.Databases
         public string DC_Type { get; set; }
 
         public string DC_Success { get; set; }
+        public bool IsDamage { get; set; }
+        public bool IsDC { get; set; }
+        public bool IsHeal {  get; set; }
+        
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DifficultyClass> DifficultyClasses { get; set; }

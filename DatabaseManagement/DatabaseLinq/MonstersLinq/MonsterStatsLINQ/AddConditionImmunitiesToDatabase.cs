@@ -20,7 +20,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
             }
         }
 
-        internal void AddEachConditionImmunityToDatabase(MonsterConditionImmunity conditionImmunity, MonsterModel monster, InitiativeTrackerDB db)
+        internal void AddEachConditionImmunityToDatabase(MonsterConditionImmunityModel conditionImmunity, MonsterModel monster, InitiativeTrackerDB db)
         {
             ConditionImmunity conditionImmunity1 = new ConditionImmunity()
             {

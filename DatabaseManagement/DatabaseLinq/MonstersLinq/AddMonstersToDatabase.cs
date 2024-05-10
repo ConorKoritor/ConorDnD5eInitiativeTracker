@@ -1,88 +1,17 @@
-﻿using System;
+﻿using ConorDnD5eInitiativeTracker.APIRequests;
+using DatabaseModel.Databases;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Runtime.Intrinsics.X86;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using ConorDnD5eInitiativeTracker.APIRequests;
-using DatabaseModel.DatabaseLinq.SpellsLinq;
-using DatabaseModel.Databases;
 
 namespace DatabaseModel.DatabaseLinq.MonstersLinq
 {
     internal class AddMonstersToDatabase
     {
-
-        List<MonsterModel> monsters = new List<MonsterModel>();
-        AddArmorClassesToDatabase addArmorClassesToDatabase = new AddArmorClassesToDatabase();
-        AddSpeedsToDatabase addSpeedsToDatabase = new AddSpeedsToDatabase();
-        AddAbilitiesToDatabase addAbilitiesToDatabase = new AddAbilitiesToDatabase();
-        AddProficienciesToDatabase addProficienciesToDatabase = new AddProficienciesToDatabase();
-        AddSensesToDatabase addSensesToDatabase = new AddSensesToDatabase();
-        AddConditionImmunitiesToDatabase addConditionImmunitiesToDatabase = new AddConditionImmunitiesToDatabase();
-        AddSpecialAbilitiesToDatabase addSpecialAbilitiesToDatabase = new AddSpecialAbilitiesToDatabase();
-        AddActionsToDatabase addActionsToDatabase = new AddActionsToDatabase();
-
-        public async Task InsertToMonstersTable(InitiativeTrackerDB db)
-        {
-            Console.WriteLine("Getting Monsters");
-            monsters = await GetMonsters();
-
-            Console.WriteLine("Monsters Retrieved, Looping through spells");
-            await LoopThroughMonstersAndSaveToDatabase(db);
-        }
-
-        public async Task LoopThroughMonstersAndSaveToDatabase(InitiativeTrackerDB db)
-        {
-            foreach (var monster in monsters)
-            {
-                Console.WriteLine("Adding Monster " + monster.name);
-                AddMonster(monster, db);
-                addArmorClassesToDatabase.AddArmorClasses(monster, db);
-                addSpeedsToDatabase.AddSpeeds(monster, db);
-                addAbilitiesToDatabase.AddAbilities(monster, db);
-                addProficienciesToDatabase.AddProficiencies(monster, db);
-                addSensesToDatabase.AddSenses(monster, db);
-                addConditionImmunitiesToDatabase.AddConditionImmunities(monster, db);
-                addSpecialAbilitiesToDatabase.CheckSpecialAbilities(monster, db);
-                addActionsToDatabase.AddActions(monster, db);
-            }
-
-            try
-            {
-                Console.WriteLine("Trying to save database");
-                await db.SaveChangesAsync();
-                
-            }
-            catch (DbEntityValidationException ex)
-            {
-                foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in entityValidationErrors.ValidationErrors)
-                    {
-                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                    }
-                }
-            }
-            catch (DbUpdateException ex)
-            {
-                Exception innerException = ex.InnerException;
-
-                // Handle the inner exception
-                if (innerException != null)
-                {
-                    // Log or handle the inner exception
-                    Console.WriteLine($"Inner Exception: {innerException}");
-                }
-            }
-            Console.WriteLine("Database Saved");
-        }
-
         internal void AddMonster(MonsterModel monster, InitiativeTrackerDB db)
         {
             double initiativeModifierSetup = (monster.dexterity - 10) / 2;
@@ -107,9 +36,9 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 Image = monster.image
             };
 
-            foreach(var ability in monster.special_abilities)
+            foreach (var ability in monster.special_abilities)
             {
-                if(ability.spellcasting != null)
+                if (ability.spellcasting != null)
                 {
                     monster1.IsSpellcaster = true;
                 }
@@ -125,7 +54,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 {
                     foreach (var validationError in entityValidationErrors.ValidationErrors)
                     {
-                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                        Console.WriteLine("Property: " + validationError.PropertyName + "For Monster: " + monster.name + " Error: " + validationError.ErrorMessage);
                     }
                 }
             }
@@ -151,18 +80,6 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 }
 
             }
-        }
-
- 
-        public async Task<List<MonsterModel>> GetMonsters()
-        {
-            MonsterAPIRequests monstersDictionaryAPI = new MonsterAPIRequests();
-
-            await monstersDictionaryAPI.PullMonsterListFromAPI();
-
-            await monstersDictionaryAPI.PullMonstersFromAPI();
-
-            return monstersDictionaryAPI.GetMonstersAPI();
         }
     }
 }
