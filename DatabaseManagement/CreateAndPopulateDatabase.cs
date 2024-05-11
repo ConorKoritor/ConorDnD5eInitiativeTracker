@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using ConorDnD5eInitiativeTracker.APIRequests;
+using DatabaseModel.APIRequests;
 using DatabaseModel.DatabaseLinq.MonstersLinq;
 using DatabaseModel.DatabaseLinq.SpellsLinq;
 using DatabaseModel.Databases;

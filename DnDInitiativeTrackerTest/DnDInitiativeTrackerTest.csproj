@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConorDnD5eInitiativeTracker\ConorDnD5eInitiativeTracker.csproj" />
+    <ProjectReference Include="..\DatabaseManagement\DatabaseModel.csproj" />
   </ItemGroup>
 
 </Project>

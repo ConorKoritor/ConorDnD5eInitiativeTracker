@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConorDnD5eInitiativeTracker.APIRequests
+namespace DatabaseModel.APIRequests
 {
     //Models for API /monsters
     public class MonsterDictionaryResponseModel

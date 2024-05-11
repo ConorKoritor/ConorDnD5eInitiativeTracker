@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConorDnD5eInitiativeTracker.APIRequests
+namespace DatabaseModel.APIRequests
 {
         public class MonsterActionModel
         {

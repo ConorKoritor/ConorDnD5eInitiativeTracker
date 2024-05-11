@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConorDnD5eInitiativeTracker.APIRequests;
+using DatabaseModel.APIRequests;
 using NUnit.Framework;
 
 namespace DnDInitiativeTrackerTest.JSONTests

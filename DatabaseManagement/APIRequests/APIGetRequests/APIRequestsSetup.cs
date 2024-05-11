@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Moq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 
-namespace ConorDnD5eInitiativeTracker.APIRequests
+namespace DatabaseModel.APIRequests
 {
     //Sets up Api Client
     public static class InitializeAPI

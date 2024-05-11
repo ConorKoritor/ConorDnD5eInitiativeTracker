@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConorDnD5eInitiativeTracker.APIRequests
+namespace DatabaseModel.APIRequests
 {
     //TODO: If I have Time add conditions functionality
     //Pulls down dictionary of Consitions from the API and saves them

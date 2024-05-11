@@ -11,9 +11,10 @@ namespace DatabaseModel.Databases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PlayerCharacterBasic()
         {
-            Scenarios = new HashSet<Scenario>();
+            Scenarios = new HashSet<PlayerScenarioTable>();
         }
 
+        [Key]
         public int Id { get; set; }
 
         public int HP { get; set; }
@@ -26,6 +27,6 @@ namespace DatabaseModel.Databases
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Scenario> Scenarios { get; set; }
+        public virtual ICollection<PlayerScenarioTable> Scenarios { get; set; }
     }
 }

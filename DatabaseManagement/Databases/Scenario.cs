@@ -11,19 +11,19 @@ namespace DatabaseModel.Databases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Scenario()
         {
-            PlayerCharacterBasics = new HashSet<PlayerCharacterBasic>();
-            Monsters = new HashSet<Monster>();
+            Players = new HashSet<PlayerScenarioTable>();
+            Monsters = new HashSet<MonsterScenarioTable>();
         }
 
+        [Key]
         public int Id { get; set; }
 
-        [Required]
         public string Scenario_Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlayerCharacterBasic> PlayerCharacterBasics { get; set; }
+        public virtual ICollection<PlayerScenarioTable> Players { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Monster> Monsters { get; set; }
+        public virtual ICollection<MonsterScenarioTable> Monsters { get; set; }
     }
 }

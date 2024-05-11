@@ -82,19 +82,29 @@ namespace DatabaseModel.Databases
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Monster>()
-                .HasMany(e => e.Senses)
+                .HasMany(e => e.Scenarios)
                 .WithRequired(e => e.Monster)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Monster>()
-                .HasMany(e => e.Scenarios)
-                .WithMany(e => e.Monsters)
-                .Map(m => m.ToTable("MonsterScenarioTables").MapLeftKey("MonsterName").MapRightKey("ScenarioId"));
-
             modelBuilder.Entity<PlayerCharacterBasic>()
                 .HasMany(e => e.Scenarios)
-                .WithMany(e => e.PlayerCharacterBasics)
-                .Map(m => m.ToTable("CharacterScenarioTables").MapLeftKey("PlayerCharacterBasicId").MapRightKey("ScenarioId"));
+                .WithRequired(e => e.Player)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Scenario>()
+                .HasMany(e => e.Players)
+                .WithRequired(e => e.Scenario)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Scenario>()
+                .HasMany(e => e.Monsters)
+                .WithRequired(e => e.Scenario)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Monster>()
+                .HasMany(e => e.Senses)
+                .WithRequired(e => e.Monster)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Sense>()
                 .Property(e => e.Darkvision)

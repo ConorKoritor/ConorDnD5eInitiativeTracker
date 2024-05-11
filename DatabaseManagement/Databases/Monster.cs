@@ -1,6 +1,6 @@
 namespace DatabaseModel.Databases
 {
-    using ConorDnD5eInitiativeTracker.APIRequests;
+    using DatabaseModel.APIRequests;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -22,7 +22,7 @@ namespace DatabaseModel.Databases
             SpecialAbilities = new HashSet<SpecialAbility>();
             Speeds = new HashSet<Speed>();
             SpellCastingStats = new HashSet<SpellCastingStat>();
-            Scenarios = new HashSet<Scenario>();
+            Scenarios = new HashSet<MonsterScenarioTable>();
             SpellMonsters = new HashSet<MonsterSpellTable>();
         }
 
@@ -96,9 +96,9 @@ namespace DatabaseModel.Databases
         public virtual ICollection<SpellCastingStat> SpellCastingStats { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Scenario> Scenarios { get; set; }
+        public virtual ICollection<MonsterSpellTable> SpellMonsters { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MonsterSpellTable> SpellMonsters { get; set; }
+        public virtual ICollection<MonsterScenarioTable> Scenarios { get; set; }
     }
 }

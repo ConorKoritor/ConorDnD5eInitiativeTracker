@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ConorDnD5eInitiativeTracker.APIRequests;
 
 namespace ConorDnD5eInitiativeTracker
 {
@@ -22,7 +21,6 @@ namespace ConorDnD5eInitiativeTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        MonsterAPIRequests monsterDictionaryAPI = new MonsterAPIRequests();
         public MainWindow()
         {
             InitializeComponent();

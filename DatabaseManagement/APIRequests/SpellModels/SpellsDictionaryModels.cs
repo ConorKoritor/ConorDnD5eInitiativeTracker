@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConorDnD5eInitiativeTracker.APIRequests
+namespace DatabaseModel.APIRequests
 {
     //These are models for pulling down from the api /spells
     public class SpellDictionaryResponseModel

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConorDnD5eInitiativeTracker.APIRequests
+namespace DatabaseModel.APIRequests
 {
     //Models for API /spell/{spellName}
     //Response comes with many JSON Objects that are all represented here. Not all will be needed for program but I would rather it work and have too many properties
