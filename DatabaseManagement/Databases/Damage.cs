@@ -11,6 +11,7 @@ namespace DatabaseModel.Databases
         public int Id { get; set; }
 
         public string? Damage_Type { get; set; }
+        public bool IsOption {  get; set; }
 
         [Required]
         public string Damage_Dice { get; set; }

@@ -37,6 +37,37 @@ namespace DatabaseModel.DatabaseLinq.SpellsLinq
                 Console.WriteLine("Adding Spell " + spellResult.name);
                 addSpellsToDatabase.AddSpell(spellResult, db);
                 checkHealingOrDamage.CheckSpellHealingOrDamage(spellResult, db);
+
+
+
+                try
+                {
+                    Console.WriteLine("Trying to save database");
+                    db.SaveChanges();
+                    Console.WriteLine("Database Saved");
+
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in entityValidationErrors.ValidationErrors)
+                        {
+                            Console.WriteLine("Property: " + validationError.PropertyName + "Of Spell: " + spellResult.name + " Error: " + validationError.ErrorMessage);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    Exception innerException = ex.InnerException;
+
+                    // Handle the inner exception
+                    if (innerException != null)
+                    {
+                        // Log or handle the inner exception
+                        Console.WriteLine($"Inner Exception: {innerException}");
+                    }
+                }
             }
 
         }

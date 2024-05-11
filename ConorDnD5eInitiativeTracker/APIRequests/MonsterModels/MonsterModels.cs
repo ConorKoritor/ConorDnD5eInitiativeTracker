@@ -32,9 +32,13 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
         {
             public MonsterDamageTypeModel damage_type { get; set; }
             public string damage_dice { get; set; }
+            public int? choose { get; set; }
+            public string choice_type { get; set; }
+            public MonsterFromModel from { get; set; }
+            public MonsterDcModel dc { get; set; }
         }
 
-        public class MonsterDamageTypeModel
+    public class MonsterDamageTypeModel
         {
             public string index { get; set; }
             public string name { get; set; }
@@ -149,6 +153,8 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
         public class MonsterUsageModel
         {
             public string type { get; set; }
+            public string dice {  get; set; }
+            public int min_value {  get; set; }
             public int times { get; set; }
             public List<object> rest_types { get; set; }
         }
@@ -211,7 +217,17 @@ namespace ConorDnD5eInitiativeTracker.APIRequests
         }
 
 
+    public class MonsterFromModel
+    {
+        public string option_set_type { get; set; }
+        public List<MonsterOptionModel> options { get; set; }
+    }
 
+    public class MonsterOptionModel
+    {
+        public string option_type { get; set; }
+        public MonsterDamageTypeModel damage_type { get; set; }
+        public string damage_dice { get; set; }
+    }
 
-    
 }

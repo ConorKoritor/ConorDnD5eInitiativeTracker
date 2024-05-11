@@ -7,6 +7,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Collections.Specialized.BitVector32;
 
 namespace DatabaseModel.DatabaseLinq.MonstersLinq
 {
@@ -82,22 +83,54 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
 
             if (legendaryAction.damage != null)
             {
-                AddLegendaryActionDamage(monster, db, legendaryAction.damage, legendaryAction);
+                CheckLegendaryActionDamageOptions(monster, db, legendaryAction.damage, legendaryAction);
             }
 
             if (legendaryAction.dc != null)
             {
-                AddActionDC(monster, db, legendaryAction.dc, legendaryAction);
+                AddLegendaryActionDC(monster, db, legendaryAction.dc, legendaryAction);
+            }
+
+        }
+        internal void CheckLegendaryActionDamageOptions(MonsterModel monster, InitiativeTrackerDB db, List<MonsterDamageModel> damages, MonsterLegendaryActionModel legendaryAction)
+        {
+            foreach (var damage in damages)
+            {
+                if (damage.from != null)
+                {
+                    foreach (var option in damage.from.options)
+                    {
+                        AddLegendaryActionDamageOption(monster, db, option, legendaryAction);
+                    }
+
+                }
+
+                else
+                {
+                    AddLegendaryActionDamage(monster, db, damage, legendaryAction);
+                }
+
+                if (damage.dc != null)
+                {
+                    AddLegendaryActionDC(monster, db, damage.dc, legendaryAction);
+                }
             }
 
 
+        }
 
+        internal void AddLegendaryActionDamage(MonsterModel monster, InitiativeTrackerDB db, MonsterDamageModel damage, MonsterLegendaryActionModel legendaryAction)
+        {
+            Damage damage1 = new Damage()
+            {
+                Damage_Type = damage.damage_type.name,
+                Damage_Dice = damage.damage_dice,
+                LegendaryActionName = legendaryAction.name,
+                LegendaryActionMonsterName = monster.name
+            };
             try
             {
-                Console.WriteLine("Trying to save database");
-                db.SaveChanges();
-                Console.WriteLine("Database Saved");
-
+                db.Damages.Add(damage1);
             }
             catch (DbEntityValidationException ex)
             {
@@ -105,7 +138,7 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 {
                     foreach (var validationError in entityValidationErrors.ValidationErrors)
                     {
-                        Console.WriteLine("Property: " + validationError.PropertyName + "Of Monster: " + monster.name + " Error: " + validationError.ErrorMessage);
+                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
                     }
                 }
             }
@@ -117,63 +150,74 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 if (innerException != null)
                 {
                     // Log or handle the inner exception
-                    Console.WriteLine($"Inner Exception: {innerException}");
+                    Console.WriteLine($"Inner Exception: {innerException.Message}");
                 }
+                foreach (var entry in ex.Entries)
+                {
+                    if (entry.Entity is Damage)
+                    {
+                        // Handle the specific entity that caused the exception
+                        Damage entity = (Damage)entry.Entity;
+                        // Log or handle the failed entity (e.g., display an error message)
+                        Console.WriteLine($"Failed to save entity {entity.Damage_Type} of Action {legendaryAction.name} of Monster {monster.name}: {ex.Message}");
+                    }
+                }
+
             }
         }
 
-        internal void AddLegendaryActionDamage(MonsterModel monster, InitiativeTrackerDB db, List<MonsterDamageModel> damages, MonsterLegendaryActionModel legendaryAction)
+        internal void AddLegendaryActionDamageOption(MonsterModel monster, InitiativeTrackerDB db, MonsterOptionModel damage, MonsterLegendaryActionModel legendaryAction)
         {
-            foreach (var damage in damages)
+            Damage damage1 = new Damage()
             {
-                Damage damage1 = new Damage()
+                Damage_Dice = damage.damage_dice,
+                LegendaryActionName = legendaryAction.name,
+                LegendaryActionMonsterName = monster.name
+            };
+            if (damage.damage_type != null)
+            {
+                damage1.Damage_Type = damage.damage_type.name;
+            }
+            try
+            {
+                db.Damages.Add(damage1);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
                 {
-                    Damage_Type = damage.damage_type.name,
-                    Damage_Dice = damage.damage_dice,
-                    LegendaryActionName = legendaryAction.name,
-                    LegendaryActionMonsterName = monster.name
-                };
-
-                try
-                {
-                    db.Damages.Add(damage1);
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
                     {
-                        foreach (var validationError in entityValidationErrors.ValidationErrors)
-                        {
-                            Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                        }
+                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
                     }
                 }
-                catch (DbUpdateException ex)
+            }
+            catch (DbUpdateException ex)
+            {
+                Exception innerException = ex.InnerException;
+
+                // Handle the inner exception
+                if (innerException != null)
                 {
-                    Exception innerException = ex.InnerException;
-
-                    // Handle the inner exception
-                    if (innerException != null)
-                    {
-                        // Log or handle the inner exception
-                        Console.WriteLine($"Inner Exception: {innerException.Message}");
-                    }
-                    foreach (var entry in ex.Entries)
-                    {
-                        if (entry.Entity is Damage)
-                        {
-                            // Handle the specific entity that caused the exception
-                            Damage entity = (Damage)entry.Entity;
-                            // Log or handle the failed entity (e.g., display an error message)
-                            Console.WriteLine($"Failed to save entity {entity.Damage_Type} of Action {legendaryAction.name} of Monster {monster.name}: {ex.Message}");
-                        }
-                    }
-
+                    // Log or handle the inner exception
+                    Console.WriteLine($"Inner Exception: {innerException.Message}");
                 }
+                foreach (var entry in ex.Entries)
+                {
+                    if (entry.Entity is Damage)
+                    {
+                        // Handle the specific entity that caused the exception
+                        Damage entity = (Damage)entry.Entity;
+                        // Log or handle the failed entity (e.g., display an error message)
+                        Console.WriteLine($"Failed to save entity {entity.Damage_Type} of Action {legendaryAction.name} of Monster {monster.name}: {ex.Message}");
+                    }
+                }
+
             }
         }
 
-        internal void AddActionDC(MonsterModel monster, InitiativeTrackerDB db, MonsterDcModel dc, MonsterLegendaryActionModel legendaryAction)
+
+        internal void AddLegendaryActionDC(MonsterModel monster, InitiativeTrackerDB db, MonsterDcModel dc, MonsterLegendaryActionModel legendaryAction)
         {
             DifficultyClass difficultyClass = new DifficultyClass()
             {

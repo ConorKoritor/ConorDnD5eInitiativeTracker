@@ -35,9 +35,6 @@ namespace DatabaseModel.Databases
         public short Initiative_Modifier { get; set; }
 
         [Required]
-        public string Desc { get; set; }
-
-        [Required]
         public string Size { get; set; }
 
         [Required]

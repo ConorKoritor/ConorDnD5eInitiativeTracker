@@ -24,7 +24,7 @@ namespace DatabaseModel
 
             InitializeAPI.InitializeClient();
 
-            InitiativeTrackerDB db = new InitiativeTrackerDB("TestDB30");
+            InitiativeTrackerDB db = new InitiativeTrackerDB("TestDB37");
 
             GetSpellsForDatabase getSpellsForDatabase = new GetSpellsForDatabase();
 

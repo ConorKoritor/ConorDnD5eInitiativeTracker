@@ -21,7 +21,6 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
                 Name = monster.name,
                 HP = monster.hit_points,
                 Initiative_Modifier = (short)Math.Floor(initiativeModifierSetup),
-                Desc = "Placeholder", //Made a non nullable field for desc but have none from api. TODO: Fix this
                 Size = monster.size,
                 Type = monster.type,
                 Hit_Dice = monster.hit_dice,

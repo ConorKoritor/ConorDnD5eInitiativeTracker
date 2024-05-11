@@ -7,6 +7,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Collections.Specialized.BitVector32;
 
 namespace DatabaseModel.DatabaseLinq.MonstersLinq
 {
@@ -152,6 +153,8 @@ namespace DatabaseModel.DatabaseLinq.MonstersLinq
             {
                 Type = specialAbility.usage.type,
                 Times = specialAbility.usage.times,
+                Dice = specialAbility.usage.dice,
+                MinDiceValue = specialAbility.usage.min_value,
                 SpecialAbilityName = specialAbility.name,
                 SpecialAbilityMonsterName = monster.name
             };

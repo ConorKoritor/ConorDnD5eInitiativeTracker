@@ -115,6 +115,32 @@ namespace DnDInitiativeTrackerTest.JSONTests
             Assert.That(monsters[0].actions[1].damage[0].damage_type.name, Is.EqualTo("Bludgeoning"));
         }
 
+        public void Pulling_Monster_Damage_Dc_From_API()
+        {
+            //Arrange and Act taken care of in setup so I dont have to pull from the api multiple times
+
+            //Assert
+            //Based on API Data for Assassin which should be the 29th request made
+
+            //Testing for Damage
+            Assert.That(monsters[28].name, Is.EqualTo("Assassin"));
+            Assert.That(monsters[28].actions[1].damage[1].dc.dc_type.name, Is.EqualTo("CON"));
+            Assert.That(monsters[28].actions[1].damage[1].dc.dc_value, Is.EqualTo(15));
+        }
+
+        [Test]
+        public void Pulling_Monster_Damage_Choices_From_API()
+        {
+            //Arrange and Act taken care of in setup so I dont have to pull from the api multiple times
+
+            //Assert
+            //Based on API Data for Djinni which should be the 82nd request made
+
+            //Testing for Damage
+            Assert.That(monsters[81].actions[1].damage[1].from.options[0].damage_type.name, Is.EqualTo("Lightning"));
+            Assert.That(monsters[81].name, Is.EqualTo("Djinni"));
+        }
+
         [Test]
         public void Pulling_Monster_Spellcasting_FromApi_Test()
         {

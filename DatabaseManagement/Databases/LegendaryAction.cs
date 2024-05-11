@@ -21,6 +21,7 @@ namespace DatabaseModel.Databases
 
         public bool IsDamage { get; set; }
         public bool IsDC { get; set; }
+        public bool HasDamageOptions { get; set; }
 
         [Key]
         [Column(Order = 1)]
