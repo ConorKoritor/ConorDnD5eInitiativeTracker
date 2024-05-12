@@ -16,9 +16,6 @@ namespace DatabaseLibrary.Databases
         public short? DC_Value { get; set; }
 
         [StringLength(200)]
-        public string? SpellName { get; set; }
-
-        [StringLength(200)]
         public string? ActionMonsterName { get; set; }
 
         [StringLength(200)]
@@ -41,7 +38,5 @@ namespace DatabaseLibrary.Databases
         public virtual CombatAction? Action { get; set; }
 
         public virtual LegendaryAction? LegendaryAction { get; set; }
-
-        public virtual Spell? Spell { get; set; }
     }
 }

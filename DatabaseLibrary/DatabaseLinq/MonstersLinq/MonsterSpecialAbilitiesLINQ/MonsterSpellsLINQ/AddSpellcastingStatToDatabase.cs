@@ -18,7 +18,7 @@ namespace DatabaseLibrary.DatabaseLinq.MonstersLinq
             {
                 Level = (short)specialAbility.spellcasting.level,
                 Ability = specialAbility.spellcasting.ability.name,
-                DC = (short)specialAbility.spellcasting.level,
+                DC = (short)specialAbility.spellcasting.dc,
                 Modifier = (short)specialAbility.spellcasting.modifier,
                 School = specialAbility.spellcasting.school,
                 MonsterName = monster.name

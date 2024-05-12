@@ -26,7 +26,7 @@ namespace PopulateDatabase
 
             InitializeAPI.InitializeClient();
 
-            InitiativeTrackerDB db = new InitiativeTrackerDB("TestDB38");
+            InitiativeTrackerDB db = new InitiativeTrackerDB("TestDatabase3");
 
             GetSpellsForDatabase getSpellsForDatabase = new GetSpellsForDatabase();
 
