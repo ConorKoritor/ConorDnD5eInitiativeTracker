@@ -9,7 +9,39 @@ using System.Threading.Tasks;
 namespace DatabaseModel.APIRequests
 {
     //Models for API /spell/{spellName}
-    //Response comes with many JSON Objects that are all represented here. Not all will be needed for program but I would rather it work and have too many properties
+    //Response comes with many JSON Objects that are all represented here. Not all will be needed for program but
+    //I would rather it work and have too many properties 
+
+    //This is the root that holds the bulk of the spell
+    //Holds the name of the spell, descritption, range, etc.
+    //Also has bool values for if it can be ritual cast or if it is a concentration spell
+    //It creates objects of the DamageModel, DCModel, Area of Effect Model, School Model, and SpellHealAtSlotLevelModel
+    //It also holds a list of the SpellClassModel and SpellSubClassModel
+    //These Models are explained below
+    public class SpellModel
+    {
+        //Model for root of API response
+        public string index { get; set; }
+        public string name { get; set; }
+        public List<string> desc { get; set; }
+        public List<string> higher_level { get; set; }
+        public string range { get; set; }
+        public List<string> components { get; set; }
+        public bool ritual { get; set; }
+        public string duration { get; set; }
+        public bool concentration { get; set; }
+        public string casting_time { get; set; }
+        public int level { get; set; }
+        public SpellDamageModel damage { get; set; }
+        public SpellDcModel dc { get; set; }
+        public SpellAreaOfEffectModel area_of_effect { get; set; }
+        public SpellSchoolModel school { get; set; }
+        public List<SpellClassModel> classes { get; set; }
+        public List<SpellSubclassModel> subclasses { get; set; }
+        public string url { get; set; }
+        public SpellHealAtSlotLevelModel heal_at_slot_level { get; set; }
+    }
+
     public class SpellAreaOfEffectModel
     {
         public string type { get; set; }
@@ -173,29 +205,7 @@ namespace DatabaseModel.APIRequests
         public string url { get; set; }
     }
 
-    public class SpellModel
-    {
-        //Model for root of API response
-        public string index { get; set; }
-        public string name { get; set; }
-        public List<string> desc { get; set; }
-        public List<string> higher_level { get; set; }
-        public string range { get; set; }
-        public List<string> components { get; set; }
-        public bool ritual { get; set; }
-        public string duration { get; set; }
-        public bool concentration { get; set; }
-        public string casting_time { get; set; }
-        public int level { get; set; }
-        public SpellDamageModel damage { get; set; }
-        public SpellDcModel dc { get; set; }
-        public SpellAreaOfEffectModel area_of_effect { get; set; }
-        public SpellSchoolModel school { get; set; }
-        public List<SpellClassModel> classes { get; set; }
-        public List<SpellSubclassModel> subclasses { get; set; }
-        public string url { get; set; }
-        public SpellHealAtSlotLevelModel heal_at_slot_level { get; set; }
-    }
+    
 
     public class SpellSchoolModel
     {
