@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConorDnD5eInitiativeTracker
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DnDInitiativeTrackerTest", "DnDInitiativeTrackerTest\DnDInitiativeTrackerTest.csproj", "{312A9FA5-7BC0-46E8-878A-4518F61E9E10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseModel", "DatabaseManagement\DatabaseModel.csproj", "{70423AFA-4FFA-420C-BA38-8A4A3FB6D534}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PopulateDatabase", "DatabaseManagement\PopulateDatabase.csproj", "{70423AFA-4FFA-420C-BA38-8A4A3FB6D534}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseClassLibrary", "DatabaseClassLibrary\DatabaseClassLibrary.csproj", "{DB68563F-DEA3-44F8-8951-3288C33C83A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{70423AFA-4FFA-420C-BA38-8A4A3FB6D534}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70423AFA-4FFA-420C-BA38-8A4A3FB6D534}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70423AFA-4FFA-420C-BA38-8A4A3FB6D534}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB68563F-DEA3-44F8-8951-3288C33C83A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB68563F-DEA3-44F8-8951-3288C33C83A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB68563F-DEA3-44F8-8951-3288C33C83A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB68563F-DEA3-44F8-8951-3288C33C83A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

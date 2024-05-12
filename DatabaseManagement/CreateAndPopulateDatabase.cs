@@ -1,13 +1,13 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using DatabaseModel.APIRequests;
-using DatabaseModel.DatabaseLinq.MonstersLinq;
-using DatabaseModel.DatabaseLinq.SpellsLinq;
-using DatabaseModel.Databases;
+using DatabaseClassLibrary.APIRequests;
+using DatabaseClassLibrary.DatabaseLinq.MonstersLinq;
+using DatabaseClassLibrary.DatabaseLinq.SpellsLinq;
+using DatabaseClassLibrary.Databases;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 
-namespace DatabaseModel
+namespace PopulateDatabase
 {
     public class CreateAndPopulateDatabase
     {
@@ -24,7 +24,7 @@ namespace DatabaseModel
 
             InitializeAPI.InitializeClient();
 
-            InitiativeTrackerDB db = new InitiativeTrackerDB("TestDB37");
+            InitiativeTrackerDB db = new InitiativeTrackerDB("TestDB38");
 
             GetSpellsForDatabase getSpellsForDatabase = new GetSpellsForDatabase();
 

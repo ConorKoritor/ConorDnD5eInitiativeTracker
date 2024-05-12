@@ -186,9 +186,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseManagement\DatabaseModel.csproj">
-      <Project>{70423afa-4ffa-420c-ba38-8a4a3fb6d534}</Project>
-      <Name>DatabaseModel</Name>
+    <ProjectReference Include="..\DatabaseClassLibrary\DatabaseClassLibrary.csproj">
+      <Project>{db68563f-dea3-44f8-8951-3288c33c83a2}</Project>
+      <Name>DatabaseClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
