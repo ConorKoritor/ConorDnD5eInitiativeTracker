@@ -1,37 +1,43 @@
-﻿<Application x:Class="ConorDnD5eInitiativeTracker.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ConorDnD5eInitiativeTracker"
-             xmlns:viewModel ="clr-namespace:ConorDnD5eInitiativeTracker.MVVM.ViewModels"
-             xmlns:view ="clr-namespace:ConorDnD5eInitiativeTracker.MVVM.Views"
-             StartupUri="MainWindow.xaml">
+﻿<Application
+    x:Class="ConorDnD5eInitiativeTracker.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ConorDnD5eInitiativeTracker"
+    xmlns:view="clr-namespace:ConorDnD5eInitiativeTracker.MVVM.Views"
+    xmlns:viewModel="clr-namespace:ConorDnD5eInitiativeTracker.MVVM.ViewModels"
+    StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
-                <ResourceDictionary Source="Theme/TextboxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml" />
+                <ResourceDictionary Source="Theme/TextboxTheme.xaml" />
+                <ResourceDictionary Source="Theme/MonsterListTheme.xaml" />
+                <ResourceDictionary Source="Theme/CloseButtonTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+
             <DataTemplate DataType="{x:Type viewModel:ScenarioBuilderViewModel}">
-                <view:ScenarioBuilderView/>
+                <view:ScenarioBuilderView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:CharacterBuilderViewModel}">
-                <view:CharacterBuilderView/>
+                <view:CharacterBuilderView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:InitiativeViewModel}">
-                <view:InitiativeView/>
+                <view:InitiativeView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:MonsterSearchViewModel}">
-                <view:MonsterSearchView/>
+                <view:MonsterSearchView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-                <view:HomeView/>
+                <view:HomeView />
             </DataTemplate>
+
 
         </ResourceDictionary>
     </Application.Resources>
+
 </Application>

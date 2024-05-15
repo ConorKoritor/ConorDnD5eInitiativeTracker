@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -26,6 +27,20 @@ namespace ConorDnD5eInitiativeTracker
             InitializeComponent();
 
 
+        }
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+
+            Point pt = e.GetPosition(WindowDrag);
+
+            Debug.WriteLine(pt.Y);
+
+            if (pt.Y < WindowDrag.ActualHeight)
+            {
+                DragMove();
+            }
         }
     }
 }
