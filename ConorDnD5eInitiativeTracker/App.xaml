@@ -12,7 +12,6 @@
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml" />
                 <ResourceDictionary Source="Theme/TextboxTheme.xaml" />
                 <ResourceDictionary Source="Theme/MonsterListTheme.xaml" />
-                <ResourceDictionary Source="Theme/CloseButtonTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
 

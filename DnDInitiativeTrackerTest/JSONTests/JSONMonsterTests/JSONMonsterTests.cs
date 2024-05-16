@@ -230,5 +230,18 @@ namespace DnDInitiativeTrackerTest.JSONTests
             Assert.That(monsters[79].condition_immunities[0].name, Is.EqualTo("Charmed"));
             Assert.That(monsters[79].condition_immunities[0].index, Is.EqualTo("charmed"));
         }
+
+        [Test]
+        public void Pulling_Monster_Reactions_From_API_Test()
+        {
+            //Arrange and Act taken care of in setup so I dont have to pull from the api multiple times
+
+            //Assert
+            //Based on API Data for Bandit Captain which should be the the 38th request made
+
+            //Testing for Reactions
+            Assert.That(monsters[37].name, Is.EqualTo("Bandit Captain"));
+            Assert.That(monsters[37].reactions[0].name, Is.EqualTo("Parry"));
+        }
     }
 }

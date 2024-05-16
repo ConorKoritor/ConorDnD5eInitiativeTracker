@@ -29,9 +29,9 @@ namespace DatabaseLibrary.DatabaseLinq.MonstersLinq
                 Languages = monster.languages,
                 Challenge_Rating = monster.challenge_rating,
                 XP = monster.xp,
-                Damage_Vulnerabilities = String.Join(",", monster.damage_vulnerabilities),
-                Damage_Resistances = String.Join(",", monster.damage_resistances),
-                Damage_Immunities = String.Join(",", monster.damage_immunities),
+                Damage_Vulnerabilities = String.Join(", ", monster.damage_vulnerabilities),
+                Damage_Resistances = String.Join(", ", monster.damage_resistances),
+                Damage_Immunities = String.Join(", ", monster.damage_immunities),
                 Image = monster.image
             };
 

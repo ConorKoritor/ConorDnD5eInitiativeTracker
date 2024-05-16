@@ -42,5 +42,28 @@ namespace ConorDnD5eInitiativeTracker
                 DragMove();
             }
         }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            switch (this.WindowState)
+            {
+                case WindowState.Normal:
+                    this.WindowState = WindowState.Maximized;
+                    break;
+                case WindowState.Maximized:
+                    this.WindowState = WindowState.Normal;
+                    break;
+            }
+        }
     }
 }

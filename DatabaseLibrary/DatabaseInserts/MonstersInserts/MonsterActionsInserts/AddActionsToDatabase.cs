@@ -14,14 +14,16 @@ namespace DatabaseLibrary.DatabaseLinq.MonstersLinq
     {
         internal void AddActions(MonsterModel monster, InitiativeTrackerDB db)
         {
+            int actionCount = 0;
             foreach (var action in monster.actions)
             {
-                AddEachActionToDatabase(monster, db, action);
+                AddEachActionToDatabase(monster, db, action, actionCount);
+                actionCount++;
             }
 
         }
 
-        internal void AddEachActionToDatabase(MonsterModel monster, InitiativeTrackerDB db, MonsterActionModel action)
+        internal void AddEachActionToDatabase(MonsterModel monster, InitiativeTrackerDB db, MonsterActionModel action, int actionCount)
         {
             CombatAction action1 = new CombatAction()
             {
@@ -32,7 +34,8 @@ namespace DatabaseLibrary.DatabaseLinq.MonstersLinq
                 IsUsage = false,
                 IsDamage = false,
                 IsDC = false,
-                HasDamageOptions = false
+                HasDamageOptions = false,
+                ActionOrder = actionCount
             };
 
             if (action.usage != null)

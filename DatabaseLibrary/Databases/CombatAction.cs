@@ -28,6 +28,7 @@ namespace DatabaseLibrary.Databases
         [Column(Order = 1)]
         [StringLength(200)]
         public string MonsterName { get; set; }
+        public int ActionOrder {  get; set; }
         public virtual Monster Monster { get; set; }
     }
 }

@@ -6,6 +6,8 @@
                     <Border
                         Width="200"
                         Height="40"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
                         Background="#DEDEDE"
                         CornerRadius="10">
 

@@ -20,7 +20,7 @@ namespace DnDInitiativeTrackerTest.DatabaseTests.MonsterDatabaseTests
         {
             //Arrange
 
-            db = new InitiativeTrackerDB("TestDatabase3");
+            db = new InitiativeTrackerDB("TestDatabase11");
         }
 
         [Test]
@@ -274,5 +274,6 @@ namespace DnDInitiativeTrackerTest.DatabaseTests.MonsterDatabaseTests
             Assert.That(difficultyClass.DC_Value, Is.EqualTo(18));
             Assert.That(difficultyClass.DC_Type, Is.EqualTo("DEX"));
         }
+
     }
 }

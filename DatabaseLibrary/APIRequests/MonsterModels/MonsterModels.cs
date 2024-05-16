@@ -47,6 +47,7 @@ namespace DatabaseLibrary.APIRequests
         public List<MonsterSpecialAbilityModel> special_abilities { get; set; }
         public List<MonsterActionModel> actions { get; set; }
         public List<MonsterLegendaryActionModel> legendary_actions { get; set; }
+        public List<MonsterReactionModel> reactions { get; set; }
         public string image { get; set; }
         public string url { get; set; }
     }
@@ -290,6 +291,12 @@ namespace DatabaseLibrary.APIRequests
         public string option_type { get; set; }
         public MonsterDamageTypeModel damage_type { get; set; }
         public string damage_dice { get; set; }
+    }
+
+    public class MonsterReactionModel
+    {
+        public string name { get; set; }
+        public string desc { get; set; }
     }
 
 }

@@ -12,6 +12,11 @@ namespace DatabaseLibrary.Databases
         {
         }
 
+        public InitiativeTrackerDB()
+        {
+            
+        }
+
         public virtual DbSet<Ability> Abilities { get; set; }
         public virtual DbSet<CombatAction> CombatActions { get; set; }
         public virtual DbSet<ArmorClass> ArmorClasses { get; set; }
@@ -35,6 +40,7 @@ namespace DatabaseLibrary.Databases
         public virtual DbSet<MonsterSpellTable> MonsterSpells { get; set; }
         public virtual DbSet<MonsterScenarioTable> MonsterScenarios {  get; set; }
         public virtual DbSet<PlayerScenarioTable> PlayerScenarios { get; set; }
+        public virtual DbSet<Reaction> Reactions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -71,6 +77,11 @@ namespace DatabaseLibrary.Databases
                 .HasMany(e => e.LegendaryActions)
                 .WithRequired(e => e.Monster)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Monster>()
+               .HasMany(e => e.Reactions)
+               .WithRequired(e => e.Monster)
+               .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Monster>()
                 .HasMany(e => e.Proficiencies)

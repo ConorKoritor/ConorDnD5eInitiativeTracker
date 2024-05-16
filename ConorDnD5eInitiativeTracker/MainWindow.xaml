@@ -12,7 +12,7 @@
     Height="800"
     AllowsTransparency="True"
     Background="Transparent"
-    ResizeMode="NoResize"
+    ResizeMode="CanResizeWithGrip"
     WindowStyle="None"
     mc:Ignorable="d">
 
@@ -20,10 +20,24 @@
         <viewModel:MainViewModel />
     </Window.DataContext>
 
-
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style x:Key="vanilla_button" TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
 
     <Border Background="#1c1a1a" CornerRadius="20">
-        <Grid>
+        <Grid Margin="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition />
@@ -32,11 +46,6 @@
                 <RowDefinition Height="75" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-
-            <ToggleButton
-                Name="CloseButton"
-                Grid.Column="1"
-                Style="{StaticResource ToggleButtonWindowClose}" />
 
             <Rectangle
                 Name="WindowDrag"
@@ -55,6 +64,63 @@
                     <DropShadowEffect />
                 </TextBlock.Effect>
             </TextBlock>
+
+
+            <Grid
+                Grid.Column="1"
+                Height="25"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="25" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    x:Name="btnMinimize"
+                    Click="btnMinimize_Click"
+                    Style="{StaticResource vanilla_button}"
+                    ToolTip="Minimise">
+                    <!--<Image Source="minus_medium.png" />-->
+                    <Viewbox>
+                        <Ellipse
+                            Width="15"
+                            Height="15"
+                            Fill="#FFDAD404"
+                            Stroke="#FFFDFDFD"
+                            StrokeThickness="0.5" />
+                    </Viewbox>
+                </Button>
+                <Button
+                    x:Name="btnMaximize"
+                    Grid.Column="1"
+                    Click="btnMaximize_Click"
+                    Style="{StaticResource vanilla_button}">
+                    <Viewbox>
+                        <Ellipse
+                            Width="15"
+                            Height="15"
+                            Fill="#FF18D018"
+                            Stroke="#FFFDFDFD"
+                            StrokeThickness="0.5" />
+                    </Viewbox>
+                </Button>
+                <Button
+                    x:Name="btnClose"
+                    Grid.Column="2"
+                    Click="btnClose_Click"
+                    Style="{StaticResource vanilla_button}"
+                    ToolTip="Close">
+                    <Viewbox>
+                        <Ellipse
+                            Width="15"
+                            Height="15"
+                            Fill="Red"
+                            Stroke="#FFFDFDFD"
+                            StrokeThickness="0.5" />
+                    </Viewbox>
+                </Button>
+            </Grid>
 
             <StackPanel Grid.Row="1">
                 <RadioButton

@@ -22,6 +22,7 @@ namespace DatabaseLibrary.DatabaseLinq.MonstersLinq
         AddActionsToDatabase addActionsToDatabase = new AddActionsToDatabase();
         AddMonstersToDatabase addMonstersToDatabase = new AddMonstersToDatabase();
         AddLegendaryActionsToDatabase addLegendaryActionsToDatabase = new AddLegendaryActionsToDatabase();
+        AddReactionsToDatabase addReactionsToDatabase = new AddReactionsToDatabase();
 
         public async Task GetMonstersAndInsertToDatabase(InitiativeTrackerDB db)
         {
@@ -47,7 +48,10 @@ namespace DatabaseLibrary.DatabaseLinq.MonstersLinq
                 addSpecialAbilitiesToDatabase.CheckSpecialAbilities(monster, db);
                 addActionsToDatabase.AddActions(monster, db);
                 addLegendaryActionsToDatabase.AddLegendaryActions(monster, db);
-
+                if (monster.reactions != null)
+                {
+                    addReactionsToDatabase.AddReactions(monster, db);
+                }
 
 
                 try

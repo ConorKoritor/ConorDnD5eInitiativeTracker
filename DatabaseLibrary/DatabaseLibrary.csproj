@@ -92,24 +92,26 @@
     <Compile Include="APIRequests\MonsterModels\MonsterModels.cs" />
     <Compile Include="APIRequests\SpellModels\SpellModels.cs" />
     <Compile Include="APIRequests\SpellModels\SpellsDictionaryModels.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\AddMonstersToDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\GetMonstersForDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\MonsterActionsLINQ\AddActionsToDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\MonsterLegendaryActionsLINQ\AddLegendaryActionsToDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\MonsterSpecialAbilitiesLINQ\AddSpecialAbilitiesToDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\MonsterSpecialAbilitiesLINQ\MonsterSpellsLINQ\AddMonsterSpellsToDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\MonsterSpecialAbilitiesLINQ\MonsterSpellsLINQ\AddSpellcastingStatToDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\MonsterStatsLINQ\AddAbilitiesToDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\MonsterStatsLINQ\AddArmorClassesToDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\MonsterStatsLINQ\AddConditionImmunitiesToDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\MonsterStatsLINQ\AddProficienciesToDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\MonsterStatsLINQ\AddSensesToDatabase.cs" />
-    <Compile Include="DatabaseLinq\MonstersLinq\MonsterStatsLINQ\AddSpeedsToDatabase.cs" />
-    <Compile Include="DatabaseLinq\SpellsLinq\AddHealingAndDamageLINQ\AddSpellDamage.cs" />
-    <Compile Include="DatabaseLinq\SpellsLinq\AddHealingAndDamageLINQ\AddSpellHealingStats.cs" />
-    <Compile Include="DatabaseLinq\SpellsLinq\AddHealingAndDamageLINQ\CheckHealingOrDamage.cs" />
-    <Compile Include="DatabaseLinq\SpellsLinq\AddSpellsToDatabase.cs" />
-    <Compile Include="DatabaseLinq\SpellsLinq\GetSpellsForDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\AddMonstersToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\GetMonstersForDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterActionsInserts\AddActionsToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterLegendaryActionsInserts\AddLegendaryActionsToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterReactionsInserts\AddReactionsToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterSpecialAbilitiesInserts\AddSpecialAbilitiesToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterSpecialAbilitiesInserts\MonsterSpellsLINQ\AddMonsterSpellsToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterSpecialAbilitiesInserts\MonsterSpellsLINQ\AddSpellcastingStatToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterStatsInserts\AddAbilitiesToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterStatsInserts\AddArmorClassesToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterStatsInserts\AddConditionImmunitiesToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterStatsInserts\AddProficienciesToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterStatsInserts\AddSensesToDatabase.cs" />
+    <Compile Include="DatabaseInserts\MonstersInserts\MonsterStatsInserts\AddSpeedsToDatabase.cs" />
+    <Compile Include="DatabaseInserts\SpellsInserts\AddHealingAndDamageLINQ\AddSpellDamage.cs" />
+    <Compile Include="DatabaseInserts\SpellsInserts\AddHealingAndDamageLINQ\AddSpellHealingStats.cs" />
+    <Compile Include="DatabaseInserts\SpellsInserts\AddHealingAndDamageLINQ\CheckHealingOrDamage.cs" />
+    <Compile Include="DatabaseInserts\SpellsInserts\AddSpellsToDatabase.cs" />
+    <Compile Include="DatabaseInserts\SpellsInserts\GetSpellsForDatabase.cs" />
+    <Compile Include="DatabaseQueries\MonsterQueries.cs" />
     <Compile Include="Databases\Ability.cs" />
     <Compile Include="Databases\ArmorClass.cs" />
     <Compile Include="Databases\CombatAction.cs" />
@@ -124,6 +126,7 @@
     <Compile Include="Databases\PlayerCharacterBasic.cs" />
     <Compile Include="Databases\PlayerScenarioTable.cs" />
     <Compile Include="Databases\Proficiency.cs" />
+    <Compile Include="Databases\Reaction.cs" />
     <Compile Include="Databases\Scenario.cs" />
     <Compile Include="Databases\Sense.cs" />
     <Compile Include="Databases\SpecialAbility.cs" />
@@ -134,11 +137,28 @@
     <Compile Include="Databases\SpellDamageAtCharacterLevel.cs" />
     <Compile Include="Databases\SpellHealing.cs" />
     <Compile Include="Databases\Usage.cs" />
+    <Compile Include="Migrations\202405161848087_AddedReactions.cs" />
+    <Compile Include="Migrations\202405161848087_AddedReactions.designer.cs">
+      <DependentUpon>202405161848087_AddedReactions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405161955480_AddedReactionsToDatabase.cs" />
+    <Compile Include="Migrations\202405161955480_AddedReactionsToDatabase.designer.cs">
+      <DependentUpon>202405161955480_AddedReactionsToDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202405161848087_AddedReactions.resx">
+      <DependentUpon>202405161848087_AddedReactions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405161955480_AddedReactionsToDatabase.resx">
+      <DependentUpon>202405161955480_AddedReactionsToDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -26,69 +26,127 @@
 
         <TextBox
             x:Name="txtbxSearch"
-            Margin="20,0,0,0"
             Style="{StaticResource MonsterTextBox}"
             TextChanged="txtbxSearch_TextChanged" />
 
-        <ListBox
+        <Border
             Grid.Row="1"
-            Margin="10"
+            Margin="5"
             Background="#878787"
-            ItemsSource="{Binding Monsters}">
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="{x:Type models:MonsterListItem}">
-                    <Border
-                        Margin="2"
-                        Padding="5"
-                        Background="White"
-                        BorderBrush="Black"
-                        BorderThickness="1"
-                        CornerRadius="5">
-                        <Grid Width="290">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
+            CornerRadius="10">
+            <ListBox
+                x:Name="lstbxMonsterList"
+                Margin="4"
+                Background="#878787"
+                BorderBrush="#878787"
+                ItemsSource="{Binding Monsters}"
+                SelectionChanged="ListBox_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:MonsterListItem}">
+                        <Border
+                            Margin="2"
+                            Padding="5"
+                            Background="White"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                            <Grid Width="290">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
 
-                            <TextBlock
-                                x:Name="txtblkMonsterName"
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2"
-                                FontFamily="/Fonts/#ferrum"
-                                FontSize="30"
-                                FontWeight="Bold"
-                                Foreground="Red"
-                                Text="{Binding Name}" />
-                            <TextBlock
-                                x:Name="txtblkCRRating"
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                FontFamily="/Fonts/#ferrum"
-                                FontSize="15"
-                                Foreground="Black"
-                                Text="{Binding Challenge_Rating, StringFormat='{}CR: {0}'}" />
-                            <TextBlock
-                                x:Name="txtblkSizeAndType"
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                FontFamily="/Fonts/#ferrum"
-                                FontSize="15"
-                                Foreground="Black"
-                                Text="{Binding Size}" />
+                                <TextBlock
+                                    x:Name="txtblkMonsterName"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    FontFamily="/Fonts/#ferrum"
+                                    FontSize="30"
+                                    FontWeight="Bold"
+                                    Foreground="Red"
+                                    Text="{Binding Name}" />
+                                <TextBlock
+                                    x:Name="txtblkCRRating"
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    FontFamily="/Fonts/#ferrum"
+                                    FontSize="15"
+                                    Foreground="Black"
+                                    Text="{Binding Challenge_Rating, StringFormat='{}CR: {0}'}" />
+                                <TextBlock
+                                    x:Name="txtblkSize"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    FontFamily="/Fonts/#ferrum"
+                                    FontSize="15"
+                                    Foreground="Black"
+                                    Text="{Binding Size}" />
+                                <TextBlock
+                                    x:Name="txtblkType"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="3,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    FontFamily="/Fonts/#ferrum"
+                                    FontSize="15"
+                                    Foreground="Black"
+                                    Text="{Binding Type}" />
 
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <Border
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="7"
+            Background="AntiqueWhite"
+            CornerRadius="10">
+            <ScrollViewer Margin="5">
+                <StackPanel x:Name="stkpnlMonsterStatBlock" Orientation="Vertical">
+                    <StackPanel x:Name="stkpnlMonsterNameSizeAlignmentType" Orientation="Vertical">
+                        <TextBlock
+                            x:Name="txtblkMonsterStatsName"
+                            FontFamily="/Fonts/#ferrum"
+                            FontSize="50"
+                            FontWeight="Bold"
+                            Foreground="Red" />
+
+                        <TextBlock
+                            x:Name="txtblkMonsterStatsAlignmentSizeAndType"
+                            FontFamily="/Fonts/#ferrum"
+                            FontSize="13"
+                            Foreground="Black" />
+
+                        <Rectangle
+                            x:Name="rctMonsterNameSizeAlignmentTypeBottomBorder"
+                            Height="1"
+                            Fill="Transparent" />
+                    </StackPanel>
+                    <StackPanel x:Name="stkpnlACHPandSpeed" Orientation="Vertical" />
+                    <StackPanel x:Name="stkpnlMonsterAbilityNames" Orientation="Horizontal" />
+                    <StackPanel x:Name="stkpnlMonsterAbilityScores" Orientation="Horizontal" />
+                    <Rectangle
+                        x:Name="rctMonsterAbilityScoresBottomBorder"
+                        Height="1"
+                        Fill="Transparent" />
+                    <StackPanel x:Name="stkpnlMonsterStats" Orientation="Vertical" />
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
     </Grid>
+
 </UserControl>
