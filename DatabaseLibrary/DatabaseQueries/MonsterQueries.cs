@@ -133,6 +133,15 @@ namespace DatabaseLibrary.DatabaseQueries
 
             return query.ToList();
         }
+
+        public static List<Usage> GetMonsterUsages(InitiativeTrackerDB db, string monsterName)
+        {
+            var query = from u in db.Usages
+                        where u.ActionMonsterName == monsterName || u.MonsterSpellMonsterName == monsterName || u.SpecialAbilityMonsterName == monsterName
+                        select u;
+
+            return query.ToList();
+        }
     }
 
 }

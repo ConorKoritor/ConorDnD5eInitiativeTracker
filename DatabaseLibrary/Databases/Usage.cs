@@ -13,6 +13,7 @@
         public int? Times { get; set; }
         public int? MinDiceValue { get; set; }
         public string? Dice {  get; set; }
+        public string? Rest_Types {  get; set; }
         [StringLength(200)]
         public string? ActionMonsterName { get; set; }
 

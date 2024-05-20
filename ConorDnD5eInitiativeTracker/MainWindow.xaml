@@ -8,8 +8,8 @@
     xmlns:models="clr-namespace:ConorDnD5eInitiativeTracker.MVVM.Models"
     xmlns:viewModel="clr-namespace:ConorDnD5eInitiativeTracker.MVVM.ViewModels"
     x:Name="BTN_testing"
-    Width="1200"
-    Height="800"
+    Width="1500"
+    Height="1000"
     AllowsTransparency="True"
     Background="Transparent"
     ResizeMode="CanResizeWithGrip"
@@ -39,7 +39,7 @@
     <Border Background="#1c1a1a" CornerRadius="20">
         <Grid Margin="8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="250" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -55,7 +55,7 @@
             <TextBlock
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontFamily="/Fonts/#ferrum"
+                FontFamily="/Fonts/#vinque rg"
                 FontSize="28"
                 FontWeight="Bold"
                 Foreground="Red"

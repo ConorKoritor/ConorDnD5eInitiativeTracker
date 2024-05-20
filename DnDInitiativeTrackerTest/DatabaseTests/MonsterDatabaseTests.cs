@@ -20,7 +20,7 @@ namespace DnDInitiativeTrackerTest.DatabaseTests.MonsterDatabaseTests
         {
             //Arrange
 
-            db = new InitiativeTrackerDB("TestDatabase11");
+            db = new InitiativeTrackerDB("TestDatabase14");
         }
 
         [Test]
@@ -240,6 +240,23 @@ namespace DnDInitiativeTrackerTest.DatabaseTests.MonsterDatabaseTests
             //Assert
             Assert.That(usage.Type, Is.EqualTo("per day"));
             Assert.That(usage.Times, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Database_Special_Ability_Usage_Test()
+        {
+            //Act
+            var query = from sa in db.SpecialAbilities
+                        join u in db.Usages
+                        on sa.Name equals u.SpecialAbilityName
+                        where sa.Name == "Legendary Resistance"
+                        select u;
+
+            Usage usage = query.FirstOrDefault();
+
+
+            //Assert
+            Assert.That(usage.SpecialAbilityName != null);
         }
 
         [Test]

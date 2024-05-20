@@ -18,7 +18,7 @@ namespace DnDInitiativeTrackerTest.DatabaseTests
         {
             //Arrange
 
-            db = new InitiativeTrackerDB("TestDatabase11");
+            db = new InitiativeTrackerDB("TestDatabase14");
         }
 
         [Test]

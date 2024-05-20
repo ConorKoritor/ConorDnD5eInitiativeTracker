@@ -27,12 +27,13 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
         public Sense senses { get; set; }
         public List<SpecialAbility> specialAbilities { get; set; }
         public List<Speed> speeds { get; set; }
+        public List<Usage> usages { get; set; }
         public SpellCastingStat spellCastingStat { get; set; }
 
 
         public MonsterSearchViewModel()
         {
-            db = new InitiativeTrackerDB("TestDatabase11");
+            db = new InitiativeTrackerDB("TestDatabase14");
             Monsters = new ObservableCollection<MonsterListItem>();
 
             GetInitialList();
@@ -94,6 +95,8 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
             actionList = MonsterQueries.GetMonsterActions(db, monsterName);
             legendaryActions = MonsterQueries.GetLegendaryActions(db, monsterName);
             specialAbilities = MonsterQueries.GetMonsterSpecialAbilities(db, monsterName);
+            usages = MonsterQueries.GetMonsterUsages(db, monsterName);
+            usages = MonsterQueries.GetMonsterUsages(db, monsterName);
         }
 
 

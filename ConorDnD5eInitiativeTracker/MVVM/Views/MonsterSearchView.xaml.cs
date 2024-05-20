@@ -28,7 +28,14 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
     public partial class MonsterSearchView : UserControl
     {
         MonsterSearchViewModel monsterSearchViewModel;
-        FontFamily Ferrum = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#ferrum");
+        FontFamily Vinque = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#vinque rg");
+        double descAndStatsFontSize = 16;
+        double headingFontSize = 27;
+        double nameFontSize = 18;
+        Thickness sectionMarginTop = new Thickness(0, 10, 0, 0);
+        Thickness sectionMarginBottom = new Thickness(0, 0, 0, 10);
+        Thickness sectionMarginBoth = new Thickness(0, 10, 0, 10)
+;        
 
         public MonsterSearchView()
         {
@@ -58,6 +65,9 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             stkpnlMonsterAbilityNames.Children.Clear();
             stkpnlMonsterAbilityScores.Children.Clear();
             stkpnlMonsterStats.Children.Clear();
+            stkpnlSpecialAbilities.Children.Clear();
+            stkpnlCombatActions.Children.Clear();
+            stkpnlLegendaryActions.Children.Clear();
 
             if (monsterListItem != null)
             {
@@ -70,6 +80,10 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
                 AddACHPAndSpeed();
                 AddAbilityScores();
                 AddMonsterStats();
+                AddSpecialAbilities();
+                AddCombatActions();
+                AddReactions();
+                AddLegendaryActions();
             }
         }
 
@@ -114,24 +128,26 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
                 speedCount++;
             }
 
-            ac.FontSize = 15;
+            ac.FontSize = descAndStatsFontSize;
             ac.Foreground = Brushes.Black;
-            ac.FontFamily = Ferrum;
+            ac.FontFamily = Vinque;
 
-            hp.FontSize = 15;
+            hp.FontSize = descAndStatsFontSize;
             hp.Foreground = Brushes.Black;
-            hp.FontFamily = Ferrum;
+            hp.FontFamily = Vinque;
 
-            speeds.FontSize = 15;
+            speeds.FontSize = descAndStatsFontSize;
             speeds.Foreground = Brushes.Black;
-            speeds.FontFamily = Ferrum;
+            speeds.FontFamily = Vinque;
+            speeds.Margin = sectionMarginBottom;
 
             Rectangle border = new Rectangle()
             {
-                Height = 1,
+                Height = 3,
                 Fill = Brushes.Red
             };
 
+            stkpnlACHPandSpeed.Margin = sectionMarginTop;
             stkpnlACHPandSpeed.Children.Add(ac);
             stkpnlACHPandSpeed.Children.Add(hp);
             stkpnlACHPandSpeed.Children.Add(speeds);
@@ -231,14 +247,15 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             {
                 TextBlock textBlock = new TextBlock();
 
-                textBlock.FontSize = 15;
+                textBlock.FontSize = descAndStatsFontSize;
                 textBlock.Foreground = Brushes.Red;
-                textBlock.FontFamily = Ferrum;
+                textBlock.FontFamily = Vinque;
                 textBlock.FontWeight = FontWeights.Bold;
                 textBlock.Text = ability;
                 textBlock.TextAlignment = TextAlignment.Center;
                 textBlock.Width = 95;
 
+                stkpnlMonsterAbilityNames.Margin = new Thickness(0,10,0,4);
                 stkpnlMonsterAbilityNames.Children.Add(textBlock);
             }
 
@@ -246,13 +263,14 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             {
                 TextBlock textBlock = new TextBlock();
 
-                textBlock.FontSize = 15;
+                textBlock.FontSize = descAndStatsFontSize;
                 textBlock.Foreground = Brushes.Black;
-                textBlock.FontFamily = Ferrum;
+                textBlock.FontFamily = Vinque;
                 textBlock.Text = score;
                 textBlock.TextAlignment = TextAlignment.Center; 
                 textBlock.Width = 95;
 
+                stkpnlMonsterAbilityScores.Margin = sectionMarginBottom;
                 stkpnlMonsterAbilityScores.Children.Add(textBlock);
             }
 
@@ -295,9 +313,10 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
 
             Rectangle rect = new Rectangle();
 
-            rect.Height = 1;
+            rect.Height = 3;
             rect.Fill = Brushes.Red;
             stkpnlMonsterStats.Children.Add(rect);
+            stkpnlMonsterStats.Margin = sectionMarginTop;
         }
 
         private void AddProficiencies()
@@ -323,9 +342,9 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             if (savingThrows.Count > 0)
             {
                 savingThrowProficiencies.Text = "Saving Throws: ";
-                savingThrowProficiencies.FontSize = 13;
+                savingThrowProficiencies.FontSize = descAndStatsFontSize;
                 savingThrowProficiencies.Foreground = Brushes.Black;
-                savingThrowProficiencies.FontFamily = Ferrum;
+                savingThrowProficiencies.FontFamily = Vinque;
 
                 int savingThrowCount = 0;
 
@@ -360,9 +379,9 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             if (skills.Count > 0)
             {
                 skillProficiencies.Text = "Skills: ";
-                skillProficiencies.FontSize = 13;
+                skillProficiencies.FontSize = descAndStatsFontSize;
                 skillProficiencies.Foreground = Brushes.Black;
-                skillProficiencies.FontFamily = Ferrum;
+                skillProficiencies.FontFamily = Vinque;
 
                 int skillCount = 0;
                 foreach (var skill in skills)
@@ -400,9 +419,9 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             TextBlock textBlock = new TextBlock();
 
             textBlock.Text = "Damage Vulnerabilities: " + monsterSearchViewModel.monster.Damage_Vulnerabilities;
-            textBlock.FontSize = 13;
+            textBlock.FontSize = descAndStatsFontSize;
             textBlock.Foreground = Brushes.Black;
-            textBlock.FontFamily = Ferrum;
+            textBlock.FontFamily = Vinque;
 
             stkpnlMonsterStats.Children.Add(textBlock);
         }
@@ -412,9 +431,9 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             TextBlock textBlock = new TextBlock();
 
             textBlock.Text = "Damage Resistances: " + monsterSearchViewModel.monster.Damage_Resistances;
-            textBlock.FontSize = 13;
+            textBlock.FontSize = descAndStatsFontSize;
             textBlock.Foreground = Brushes.Black;
-            textBlock.FontFamily = Ferrum;
+            textBlock.FontFamily = Vinque;
 
             stkpnlMonsterStats.Children.Add(textBlock);
         }
@@ -424,9 +443,9 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             TextBlock textBlock = new TextBlock();
 
             textBlock.Text = "Damage Immunities: " + monsterSearchViewModel.monster.Damage_Immunities;
-            textBlock.FontSize = 13;
+            textBlock.FontSize = descAndStatsFontSize;
             textBlock.Foreground = Brushes.Black;
-            textBlock.FontFamily = Ferrum;
+            textBlock.FontFamily = Vinque;
 
             stkpnlMonsterStats.Children.Add(textBlock);
         }
@@ -436,9 +455,9 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             TextBlock textBlock = new TextBlock();
 
             textBlock.Text = "Condition Immunities: ";
-            textBlock.FontSize = 13;
+            textBlock.FontSize = descAndStatsFontSize;
             textBlock.Foreground = Brushes.Black;
-            textBlock.FontFamily = Ferrum;
+            textBlock.FontFamily = Vinque;
 
             int immunityCount = 0;
 
@@ -462,9 +481,9 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             TextBlock textBlock = new TextBlock();
 
             textBlock.Text = "Senses: ";
-            textBlock.FontSize = 13;
+            textBlock.FontSize = descAndStatsFontSize;
             textBlock.Foreground = Brushes.Black;
-            textBlock.FontFamily = Ferrum;
+            textBlock.FontFamily = Vinque;
 
             int sensesCount = 0;
 
@@ -529,9 +548,9 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             TextBlock textBlock = new TextBlock();
 
             textBlock.Text = "Languages: " + monsterSearchViewModel.monster.Languages;
-            textBlock.FontSize = 13;
+            textBlock.FontSize = descAndStatsFontSize;
             textBlock.Foreground = Brushes.Black;
-            textBlock.FontFamily = Ferrum;
+            textBlock.FontFamily = Vinque;
 
             stkpnlMonsterStats.Children.Add(textBlock);
         }
@@ -541,11 +560,294 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             TextBlock textBlock = new TextBlock();
 
             textBlock.Text = String.Format("Challenge: {0} ({1} XP)", monsterSearchViewModel.monster.Challenge_Rating, monsterSearchViewModel.monster.XP);
-            textBlock.FontSize = 13;
+            textBlock.FontSize = descAndStatsFontSize;
             textBlock.Foreground = Brushes.Black;
-            textBlock.FontFamily = Ferrum;
+            textBlock.FontFamily = Vinque;
+            textBlock.Margin = sectionMarginBottom;
 
             stkpnlMonsterStats.Children.Add(textBlock);
         }
+
+        private void AddSpecialAbilities()
+        {
+            if (monsterSearchViewModel.monster.SpecialAbilities.Count > 0)
+            {
+                foreach (var specialAbility in monsterSearchViewModel.monster.SpecialAbilities)
+                {
+                    TextBlock textBlockTitle = new TextBlock();
+                    TextBlock textBlockDescription = new TextBlock();
+
+                    textBlockTitle.FontFamily = Vinque;
+                    textBlockTitle.FontSize = nameFontSize;
+                    textBlockTitle.FontWeight = FontWeights.Medium;
+                    textBlockTitle.Foreground = Brushes.Red;
+
+                    textBlockDescription.MaxWidth = 540;
+                    textBlockDescription.Margin = new Thickness(10,0,0,0);
+                    textBlockDescription.FontFamily = Vinque;
+                    textBlockDescription.FontSize = descAndStatsFontSize;
+                    textBlockDescription.Foreground = Brushes.Black;
+                    textBlockDescription.HorizontalAlignment = HorizontalAlignment.Left;
+                    textBlockDescription.TextWrapping = TextWrapping.Wrap;
+
+                    textBlockTitle.Text = specialAbility.Name;
+                    textBlockDescription.Text = specialAbility.Desc;
+
+                    if (specialAbility.IsUsage)
+                    {
+                        foreach (var usage in monsterSearchViewModel.usages)
+                        {
+                            AddSpecialAbilityUsage(textBlockTitle, specialAbility, usage);
+                        }
+                    }
+
+                    stkpnlSpecialAbilities.Margin = sectionMarginTop;
+                    stkpnlSpecialAbilities.Children.Add(textBlockTitle);
+                    stkpnlSpecialAbilities.Children.Add(textBlockDescription);
+                }    
+            }
+        }
+
+        private void AddSpecialAbilityUsage(TextBlock textBlockTitle, SpecialAbility specialAbility, Usage usage)
+        {
+            if (usage.SpecialAbilityName == specialAbility.Name)
+            {
+                switch (usage.Type)
+                {
+                    case "per day":
+                        textBlockTitle.Text += String.Format(" ({0}/Day)", usage.Times);
+                        break;
+
+                    case "recharge on roll":
+                        if (usage.MinDiceValue < 6)
+                        {
+                            textBlockTitle.Text += String.Format(" (Recharge {0} - 6)", usage.MinDiceValue);
+                        }
+                        else
+                        {
+                            textBlockTitle.Text += String.Format(" (Recharge 6)");
+                        }
+                        break;
+
+                    case "recharge after rest":
+                        if (usage.Rest_Types.Contains("short"))
+                        {
+                            textBlockTitle.Text += String.Format(" (Recharge after a Short or Long Rest)");
+                        }
+                        else
+                        {
+                            textBlockTitle.Text += String.Format(" (Recharge after a Long Rest)");
+                        }
+                        break;
+                }
+            }
+
+        }
+
+        private void AddCombatActions()
+        {
+            if (monsterSearchViewModel.monster.CombatActions.Count > 0)
+            {
+                TextBlock textBlockActionsHeader = new TextBlock();
+                textBlockActionsHeader.FontFamily = Vinque;
+                textBlockActionsHeader.FontSize = headingFontSize;
+                textBlockActionsHeader.FontWeight = FontWeights.Bold;
+                textBlockActionsHeader.Foreground = Brushes.Red;
+                textBlockActionsHeader.Text = "Actions";
+
+
+                Rectangle rect = new Rectangle();
+
+                rect.Height = 1;
+                rect.Fill = Brushes.Red;
+
+                stkpnlCombatActions.Margin = sectionMarginTop;
+                stkpnlCombatActions.Children.Add(textBlockActionsHeader);
+                stkpnlCombatActions.Children.Add(rect);
+
+                foreach (var combatAction in monsterSearchViewModel.monster.CombatActions)
+                {
+                    TextBlock textBlockTitle = new TextBlock();
+                    TextBlock textBlockDescription = new TextBlock();
+
+                    textBlockTitle.FontFamily = Vinque;
+                    textBlockTitle.FontSize = nameFontSize;
+                    textBlockTitle.FontWeight = FontWeights.Medium;
+                    textBlockTitle.Foreground = Brushes.Red;
+                   
+
+                    textBlockDescription.MaxWidth = 540;
+                    textBlockDescription.Margin = new Thickness(10, 0, 0, 0);
+                    textBlockDescription.FontFamily = Vinque;
+                    textBlockDescription.FontSize = descAndStatsFontSize;
+                    textBlockDescription.Foreground = Brushes.Black;
+                    textBlockDescription.HorizontalAlignment = HorizontalAlignment.Left;
+                    textBlockDescription.TextWrapping = TextWrapping.Wrap;
+
+                    textBlockTitle.Text = combatAction.Name;
+                    textBlockDescription.Text = combatAction.Desc;
+
+                    if (combatAction.IsUsage)
+                    {
+                        foreach (var usage in monsterSearchViewModel.usages)
+                        {
+                            AddCombatActionUsage(textBlockTitle, combatAction, usage);
+
+                        }
+                    }
+
+
+                    stkpnlCombatActions.Children.Add(textBlockTitle);
+                    stkpnlCombatActions.Children.Add(textBlockDescription);
+                }
+
+            }
+        }
+
+        private void AddCombatActionUsage(TextBlock textBlockTitle, CombatAction combatAction, Usage usage)
+        {          
+            if (usage.ActionName == combatAction.Name)
+            {
+                switch (usage.Type)
+                {
+                    case "per day":
+                        textBlockTitle.Text += String.Format(" ({0}/Day)", usage.Times);
+                        break;
+
+                    case "recharge on roll":
+                        if(usage.MinDiceValue < 6)
+                        {
+                            textBlockTitle.Text += String.Format(" (Recharge {0} - 6)", usage.MinDiceValue);
+                        }
+                        else
+                        {
+                            textBlockTitle.Text += String.Format(" (Recharge 6)");
+                        }
+                        break;
+
+                    case "recharge after rest":
+                        if (usage.Rest_Types.Contains("short"))
+                        {
+                            textBlockTitle.Text += String.Format(" (Recharge after a Short or Long Rest)");
+                        }
+                        else
+                        {
+                            textBlockTitle.Text += String.Format(" (Recharge after a Long Rest)");
+                        }
+                        break;
+                }
+            }
+            
+        }
+
+        private void AddReactions()
+        {
+            if (monsterSearchViewModel.monster.Reactions.Count > 0)
+            {
+                TextBlock textBlockActionsHeader = new TextBlock();
+                textBlockActionsHeader.FontFamily = Vinque;
+                textBlockActionsHeader.FontSize = headingFontSize;
+                textBlockActionsHeader.FontWeight = FontWeights.Bold;
+                textBlockActionsHeader.Foreground = Brushes.Red;
+                textBlockActionsHeader.Text = "Reactions";
+
+
+                Rectangle rect = new Rectangle();
+
+                rect.Height = 1;
+                rect.Fill = Brushes.Red;
+
+                stkpnlReactions.Margin = sectionMarginTop;
+                stkpnlReactions.Children.Add(textBlockActionsHeader);
+                stkpnlReactions.Children.Add(rect);
+
+                foreach (var reaction in monsterSearchViewModel.monster.Reactions)
+                {
+                    TextBlock textBlockTitle = new TextBlock();
+                    TextBlock textBlockDescription = new TextBlock();
+
+                    textBlockTitle.FontFamily = Vinque;
+                    textBlockTitle.FontSize = nameFontSize;
+                    textBlockTitle.FontWeight = FontWeights.Medium;
+                    textBlockTitle.Foreground = Brushes.Red;
+
+
+                    textBlockDescription.MaxWidth = 540;
+                    textBlockDescription.Margin = new Thickness(10, 0, 0, 0);
+                    textBlockDescription.FontFamily = Vinque;
+                    textBlockDescription.FontSize = descAndStatsFontSize;
+                    textBlockDescription.Foreground = Brushes.Black;
+                    textBlockDescription.HorizontalAlignment = HorizontalAlignment.Left;
+                    textBlockDescription.TextWrapping = TextWrapping.Wrap;
+
+                    textBlockTitle.Text = reaction.Name;
+                    textBlockDescription.Text = reaction.Description;
+
+
+                    stkpnlReactions.Children.Add(textBlockTitle);
+                    stkpnlReactions.Children.Add(textBlockDescription);
+                }
+
+            }
+        }
+
+        private void AddLegendaryActions()
+        {
+            if (monsterSearchViewModel.monster.LegendaryActions.Count > 0)
+            {
+                TextBlock textBlockActionsHeader = new TextBlock();
+                textBlockActionsHeader.FontFamily = Vinque;
+                textBlockActionsHeader.FontSize = headingFontSize;
+                textBlockActionsHeader.FontWeight = FontWeights.Bold;
+                textBlockActionsHeader.Foreground = Brushes.Red;
+                textBlockActionsHeader.Text = "LegendaryActions";
+
+                TextBlock legendaryActionRulesText = new TextBlock();
+                legendaryActionRulesText.FontFamily = Vinque;
+                legendaryActionRulesText.FontSize = descAndStatsFontSize;
+                legendaryActionRulesText.Text = String.Format("{0} can take 3 legendary actions, choosing from the options below. Only one legendary action option can be used at a time and only at the end of another creature’s turn. {0} regains spent legendary actions at the start of their turn.", monsterSearchViewModel.monster.Name);
+                legendaryActionRulesText.TextWrapping = TextWrapping.Wrap;
+                legendaryActionRulesText.Margin = sectionMarginBottom;
+
+                Rectangle rect = new Rectangle();
+
+                rect.Height = 1;
+                rect.Fill = Brushes.Red;
+
+                stkpnlLegendaryActions.Margin = sectionMarginTop;
+                stkpnlLegendaryActions.Children.Add(textBlockActionsHeader);
+                stkpnlLegendaryActions.Children.Add(rect);
+                stkpnlLegendaryActions.Children.Add(legendaryActionRulesText);
+
+                foreach (var legendaryAction in monsterSearchViewModel.monster.LegendaryActions)
+                {
+                    TextBlock textBlockTitle = new TextBlock();
+                    TextBlock textBlockDescription = new TextBlock();
+
+                    textBlockTitle.FontFamily = Vinque;
+                    textBlockTitle.FontSize = nameFontSize;
+                    textBlockTitle.FontWeight = FontWeights.Medium;
+                    textBlockTitle.Foreground = Brushes.Red;
+
+
+                    textBlockDescription.MaxWidth = 540;
+                    textBlockDescription.Margin = new Thickness(10, 0, 0, 0);
+                    textBlockDescription.FontFamily = Vinque;
+                    textBlockDescription.FontSize = descAndStatsFontSize;
+                    textBlockDescription.Foreground = Brushes.Black;
+                    textBlockDescription.HorizontalAlignment = HorizontalAlignment.Left;
+                    textBlockDescription.TextWrapping = TextWrapping.Wrap;
+
+                    textBlockTitle.Text = legendaryAction.Name;
+                    textBlockDescription.Text = legendaryAction.Desc;
+
+
+                    stkpnlLegendaryActions.Children.Add(textBlockTitle);
+                    stkpnlLegendaryActions.Children.Add(textBlockDescription);
+                }
+
+            }
+        }
+
     }
 }

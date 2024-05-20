@@ -97,6 +97,10 @@ namespace DatabaseLibrary.DatabaseLinq.MonstersLinq
                 AddSpecialAbilityDifficultyClass(monster, specialAbility, db);
             }
 
+            if(specialAbility.usage != null)
+            {
+                AddSpecialAbilityUsage(monster, specialAbility, db);
+            }
         }
 
         internal void AddSpecialAbilityDifficultyClass(MonsterModel monster, MonsterSpecialAbilityModel specialAbility, InitiativeTrackerDB db)
@@ -156,8 +160,12 @@ namespace DatabaseLibrary.DatabaseLinq.MonstersLinq
                 Dice = specialAbility.usage.dice,
                 MinDiceValue = specialAbility.usage.min_value,
                 SpecialAbilityName = specialAbility.name,
-                SpecialAbilityMonsterName = monster.name
+                SpecialAbilityMonsterName = monster.name             
             };
+            if (specialAbility.usage.rest_types != null)
+            {
+                usage.Rest_Types = String.Join(",", specialAbility.usage.rest_types);
+            }
 
             try
             {

@@ -145,6 +145,10 @@
     <Compile Include="Migrations\202405161955480_AddedReactionsToDatabase.designer.cs">
       <DependentUpon>202405161955480_AddedReactionsToDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405201632560_Added_Rest_Types.cs" />
+    <Compile Include="Migrations\202405201632560_Added_Rest_Types.designer.cs">
+      <DependentUpon>202405201632560_Added_Rest_Types.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405161955480_AddedReactionsToDatabase.resx">
       <DependentUpon>202405161955480_AddedReactionsToDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405201632560_Added_Rest_Types.resx">
+      <DependentUpon>202405201632560_Added_Rest_Types.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -81,8 +81,13 @@ namespace DatabaseLibrary.DatabaseLinq.MonstersLinq
                 Type = spell.usage.type,
                 Times = spell.usage.times,
                 MonsterSpellMonsterName = monster.name,
-                MonsterSpellSpellName = spell.name
+                MonsterSpellSpellName = spell.name,
+                
             };
+            if (spell.usage.rest_types != null)
+            {
+                usage.Rest_Types = String.Join(",", spell.usage.rest_types);
+            }
 
             try
             {

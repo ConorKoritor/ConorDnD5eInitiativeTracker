@@ -15,7 +15,7 @@
                             <TextBlock
                                 Margin="40,0,0,0"
                                 VerticalAlignment="Center"
-                                FontFamily="/Fonts/#ferrum"
+                                FontFamily="/Fonts/#vinque rg"
                                 FontSize="22"
                                 Text="{TemplateBinding Property=Content}" />
 

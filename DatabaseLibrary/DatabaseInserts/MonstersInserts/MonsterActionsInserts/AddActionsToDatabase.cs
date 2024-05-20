@@ -128,8 +128,14 @@ namespace DatabaseLibrary.DatabaseLinq.MonstersLinq
                 Dice = usage.dice,
                 MinDiceValue = usage.min_value,
                 ActionName = action.name,
-                ActionMonsterName = monster.name
+                ActionMonsterName = monster.name,
+                
             };
+
+            if (usage.rest_types != null)
+            {
+                usage1.Rest_Types = String.Join(",", usage.rest_types);
+            }
 
             try
             {

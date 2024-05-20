@@ -243,5 +243,18 @@ namespace DnDInitiativeTrackerTest.JSONTests
             Assert.That(monsters[37].name, Is.EqualTo("Bandit Captain"));
             Assert.That(monsters[37].reactions[0].name, Is.EqualTo("Parry"));
         }
+
+        [Test]
+        public void Pulling_Monster_Usage_Recharge_After_Rest()
+        {
+            //Arrange and Act taken care of in setup so I dont have to pull from the api multiple times
+
+            //Assert
+            //Based on API Data for duergar which should be the the 91st request made
+
+            //Testing for Reactions
+            Assert.That(monsters[90].name, Is.EqualTo("Duergar"));
+            Assert.That(monsters[90].actions[0].usage.rest_types[0], Is.EqualTo("short"));
+        }
     }
 }

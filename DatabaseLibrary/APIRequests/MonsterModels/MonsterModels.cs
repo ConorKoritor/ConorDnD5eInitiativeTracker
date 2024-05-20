@@ -202,7 +202,7 @@ namespace DatabaseLibrary.APIRequests
             public string dice {  get; set; }
             public int min_value {  get; set; }
             public int times { get; set; }
-            public List<object> rest_types { get; set; }
+            public List<string> rest_types { get; set; }
         }
 
         //SpellCasting ability model holds what ability a monster uses to cast spells
