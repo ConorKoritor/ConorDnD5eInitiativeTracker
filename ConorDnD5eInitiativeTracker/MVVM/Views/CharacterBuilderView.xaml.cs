@@ -24,5 +24,15 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
         {
             InitializeComponent();
         }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddToDatabase_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
