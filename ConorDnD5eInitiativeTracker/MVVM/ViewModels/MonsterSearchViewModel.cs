@@ -30,6 +30,8 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
         public List<Usage> usages { get; set; }
         public SpellCastingStat spellCastingStat { get; set; }
 
+        public string challengeRatingString { get; set; }
+
 
         public MonsterSearchViewModel()
         {
@@ -66,12 +68,44 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
 
         public void PopulateList(List<Monster> query)
         {
+            
+
             foreach (var m in query)
             {
+
+                if (m.Challenge_Rating < 1)
+                {
+                    switch (m.Challenge_Rating)
+                    {
+                        case 0:
+                            challengeRatingString = "0";
+                            break;
+
+                        case 0.125:
+                            challengeRatingString = "1/8";
+                            break;
+
+                        case 0.25:
+                            challengeRatingString = "1/4";
+                            break;
+
+                        case 0.5:
+                            challengeRatingString = "1/2";
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    challengeRatingString = m.Challenge_Rating.ToString();
+                }
+
                 MonsterListItem monsterListItem = new MonsterListItem()
                 {
                     Name = m.Name,
-                    Challenge_Rating = m.Challenge_Rating.ToString(),
+                    Challenge_Rating = challengeRatingString,
                     Size = m.Size,
                     Type = m.Type,
                     Alignment = m.Alignment

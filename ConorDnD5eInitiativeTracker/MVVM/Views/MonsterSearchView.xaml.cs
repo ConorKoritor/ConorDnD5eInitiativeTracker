@@ -559,7 +559,7 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
         {
             TextBlock textBlock = new TextBlock();
 
-            textBlock.Text = String.Format("Challenge: {0} ({1} XP)", monsterSearchViewModel.monster.Challenge_Rating, monsterSearchViewModel.monster.XP);
+            textBlock.Text = String.Format("Challenge: {0} ({1} XP)", monsterSearchViewModel.challengeRatingString, monsterSearchViewModel.monster.XP);
             textBlock.FontSize = descAndStatsFontSize;
             textBlock.Foreground = Brushes.Black;
             textBlock.FontFamily = Vinque;
