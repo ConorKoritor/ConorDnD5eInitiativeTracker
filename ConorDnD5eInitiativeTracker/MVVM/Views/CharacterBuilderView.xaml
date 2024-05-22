@@ -61,7 +61,26 @@
                         FontWeight="Bold">
                         Character Name
                     </Label>
-                    <TextBox x:Name="txtbxCharacterNameInput" Style="{StaticResource InputTextBox}" />
+                    <Border
+                        Width="200"
+                        Height="40"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Background="#DEDEDE"
+                        CornerRadius="10">
+
+                        <Grid>
+                            <Rectangle StrokeThickness="1" />
+                            <TextBox
+                                x:Name="txtbxCharacterNameInput"
+                                Margin="1"
+                                Padding="5"
+                                VerticalContentAlignment="Center"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="Black" />
+                        </Grid>
+                    </Border>
                 </StackPanel>
 
                 <StackPanel
@@ -79,7 +98,26 @@
                         FontWeight="Bold">
                         Character Armor Class
                     </Label>
-                    <TextBox x:Name="txtbxCharacterACInput" Style="{StaticResource InputTextBox}" />
+                    <Border
+                        Width="200"
+                        Height="40"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Background="#DEDEDE"
+                        CornerRadius="10">
+
+                        <Grid>
+                            <Rectangle StrokeThickness="1" />
+                            <TextBox
+                                x:Name="txtbxCharacterACInput"
+                                Margin="1"
+                                Padding="5"
+                                VerticalContentAlignment="Center"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="Black" />
+                        </Grid>
+                    </Border>
                 </StackPanel>
 
                 <StackPanel
@@ -97,7 +135,26 @@
                         FontWeight="Bold">
                         Character Hit Points
                     </Label>
-                    <TextBox x:Name="txtbxCharacterHPInput" Style="{StaticResource InputTextBox}" />
+                    <Border
+                        Width="200"
+                        Height="40"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Background="#DEDEDE"
+                        CornerRadius="10">
+
+                        <Grid>
+                            <Rectangle StrokeThickness="1" />
+                            <TextBox
+                                x:Name="txtbxCharacterHPInput"
+                                Margin="1"
+                                Padding="5"
+                                VerticalContentAlignment="Center"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="Black" />
+                        </Grid>
+                    </Border>
                 </StackPanel>
                 <StackPanel
                     x:Name="stkpnlCharacterInput"
@@ -113,7 +170,26 @@
                         FontWeight="Bold">
                         Character CR2
                     </Label>
-                    <TextBox x:Name="txtbxCharacterCR2Input" Style="{StaticResource InputTextBox}" />
+                    <Border
+                        Width="200"
+                        Height="40"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Background="#DEDEDE"
+                        CornerRadius="10">
+
+                        <Grid>
+                            <Rectangle StrokeThickness="1" />
+                            <TextBox
+                                x:Name="txtbxCharacterCR2Input"
+                                Margin="1"
+                                Padding="5"
+                                VerticalContentAlignment="Center"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="Black" />
+                        </Grid>
+                    </Border>
                 </StackPanel>
                 <StackPanel
                     Margin="0,40,40,0"

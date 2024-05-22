@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using ConorDnD5eInitiativeTracker.MVVM.ViewModels;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DatabaseLibrary.Databases;
+using System.Configuration.Internal;
 
 namespace ConorDnD5eInitiativeTracker.MVVM.Views
 {
@@ -27,11 +30,81 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-
+            txtbxCharacterNameInput.Clear();
+            txtbxCharacterACInput.Clear();
+            txtbxCharacterHPInput.Clear();
+            txtbxCharacterCR2Input.Clear();
         }
 
         private void btnAddToDatabase_Click(object sender, RoutedEventArgs e)
         {
+            string characterName = "Player";
+            short characterAC = 0;
+            int characterHP = 0;
+            int characterCR2 = 0;
+            bool incorrectInput = false;
+
+            do
+            {
+                if (txtbxCharacterNameInput.Text.Length > 0)
+                {
+                    characterName = txtbxCharacterNameInput.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Please Enter Your Characters Name in the Text Box");
+                    incorrectInput = true;
+                    break;
+                }
+
+                if(!short.TryParse(txtbxCharacterACInput.Text, out characterAC))
+                {
+                    MessageBox.Show("Please Enter a valid Character Armor Class with no special characters between 0 and 50");
+                    incorrectInput = true;
+                    break;
+                }
+                if (!int.TryParse(txtbxCharacterHPInput.Text, out characterHP))
+                {
+                    MessageBox.Show("Please Enter a valid Character HP with no special characters between 0 and 500");
+                    incorrectInput = true;
+                    break;
+                }
+                if (!int.TryParse(txtbxCharacterCR2Input.Text, out characterCR2))
+                {
+                    MessageBox.Show($"Please Enter a valid Character CR2 score with no special characters between 0 and 100" +
+                        "\n\n To find out more information please visit https://www.gmbinder.com/share/-N4m46K77hpMVnh7upYa");
+                    incorrectInput = true;
+                    break;
+                }
+
+                break;
+
+            }while (incorrectInput);
+
+            if (!incorrectInput)
+            {
+                PlayerCharacterBasic player = new PlayerCharacterBasic()
+                {
+                    Name = characterName,
+                    AC = characterAC,
+                    HP = characterHP,
+                    CR_2_Score = characterCR2
+                };
+
+                if (CharacterBuilderViewModel.AddCharacterToDatabase(player))
+                {
+                    MessageBox.Show("Player Added to Database"); 
+                    txtbxCharacterNameInput.Clear();
+                    txtbxCharacterACInput.Clear();
+                    txtbxCharacterHPInput.Clear();
+                    txtbxCharacterCR2Input.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Error, Player Not Added To Database");
+                }
+                
+            }
 
         }
     }
