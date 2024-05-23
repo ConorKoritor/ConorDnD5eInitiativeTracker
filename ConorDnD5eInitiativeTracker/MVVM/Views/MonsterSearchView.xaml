@@ -116,7 +116,11 @@
             Background="AntiqueWhite"
             CornerRadius="10">
             <ScrollViewer Margin="5">
-                <StackPanel x:Name="stkpnlMonsterStatBlock" Orientation="Vertical">
+                <StackPanel
+                    x:Name="stkpnlMonsterStatBlock"
+                    MaxWidth="600"
+                    HorizontalAlignment="Left"
+                    Orientation="Vertical">
                     <StackPanel x:Name="stkpnlMonsterNameSizeAlignmentType" Orientation="Vertical">
                         <TextBlock
                             x:Name="txtblkMonsterStatsName"
