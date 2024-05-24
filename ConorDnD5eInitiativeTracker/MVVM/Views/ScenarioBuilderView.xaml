@@ -41,6 +41,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition />
+            <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -51,7 +52,7 @@
 
         <Border
             Grid.Row="1"
-            Grid.RowSpan="2"
+            Grid.RowSpan="3"
             Margin="5"
             Background="#878787"
             CornerRadius="10">
@@ -128,6 +129,17 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+        </Border>
+
+        <Border
+            Grid.Column="3"
+            Width="120"
+            Height="30"
+            Background="Red"
+            CornerRadius="10">
+            <Label x:Name="lblScenarioMonsters" HorizontalAlignment="Center">
+                Scenario Monsters
+            </Label>
         </Border>
 
         <Border
@@ -208,8 +220,96 @@
         </Border>
 
         <Border
+            Grid.Row="2"
+            Grid.Column="3"
+            Width="170"
+            Height="30"
+            Background="Red"
+            CornerRadius="10">
+            <Label x:Name="lblScenarioPlayerCharacters" HorizontalAlignment="Center">
+                Scenario Player Characters
+            </Label>
+        </Border>
+
+        <Border
+            Grid.Row="3"
+            Grid.Column="3"
+            Margin="5"
+            Background="#878787"
+            CornerRadius="10">
+            <ListBox
+                x:Name="lstbxPlayerScenarioList"
+                Margin="4"
+                Background="#878787"
+                BorderBrush="#878787"
+                SelectionChanged="ListBox_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:MonsterListItem}">
+                        <Border
+                            Margin="2"
+                            Padding="5"
+                            Background="White"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                            <Grid Width="345">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock
+                                    x:Name="txtblkMonsterName"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    FontFamily="/Fonts/#vinque rg"
+                                    FontSize="28"
+                                    FontWeight="Bold"
+                                    Foreground="Red" />
+                                <TextBlock
+                                    x:Name="txtblkCRRating"
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    FontFamily="/Fonts/#vinque rg"
+                                    FontSize="15"
+                                    Foreground="Black" />
+                                <TextBlock
+                                    x:Name="txtblkSize"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    FontFamily="/Fonts/#vinque rg"
+                                    FontSize="15"
+                                    Foreground="Black" />
+                                <TextBlock
+                                    x:Name="txtblkType"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="3,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    FontFamily="/Fonts/#vinque rg"
+                                    FontSize="15"
+                                    Foreground="Black" />
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <Border
             Grid.Row="1"
-            Grid.RowSpan="2"
+            Grid.RowSpan="3"
             Grid.Column="1"
             Margin="7"
             Background="AntiqueWhite"
