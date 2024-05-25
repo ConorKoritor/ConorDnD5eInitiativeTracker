@@ -845,8 +845,27 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
 
             }
         }
-        
 
+        private void btnAddToScenario_MouseEnter(object sender, MouseEventArgs e)
+        {
+            brdAddToScenario.Background = Brushes.LightGreen;
+        }
 
+        private void btnAddToScenario_MouseLeave(object sender, MouseEventArgs e)
+        {
+            brdAddToScenario.Background = Brushes.Green;
+        }
+
+        private void btnRemoveFromScenario_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var converter = new System.Windows.Media.BrushConverter();
+            var brush = (Brush)converter.ConvertFromString("#FF7F7F");
+            brdRemoveFromScenario.Background = brush;
+        }
+
+        private void btnRemoveFromScenario_MouseLeave(object sender, MouseEventArgs e)
+        {
+            brdRemoveFromScenario.Background = Brushes.Red;
+        }
     }
 }

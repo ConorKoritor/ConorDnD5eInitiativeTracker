@@ -195,7 +195,9 @@
                     Margin="0,40,40,0"
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
+
                     <Border
+                        x:Name="brdClear"
                         Width="100"
                         Height="30"
                         Background="Red"
@@ -209,11 +211,14 @@
                             FontFamily="#/Fonts/vinque rg"
                             FontSize="18"
                             FontWeight="Bold"
+                            MouseEnter="btnClear_MouseEnter"
+                            MouseLeave="btnClear_MouseLeave"
                             Template="{StaticResource NoMouseOverButtonTemplate}">
                             Clear
                         </Button>
                     </Border>
                     <Border
+                        x:Name="brdAddToDatabase"
                         Width="100"
                         Height="30"
                         Margin="70,0,0,0"
@@ -228,6 +233,8 @@
                             FontFamily="#/Fonts/vinque rg"
                             FontSize="18"
                             FontWeight="Bold"
+                            MouseEnter="btnAddToDatabase_MouseEnter"
+                            MouseLeave="btnAddToDatabase_MouseLeave"
                             Template="{StaticResource NoMouseOverButtonTemplate}">
                             Add
                         </Button>

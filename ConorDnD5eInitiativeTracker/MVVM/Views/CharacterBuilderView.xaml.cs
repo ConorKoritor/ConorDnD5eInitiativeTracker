@@ -107,5 +107,27 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             }
 
         }
+
+        private void btnClear_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var converter = new System.Windows.Media.BrushConverter();
+            var brush = (Brush)converter.ConvertFromString("#FF7F7F");
+            brdClear.Background = brush;
+        }
+
+        private void btnClear_MouseLeave(object sender, MouseEventArgs e)
+        {
+            brdClear.Background = Brushes.Red;
+        }
+
+        private void btnAddToDatabase_MouseEnter(object sender, MouseEventArgs e)
+        {
+            brdAddToDatabase.Background = Brushes.LightGreen;
+        }
+
+        private void btnAddToDatabase_MouseLeave(object sender, MouseEventArgs e)
+        {
+            brdAddToDatabase.Background = Brushes.Green;
+        }
     }
 }
