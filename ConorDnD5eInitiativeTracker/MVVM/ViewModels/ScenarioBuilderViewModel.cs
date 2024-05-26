@@ -37,6 +37,7 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
         {
             db = new InitiativeTrackerDB("TestDatabase14");
             Monsters = new ObservableCollection<MonsterListItem>();
+            ScenarioMonsters = new ObservableCollection<MonsterListItem>();
 
             GetInitialList();
 

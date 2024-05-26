@@ -307,6 +307,7 @@
                     Width="70"
                     Background="Transparent"
                     BorderBrush="Transparent"
+                    Click="btnAddToScenario_Click"
                     FontFamily="#/Fonts/vinque rg"
                     FontSize="18"
                     FontWeight="Bold"

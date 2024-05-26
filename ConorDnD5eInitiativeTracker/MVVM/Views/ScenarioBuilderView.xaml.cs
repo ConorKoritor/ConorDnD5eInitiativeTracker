@@ -867,5 +867,41 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
         {
             brdRemoveFromScenario.Background = Brushes.Red;
         }
+
+        private void btnAddToScenario_Click(object sender, RoutedEventArgs e)
+        {
+            MonsterListItem monsterListItem = lstbxMonsterList.SelectedItem as MonsterListItem;
+
+            if (monsterListItem != null)
+            {
+                AddMonsterToScenario(monsterListItem);
+            }
+        }
+
+        private void AddMonsterToScenario(MonsterListItem monsterListItem)
+        {
+            string scenarioMonsterName = monsterListItem.Name;
+            int count = 1;
+
+            foreach (MonsterListItem monster in scenarioBuilderViewModel.ScenarioMonsters)
+            {
+                if(monster.Name.Contains(scenarioMonsterName))
+                {
+                    count++;
+                }
+            }
+
+            scenarioMonsterName += " #" + count.ToString();
+            MonsterListItem scenarioMonster = new MonsterListItem()
+            {
+                Name = scenarioMonsterName,
+                Type = monsterListItem.Type,
+                Size = monsterListItem.Size,
+                Challenge_Rating = monsterListItem.Challenge_Rating,
+                Alignment = monsterListItem.Alignment
+            };
+
+            scenarioBuilderViewModel.ScenarioMonsters.Add(scenarioMonster);
+        }
     }
 }
