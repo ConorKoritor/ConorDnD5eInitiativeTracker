@@ -155,10 +155,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\Views\HomeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MVVM\Views\InitiativeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,16 +187,12 @@
     <Compile Include="MVVM\Models\ScenarioMonsterListItem.cs" />
     <Compile Include="MVVM\Models\WindowBehaviours.cs" />
     <Compile Include="MVVM\ViewModels\CharacterBuilderViewModel.cs" />
-    <Compile Include="MVVM\ViewModels\HomeViewModel.cs" />
     <Compile Include="MVVM\ViewModels\InitiativeViewModel.cs" />
     <Compile Include="MVVM\ViewModels\MainViewModel.cs" />
     <Compile Include="MVVM\ViewModels\MonsterSearchViewModel.cs" />
     <Compile Include="MVVM\ViewModels\ScenarioBuilderViewModel.cs" />
     <Compile Include="MVVM\Views\CharacterBuilderView.xaml.cs">
       <DependentUpon>CharacterBuilderView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVVM\Views\HomeView.xaml.cs">
-      <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Views\InitiativeView.xaml.cs">
       <DependentUpon>InitiativeView.xaml</DependentUpon>

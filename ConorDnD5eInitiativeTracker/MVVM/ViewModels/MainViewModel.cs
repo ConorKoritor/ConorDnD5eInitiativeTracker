@@ -15,7 +15,6 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
         public CharacterBuilderViewModel CharacterBuilderVM { get; set; }
         public InitiativeViewModel InitiativeVM { get; set; }
         public MonsterSearchViewModel MonsterSearchVM { get; set; }
-        public HomeViewModel HomeVM { get; set; }
 
         private object _currentView;
 
@@ -36,9 +35,8 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
             CharacterBuilderVM = new CharacterBuilderViewModel();
             InitiativeVM = new InitiativeViewModel();
             MonsterSearchVM = new MonsterSearchViewModel();
-            HomeVM = new HomeViewModel();
 
-            CurrentView = HomeVM;
+            CurrentView = ScenarioBuilderVM;
 
             ScenarioBuilderViewCommand = new RelayCommand(o =>
             {
@@ -58,11 +56,6 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
             MonsterSearchViewCommand = new RelayCommand(o =>
             {
                 CurrentView = MonsterSearchVM;
-            });
-
-            HomeViewCommand = new RelayCommand(o =>
-            {
-                CurrentView = HomeVM;
             });
         }
     }
