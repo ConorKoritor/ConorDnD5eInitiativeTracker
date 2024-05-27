@@ -48,6 +48,7 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             initiativeViewModel.Creatures.Clear();
 
             var monsterScenarioQuery = ScenarioQueries.GetMonsterScenarios(db, scenario.Scenario_Name);
+            int count = 1;
 
             foreach (MonsterScenarioTable monsterScenario in monsterScenarioQuery)
             {
@@ -61,7 +62,20 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
                     Is_Monster = true
                 };
 
+                if (initiativeViewModel.Creatures.Count > 0)
+                {
+                    foreach (var creature in initiativeViewModel.Creatures)
+                    {
+                        if (creature.Name.Contains(listItem.Name))
+                        {
+                            count++;
+                        }
+                    }
+                }
+
+                listItem.Name += $" #{count}";
                 initiativeViewModel.Creatures.Add(listItem);
+                count = 1;
 
                 lstbxCreatureList.ItemsSource = initiativeViewModel.Creatures;
             }
