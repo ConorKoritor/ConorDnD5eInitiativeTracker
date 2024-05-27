@@ -20,6 +20,9 @@ namespace ConorDnD5eInitiativeTracker
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// Github Link
+    /// https://github.com/ConorKoritor/ConorDnD5eInitiativeTracker
+
     public partial class MainWindow : Window
     {
         public MainWindow()
