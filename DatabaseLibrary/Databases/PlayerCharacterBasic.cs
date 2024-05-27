@@ -15,7 +15,7 @@ namespace DatabaseLibrary.Databases
         }
 
         [Key]
-        public int Id { get; set; }
+        public string Name { get; set; }
 
         public int HP { get; set; }
 
@@ -25,8 +25,7 @@ namespace DatabaseLibrary.Databases
 
         public short Level { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlayerScenarioTable> PlayerScenarios { get; set; }

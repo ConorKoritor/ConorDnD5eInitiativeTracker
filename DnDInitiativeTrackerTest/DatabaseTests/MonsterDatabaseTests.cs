@@ -20,7 +20,7 @@ namespace DnDInitiativeTrackerTest.DatabaseTests.MonsterDatabaseTests
         {
             //Arrange
 
-            db = new InitiativeTrackerDB("TestDatabase16");
+            db = new InitiativeTrackerDB("TestDatabase19");
         }
 
         [Test]

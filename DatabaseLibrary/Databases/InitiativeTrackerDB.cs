@@ -49,13 +49,13 @@ namespace DatabaseLibrary.Databases
             modelBuilder.Entity<Scenario>()
                 .HasMany(e => e.PlayerScenarios)
                 .WithRequired(e => e.Scenario)
-                .HasForeignKey(e => e.ScenarioID)
+                .HasForeignKey(e => e.ScenarioName)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Scenario>()
                 .HasMany(e => e.MonsterScenarios)
                 .WithRequired(e => e.Scenario)
-                .HasForeignKey(e => e.ScenarioID)
+                .HasForeignKey(e => e.ScenarioName)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Monster>()
@@ -165,7 +165,7 @@ namespace DatabaseLibrary.Databases
             modelBuilder.Entity<PlayerCharacterBasic>()
                 .HasMany(e => e.PlayerScenarios)
                 .WithRequired(e => e.Player)
-                .HasForeignKey(e => e.PlayerID)
+                .HasForeignKey(e => e.PlayerName)
                 .WillCascadeOnDelete(false);
         }
 

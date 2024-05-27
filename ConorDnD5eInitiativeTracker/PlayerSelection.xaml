@@ -54,7 +54,7 @@
             <Rectangle
                 Name="WindowDrag"
                 Grid.Row="0"
-                Grid.ColumnSpan="2"
+                Grid.ColumnSpan="4"
                 Fill="Transparent" />
             <TextBlock
                 HorizontalAlignment="Center"
@@ -85,8 +85,7 @@
                     x:Name="lstbxPlayerList"
                     Margin="4"
                     Background="#878787"
-                    BorderBrush="#878787"
-                    ItemsSource="{Binding Players}">
+                    BorderBrush="#878787">
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type models:PlayerListItem}">
                             <Border
@@ -176,8 +175,7 @@
                     x:Name="lstbxScenarioPlayerList"
                     Margin="4"
                     Background="#878787"
-                    BorderBrush="#878787"
-                    ItemsSource="{Binding ScenarioPlayers}">
+                    BorderBrush="#878787">
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type models:PlayerListItem}">
                             <Border
@@ -277,7 +275,7 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Click="btnAddToScenario_Click"
-                        FontFamily="#/Fonts/vinque rg"
+                        FontFamily="/Fonts/#vinque rg"
                         FontSize="18"
                         FontWeight="Bold"
                         MouseEnter="btnAddToScenario_MouseEnter"
@@ -299,7 +297,7 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Click="btnRemoveFromScenario_Click"
-                        FontFamily="#/Fonts/vinque rg"
+                        FontFamily="/Fonts/#vinque rg"
                         FontSize="18"
                         FontWeight="Bold"
                         MouseEnter="btnRemoveFromScenario_MouseEnter"
@@ -312,6 +310,30 @@
 
 
             </StackPanel>
+            <Border
+                x:Name="brdFInishButton"
+                Grid.Column="4"
+                Width="80"
+                Height="30"
+                Margin="0,0,0,0"
+                Background="Green"
+                CornerRadius="5">
+                <Button
+                    x:Name="btnFinish"
+                    Width="70"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Click="btnFinish_Click"
+                    FontFamily="/Fonts/#vinque rg"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    MouseEnter="btnFinish_MouseEnter"
+                    MouseLeave="btnFinish_MouseLeave"
+                    Template="{StaticResource NoMouseOverButtonTemplate}">
+                    Finish
+                </Button>
+
+            </Border>
         </Grid>
     </Border>
 </Window>

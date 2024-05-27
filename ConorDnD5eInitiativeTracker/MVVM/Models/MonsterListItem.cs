@@ -12,6 +12,7 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Models
         public string Type { get; set; }
         public string Size {  get; set; }
         public string Challenge_Rating {  get; set; }
+        public int Challenge_Rating_Tier {  get; set; }
         public string Alignment {  get; set; }
 
         public override string ToString()

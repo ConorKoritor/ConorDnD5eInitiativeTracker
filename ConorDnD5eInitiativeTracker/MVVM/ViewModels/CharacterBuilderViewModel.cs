@@ -1,4 +1,5 @@
-﻿using DatabaseLibrary.Databases;
+﻿using DatabaseLibrary.DatabaseQueries;
+using DatabaseLibrary.Databases;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -14,7 +15,9 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
     {  
         public static bool AddCharacterToDatabase(PlayerCharacterBasic player)
         {
-            InitiativeTrackerDB db = new InitiativeTrackerDB("TestDatabase16");
+            InitiativeTrackerDB db = new InitiativeTrackerDB("TestDatabase19");
+
+            
 
             try
             {
@@ -49,7 +52,7 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
                     if (entry.Entity is PlayerCharacterBasic)
                     {
                         // Handle the specific entity that caused the exception
-                        Monster entity = (Monster)entry.Entity;
+                        PlayerCharacterBasic entity = (PlayerCharacterBasic)entry.Entity;
                         // Log or handle the failed entity (e.g., display an error message)
                         Console.WriteLine($"Failed to save entity {entity.Name}: {ex.Message}");
                     }

@@ -154,6 +154,18 @@
     <Compile Include="Migrations\202405261920243_AddedLevelToPlayerCharacterBasic.designer.cs">
       <DependentUpon>202405261920243_AddedLevelToPlayerCharacterBasic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405271227124_FixedScenarioLinkTablesAndScenarios.cs" />
+    <Compile Include="Migrations\202405271227124_FixedScenarioLinkTablesAndScenarios.designer.cs">
+      <DependentUpon>202405271227124_FixedScenarioLinkTablesAndScenarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405271329231_AddedIDToScenarioLinkTables.cs" />
+    <Compile Include="Migrations\202405271329231_AddedIDToScenarioLinkTables.designer.cs">
+      <DependentUpon>202405271329231_AddedIDToScenarioLinkTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405271341166_ChangedIDOnPlayerCharacter.cs" />
+    <Compile Include="Migrations\202405271341166_ChangedIDOnPlayerCharacter.designer.cs">
+      <DependentUpon>202405271341166_ChangedIDOnPlayerCharacter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -173,6 +185,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405261920243_AddedLevelToPlayerCharacterBasic.resx">
       <DependentUpon>202405261920243_AddedLevelToPlayerCharacterBasic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405271227124_FixedScenarioLinkTablesAndScenarios.resx">
+      <DependentUpon>202405271227124_FixedScenarioLinkTablesAndScenarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405271329231_AddedIDToScenarioLinkTables.resx">
+      <DependentUpon>202405271329231_AddedIDToScenarioLinkTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405271341166_ChangedIDOnPlayerCharacter.resx">
+      <DependentUpon>202405271341166_ChangedIDOnPlayerCharacter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

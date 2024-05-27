@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DatabaseLibrary.Databases;
 using System.Configuration.Internal;
+using DatabaseLibrary.DatabaseQueries;
 
 namespace ConorDnD5eInitiativeTracker.MVVM.Views
 {
@@ -23,9 +24,12 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
     /// </summary>
     public partial class CharacterBuilderView : UserControl
     {
+        InitiativeTrackerDB db = new InitiativeTrackerDB("TestDatabase19");
+
         public CharacterBuilderView()
         {
             InitializeComponent();
+
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -84,8 +88,6 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
                     break;
                 }
 
-                break;
-
             }while (incorrectInput);
 
             if (!incorrectInput)
@@ -99,18 +101,35 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
                     CR_2_Score = characterCR2
                 };
 
-                if (CharacterBuilderViewModel.AddCharacterToDatabase(player))
+                var query = PlayerQueries.GetPlayers(db);
+                bool IsDuplicateName = false;
+
+                if (query.Count > 0)
                 {
-                    MessageBox.Show("Player Added to Database"); 
-                    txtbxCharacterNameInput.Clear();
-                    txtbxCharacterACInput.Clear();
-                    txtbxCharacterHPInput.Clear();
-                    txtbxCharacterCR2Input.Clear();
+                    foreach (PlayerCharacterBasic playerCharacterBasic in query)
+                    {
+                        if (player.Name == playerCharacterBasic.Name)
+                        {
+                            MessageBox.Show("Error, Player Not Added To Database. Please add a player with a unique name");
+                            IsDuplicateName = true;
+                            break;
+                        }
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Error, Player Not Added To Database");
-                }
+                    if (CharacterBuilderViewModel.AddCharacterToDatabase(player) && !IsDuplicateName)
+                    {
+                        MessageBox.Show("Player Added to Database");
+                        txtbxCharacterNameInput.Clear();
+                        txtbxCharacterACInput.Clear();
+                        txtbxCharacterLevelInput.Clear();
+                        txtbxCharacterHPInput.Clear();
+                        txtbxCharacterCR2Input.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error, Player Not Added To Database");
+                    }
+
                 
             }
 

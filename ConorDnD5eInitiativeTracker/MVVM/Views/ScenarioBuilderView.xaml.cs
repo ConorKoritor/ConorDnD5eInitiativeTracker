@@ -3,6 +3,7 @@ using ConorDnD5eInitiativeTracker.MVVM.ViewModels;
 using DatabaseLibrary.Databases;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,8 +25,61 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
         double nameFontSize = 18;
         Thickness sectionMarginTop = new Thickness(0, 10, 0, 0);
         Thickness sectionMarginBottom = new Thickness(0, 0, 0, 10);
-        Thickness sectionMarginBoth = new Thickness(0, 10, 0, 10);
         Timer updateStatsTimer;
+        double[,] monsterPowerByChallengeRating = 
+        { 
+            {1,1,0,0}, 
+            {4,3,3,2,},
+            {10,6,5,4},
+            {16,12,7,5 },
+            {22,17,15,8},
+            {28,23,19,14},
+            {37,30,25,19},
+            {48,38,32,24},
+            {70,60,45,40},
+            {80,65,50,40},
+            {90,70,55,45},
+            {105,85,70,5},
+            {110,85,70,55},
+            {115,95,75,60},
+            {140,130,105,85},
+            {150,140,115,90},
+            {160,150,120,95},
+            {165,155,125,100},
+            {175,165,130,105},
+            {185,175,140,110},
+            {250,200,190,150},
+            {260,210,200,160},
+            {280,220,210,170},
+            {300,240,230,180},
+            {400,350,275,250},
+            {450,375,300,275},
+            {500,425,325,325},
+            {550,450,375,350},
+            {600,500,400,375},
+            {650,525,425,400},
+            {725,600,475,450},
+            {775,625,500,475},
+            {775,650,525,475},
+            {850,725,575,525}
+        };
+        double[] encounterPlayerMultipliers = new double[9];
+        int monsterPower = 0;
+        int playerTier;
+        string encounterDifficultyName;
+        string encounterDifficultyDescription;
+        string[] encounterDifficultyNames =
+        {
+            "Mild",
+            "Bruising",
+            "Bloody",
+            "Brutal",
+            "Oppressive",
+            "Overwhelming",
+            "Crushing",
+            "Devastating",
+            "Impossible"
+        };      
 
         public ScenarioBuilderView()
         {
@@ -35,8 +89,9 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             scenarioBuilderViewModel = this.DataContext as ScenarioBuilderViewModel;
             scenarioBuilderViewModel.SearchTheMonsterDatabase(search);
 
-            updateStatsTimer = new Timer(2000);
+            updateStatsTimer = new Timer(10);
             updateStatsTimer.Elapsed += new ElapsedEventHandler(UpdatePlayerStats);
+            updateStatsTimer.Elapsed += new ElapsedEventHandler(UpdateScenarioStats);
             updateStatsTimer.Interval = 2000;
             updateStatsTimer.Enabled = true;
 
@@ -559,7 +614,7 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
         {
             TextBlock textBlock = new TextBlock();
 
-            textBlock.Text = String.Format("Challenge: {0} ({1} XP)", scenarioBuilderViewModel.challengeRatingString, scenarioBuilderViewModel.monster.XP);
+            textBlock.Text = String.Format("Challenge: {0} ({1} XP)", scenarioBuilderViewModel.monster.Challenge_Rating, scenarioBuilderViewModel.monster.XP);
             textBlock.FontSize = descAndStatsFontSize;
             textBlock.Foreground = Brushes.Black;
             textBlock.FontFamily = Vinque;
@@ -902,7 +957,8 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
                 Type = monsterListItem.Type,
                 Size = monsterListItem.Size,
                 Challenge_Rating = monsterListItem.Challenge_Rating,
-                Alignment = monsterListItem.Alignment
+                Alignment = monsterListItem.Alignment,
+                Challenge_Rating_Tier = monsterListItem.Challenge_Rating_Tier
             };
 
             scenarioBuilderViewModel.ScenarioMonsters.Add(scenarioMonster);
@@ -917,9 +973,224 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             
         }
 
-        private void UpdateScenarioStats()
+        private void UpdateScenarioStats(object source, ElapsedEventArgs e)
         {
-              
+            this.Dispatcher.Invoke(() =>
+            {
+                CalculateMonsterCR();
+                CalculateEncounterDifficulty();
+                PopulateDescription();
+                PopulateScenarioStats();
+            });
+        }
+
+        private void CalculateMonsterCR() 
+        {
+            monsterPower = 0;
+            playerTier = CalculatePlayerTier();
+
+            if (scenarioBuilderViewModel.ScenarioMonsters.Count > 0 && playerTier != 4)
+            {
+                foreach (var monster in scenarioBuilderViewModel.ScenarioMonsters)
+                {
+                    monsterPower += (int)monsterPowerByChallengeRating[monster.Challenge_Rating_Tier, playerTier];
+                }
+            }
+        }
+
+        private int CalculatePlayerTier()
+        {
+            if (scenarioBuilderViewModel.ScenarioPlayers.Count > 0)
+            {
+                if (scenarioBuilderViewModel.PlayersAverageLevel < 4 && scenarioBuilderViewModel.PlayersAverageLevel > 0)
+                {
+                    return 0;
+                }
+                else if (scenarioBuilderViewModel.PlayersAverageLevel <= 10)
+                {
+                    return 1;
+                }
+                else if (scenarioBuilderViewModel.PlayersAverageLevel <= 16)
+                {
+                    return 2;
+                }
+                else
+                {
+                    return 3;
+                }
+            }
+            else
+            {
+                return 4;
+            }
+        }
+
+        private void CalculateEncounterDifficulty()
+        {
+            encounterPlayerMultipliers[0] = scenarioBuilderViewModel.PlayersCR2Score * 0.4;
+            encounterPlayerMultipliers[1] = scenarioBuilderViewModel.PlayersCR2Score * 0.6;
+            encounterPlayerMultipliers[2] = scenarioBuilderViewModel.PlayersCR2Score * 0.75;
+            encounterPlayerMultipliers[3] = scenarioBuilderViewModel.PlayersCR2Score * 0.9;
+            encounterPlayerMultipliers[4] = scenarioBuilderViewModel.PlayersCR2Score;
+            encounterPlayerMultipliers[5] = scenarioBuilderViewModel.PlayersCR2Score * 1.1;
+            encounterPlayerMultipliers[6] = scenarioBuilderViewModel.PlayersCR2Score * 1.3;
+            encounterPlayerMultipliers[7] = scenarioBuilderViewModel.PlayersCR2Score * 1.5;
+            encounterPlayerMultipliers[8] = scenarioBuilderViewModel.PlayersCR2Score * 2.25;
+
+            if(monsterPower == 0)
+            {
+                encounterDifficultyName = "";
+            }
+
+            else if (monsterPower <= encounterPlayerMultipliers[0])
+            {
+                encounterDifficultyName = encounterDifficultyNames[0];
+            }
+
+            else if (monsterPower <= encounterPlayerMultipliers[1])
+            {
+                encounterDifficultyName = encounterDifficultyNames[1];
+            }
+
+            else if (monsterPower <= encounterPlayerMultipliers[2])
+            {
+                encounterDifficultyName = encounterDifficultyNames[2];
+            }
+
+            else if (monsterPower <= encounterPlayerMultipliers[3])
+            {
+                encounterDifficultyName = encounterDifficultyNames[3];
+            }
+
+            else if (monsterPower <= encounterPlayerMultipliers[4])
+            {
+                encounterDifficultyName = encounterDifficultyNames[4];
+            }
+
+            else if (monsterPower <= encounterPlayerMultipliers[5])
+            {
+                encounterDifficultyName = encounterDifficultyNames[5];
+            }
+
+            else if (monsterPower <= encounterPlayerMultipliers[6])
+            {
+                encounterDifficultyName = encounterDifficultyNames[6];
+            }
+
+            else if (monsterPower <= encounterPlayerMultipliers[7])
+            {
+                encounterDifficultyName = encounterDifficultyNames[7];
+            }
+
+            else
+            {
+                encounterDifficultyName = encounterDifficultyNames[8];
+            }
+        }
+
+        private void PopulateDescription()
+        {
+            if(encounterDifficultyName != "")
+            {
+                switch (encounterDifficultyName)
+                {
+                    case "Mild":
+                        encounterDifficultyDescription = "The PCs will win without a scratch";
+                        break;
+
+                    case "Bruising":
+                        encounterDifficultyDescription = "The PCs will win with minor injuries";
+                        break;
+
+                    case "Bloody":
+                        encounterDifficultyDescription = "The PCs will win with major injuries";
+                        break;
+
+                    case "Brutal":
+                        encounterDifficultyDescription = "The PCs will win, but some may fall unconscious";
+                        break;
+
+                    case "Oppressive":
+                        encounterDifficultyDescription = "The PCs can only win with a little luck or skill";
+                        break;
+
+                    case "Overwhelming":
+                        encounterDifficultyDescription = "The PCs can only win with a lot of luck or skill";
+                        break;
+
+                    case "Crushing":
+                        encounterDifficultyDescription = "The PCs can only win with an exceptional amount of luck or skill";
+                        break;
+
+                    case "Devastating":
+                        encounterDifficultyDescription = "The PCs can only win under perfect conditions";
+                        break;
+
+                    case "Impossible":
+                        encounterDifficultyDescription = "The PCs cannot win";
+                        break;
+
+                    default:
+                        encounterDifficultyDescription = "";
+                        break;
+                }
+            }
+        }
+
+        private void PopulateScenarioStats()
+        {
+            stkpnlScenarioStatsDetailed.Children.Clear();
+
+            TextBlock monsterCR2Score = new TextBlock()
+            {
+                Margin = new Thickness(0,10,0,0),
+                FontFamily = Vinque,
+                FontSize = 18,
+                FontWeight = FontWeights.Bold,
+                Text = String.Format("Total CR2 Score of Monsters: {0}",  monsterPower.ToString())
+            };
+            TextBlock cr2Difficulty = new TextBlock()
+            {
+                Margin = new Thickness(0, 10, 0, 0),
+                FontFamily = Vinque,
+                FontSize = 18,
+                FontWeight = FontWeights.Bold,
+                Text = String.Format("Encounter Difficulty: {0}", encounterDifficultyName)
+            };
+            TextBlock cr2DifficultyDescription = new TextBlock{
+                Margin = new Thickness(0, 10, 0, 0),
+                FontFamily = Vinque,
+                FontSize = 18,
+                FontWeight = FontWeights.Bold,
+                Text = String.Format("Description: {0}", encounterDifficultyDescription),
+                TextWrapping = TextWrapping.Wrap
+            };
+            TextBlock encounterDifficultiesLabel = new TextBlock()
+            {
+                Margin = new Thickness(0, 10, 0, 10),
+                FontFamily = Vinque,
+                FontSize = 18,
+                FontWeight = FontWeights.Bold,
+                Text = "Encounter Difficulty Levels by Monster CR2: "
+            };
+
+            stkpnlScenarioStatsDetailed.Children.Add(monsterCR2Score);
+            stkpnlScenarioStatsDetailed.Children.Add(cr2Difficulty);
+            stkpnlScenarioStatsDetailed.Children.Add(cr2DifficultyDescription);
+            stkpnlScenarioStatsDetailed.Children.Add(encounterDifficultiesLabel);
+
+            for(int i =0; i < encounterPlayerMultipliers.Count(); i++)
+            {
+                TextBlock textBlock = new TextBlock
+                {
+                    FontFamily = Vinque,
+                    FontSize = 18,
+                    FontWeight = FontWeights.Bold,
+                    Text = String.Format("{0} :  {1}", encounterDifficultyNames[i], encounterPlayerMultipliers[i])
+                };
+
+                stkpnlScenarioStatsDetailed.Children.Add(textBlock);
+            }
         }
 
         private void btnManagePlayers_MouseEnter(object sender, MouseEventArgs e)
@@ -961,6 +1232,101 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
                     txtblkPlayersCR2Rating.Text = "0";
 
                 });
+            }
+        }
+
+        private void btnaveScenario_MouseEnter(object sender, MouseEventArgs e)
+        {
+            brdAddToScenario.Background = Brushes.LightGreen;
+        }
+
+        private void btnaveScenario_MouseLeave(object sender, MouseEventArgs e)
+        {
+            brdAddToScenario.Background = Brushes.Green;
+        }
+
+        private void btnaveScenario_Click(object sender, RoutedEventArgs e)
+        {
+            if(txtbxScenarioName.Text != null || txtbxScenarioName.Text.Length != 0)
+            {
+                Scenario scenario = new Scenario()
+                {
+                    Scenario_Name = txtbxScenarioName.Text
+                };
+
+                if (scenarioBuilderViewModel.AddScenarioToDatabase(scenario))
+                {
+                    MessageBox.Show("Scenario Added To Database");
+                }
+                else
+                {
+                    MessageBox.Show("Error, Scenario Not Added To Database");
+                }
+
+                AddScenarioMonstersToDatabase();
+                AddScenarioPlayersToDatabase();
+            }
+
+            else
+            {
+                MessageBox.Show("Please Enter a Scenario Name to save your Scenario");
+            }
+
+        }
+
+        private void AddScenarioMonstersToDatabase()
+        {
+            if(scenarioBuilderViewModel.ScenarioMonsters.Count > 0)
+            {
+                foreach(var monster in scenarioBuilderViewModel.ScenarioMonsters)
+                {
+                    MonsterScenarioTable monsterScenarioTable = new MonsterScenarioTable()
+                    {
+                        ScenarioName = txtbxScenarioName.Text,
+                        MonsterName = monster.Name
+                    };
+
+                    if (scenarioBuilderViewModel.AddMonsterScenarioToDatabase(monsterScenarioTable))
+                    {
+                        MessageBox.Show($"{monster.DisplayName} Added to Database");
+
+                    }
+
+                    else
+                    {
+                        MessageBox.Show($"Error, {monster.DisplayName} Not Added To Database");
+                    }
+                }
+
+                scenarioBuilderViewModel.ScenarioMonsters.Clear();
+            }
+        }
+
+        private void AddScenarioPlayersToDatabase()
+        {
+            if (scenarioBuilderViewModel.ScenarioPlayers.Count > 0)
+            {
+                foreach (var player in scenarioBuilderViewModel.ScenarioPlayers)
+                {
+                    PlayerScenarioTable playerScenarioTable = new PlayerScenarioTable()
+                    {
+                        ScenarioName = txtbxScenarioName.Text,
+                        PlayerName = player.Name
+                    };
+
+                    if (scenarioBuilderViewModel.AddPlayerScenarioToDatabase(playerScenarioTable))
+                    {
+                        MessageBox.Show($"{player.Name} Added to Database");
+                    }
+
+                    else
+                    {
+                        MessageBox.Show($"Error, {player.Name} Not Added To Database");
+                    }
+                    scenarioBuilderViewModel.Players.Add(player);
+                }
+
+                scenarioBuilderViewModel.ScenarioPlayers.Clear();
             }
         }
     }

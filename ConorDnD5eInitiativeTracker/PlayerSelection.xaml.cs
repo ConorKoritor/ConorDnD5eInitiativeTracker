@@ -29,6 +29,8 @@ namespace ConorDnD5eInitiativeTracker
             InitializeComponent();
 
             scenarioBuilderViewModel = viewModel;
+            lstbxScenarioPlayerList.ItemsSource = scenarioBuilderViewModel.ScenarioPlayers;
+            lstbxPlayerList.ItemsSource = scenarioBuilderViewModel.Players;
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
@@ -112,7 +114,6 @@ namespace ConorDnD5eInitiativeTracker
                 scenarioBuilderViewModel.ScenarioPlayers.Add(playerListItem);
                 scenarioBuilderViewModel.Players.Remove(playerListItem);
 
-                lstbxScenarioPlayerList.ItemsSource = scenarioBuilderViewModel.ScenarioPlayers;
                 scenarioBuilderViewModel.UpdatePlayerStats();
             }
         }
@@ -121,6 +122,21 @@ namespace ConorDnD5eInitiativeTracker
         {
             string search = txtbxPlayerSearch.Text;
             scenarioBuilderViewModel.SearchThePlayerDatabase(search);
+        }
+
+        private void btnFinish_MouseEnter(object sender, MouseEventArgs e)
+        {
+            brdFInishButton.Background = Brushes.LightGreen;
+        }
+
+        private void btnFinish_MouseLeave(object sender, MouseEventArgs e)
+        {
+            brdFInishButton.Background = Brushes.Green;
+        }
+
+        private void btnFinish_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
