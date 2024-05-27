@@ -13,7 +13,23 @@
     <UserControl.DataContext>
         <ViewModels:InitiativeViewModel />
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <ControlTemplate x:Key="NoMouseOverButtonTemplate" TargetType="Button">
+            <Border
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
 
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{x:Static SystemColors.ControlLightBrush}" />
+                    <Setter Property="Foreground" Value="{x:Static SystemColors.GrayTextBrush}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
     <Border Background="SandyBrown" CornerRadius="15">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -25,7 +41,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            
+
 
             <Border
                 Grid.Row="1"
@@ -33,14 +49,14 @@
                 Background="#878787"
                 CornerRadius="10">
                 <ListBox
-                    x:Name="lstbxMonsterList"
+                    x:Name="lstbxCreatureList"
                     Margin="4"
                     Background="#878787"
                     BorderBrush="#878787"
-                    ItemsSource="{Binding Monsters}"
+                    ItemsSource="{Binding Creatures}"
                     SelectionChanged="ListBox_SelectionChanged">
                     <ListBox.ItemTemplate>
-                        <DataTemplate DataType="{x:Type models:MonsterListItem}">
+                        <DataTemplate DataType="{x:Type models:InitiativeListItem}">
                             <Border
                                 Margin="2"
                                 Padding="5"
@@ -78,7 +94,7 @@
                                         FontFamily="/Fonts/#vinque rg"
                                         FontSize="15"
                                         Foreground="Black"
-                                        Text="{Binding Challenge_Rating, StringFormat='{}CR: {0}'}" />
+                                        Text="{Binding HP, StringFormat='{}HP: {0}'}" />
                                     <TextBlock
                                         x:Name="txtblkSize"
                                         Grid.Row="1"
@@ -88,17 +104,7 @@
                                         FontFamily="/Fonts/#vinque rg"
                                         FontSize="15"
                                         Foreground="Black"
-                                        Text="{Binding Size}" />
-                                    <TextBlock
-                                        x:Name="txtblkType"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Margin="3,0,0,0"
-                                        HorizontalAlignment="Left"
-                                        FontFamily="/Fonts/#vinque rg"
-                                        FontSize="15"
-                                        Foreground="Black"
-                                        Text="{Binding Type}" />
+                                        Text="{Binding Initiative, StringFormat='{}Initiative: {0}'}" />
 
                                 </Grid>
                             </Border>
@@ -153,6 +159,47 @@
                         <StackPanel x:Name="stkpnlLegendaryActions" Orientation="Vertical" />
                     </StackPanel>
                 </ScrollViewer>
+            </Border>
+            <ComboBox
+                x:Name="cmbxSelectScenario"
+                Width="150"
+                Margin="180,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemsSource="{Binding Scenarios}"
+                SelectionChanged="cmbxSelectScenario_SelectionChanged" />
+            <Label
+                Margin="10,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="Select Scenario"
+                FontFamily="/Fonts/#vinque rg"
+                FontSize="22"
+                FontWeight="Bold" />
+
+            <Border
+                x:Name="brdRollInitiative"
+                Grid.Column="1"
+                Width="130"
+                Height="30"
+                Margin="0,0,0,0"
+                Background="Green"
+                CornerRadius="5">
+                <Button
+                    x:Name="btnRollInitiative"
+                    Width="120"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Click="btnRollInitiative_Click"
+                    FontFamily="#/Fonts/vinque rg"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    MouseEnter="btnaveScenario_MouseEnter"
+                    MouseLeave="btnaveScenario_MouseLeave"
+                    Template="{StaticResource NoMouseOverButtonTemplate}">
+                    Roll Initiative
+                </Button>
+
             </Border>
         </Grid>
     </Border>

@@ -113,6 +113,7 @@
     <Compile Include="DatabaseInserts\SpellsInserts\GetSpellsForDatabase.cs" />
     <Compile Include="DatabaseQueries\MonsterQueries.cs" />
     <Compile Include="DatabaseQueries\PlayerQueries.cs" />
+    <Compile Include="DatabaseQueries\ScenarioQueries.cs" />
     <Compile Include="Databases\Ability.cs" />
     <Compile Include="Databases\ArmorClass.cs" />
     <Compile Include="Databases\CombatAction.cs" />

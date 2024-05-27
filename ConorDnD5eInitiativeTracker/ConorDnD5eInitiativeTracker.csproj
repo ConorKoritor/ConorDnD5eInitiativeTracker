@@ -130,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="EnterPlayerInitiatives.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -140,6 +144,9 @@
     </Compile>
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="EnterPlayerInitiatives.xaml.cs">
+      <DependentUpon>EnterPlayerInitiatives.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -178,6 +185,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MVVM\Models\InitiativeListItem.cs" />
     <Compile Include="MVVM\Models\MonsterListItem.cs" />
     <Compile Include="MVVM\Models\PlayerListItem.cs" />
     <Compile Include="MVVM\Models\ScenarioMonsterListItem.cs" />

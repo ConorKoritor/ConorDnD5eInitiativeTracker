@@ -23,5 +23,10 @@ namespace DatabaseLibrary.Databases
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MonsterScenarioTable> MonsterScenarios { get; set; }
+
+        public override string ToString()
+        {
+            return Scenario_Name;
+        }
     }
 }

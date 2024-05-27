@@ -15,7 +15,6 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
     {
         public ObservableCollection<MonsterListItem> Monsters { get; set; }
         public InitiativeTrackerDB db { get; set; }
-        public MonsterSearchViewModel monsterSearchViewModel { get; set; }
 
         public Monster monster { get; set; }
         public List<CombatAction> actionList { get; set; }

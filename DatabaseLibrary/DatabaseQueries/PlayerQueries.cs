@@ -24,5 +24,14 @@ namespace DatabaseLibrary.DatabaseQueries
                         select p;
             return query.ToList();
         }
+
+        public static PlayerCharacterBasic GetAPlayer(InitiativeTrackerDB db, string name) 
+        {
+            var query = from p in db.PlayerCharacterBasics
+                        where p.Name == name
+                        select p;
+
+            return query.FirstOrDefault();
+        }
     }
 }
