@@ -14,7 +14,7 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
     {  
         public static bool AddCharacterToDatabase(PlayerCharacterBasic player)
         {
-            InitiativeTrackerDB db = new InitiativeTrackerDB("TestDatabase14");
+            InitiativeTrackerDB db = new InitiativeTrackerDB("TestDatabase16");
 
             try
             {

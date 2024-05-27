@@ -14,148 +14,150 @@
         <ViewModels:MonsterSearchViewModel />
     </UserControl.DataContext>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="420" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="75" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+    <Border Background="SandyBrown" CornerRadius="15">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-        <TextBox
-            x:Name="txtbxSearch"
-            Style="{StaticResource MonsterTextBox}"
-            TextChanged="txtbxSearch_TextChanged" />
+            <TextBox
+                x:Name="txtbxSearch"
+                Style="{StaticResource MonsterTextBox}"
+                TextChanged="txtbxSearch_TextChanged" />
 
-        <Border
-            Grid.Row="1"
-            Margin="5"
-            Background="#878787"
-            CornerRadius="10">
-            <ListBox
-                x:Name="lstbxMonsterList"
-                Margin="4"
+            <Border
+                Grid.Row="1"
+                Margin="5"
                 Background="#878787"
-                BorderBrush="#878787"
-                ItemsSource="{Binding Monsters}"
-                SelectionChanged="ListBox_SelectionChanged">
-                <ListBox.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:MonsterListItem}">
-                        <Border
-                            Margin="2"
-                            Padding="5"
-                            Background="White"
-                            BorderBrush="Black"
-                            BorderThickness="1"
-                            CornerRadius="5">
-                            <Grid Width="345">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
+                CornerRadius="10">
+                <ListBox
+                    x:Name="lstbxMonsterList"
+                    Margin="4"
+                    Background="#878787"
+                    BorderBrush="#878787"
+                    ItemsSource="{Binding Monsters}"
+                    SelectionChanged="ListBox_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:MonsterListItem}">
+                            <Border
+                                Margin="2"
+                                Padding="5"
+                                Background="White"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                CornerRadius="5">
+                                <Grid Width="345">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
 
-                                <TextBlock
-                                    x:Name="txtblkMonsterName"
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="3"
-                                    FontFamily="/Fonts/#vinque rg"
-                                    FontSize="28"
-                                    FontWeight="Bold"
-                                    Foreground="Red"
-                                    Text="{Binding Name}" />
-                                <TextBlock
-                                    x:Name="txtblkCRRating"
-                                    Grid.Row="1"
-                                    Grid.Column="2"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    FontFamily="/Fonts/#vinque rg"
-                                    FontSize="15"
-                                    Foreground="Black"
-                                    Text="{Binding Challenge_Rating, StringFormat='{}CR: {0}'}" />
-                                <TextBlock
-                                    x:Name="txtblkSize"
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    FontFamily="/Fonts/#vinque rg"
-                                    FontSize="15"
-                                    Foreground="Black"
-                                    Text="{Binding Size}" />
-                                <TextBlock
-                                    x:Name="txtblkType"
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Margin="3,0,0,0"
-                                    HorizontalAlignment="Left"
-                                    FontFamily="/Fonts/#vinque rg"
-                                    FontSize="15"
-                                    Foreground="Black"
-                                    Text="{Binding Type}" />
+                                    <TextBlock
+                                        x:Name="txtblkMonsterName"
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+                                        FontFamily="/Fonts/#vinque rg"
+                                        FontSize="28"
+                                        FontWeight="Bold"
+                                        Foreground="Red"
+                                        Text="{Binding Name}" />
+                                    <TextBlock
+                                        x:Name="txtblkCRRating"
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        FontFamily="/Fonts/#vinque rg"
+                                        FontSize="15"
+                                        Foreground="Black"
+                                        Text="{Binding Challenge_Rating, StringFormat='{}CR: {0}'}" />
+                                    <TextBlock
+                                        x:Name="txtblkSize"
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        FontFamily="/Fonts/#vinque rg"
+                                        FontSize="15"
+                                        Foreground="Black"
+                                        Text="{Binding Size}" />
+                                    <TextBlock
+                                        x:Name="txtblkType"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="3,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        FontFamily="/Fonts/#vinque rg"
+                                        FontSize="15"
+                                        Foreground="Black"
+                                        Text="{Binding Type}" />
 
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
 
-        <Border
-            Grid.Row="1"
-            Grid.Column="1"
-            Margin="7"
-            Background="AntiqueWhite"
-            CornerRadius="10">
-            <ScrollViewer Margin="5">
-                <StackPanel
-                    x:Name="stkpnlMonsterStatBlock"
-                    MaxWidth="600"
-                    HorizontalAlignment="Left"
-                    Orientation="Vertical">
-                    <StackPanel x:Name="stkpnlMonsterNameSizeAlignmentType" Orientation="Vertical">
-                        <TextBlock
-                            x:Name="txtblkMonsterStatsName"
-                            FontFamily="/Fonts/#vinque rg"
-                            FontSize="50"
-                            FontWeight="Bold"
-                            Foreground="Red" />
+            <Border
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="7"
+                Background="AntiqueWhite"
+                CornerRadius="10">
+                <ScrollViewer Margin="5">
+                    <StackPanel
+                        x:Name="stkpnlMonsterStatBlock"
+                        MaxWidth="600"
+                        HorizontalAlignment="Left"
+                        Orientation="Vertical">
+                        <StackPanel x:Name="stkpnlMonsterNameSizeAlignmentType" Orientation="Vertical">
+                            <TextBlock
+                                x:Name="txtblkMonsterStatsName"
+                                FontFamily="/Fonts/#vinque rg"
+                                FontSize="50"
+                                FontWeight="Bold"
+                                Foreground="Red" />
 
-                        <TextBlock
-                            x:Name="txtblkMonsterStatsAlignmentSizeAndType"
-                            Margin="0,0,0,5"
-                            FontFamily="/Fonts/#vinque rg"
-                            FontSize="16"
-                            Foreground="Black" />
+                            <TextBlock
+                                x:Name="txtblkMonsterStatsAlignmentSizeAndType"
+                                Margin="0,0,0,5"
+                                FontFamily="/Fonts/#vinque rg"
+                                FontSize="16"
+                                Foreground="Black" />
 
+                            <Rectangle
+                                x:Name="rctMonsterNameSizeAlignmentTypeBottomBorder"
+                                Height="3"
+                                Fill="Transparent" />
+                        </StackPanel>
+                        <StackPanel x:Name="stkpnlACHPandSpeed" Orientation="Vertical" />
+                        <StackPanel x:Name="stkpnlMonsterAbilityNames" Orientation="Horizontal" />
+                        <StackPanel x:Name="stkpnlMonsterAbilityScores" Orientation="Horizontal" />
                         <Rectangle
-                            x:Name="rctMonsterNameSizeAlignmentTypeBottomBorder"
+                            x:Name="rctMonsterAbilityScoresBottomBorder"
                             Height="3"
                             Fill="Transparent" />
+                        <StackPanel x:Name="stkpnlMonsterStats" Orientation="Vertical" />
+                        <StackPanel x:Name="stkpnlSpecialAbilities" Orientation="Vertical" />
+                        <StackPanel x:Name="stkpnlCombatActions" Orientation="Vertical" />
+                        <StackPanel x:Name="stkpnlReactions" Orientation="Vertical" />
+                        <StackPanel x:Name="stkpnlLegendaryActions" Orientation="Vertical" />
                     </StackPanel>
-                    <StackPanel x:Name="stkpnlACHPandSpeed" Orientation="Vertical" />
-                    <StackPanel x:Name="stkpnlMonsterAbilityNames" Orientation="Horizontal" />
-                    <StackPanel x:Name="stkpnlMonsterAbilityScores" Orientation="Horizontal" />
-                    <Rectangle
-                        x:Name="rctMonsterAbilityScoresBottomBorder"
-                        Height="3"
-                        Fill="Transparent" />
-                    <StackPanel x:Name="stkpnlMonsterStats" Orientation="Vertical" />
-                    <StackPanel x:Name="stkpnlSpecialAbilities" Orientation="Vertical" />
-                    <StackPanel x:Name="stkpnlCombatActions" Orientation="Vertical" />
-                    <StackPanel x:Name="stkpnlReactions" Orientation="Vertical" />
-                    <StackPanel x:Name="stkpnlLegendaryActions" Orientation="Vertical" />
-                </StackPanel>
-            </ScrollViewer>
-        </Border>
-    </Grid>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Border>
 
 </UserControl>

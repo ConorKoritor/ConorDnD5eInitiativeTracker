@@ -25,13 +25,14 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </UserControl.Resources>
-    <Border Background="AntiqueWhite" CornerRadius="10">
+    <Border Background="AntiqueWhite" CornerRadius="15">
         <Grid>
             <StackPanel
                 Width="900"
                 Height="500"
+                Margin="0,164,0,0"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
+                VerticalAlignment="Top"
                 Orientation="Vertical">
 
                 <TextBlock
@@ -82,6 +83,44 @@
                         </Grid>
                     </Border>
                 </StackPanel>
+
+                <StackPanel
+                    x:Name="stkpnlCharacterLevelInput"
+                    Width="550"
+                    Margin="0,0,0,20"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Label
+                        x:Name="lblCharacterLevelInput"
+                        Margin="0,0,117.5,0"
+                        VerticalAlignment="Center"
+                        FontFamily="/Fonts/#vinque rg"
+                        FontSize="25"
+                        FontWeight="Bold">
+                        Character Level
+                    </Label>
+                    <Border
+                        Width="200"
+                        Height="40"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Background="#DEDEDE"
+                        CornerRadius="10">
+
+                        <Grid>
+                            <Rectangle StrokeThickness="1" />
+                            <TextBox
+                                x:Name="txtbxCharacterLevelInput"
+                                Margin="1"
+                                Padding="5"
+                                VerticalContentAlignment="Center"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="Black" />
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
 
                 <StackPanel
                     x:Name="stkpnlCharacterACInput"

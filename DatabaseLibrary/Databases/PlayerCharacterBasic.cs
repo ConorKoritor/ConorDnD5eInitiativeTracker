@@ -23,6 +23,8 @@ namespace DatabaseLibrary.Databases
 
         public int CR_2_Score { get; set; }
 
+        public short Level { get; set; }
+
         [Required]
         public string Name { get; set; }
 

@@ -39,6 +39,7 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
         private void btnAddToDatabase_Click(object sender, RoutedEventArgs e)
         {
             string characterName = "Player";
+            short characterLevel = 0;
             short characterAC = 0;
             int characterHP = 0;
             int characterCR2 = 0;
@@ -57,7 +58,13 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
                     break;
                 }
 
-                if(!short.TryParse(txtbxCharacterACInput.Text, out characterAC))
+                if (!short.TryParse(txtbxCharacterLevelInput.Text, out characterLevel))
+                {
+                    MessageBox.Show($"Please Enter a valid Character Level with no special characters between 0 and 20");
+                    incorrectInput = true;
+                    break;
+                }
+                if (!short.TryParse(txtbxCharacterACInput.Text, out characterAC))
                 {
                     MessageBox.Show("Please Enter a valid Character Armor Class with no special characters between 0 and 50");
                     incorrectInput = true;
@@ -86,6 +93,7 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
                 PlayerCharacterBasic player = new PlayerCharacterBasic()
                 {
                     Name = characterName,
+                    Level = characterLevel,
                     AC = characterAC,
                     HP = characterHP,
                     CR_2_Score = characterCR2

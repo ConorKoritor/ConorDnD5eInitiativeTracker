@@ -112,6 +112,7 @@
     <Compile Include="DatabaseInserts\SpellsInserts\AddSpellsToDatabase.cs" />
     <Compile Include="DatabaseInserts\SpellsInserts\GetSpellsForDatabase.cs" />
     <Compile Include="DatabaseQueries\MonsterQueries.cs" />
+    <Compile Include="DatabaseQueries\PlayerQueries.cs" />
     <Compile Include="Databases\Ability.cs" />
     <Compile Include="Databases\ArmorClass.cs" />
     <Compile Include="Databases\CombatAction.cs" />
@@ -149,6 +150,10 @@
     <Compile Include="Migrations\202405201632560_Added_Rest_Types.designer.cs">
       <DependentUpon>202405201632560_Added_Rest_Types.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405261920243_AddedLevelToPlayerCharacterBasic.cs" />
+    <Compile Include="Migrations\202405261920243_AddedLevelToPlayerCharacterBasic.designer.cs">
+      <DependentUpon>202405261920243_AddedLevelToPlayerCharacterBasic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -165,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405201632560_Added_Rest_Types.resx">
       <DependentUpon>202405201632560_Added_Rest_Types.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405261920243_AddedLevelToPlayerCharacterBasic.resx">
+      <DependentUpon>202405261920243_AddedLevelToPlayerCharacterBasic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

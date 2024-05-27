@@ -1,4 +1,5 @@
 ﻿using ConorDnD5eInitiativeTracker.MVVM.Models;
+using ConorDnD5eInitiativeTracker.MVVM.Views;
 using DatabaseLibrary.DatabaseQueries;
 using DatabaseLibrary.Databases;
 using System;
@@ -10,12 +11,17 @@ using System.Threading.Tasks;
 
 namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
 {
-    class ScenarioBuilderViewModel
+    public class ScenarioBuilderViewModel
     {
         public ObservableCollection<MonsterListItem> Monsters { get; set; }
-        public ObservableCollection<MonsterListItem> ScenarioMonsters { get; set; }
+        public ObservableCollection<ScenarioMonsterListItem> ScenarioMonsters { get; set; }
         public InitiativeTrackerDB db { get; set; }
-        public MonsterSearchViewModel monsterSearchViewModel { get; set; }
+
+        public ObservableCollection<PlayerListItem> Players { get; set; }
+        public ObservableCollection<PlayerListItem> ScenarioPlayers { get; set; }
+        public int NumberOfPlayers { get; set; }
+        public int PlayersCR2Score { get; set; }
+        public int PlayersAverageLevel {  get; set; }
 
         public Monster monster { get; set; }
         public List<CombatAction> actionList { get; set; }
@@ -35,15 +41,17 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
 
         public ScenarioBuilderViewModel()
         {
-            db = new InitiativeTrackerDB("TestDatabase14");
+            db = new InitiativeTrackerDB("TestDatabase16");
             Monsters = new ObservableCollection<MonsterListItem>();
-            ScenarioMonsters = new ObservableCollection<MonsterListItem>();
+            ScenarioMonsters = new ObservableCollection<ScenarioMonsterListItem>();
+            Players = new ObservableCollection<PlayerListItem>();
+            ScenarioPlayers = new ObservableCollection<PlayerListItem>();
 
-            GetInitialList();
-
+            GetInitialMonsterList();
+            GetInitialPlayerList();
         }
 
-        public void SearchTheDatabase(string search)
+        public void SearchTheMonsterDatabase(string search)
         {
 
             Monsters.Clear();
@@ -51,23 +59,45 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
             {
                 var query = MonsterQueries.SearchMonsters(db, search);
 
-                PopulateList(query);
+                PopulateMonsterList(query);
             }
             else
             {
-                GetInitialList();
+                GetInitialMonsterList();
             }
 
         }
 
-        public void GetInitialList()
+        public void GetInitialMonsterList()
         {
             var query = MonsterQueries.GetMonsters(db);
 
-            PopulateList(query);
+            PopulateMonsterList(query);
         }
 
-        public void PopulateList(List<Monster> query)
+        public void SearchThePlayerDatabase(string search)
+        {
+            Players.Clear();
+            if (search != null)
+            {
+                var query = PlayerQueries.SearchPlayers(db, search);
+
+                PopulatePlayerList(query);
+            }
+            else
+            {
+                GetInitialPlayerList();
+            }
+        }
+
+        public void GetInitialPlayerList()
+        {
+            var query = PlayerQueries.GetPlayers(db);
+
+            PopulatePlayerList(query);
+        }
+
+        public void PopulateMonsterList(List<Monster> query)
         {
 
 
@@ -132,6 +162,44 @@ namespace ConorDnD5eInitiativeTracker.MVVM.ViewModels
             specialAbilities = MonsterQueries.GetMonsterSpecialAbilities(db, monsterName);
             usages = MonsterQueries.GetMonsterUsages(db, monsterName);
             usages = MonsterQueries.GetMonsterUsages(db, monsterName);
+        }
+
+        public void PopulatePlayerList(List<PlayerCharacterBasic> query)
+        {
+            foreach (var player in query)
+            {
+                PlayerListItem playerListItem = new PlayerListItem()
+                {
+                    Name= player.Name,
+                    AC = player.AC,
+                    HP = player.HP,
+                    CR_2_Score = player.CR_2_Score,
+                    Level = player.Level
+                };
+
+                Players.Add(playerListItem);
+            }
+        }
+
+        public void UpdatePlayerStats()
+        {
+            PlayersAverageLevel = 0;
+            PlayersCR2Score = 0;
+            NumberOfPlayers = 0;
+            decimal playersTotalLevel = 0;
+
+            if (ScenarioPlayers.Count > 0)
+            {
+                foreach (PlayerListItem player in ScenarioPlayers)
+                {
+                    NumberOfPlayers++;
+                    PlayersCR2Score += player.CR_2_Score;
+                    playersTotalLevel += player.Level;
+                }
+
+                PlayersAverageLevel = (int)Math.Floor(playersTotalLevel/NumberOfPlayers);
+            }
+
         }
     }
 }

@@ -164,6 +164,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PlayerSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Theme\MenuButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +179,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MVVM\Models\MonsterListItem.cs" />
+    <Compile Include="MVVM\Models\PlayerListItem.cs" />
+    <Compile Include="MVVM\Models\ScenarioMonsterListItem.cs" />
     <Compile Include="MVVM\Models\WindowBehaviours.cs" />
     <Compile Include="MVVM\ViewModels\CharacterBuilderViewModel.cs" />
     <Compile Include="MVVM\ViewModels\HomeViewModel.cs" />
@@ -196,6 +202,9 @@
     </Compile>
     <Compile Include="MVVM\Views\ScenarioBuilderView.xaml.cs">
       <DependentUpon>ScenarioBuilderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerSelection.xaml.cs">
+      <DependentUpon>PlayerSelection.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -3,17 +3,11 @@ using ConorDnD5eInitiativeTracker.MVVM.ViewModels;
 using DatabaseLibrary.Databases;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ConorDnD5eInitiativeTracker.MVVM.Views
@@ -30,8 +24,8 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
         double nameFontSize = 18;
         Thickness sectionMarginTop = new Thickness(0, 10, 0, 0);
         Thickness sectionMarginBottom = new Thickness(0, 0, 0, 10);
-        Thickness sectionMarginBoth = new Thickness(0, 10, 0, 10)
-;
+        Thickness sectionMarginBoth = new Thickness(0, 10, 0, 10);
+        Timer updateStatsTimer;
 
         public ScenarioBuilderView()
         {
@@ -39,14 +33,23 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
 
             string search = txtbxSearch.Text;
             scenarioBuilderViewModel = this.DataContext as ScenarioBuilderViewModel;
-            scenarioBuilderViewModel.SearchTheDatabase(search);
+            scenarioBuilderViewModel.SearchTheMonsterDatabase(search);
+
+            updateStatsTimer = new Timer(2000);
+            updateStatsTimer.Elapsed += new ElapsedEventHandler(UpdatePlayerStats);
+            updateStatsTimer.Interval = 2000;
+            updateStatsTimer.Enabled = true;
+
+            txtblkNumberOfPlayers.Text = "0";
+            txtblkAverageLevel.Text = "0";
+            txtblkPlayersCR2Rating.Text = "0";
 
         }
 
         private void txtbxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             string search = txtbxSearch.Text;
-            scenarioBuilderViewModel.SearchTheDatabase(search);
+            scenarioBuilderViewModel.SearchTheMonsterDatabase(search);
         }
         
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -892,9 +895,10 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             }
 
             scenarioMonsterName += " #" + count.ToString();
-            MonsterListItem scenarioMonster = new MonsterListItem()
+            ScenarioMonsterListItem scenarioMonster = new ScenarioMonsterListItem()
             {
-                Name = scenarioMonsterName,
+                DisplayName = scenarioMonsterName,
+                Name = monsterListItem.Name,
                 Type = monsterListItem.Type,
                 Size = monsterListItem.Size,
                 Challenge_Rating = monsterListItem.Challenge_Rating,
@@ -902,6 +906,62 @@ namespace ConorDnD5eInitiativeTracker.MVVM.Views
             };
 
             scenarioBuilderViewModel.ScenarioMonsters.Add(scenarioMonster);
+        }
+
+        private void btnRemoveFromScenario_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstbxScenarioMonsterList.SelectedItem != null)
+            {
+                scenarioBuilderViewModel.ScenarioMonsters.Remove(lstbxScenarioMonsterList.SelectedItem as ScenarioMonsterListItem);
+            }
+            
+        }
+
+        private void UpdateScenarioStats()
+        {
+              
+        }
+
+        private void btnManagePlayers_MouseEnter(object sender, MouseEventArgs e)
+        {
+            brdManagePlayers.Background = Brushes.DimGray;
+        }
+
+        private void btnManagePlayers_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var converter = new System.Windows.Media.BrushConverter();
+            var brush = (Brush)converter.ConvertFromString("#DEDEDE");
+            brdManagePlayers.Background = brush;
+        }
+
+        private void btnManagePlayers_Click(object sender, RoutedEventArgs e)
+        {
+            PlayerSelection playerSelection = new PlayerSelection(scenarioBuilderViewModel);
+            playerSelection.Show();
+        }
+
+        private void UpdatePlayerStats(object source, ElapsedEventArgs e)
+        {
+            if (scenarioBuilderViewModel.NumberOfPlayers > 0 && scenarioBuilderViewModel.PlayersAverageLevel > 0 && scenarioBuilderViewModel.PlayersCR2Score > 0)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    txtblkNumberOfPlayers.Text = scenarioBuilderViewModel.NumberOfPlayers.ToString();
+                    txtblkAverageLevel.Text = scenarioBuilderViewModel.PlayersAverageLevel.ToString();
+                    txtblkPlayersCR2Rating.Text = scenarioBuilderViewModel.PlayersCR2Score.ToString();
+
+                });
+            }
+            else
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    txtblkNumberOfPlayers.Text = "0";
+                    txtblkAverageLevel.Text = "0";
+                    txtblkPlayersCR2Rating.Text = "0";
+
+                });
+            }
         }
     }
 }
